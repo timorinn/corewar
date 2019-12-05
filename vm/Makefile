@@ -6,7 +6,7 @@
 #    By: bford <bford@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/05 17:55:08 by bford             #+#    #+#              #
-#    Updated: 2019/12/04 20:16:27 by bford            ###   ########.fr        #
+#    Updated: 2019/12/05 10:53:03 by bford            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ SRC =		ft_valid_input.c	\
 			ft_init_input.c		\
 			ft_init_player.c	\
 			ft_lstnew_player.c	\
-			ft_lstdel_player.c
+			ft_lstdel_player.c	\
+			ft_error.c
 
 OBJ =		$(SRC:.c=.o)
 

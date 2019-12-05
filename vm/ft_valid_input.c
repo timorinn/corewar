@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 12:53:12 by bford             #+#    #+#             */
-/*   Updated: 2019/12/04 20:06:34 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/05 10:53:28 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int	ft_valid_argv(int argc, char **argv, int *i, int *players)
 			return (ft_putstr_fd("Error: -n: not enough arguments\n", 2));
 		else if (!ft_isint(argv[*i], 1, 0, 1) || ft_atoi(argv[*i]) < 1 ||
 		ft_atoi(argv[*i]) > MAX_PLAYERS)
-			return (ft_putstr_fd("Error: -n: invalid number\n", 2));
+			return (ft_putstr_fd("Error: -n: invalid player number\n", 2));
 		else if (players[ft_atoi(argv[*i]) - 1] != 0)
 			return (ft_putstr_fd("Error: -n: repeat player number\n", 2));
 		else if (!ft_check_name_player(argv[*i + 1]))
@@ -89,7 +89,7 @@ int			ft_valid_input(int argc, char **argv)
 		if (!ft_valid_argv(argc, argv, &i, nums))
 			return (0);
 		if (++players_num > MAX_PLAYERS)
-			return (ft_putstr("Error: too many players\n"));
+			return (ft_error(7, 0));
 	}
 	return (1);
 }

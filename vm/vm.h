@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2019/12/04 20:45:56 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/05 20:21:36 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@
 
 # include "../libft/libft.h"
 # include <fcntl.h>
+# include <stdint.h>
 
 # include <stdio.h>
 
@@ -72,6 +73,7 @@ typedef struct		s_player
 	char			*name;
 	char			*comment;
 	char			*code;
+	int				size;
 	struct s_player	*next;
 }					t_player;
 
@@ -81,7 +83,8 @@ int					ft_valid_input(int argc, char **argv);
 
 t_player			*ft_init_input(int argc, char **argv, int valid);
 int					ft_init_player(char **argv, int *i, t_player **player, int *numbers);
-t_player			*ft_lstnew_player(int num, t_player *next);
+t_player			*ft_lstnew_player(int num);
 int					ft_lstdel_player(t_player *player);
+int					ft_error(int num, char *s);
 
 #endif
