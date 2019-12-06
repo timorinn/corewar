@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 16:20:54 by bford             #+#    #+#             */
-/*   Updated: 2019/12/04 16:15:38 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/06 12:25:30 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ size_t				ft_strlen(const char *s);
 int					ft_strcmp(const char *s1, const char *s2);
 char				*ft_strdup(const char *src);
 char				*ft_strndup(char const *src, int n);
+unsigned char		*ft_strndupu(char const *src, int n);
 char				*ft_strcpy(char *s1, const char *s2);
 char				*ft_strncpy(char *s1, const char *s2, size_t n);
 char				*ft_strcat(char *s1, const char *s2);

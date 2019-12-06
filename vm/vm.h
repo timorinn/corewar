@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2019/12/05 20:21:36 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/06 19:11:58 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,11 @@
 # include "../libft/libft.h"
 # include <fcntl.h>
 # include <stdint.h>
+# include <ncurses.h>
 
 # include <stdio.h>
+
+# define HEX "0123456789abcdef"
 
 typedef struct		s_header
 {
@@ -72,7 +75,7 @@ typedef struct		s_player
 	int				num;
 	char			*name;
 	char			*comment;
-	char			*code;
+	unsigned char	*code;
 	int				size;
 	struct s_player	*next;
 }					t_player;
@@ -81,10 +84,13 @@ typedef char		t_arg_type;
 
 int					ft_valid_input(int argc, char **argv);
 
-t_player			*ft_init_input(int argc, char **argv, int valid);
+t_player			*ft_init_input(int argc, char **argv, int valid, int dump);
 int					ft_init_player(char **argv, int *i, t_player **player, int *numbers);
 t_player			*ft_lstnew_player(int num);
 int					ft_lstdel_player(t_player *player);
+int					ft_lstlen_player(t_player *player);
 int					ft_error(int num, char *s);
+int					ft_map(int dump, t_player *player, int v);
+int					ft_print_hex(unsigned char c);
 
 #endif

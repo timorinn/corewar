@@ -1,42 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdel_player.c                                 :+:      :+:    :+:   */
+/*   ft_strndupu.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/04 16:56:04 by bford             #+#    #+#             */
-/*   Updated: 2019/12/06 13:10:05 by bford            ###   ########.fr       */
+/*   Created: 2019/12/06 12:24:27 by bford             #+#    #+#             */
+/*   Updated: 2019/12/06 12:26:35 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vm.h"
+#include <stdlib.h>
+#include "libft.h"
 
-int		ft_lstdel_player(t_player *player)
+unsigned char	*ft_strndupu(char const *src, int n)
 {
-	t_player	*buf;
+	unsigned char	*s;
+	int				len;
 
-	while (player)
-	{
-		buf = player->next;
-		if (player->name)
-		{
-			free(player->name);
-			player->name = NULL;
-		}
-		if (player->comment)
-		{
-			free(player->comment);
-			player->comment = NULL;
-		}
-		if (player->code)
-		{
-			free(player->code);
-			player->code = NULL;
-		}
-		free(player);
-		player = NULL;
-		player = buf;
-	}
-	return (0);
+	len = n;
+	if (!src || n < 0)
+		return (NULL);
+	if ((s = (unsigned char *)malloc(sizeof(unsigned char) * (n + 1))) == 0)
+		return (NULL);
+	while (n--)
+		*s++ = *src++;
+	*s = '\0';
+	s -= len;
+	return (s);
 }
