@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2019/12/06 19:11:58 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/11 16:03:25 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,11 @@
 # define COMMENT_LENGTH			(2048)
 # define COREWAR_EXEC_MAGIC		0xea83f3
 
+# define GRANICA "************************************************************\
+******************************************************************************\
+******************************************************************************\
+**************************************\n"
+
 # include "../libft/libft.h"
 # include <fcntl.h>
 # include <stdint.h>
@@ -80,7 +85,15 @@ typedef struct		s_player
 	struct s_player	*next;
 }					t_player;
 
-typedef char		t_arg_type;
+typedef struct		caretaaa
+{
+	int				play_num;
+	int				size;
+	int				position;
+	int				operation;
+	int				cooldown;
+	int				registr[16];
+}					careta;
 
 int					ft_valid_input(int argc, char **argv);
 
@@ -92,5 +105,10 @@ int					ft_lstlen_player(t_player *player);
 int					ft_error(int num, char *s);
 int					ft_map(int dump, t_player *player, int v);
 int					ft_print_hex(unsigned char c);
+int					ft_print_map(unsigned char map[4096][4]);
+careta				*ft_make_array_careta(t_player *player);
+int					ft_print_careta(careta *careta);
+
+int					ft_do_cycle(unsigned char map[4096][4], careta *car);
 
 #endif

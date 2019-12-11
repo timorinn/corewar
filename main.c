@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 13:17:03 by bford             #+#    #+#             */
-/*   Updated: 2019/12/06 19:17:21 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/11 13:57:59 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,11 @@ int			main(int argc, char **argv)
 	t_player	*player;
 	int			dump;
 
-	//initscr();
 	dump = ft_init_dump(argc, argv);
 	player = ft_init_input(argc, argv, ft_valid_input(argc, argv), dump);
 	ft_map(dump, player, ft_visu(argc, argv));
 
-	//ft_print_player_param(player, 0);
+	ft_print_player_param(player, 0);
 
 	return (ft_lstdel_player(player));
 }

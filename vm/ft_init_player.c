@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 16:59:08 by bford             #+#    #+#             */
-/*   Updated: 2019/12/06 16:37:07 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/09 15:00:48 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int			ft_init_new_player(int fd, t_player *player)
 	((!(buf[4] -= buf[4]) && (read(fd, buf, 4) != 4 ||
 	*(uint32_t *)buf != 0) && !ft_error(2, 0))) ||
 	((!(buf[player->size] -= buf[player->size]) &&
-	read(fd, buf, player->size) != player->size && !ft_error(2, 0)) ||
+	read(fd, buf, player->size + 1) != player->size && !ft_error(2, 0)) ||
 	!ft_make_player_code(player, buf, player->size))) ? 0 : 1);
 }
 

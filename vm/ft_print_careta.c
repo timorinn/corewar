@@ -1,20 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_hex.c                                     :+:      :+:    :+:   */
+/*   ft_print_careta.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/06 14:27:23 by bford             #+#    #+#             */
-/*   Updated: 2019/12/06 14:52:30 by bford            ###   ########.fr       */
+/*   Created: 2019/12/10 11:00:52 by bford             #+#    #+#             */
+/*   Updated: 2019/12/11 14:09:06 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int			ft_print_hex(unsigned char c)
+int		ft_print_careta(careta *car)
 {
-	write(1, &(HEX[c / 16 % 16]), 1);
-	write(1, &(HEX[c % 16]), 1);
+	int	i;
+	int	reg;
+
+	i = 0;
+	while (i < car->size)
+	{
+		printf("careta pnum = %d | pos = %4d | op = %2d | cd = %3d | size = %d    || ",
+		car[i].play_num, car[i].position, car[i].operation, car[i].cooldown, car[i].size);
+		reg = 0;
+		while (reg < 16 && ++reg)
+			printf("r%d %d | ", reg, car[i].registr[reg - 1]);
+		printf("\n");
+		++i;
+	}
 	return (1);
 }

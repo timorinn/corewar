@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 12:53:12 by bford             #+#    #+#             */
-/*   Updated: 2019/12/06 19:19:45 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/09 17:25:56 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,11 @@ static int	ft_valid_argv(int argc, char **argv, int *i, int *players)
 		else if (players[ft_atoi(argv[*i]) - 1] != 0)
 			return (ft_putstr_fd("Error: -n: repeat player number\n", 2));
 		else if (!ft_check_name_player(argv[*i + 1]))
-		{
 			return (ft_error(1, argv[*i - 1]));
-		}
 		return ((players[ft_atoi(argv[*i]) - 1] += 1) && (*i += 2));
 	}
 	return (ft_check_name_player(argv[*i - 1]) ? 1 :
 	ft_error(1, argv[*i - 1]));
-	//ft_putstr_fd("Error: invalid file: ", 2) +
-	//ft_putendl_fd(argv[*i - 1], 2));
 }
 
 static int	ft_valid_dump(int argc, char **argv, int *i)

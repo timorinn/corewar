@@ -6,19 +6,23 @@
 #    By: bford <bford@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/05 17:55:08 by bford             #+#    #+#              #
-#    Updated: 2019/12/06 18:44:29 by bford            ###   ########.fr        #
+#    Updated: 2019/12/11 14:16:22 by bford            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC =		ft_valid_input.c	\
-			ft_init_input.c		\
-			ft_init_player.c	\
-			ft_lstnew_player.c	\
-			ft_lstlen_player.c	\
-			ft_lstdel_player.c	\
-			ft_error.c			\
-			ft_map.c			\
-			ft_print_hex.c
+SRC =		ft_valid_input.c		\
+			ft_init_input.c			\
+			ft_init_player.c		\
+			ft_lstnew_player.c		\
+			ft_lstlen_player.c		\
+			ft_lstdel_player.c		\
+			ft_error.c				\
+			ft_map.c				\
+			ft_print_map.c			\
+			ft_make_array_careta.c	\
+			ft_print_careta.c		\
+			\
+			ft_do_cycle.c
 
 OBJ =		$(SRC:.c=.o)
 
