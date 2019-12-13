@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 18:13:13 by bford             #+#    #+#             */
-/*   Updated: 2019/12/11 15:20:59 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/13 09:17:56 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ careta	*ft_make_array_careta(t_player *player)
 	if (!(array = (careta *)malloc(sizeof(careta) * (len + 1))))
 		return (NULL);
 	i = len - 1;
-
 	while (player)
 	{
+		array[i].carry = 0;
 		array[i].size = len;
 		array[i].cooldown = 0;
 		array[i].play_num = player->num;
@@ -33,7 +33,7 @@ careta	*ft_make_array_careta(t_player *player)
 		array[i].operation =  666;
 		array[i].registr[0] = -player->num;
 		reg = 1;
-		while (reg < 16 && ++reg)
+		while (reg < REG_NUMBER && ++reg)
 			array[i].registr[reg - 1] = 0;
 		i--;
 		player = player->next;

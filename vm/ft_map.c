@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/06 13:48:15 by bford             #+#    #+#             */
-/*   Updated: 2019/12/11 14:13:59 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/13 19:07:54 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		ft_add_player(unsigned char map[4097][4], t_player *player, int start)
 	while (i < size && ++i)
 	{
 		map[start + i - 1][0] = code[i - 1];
-		map[start + i - 1][1] = (i == 1 ? num + 6 : num + 2);
+		map[start + i - 1][1] = num + 2;
 	}
 	return (1);
 }
@@ -59,7 +59,7 @@ int		ft_init_map(unsigned char map[4096][4], t_player *player)
 int		ft_map(int dump, t_player *player, int v)
 {
 	unsigned char	map[MEM_SIZE][4];
-	careta		*car;
+	careta			*car;
 
 	dump+=0;
 
@@ -67,14 +67,16 @@ int		ft_map(int dump, t_player *player, int v)
 		return (0);
 	ft_init_map(map, player);
 
-	int i = 10;
-	while (--i)
-		ft_do_cycle(map, car);
-
 	if (v)
-		ft_print_map(map);
+		ft_print_map(map, car);
 	else
-		ft_print_careta(car);
+	{
+		int i = 10;
+		while (i--)
+			ft_do_cycle(map,car, 0);
+		//ft_print_careta(car);
+		ft_print_map(map, car);
+	}
 
 	free(car);
 	return (1);

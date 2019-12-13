@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2019/12/11 16:03:25 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/13 18:32:25 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ typedef struct		caretaaa
 	int				operation;
 	int				cooldown;
 	int				registr[16];
+	int				carry;
 }					careta;
 
 int					ft_valid_input(int argc, char **argv);
@@ -104,11 +105,13 @@ int					ft_lstdel_player(t_player *player);
 int					ft_lstlen_player(t_player *player);
 int					ft_error(int num, char *s);
 int					ft_map(int dump, t_player *player, int v);
-int					ft_print_hex(unsigned char c);
-int					ft_print_map(unsigned char map[4096][4]);
+int					ft_print_map(unsigned char map[4096][4], careta *car);
 careta				*ft_make_array_careta(t_player *player);
 int					ft_print_careta(careta *careta);
 
-int					ft_do_cycle(unsigned char map[4096][4], careta *car);
+int					ft_do_cycle(unsigned char map[4096][4], careta *car, int v);
+
+int					ft_ld(unsigned char map[4096][4], careta *car, int v);
+int     			ft_st(unsigned char map[4096][4], careta *car);
 
 #endif

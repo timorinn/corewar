@@ -6,7 +6,7 @@
 #    By: bford <bford@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/05 17:55:08 by bford             #+#    #+#              #
-#    Updated: 2019/12/11 14:16:22 by bford            ###   ########.fr        #
+#    Updated: 2019/12/12 13:46:02 by bford            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,10 @@ SRC =		ft_valid_input.c		\
 			ft_make_array_careta.c	\
 			ft_print_careta.c		\
 			\
-			ft_do_cycle.c
+			ft_do_cycle.c			\
+			\
+			ft_ld.c					\
+			ft_st.c
 
 OBJ =		$(SRC:.c=.o)
 

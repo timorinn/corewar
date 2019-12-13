@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 13:17:03 by bford             #+#    #+#             */
-/*   Updated: 2019/12/11 13:57:59 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/12 13:49:09 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void		ft_print_code(t_player *player)
 	code = player->code;
 	while (i < size && ++i)
 	{
-		ft_print_hex(code[i - 1]);
+		printf("%x", code[i - 1]);
 		write(1, " ", 1);
 	}
 	write(1, "\n\n", 2);
@@ -61,7 +61,7 @@ int			main(int argc, char **argv)
 	player = ft_init_input(argc, argv, ft_valid_input(argc, argv), dump);
 	ft_map(dump, player, ft_visu(argc, argv));
 
-	ft_print_player_param(player, 0);
+	//ft_print_player_param(player, 0);
 
 	return (ft_lstdel_player(player));
 }

@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 11:17:28 by bford             #+#    #+#             */
-/*   Updated: 2019/12/10 11:17:47 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/13 19:51:05 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,20 @@ int		ft_init_colors(void)
 	return (1);
 }
 
-int		ft_print_line(unsigned char map[4096][4], int i)
+void	ft_find_color(int position, careta *car, int def)
+{
+	int	size;
+
+	size = 0;
+	while (size < car->size && car[size - 1].position != position)
+		++size;
+	if (car[size - 1].position == position)
+		color_set(car[size - 1].play_num + 6, NULL);
+	else
+		color_set(def, NULL);
+}
+
+int		ft_print_line(unsigned char map[4096][4], int i, careta *car)
 {
 	int	t;
 
@@ -36,7 +49,7 @@ int		ft_print_line(unsigned char map[4096][4], int i)
 	t = 0;
 	while (t < 64 && ++t)
 	{
-		color_set(map[t - 1 + i][1] , NULL);
+		ft_find_color(t - 1 + i, car, map[t - 1 + i][1]);
 		if (map[t - 1 + i][1] == 1)
 			attron(A_BOLD);
 		printw("%02x", map[t - 1 + i][0]);
@@ -54,39 +67,50 @@ int		ft_print_contur(void)
 
 	color_set(2, NULL);
 	attron(A_BOLD);
-	printw(GRANICA);
+	mvprintw(0, 0, GRANICA);
 	mvprintw(67, 0, GRANICA);
 	i = 0;
 	while (i < 68 && ++i)
+	{
 		mvaddch(i - 1, 0, '*');
-	i = 0;
-	while (i < 68 && ++i)
 		mvaddch(i - 1, 196, '*');
-	i = 0;
-	while (i < 68 && ++i)
 		mvaddch(i - 1, 253, '*');
+	}
 	color_set(1, NULL);
 	attroff(A_BOLD);
 	return (1);
 }
 
-int		ft_print_map(unsigned char map[4096][4])
+int		ft_print_map(unsigned char map[4096][4], careta *car)
 {
 	int y;
 
-	y = 0;
 	initscr();
 	curs_set(0);
 	start_color();
 	ft_init_colors();
 	refresh();
+	noecho();
 	WINDOW *win = newwin(68, 197, 0, 0);
 	box(win, 0, 0);
-	ft_print_contur();
-	while (y < 64 && ++y)
-		ft_print_line(map, y - 1);
-	wrefresh(win);
-	getch();
+
+	int cycle = 0;
+	char c = 's';
+	while (c != 'q')
+	{
+		mvprintw(69, 0, "cycle = %d\n", ++cycle);
+		ft_do_cycle(map, car, 1);
+
+		ft_print_contur();
+		y = 0;
+		while (y < 64 && ++y)
+			ft_print_line(map, y - 1, car);
+
+		//wrefresh(win);
+		refresh();
+		c = getch();
+		//clear();
+	}
 	endwin();
 	return (1);
 }
