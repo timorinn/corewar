@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2019/12/14 13:34:50 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/14 22:50:09 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,18 @@ typedef struct		caretaaa
 	int				carry;
 }					careta;
 
+typedef union	u_dir
+{
+	uint8_t bits[4];
+	uint32_t data;
+}				t_dir;
+
+typedef union	u_ind
+{
+	uint8_t bits[2];
+	uint16_t data;
+}				t_ind;
+
 int					ft_valid_input(int argc, char **argv);
 
 t_player			*ft_init_input(int argc, char **argv, int valid, int dump);
@@ -112,9 +124,20 @@ int					ft_print_map(unsigned char map[4096][4], careta *car, t_player *player);
 careta				*ft_make_array_careta(t_player *player, unsigned char map[4096][4]);
 int					ft_print_careta(careta *careta);
 
-int					ft_do_cycle(unsigned char map[4096][4], careta *car, int v);
+int					ft_do_cycle(unsigned char map[4096][4], careta *car);
 
-int					ft_ld(unsigned char map[4096][4], careta *car, int v);
+void				ft_init_t_dir(unsigned char map[4096][4],
+					int position, t_dir *dir);
+void				ft_init_t_ind(unsigned char map[4096][4],
+					int position, t_ind *ind);
+void				ft_init_args(unsigned char map[4096][4],
+					int position, unsigned int args[4]);
+int					ft_dir_or_ind(unsigned int arg, int tdir);
+int					ft_move(unsigned int args[4], char *valid, int dir);
+
+int					ft_ld(unsigned char map[4096][4], careta *car);
+int					ft_zjmp(unsigned char map[4096][4], careta *car);
+
 int     			ft_st(unsigned char map[4096][4], careta *car);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 16:59:08 by bford             #+#    #+#             */
-/*   Updated: 2019/12/13 18:57:10 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/14 16:41:47 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,23 +42,15 @@ int			ft_make_player_code(t_player *player, char *code, int code_size)
 	return ((player->code = ft_strndupu(code, code_size)) ? 1 : ft_error(12, 0));
 }
 
-typedef union	u_bits
-{
-	uint8_t bits[4];
-	uint32_t data;
-}				t_bits;
-
 int			ft_make_code_size(int *code_size, char *buf)
 {
-	t_bits b1;
-	t_bits b2;
+	t_dir bit;
 
-	b1.data = *(uint32_t *)buf;
-	b2.bits[0] = b1.bits[3];
-	b2.bits[1] = b1.bits[2];
-	b2.bits[2] = b1.bits[1];
-	b2.bits[3] = b1.bits[0];
-	*code_size = b2.data;
+	bit.bits[3] = buf[0];
+	bit.bits[2] = buf[1];
+	bit.bits[1] = buf[2];
+	bit.bits[0] = buf[3];
+	*code_size = bit.data;
 	return (*code_size >= 0 && *code_size <= CHAMP_MAX_SIZE ?
 	1 : ft_error(9, 0));
 }

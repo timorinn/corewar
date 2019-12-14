@@ -6,7 +6,7 @@
 #    By: bford <bford@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/05 17:55:08 by bford             #+#    #+#              #
-#    Updated: 2019/12/12 13:46:02 by bford            ###   ########.fr        #
+#    Updated: 2019/12/14 22:41:04 by bford            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,8 +23,14 @@ SRC =		ft_valid_input.c		\
 			ft_print_careta.c		\
 			\
 			ft_do_cycle.c			\
+			ft_init_t_dir.c			\
+			ft_init_t_ind.c			\
+			ft_init_args.c			\
+			ft_dir_or_ind.c			\
+			ft_move.c				\
 			\
 			ft_ld.c					\
+			ft_zjmp.c				\
 			ft_st.c
 
 OBJ =		$(SRC:.c=.o)

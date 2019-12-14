@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/06 13:48:15 by bford             #+#    #+#             */
-/*   Updated: 2019/12/14 13:35:22 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/14 22:50:36 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int		ft_map(int dump, t_player *player, int v)
 	{
 		int i = 10;
 		while (i--)
-			ft_do_cycle(map, car, 0);
+			ft_do_cycle(map, car);
 		//ft_print_careta(car);
 	}
 

@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 11:17:28 by bford             #+#    #+#             */
-/*   Updated: 2019/12/14 15:05:01 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/14 22:51:10 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,14 @@ int		ft_print_contur(void)
 	return (1);
 }
 
+int		ft_print_breakdown(int y)
+{
+	color_set(11, NULL);
+	mvprintw(y + 1, 200, "--------------------------------------------------");
+	mvprintw(y + 4, 200, "--------------------------------------------------");
+	return (1);
+}
+
 int		ft_print_backside(int *cycle, t_player *player, careta *car)
 {
 	int		y;
@@ -109,14 +117,13 @@ int		ft_print_backside(int *cycle, t_player *player, careta *car)
 	mvprintw(y + 8, 199, "CYCLE_DELTA : %d", CYCLE_DELTA);
 	mvprintw(y + 10, 199, "NBR_LIVE : %d", NBR_LIVE);
 	mvprintw(y + 12, 199, "MAX_CHECKS : %d", MAX_CHECKS);
-	mvprintw(y + 1, 200, "--------------------------------------------------");
-	mvprintw(y + 4, 200, "--------------------------------------------------");
 	color_set(1, NULL);
 	mvprintw(y + 1, 199, "[");
 	mvprintw(y + 4, 199, "[");
 	mvprintw(y + 1, 250, "]");
 	mvprintw(y + 4, 250, "]");
 	attroff(A_BOLD);
+	ft_print_breakdown(y);
 	return (1);
 }
 
@@ -163,7 +170,7 @@ int		ft_print_map(unsigned char map[4096][4], careta *car, t_player *player)
 		ft_print_backside(&cycle, player, car);
 		ft_print_params(car);
 	
-		ft_do_cycle(map, car, 1);
+		ft_do_cycle(map, car);
 
 		ft_print_contur();
 		y = 0;
