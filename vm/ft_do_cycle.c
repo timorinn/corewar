@@ -6,14 +6,11 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 14:14:17 by bford             #+#    #+#             */
-/*   Updated: 2019/12/13 18:31:52 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/14 13:51:07 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
-
-int		g_operation[16] = {10, 5, 5, 10, 10, 6, 6, 6, 20, 25, 25, 800, 10, 50, 1000, 2};
-
 
 int		ft_do_operation(unsigned char map[4096][4], careta *car, int v)
 {
@@ -32,22 +29,6 @@ int		ft_do_operation(unsigned char map[4096][4], careta *car, int v)
 		return (1);
 	car[0].position = car[0].position == 4095 ? 0 : car[0].position + 1;
 	return (1);
-	//car.operation == 1 ? ft_live(map, car) : 0;
-	//car.operation == 2 ? ft_ld(map, car) : 0;
-	//car.operation == 3 ? ft_st(map, car) : 0;
-	//car.operation == 4 ? ft_add(map, car) : 0;
-	//car.operation == 5 ? ft_sub(map, car) : 0;
-	//car.operation == 6 ? ft_and(map, car) : 0;
-	//car.operation == 7 ? ft_or(map, car) : 0;
-	//car.operation == 8 ? ft_xor(map, car) : 0;
-	//car.operation == 9 ? ft_zjmp(map, car) : 0;
-	//car.operation == 10 ? ft_ldi(map, car) : 0;
-	//car.operation == 11 ? ft_sti(map, car) : 0;
-	//car.operation == 12 ? ft_fork(map, car) : 0;
-	//car.operation == 13 ? ft_lld(map, car) : 0;
-	//car.operation == 14 ? ft_lldi(map, car) : 0;
-	//car.operation == 15 ? ft_lfork(map, car) : 0;
-	//car.operation == 16 ? ft_aff(map, car) : 0;
 
 }
 
@@ -58,21 +39,18 @@ int		ft_do_cycle(unsigned char map[4096][4], careta *car, int v)
 
 	i = 0;
 	size = (*car).size;
-	while (i < size && ++i)
+	while (i < size)
 	{
-		if (car[i - 1].operation == 666)
+		if (car[i].cooldown == 0)
 		{
-			car[i - 1].operation = map[car[i - 1].position][0];
-			car[i - 1].cooldown = g_operation[car[i - 1].operation];
-			continue;
-		}
-		if (car[i - 1].cooldown == 0)
-		{
-			ft_do_operation(map, &car[i - 1], v);
+			ft_do_operation(map, &car[i], v);
+			if (map[car[i].position][0] > 0 && map[car[i].position][0] < 17)
+				car[i].cooldown = g_operation[map[car[i].position][0]];
 		}
 			//car[i - 1].cooldown = g_operation[car[i - 1].operation];
 		else
-			car[i - 1].cooldown--;
+			car[i].cooldown--;
+		i++;
 	}
 	return (1);
 }

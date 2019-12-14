@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 11:17:28 by bford             #+#    #+#             */
-/*   Updated: 2019/12/13 19:51:05 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/14 15:05:01 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int		ft_init_colors(void)
 	init_pair(8, COLOR_BLACK, COLOR_BLUE);
 	init_pair(9, COLOR_BLACK, COLOR_RED);
 	init_pair(10, COLOR_BLACK, COLOR_CYAN);
+	init_pair(11, COLOR_WHITE, COLOR_BLACK);
 	return (1);
 }
 
@@ -81,9 +82,71 @@ int		ft_print_contur(void)
 	return (1);
 }
 
-int		ft_print_map(unsigned char map[4096][4], careta *car)
+int		ft_print_backside(int *cycle, t_player *player, careta *car)
+{
+	int		y;
+
+	y = 11;
+	attron(A_BOLD);
+	color_set(11, NULL);
+	mvprintw(7, 199, "Cycle : %d\n", (*cycle)++);
+	mvprintw(9, 199, "Processes : %d\n", car[0].size);
+	while (player)
+	{
+		color_set(11, NULL);
+		mvprintw(y, 199, "Player -%d :", (y - 11) / 4 + 1);
+		mvprintw(y + 1, 201, "Last live :               %7d", 0);
+		mvprintw(y + 2, 201, "Lives in current period : %7d", 0);
+		color_set(player->num + 2, NULL);
+		mvprintw(y, 211, "%.41s", player->name);
+		y += 4;
+		player = player->next;
+	}
+	color_set(11, NULL);
+	mvprintw(y, 199, "Live breakdown for current period :");
+	mvprintw(y + 3, 199, "Live breakdown for last period :");
+	mvprintw(y + 6, 199, "CYCLE_TO_DIE : %d", CYCLE_TO_DIE);
+	mvprintw(y + 8, 199, "CYCLE_DELTA : %d", CYCLE_DELTA);
+	mvprintw(y + 10, 199, "NBR_LIVE : %d", NBR_LIVE);
+	mvprintw(y + 12, 199, "MAX_CHECKS : %d", MAX_CHECKS);
+	mvprintw(y + 1, 200, "--------------------------------------------------");
+	mvprintw(y + 4, 200, "--------------------------------------------------");
+	color_set(1, NULL);
+	mvprintw(y + 1, 199, "[");
+	mvprintw(y + 4, 199, "[");
+	mvprintw(y + 1, 250, "]");
+	mvprintw(y + 4, 250, "]");
+	attroff(A_BOLD);
+	return (1);
+}
+
+int		ft_print_params(careta *car)
+{
+	int		i = car[0].size - 1;
+	int		y = 70;
+	int		reg;
+
+	color_set(11, NULL);
+	while (i >= 0)
+	{
+		mvprintw(y, 10, "Car #%d   | pl_num: %d | position: %4d | oper: %02x | cd: %3d | carry: %d | size: %d",
+		car[i].num ,car[i].play_num, car[i].position, car[i].operation, car[i].cooldown, car[i].carry, car[i].size);
+		reg = 0;
+		while (reg < 8 && ++reg)
+		{
+			mvprintw(y + 1, 16 + (reg - 1) * 21, "r%02d: %10d   |   ", reg - 1, car[i].registr[reg - 1]);
+			mvprintw(y + 2, 16 + (reg - 1) * 21, "r%02d: %10d   |   ", reg - 1 + 8, car[i].registr[reg - 1 + 8]);
+		}
+		i--;
+		y += 4;
+	}
+	return (1);
+}
+
+int		ft_print_map(unsigned char map[4096][4], careta *car, t_player *player)
 {
 	int y;
+	int cycle = 0;
 
 	initscr();
 	curs_set(0);
@@ -91,14 +154,15 @@ int		ft_print_map(unsigned char map[4096][4], careta *car)
 	ft_init_colors();
 	refresh();
 	noecho();
-	WINDOW *win = newwin(68, 197, 0, 0);
-	box(win, 0, 0);
+	//WINDOW *win = newwin(68, 197, 0, 0);
+	//box(win, 0, 0);
 
-	int cycle = 0;
 	char c = 's';
 	while (c != 'q')
 	{
-		mvprintw(69, 0, "cycle = %d\n", ++cycle);
+		ft_print_backside(&cycle, player, car);
+		ft_print_params(car);
+	
 		ft_do_cycle(map, car, 1);
 
 		ft_print_contur();

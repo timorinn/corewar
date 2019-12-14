@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2019/12/13 18:32:25 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/14 13:34:50 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@
 
 # define HEX "0123456789abcdef"
 
+static int			g_operation[16] = {10, 5, 5, 10, 10, 6, 6, 6, 20, 25, 25, 800, 10, 50, 1000, 2};
+
 typedef struct		s_header
 {
 	unsigned int	magic;
@@ -87,6 +89,7 @@ typedef struct		s_player
 
 typedef struct		caretaaa
 {
+	int				num;
 	int				play_num;
 	int				size;
 	int				position;
@@ -105,8 +108,8 @@ int					ft_lstdel_player(t_player *player);
 int					ft_lstlen_player(t_player *player);
 int					ft_error(int num, char *s);
 int					ft_map(int dump, t_player *player, int v);
-int					ft_print_map(unsigned char map[4096][4], careta *car);
-careta				*ft_make_array_careta(t_player *player);
+int					ft_print_map(unsigned char map[4096][4], careta *car, t_player *player);
+careta				*ft_make_array_careta(t_player *player, unsigned char map[4096][4]);
 int					ft_print_careta(careta *careta);
 
 int					ft_do_cycle(unsigned char map[4096][4], careta *car, int v);
