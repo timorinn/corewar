@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vm.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
+/*   By: stasyan <stasyan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2019/12/14 22:50:09 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/17 10:50:37 by stasyan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@
 
 # define HEX "0123456789abcdef"
 
-static int			g_operation[16] = {10, 5, 5, 10, 10, 6, 6, 6, 20, 25, 25, 800, 10, 50, 1000, 2};
+//static int			g_operation[16] = {10, 5, 5, 10, 10, 6, 6, 6, 20, 25, 25, 800, 10, 50, 1000, 2};
 
 typedef struct		s_header
 {
@@ -137,7 +137,6 @@ int					ft_move(unsigned int args[4], char *valid, int dir);
 
 int					ft_ld(unsigned char map[4096][4], careta *car);
 int					ft_zjmp(unsigned char map[4096][4], careta *car);
-
-int     			ft_st(unsigned char map[4096][4], careta *car);
+int					ft_st(unsigned char map[4096][4], careta *car);
 
 #endif
