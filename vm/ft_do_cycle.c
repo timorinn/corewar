@@ -3,19 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   ft_do_cycle.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stasyan <stasyan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 14:14:17 by bford             #+#    #+#             */
-/*   Updated: 2019/12/17 11:51:26 by stasyan          ###   ########.fr       */
+/*   Updated: 2019/12/19 16:13:22 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-static int			g_operation[16] = {10, 5, 5, 10, 10, 6, 6, 6, 20, 25, 25, 800, 10, 50, 1000, 2};
+//static int			g_operation[16] = {10, 5, 5, 10, 10, 6, 6, 6, 20, 25, 25, 800, 10, 50, 1000, 2};
 
-int		ft_do_operation(unsigned char map[4096][4], careta *car)
+int		ft_do_operation(unsigned char map[4096][4], careta *car, careta **allcar)
 {
+	allcar+=0;
+
 	int		o;
 
 	o = car[0].operation;
@@ -31,7 +33,15 @@ int		ft_do_operation(unsigned char map[4096][4], careta *car)
 	*/
 	)
 		return (1);
-	car[0].position = car[0].position == 4095 ? 0 : car[0].position + 1;
+	/*
+	else if ((o == 12) || (o == 15))
+	{
+		if (o == 12)
+			return (ft_fork(map, car, allcar));
+		//return (ft_lfork(map, car));
+	}
+	*/
+	car->position = car->position == 4095 ? 0 : car->position + 1;
 	return (1);
 
 }
@@ -47,7 +57,7 @@ int		ft_do_cycle(unsigned char map[4096][4], careta *car)
 	{
 		if (car[i].cooldown == 0)
 		{
-			ft_do_operation(map, &car[i]);
+			ft_do_operation(map, &car[i], &car);
 			if (map[car[i].position][0] > 0 && map[car[i].position][0] < 17)
 				car[i].cooldown = g_operation[map[car[i].position][0] - 1];
 			car[i].operation = map[car[i].position][0];

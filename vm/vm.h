@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vm.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stasyan <stasyan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2019/12/17 10:50:37 by stasyan          ###   ########.fr       */
+/*   Updated: 2019/12/19 14:31:26 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@
 
 # define HEX "0123456789abcdef"
 
-//static int			g_operation[16] = {10, 5, 5, 10, 10, 6, 6, 6, 20, 25, 25, 800, 10, 50, 1000, 2};
+static int			g_operation[16] = {10, 5, 5, 10, 10, 6, 6, 6, 20, 25, 25, 800, 10, 50, 1000, 2};
 
 typedef struct		s_header
 {
@@ -101,14 +101,14 @@ typedef struct		caretaaa
 
 typedef union	u_dir
 {
-	uint8_t bits[4];
-	uint32_t data;
+	int8_t bits[4];
+	int32_t data;
 }				t_dir;
 
 typedef union	u_ind
 {
-	uint8_t bits[2];
-	uint16_t data;
+	int8_t bits[2];
+	int16_t data;
 }				t_ind;
 
 int					ft_valid_input(int argc, char **argv);
