@@ -12,13 +12,13 @@
 
 #include "vm.h"
 
-void	ft_init_t_ind(unsigned char map[4096][4],
+void	ft_init_t_ind(unsigned char map[MEM_SIZE][4],
 int position, t_ind *ind)
 {
-	//(*ind).bits[0] = (position + 1 > 4095 ?
-	//map[position + 1 - 4096][0] : map[position + 1][0]);
-	(*ind).bits[0] = map[(position + 1) % 4096][0];
-	//(*ind).bits[1] = (position > 4095 ?
-	//map[position - 4096][0] : map[position][0]);
-	(*ind).bits[1] = map[position % 4096][0];
+	//(*ind).bytes[0] = (position + 1 > (MEM_SIZE - 1) ?
+	//map[position + 1 - MEM_SIZE][0] : map[position + 1][0]);
+	(*ind).bytes[0] = map[(position + 1) % MEM_SIZE][0];
+	//(*ind).bytes[1] = (position > (MEM_SIZE - 1) ?
+	//map[position - MEM_SIZE][0] : map[position][0]);
+	(*ind).bytes[1] = map[position % MEM_SIZE][0];
 }

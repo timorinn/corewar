@@ -12,15 +12,17 @@
 
 #include "vm.h"
 
-careta	*ft_make_array_careta(t_player *player, unsigned char map[4096][4])
+//extern int g_operation[16];
+
+t_cursor	*ft_make_array_careta(t_player *player, unsigned char map[MEM_SIZE][4])
 {
-	careta	*array;
+	t_cursor	*array;
 	int		len;
 	int		i;
 	int		reg;
 
 	len = ft_lstlen_player(player);
-	if (!(array = (careta *)malloc(sizeof(careta) * (len + 1))))
+	if (!(array = (t_cursor *)malloc(sizeof(t_cursor) * (len + 1))))
 		return (NULL);
 	i = len - 1;
 	while (player)

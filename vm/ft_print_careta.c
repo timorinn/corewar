@@ -12,7 +12,7 @@
 
 #include "vm.h"
 
-int		ft_print_careta(careta *car)
+int		ft_print_careta(t_cursor *car)
 {
 	int	i;
 	int	reg;
@@ -20,7 +20,7 @@ int		ft_print_careta(careta *car)
 	i = 0;
 	while (i < car->size)
 	{
-		printf("careta pnum = %d | pos = %4d | op = %2d | cd = %3d | size = %d    || ",
+		printf("t_cursor pnum = %d | pos = %4d | op = %2d | cd = %3d | size = %d    || ",
 		car[i].play_num, car[i].position, car[i].operation, car[i].cooldown, car[i].size);
 		reg = 0;
 		while (reg < 16 && ++reg)

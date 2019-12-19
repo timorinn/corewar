@@ -12,12 +12,12 @@
 
 #include "vm.h"
 
-void	ft_init_args(unsigned char map[4096][4],
+void	ft_init_args(unsigned char map[MEM_SIZE][4],
 int position, unsigned int args[4])
 {
 	int		arg_type;
 
-	arg_type = position == 4095 ? map[0][0] : map[position + 1][0];
+	arg_type = position == (MEM_SIZE - 1) ? map[0][0] : map[position + 1][0];
 	args[0] = (arg_type >> 6) & 3;
 	args[1] = (arg_type >> 4) & 3;
 	args[2] = (arg_type >> 2) & 3;

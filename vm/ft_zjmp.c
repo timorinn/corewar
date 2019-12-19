@@ -16,20 +16,20 @@
 *	Испольую Т_ИНД, тк размер Т_ДИР для этой операции равен 2.
 */
 
-int		ft_zjmp(unsigned char map[4096][4], careta *car)
+int		ft_zjmp(unsigned char map[MEM_SIZE][4], t_cursor *car)
 {
 	t_ind		ind;
 
 	mvprintw(50, 200, "CARRy = %d", car->carry);
 	if (!car->carry)
 	{
-		car->position = car->position + 3 > 4095 ?
-		car->position + 3 - 4096 : car->position + 3;
+		car->position = car->position + 3 > (MEM_SIZE - 1) ?
+		car->position + 3 - MEM_SIZE : car->position + 3;
 		return (1);
 	}
 	ft_init_t_ind(map, car->position + 1, &ind);
-	car->position = car->position + ind.data % IDX_MOD > 4095 ?
-	car->position + ind.data % IDX_MOD - 4096 :
+	car->position = car->position + ind.data % IDX_MOD > (MEM_SIZE - 1) ?
+	car->position + ind.data % IDX_MOD - MEM_SIZE :
 	car->position + ind.data % IDX_MOD;
 	return (1);
 }

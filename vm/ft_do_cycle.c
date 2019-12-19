@@ -14,7 +14,7 @@
 
 //static int			g_operation[16] = {10, 5, 5, 10, 10, 6, 6, 6, 20, 25, 25, 800, 10, 50, 1000, 2};
 
-int		ft_do_operation(unsigned char map[4096][4], careta *car, careta **allcar)
+int		ft_do_operation(unsigned char map[MEM_SIZE][4], t_cursor *car, t_cursor **allcar)
 {
 	allcar+=0;
 
@@ -41,12 +41,12 @@ int		ft_do_operation(unsigned char map[4096][4], careta *car, careta **allcar)
 		//return (ft_lfork(map, car));
 	}
 	*/
-	car->position = car->position == 4095 ? 0 : car->position + 1;
+	car->position = car->position == (MEM_SIZE - 1) ? 0 : car->position + 1;
 	return (1);
 
 }
 
-int		ft_do_cycle(unsigned char map[4096][4], careta *car)
+int		ft_do_cycle(unsigned char map[MEM_SIZE][4], t_cursor *car)
 {
 	int		size;
 	int		i;

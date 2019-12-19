@@ -67,7 +67,7 @@
 
 # define HEX "0123456789abcdef"
 
-static int			g_operation[16] = {10, 5, 5, 10, 10, 6, 6, 6, 20, 25, 25, 800, 10, 50, 1000, 2};
+static int			g_operation[16];
 
 typedef struct		s_header
 {
@@ -87,7 +87,7 @@ typedef struct		s_player
 	struct s_player	*next;
 }					t_player;
 
-typedef struct		caretaaa
+typedef struct		s_cursor
 {
 	int				num;
 	int				play_num;
@@ -97,18 +97,18 @@ typedef struct		caretaaa
 	int				cooldown;
 	int				registr[16];
 	int				carry;
-}					careta;
+}					t_cursor;
 
 typedef union	u_dir
 {
-	int8_t bits[4];
-	int32_t data;
+	int8_t bytes[4];
+	int32_t	data;
 }				t_dir;
 
 typedef union	u_ind
 {
-	int8_t bits[2];
-	int16_t data;
+	int8_t	bytes[2];
+	int16_t	data;
 }				t_ind;
 
 int					ft_valid_input(int argc, char **argv);
@@ -120,23 +120,23 @@ int					ft_lstdel_player(t_player *player);
 int					ft_lstlen_player(t_player *player);
 int					ft_error(int num, char *s);
 int					ft_map(int dump, t_player *player, int v);
-int					ft_print_map(unsigned char map[4096][4], careta *car, t_player *player);
-careta				*ft_make_array_careta(t_player *player, unsigned char map[4096][4]);
-int					ft_print_careta(careta *careta);
+int					ft_print_map(unsigned char map[MEM_SIZE][4], t_cursor *car, t_player *player);
+t_cursor				*ft_make_array_careta(t_player *player, unsigned char map[MEM_SIZE][4]);
+int					ft_print_careta(t_cursor *careta);
 
-int					ft_do_cycle(unsigned char map[4096][4], careta *car);
+int					ft_do_cycle(unsigned char map[MEM_SIZE][4], t_cursor *car);
 
-void				ft_init_t_dir(unsigned char map[4096][4],
+void				ft_init_t_dir(unsigned char map[MEM_SIZE][4],
 					int position, t_dir *dir);
-void				ft_init_t_ind(unsigned char map[4096][4],
+void				ft_init_t_ind(unsigned char map[MEM_SIZE][4],
 					int position, t_ind *ind);
-void				ft_init_args(unsigned char map[4096][4],
+void				ft_init_args(unsigned char map[MEM_SIZE][4],
 					int position, unsigned int args[4]);
 int					ft_dir_or_ind(unsigned int arg, int tdir);
 int					ft_move(unsigned int args[4], char *valid, int dir);
 
-int					ft_ld(unsigned char map[4096][4], careta *car);
-int					ft_zjmp(unsigned char map[4096][4], careta *car);
-int					ft_st(unsigned char map[4096][4], careta *car);
+int					ft_ld(unsigned char map[MEM_SIZE][4], t_cursor *car);
+int					ft_zjmp(unsigned char map[MEM_SIZE][4], t_cursor *car);
+int					ft_st(unsigned char map[MEM_SIZE][4], t_cursor *car);
 
 #endif

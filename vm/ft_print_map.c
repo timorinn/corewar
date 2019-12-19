@@ -28,7 +28,7 @@ int		ft_init_colors(void)
 	return (1);
 }
 
-void	ft_find_color(int position, careta *car, int def)
+void	ft_find_color(int position, t_cursor *car, int def)
 {
 	int	size;
 
@@ -41,7 +41,7 @@ void	ft_find_color(int position, careta *car, int def)
 		color_set(def, NULL);
 }
 
-int		ft_print_line(unsigned char map[4096][4], int i, careta *car)
+int		ft_print_line(unsigned char map[MEM_SIZE][4], int i, t_cursor *car)
 {
 	int	t;
 
@@ -90,7 +90,7 @@ int		ft_print_breakdown(int y)
 	return (1);
 }
 
-int		ft_print_backside(int *cycle, t_player *player, careta *car)
+int		ft_print_backside(int *cycle, t_player *player, t_cursor *car)
 {
 	int		y;
 
@@ -127,7 +127,7 @@ int		ft_print_backside(int *cycle, t_player *player, careta *car)
 	return (1);
 }
 
-int		ft_print_params(careta *car)
+int		ft_print_params(t_cursor *car)
 {
 	int		i = car[0].size - 1;
 	int		y = 70;
@@ -150,7 +150,7 @@ int		ft_print_params(careta *car)
 	return (1);
 }
 
-int		ft_print_map(unsigned char map[4096][4], careta *car, t_player *player)
+int		ft_print_map(unsigned char map[MEM_SIZE][4], t_cursor *car, t_player *player)
 {
 	int y;
 	int cycle = 0;

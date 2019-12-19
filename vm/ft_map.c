@@ -12,7 +12,7 @@
 
 #include "vm.h"
 
-int		ft_add_player(unsigned char map[4097][4], t_player *player, int start)
+int		ft_add_player(unsigned char map[MEM_SIZE + 1][4], t_player *player, int start)
 {
 	int				size;
 	int				num;
@@ -38,7 +38,7 @@ t_player	*ft_find_player(int num, t_player *player)
 	return (player);
 }
 
-int		ft_init_map(unsigned char map[4096][4], t_player *player)
+int		ft_init_map(unsigned char map[MEM_SIZE][4], t_player *player)
 {
 	int		i;
 	int		len;
@@ -59,7 +59,7 @@ int		ft_init_map(unsigned char map[4096][4], t_player *player)
 int		ft_map(int dump, t_player *player, int v)
 {
 	unsigned char	map[MEM_SIZE][4];
-	careta			*car;
+	t_cursor			*car;
 
 	dump+=0;
 
