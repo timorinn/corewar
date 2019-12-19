@@ -6,7 +6,7 @@
 #    By: bford <bford@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/05 17:55:08 by bford             #+#    #+#              #
-#    Updated: 2019/12/14 22:41:04 by bford            ###   ########.fr        #
+#    Updated: 2019/12/19 19:31:48 by bford            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,8 @@ SRC =		ft_valid_input.c		\
 			\
 			ft_ld.c					\
 			ft_zjmp.c				\
-			ft_st.c
+			ft_st.c					\
+			ft_fork.c
 
 OBJ =		$(SRC:.c=.o)
 

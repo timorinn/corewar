@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 14:14:17 by bford             #+#    #+#             */
-/*   Updated: 2019/12/19 16:13:22 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/19 19:44:02 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,14 @@ int		ft_do_operation(unsigned char map[MEM_SIZE][4], t_cursor *car, t_cursor **a
 	*/
 	)
 		return (1);
-	/*
+	
 	else if ((o == 12) || (o == 15))
 	{
 		if (o == 12)
 			return (ft_fork(map, car, allcar));
 		//return (ft_lfork(map, car));
 	}
-	*/
+	
 	car->position = (car->position == (MEM_SIZE - 1) ? 0 : car->position + 1);
 	return (1);
 
