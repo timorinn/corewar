@@ -121,7 +121,7 @@ int					ft_lstlen_player(t_player *player);
 int					ft_error(int num, char *s);
 int					ft_map(int dump, t_player *player, int v);
 int					ft_print_map(unsigned char map[MEM_SIZE][4], t_cursor *car, t_player *player);
-t_cursor				*ft_make_array_careta(t_player *player, unsigned char map[MEM_SIZE][4]);
+t_cursor			*ft_make_array_careta(t_player *player, unsigned char map[MEM_SIZE][4]);
 int					ft_print_careta(t_cursor *careta);
 
 int					ft_do_cycle(unsigned char map[MEM_SIZE][4], t_cursor *car);
@@ -138,5 +138,6 @@ int					ft_move(unsigned int args[4], char *valid, int dir);
 int					ft_ld(unsigned char map[MEM_SIZE][4], t_cursor *car);
 int					ft_zjmp(unsigned char map[MEM_SIZE][4], t_cursor *car);
 int					ft_st(unsigned char map[MEM_SIZE][4], t_cursor *car);
+int					ft_add(unsigned char map[MEM_SIZE][4], t_cursor *car);
 
 #endif

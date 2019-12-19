@@ -12,7 +12,7 @@
 
 #include "vm.h"
 
-//static int			g_operation[16] = {10, 5, 5, 10, 10, 6, 6, 6, 20, 25, 25, 800, 10, 50, 1000, 2};
+static int			g_operation[16] = {10, 5, 5, 10, 10, 6, 6, 6, 20, 25, 25, 800, 10, 50, 1000, 2};
 
 int		ft_do_operation(unsigned char map[MEM_SIZE][4], t_cursor *car, t_cursor **allcar)
 {
