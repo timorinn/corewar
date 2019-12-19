@@ -52,7 +52,7 @@ int		ft_init_map(unsigned char map[MEM_SIZE][4], t_player *player)
 	}
 	i = 0;
 	while (i < len && ++i)
-		ft_add_player(map, ft_find_player(i, player), MEM_SIZE / len * (i - 1));
+		ft_add_player(map, ft_find_player(i, player), (MEM_SIZE / len) * (i - 1));
 	return (1);
 }
 
