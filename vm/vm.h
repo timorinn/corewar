@@ -139,6 +139,7 @@ int					ft_ld(unsigned char map[MEM_SIZE][4], t_cursor *car);
 int					ft_zjmp(unsigned char map[MEM_SIZE][4], t_cursor *car);
 int					ft_st(unsigned char map[MEM_SIZE][4], t_cursor *car);
 int					ft_add(unsigned char map[MEM_SIZE][4], t_cursor *car);
+int					ft_sub(unsigned char map[MEM_SIZE][4], t_cursor *car);
 int					ft_fork(unsigned char map[MEM_SIZE][4], t_cursor *car, t_cursor **allcar);
 
 #endif

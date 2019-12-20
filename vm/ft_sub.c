@@ -1,11 +1,11 @@
 //
-// Created by Katharine Psylocke on 19/12/2019.
+// Created by Katharine Psylocke on 20/12/2019.
 //
 
 #include "vm.h"
 
 inline static int	validate_regs(unsigned int r1, unsigned int r2,
-		unsigned int r3)
+								   unsigned int r3)
 {
 	if (r1 <= REG_NUMBER && r2 <= REG_NUMBER && r3 <= REG_NUMBER)
 	{
@@ -15,7 +15,7 @@ inline static int	validate_regs(unsigned int r1, unsigned int r2,
 	return (1);
 }
 
-int					ft_add(unsigned char map[MEM_SIZE][4], t_cursor *car)
+int					ft_sub(unsigned char map[MEM_SIZE][4], t_cursor *car)
 {
 	unsigned int	args[4];
 	unsigned int	reg1;
@@ -30,7 +30,7 @@ int					ft_add(unsigned char map[MEM_SIZE][4], t_cursor *car)
 		reg3 = map[(car->position + 4) % MEM_SIZE][0];
 		if (validate_regs(reg1, reg2, reg3) == 0)
 		{
-			car->registr[reg3] = car->registr[reg1] + car->registr[reg2];
+			car->registr[reg3] = car->registr[reg1] - car->registr[reg2];
 			car->carry = (car->registr[reg3] == 0 ? 1 : 0);
 		}
 	}
