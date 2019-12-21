@@ -15,8 +15,8 @@
 static int		ft_ld_error(unsigned int args[4], unsigned int reg,
 t_cursor *car)
 {
-	if ((args[0] != 2 && args[0] != 3) || (args[1] != 1) || args[2] ||
-	args[3] || reg < 1 || reg > 16)
+	if ((args[0] != DIR_CODE && args[0] != IND_CODE) || (args[1] != REG_CODE) || args[2] ||
+	args[3] || reg < 1 || reg > REG_NUMBER)
 	{
 		car->position += 2 + ft_move(args, "1100", ft_dir_or_ind(args[0], 4));
 		car->position %= MEM_SIZE;

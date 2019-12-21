@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2019/12/21 19:02:52 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/21 20:22:45 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,7 @@ int					ft_lld(unsigned char map[MEM_SIZE][4], t_cursor *car);
 int					ft_zjmp(unsigned char map[MEM_SIZE][4], t_cursor *car);
 int					ft_st(unsigned char map[MEM_SIZE][4], t_cursor *car);
 int					ft_add(unsigned char map[MEM_SIZE][4], t_cursor *car);
+int					ft_sub(unsigned char map[MEM_SIZE][4], t_cursor *car);
 int					ft_fork(unsigned char map[MEM_SIZE][4], t_cursor *car, t_cursor **allcar, int *i);
 int					ft_lfork(unsigned char map[MEM_SIZE][4], t_cursor *car, t_cursor **allcar, int *i);
 
