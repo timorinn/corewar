@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fork.c                                          :+:      :+:    :+:   */
+/*   ft_lfork.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/19 15:27:59 by bford             #+#    #+#             */
-/*   Updated: 2019/12/21 14:12:15 by bford            ###   ########.fr       */
+/*   Created: 2019/12/21 14:07:59 by bford             #+#    #+#             */
+/*   Updated: 2019/12/21 14:16:31 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int		ft_fork(unsigned char map[MEM_SIZE][4], t_cursor *car, t_cursor **allcar, int *i)
+int		ft_lfork(unsigned char map[MEM_SIZE][4], t_cursor *car, t_cursor **allcar, int *i)
 {
 	t_ind		ind;
 	t_cursor	*newcar;
@@ -34,8 +34,9 @@ int		ft_fork(unsigned char map[MEM_SIZE][4], t_cursor *car, t_cursor **allcar, i
 	newcar[0] = *car;
 	newcar[0].size = car->size + 1;
 	newcar[0].num = car->size;
-	newcar[0].position = (ind.data % MEM_SIZE > 0 ?
-	(ind.data % MEM_SIZE) % 4096 : 4096 + ind.data % MEM_SIZE);
+	newcar[0].position = ((car->position + ind.data) % 4096 > 0 ?
+	(car->position + ind.data) % 4096 :
+	4096 + (car->position + ind.data) % 4096);
 	newcar[0].operation = map[newcar[0].position][0];
 	newcar[0].cooldown = newcar[0].operation > 0 && newcar[0].operation < 17 ? 
 	g_operation[newcar[0].operation] : 1;
