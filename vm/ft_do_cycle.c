@@ -17,11 +17,11 @@ int		ft_do_operation(unsigned char map[MEM_SIZE][4],
 {
 	int		o;
 
-	o = car[0].operation;
-	
-	if ((o == 1 && ft_live(map, car, cycle)) || (o == 2 && ft_ld(map, car)) ||
-	(o == 3 && ft_st(map, car)) || /* (o == 4 && ft_add(map, car)) ||
-	(o == 5 && ft_sub(map, car)) || (o == 6 && ft_and(map, car)) ||
+	o = car->operation;
+
+	if ( (o == 1 && ft_live(map, car, cycle)) || (o == 2 && ft_ld(map, car)) ||
+	(o == 3 && ft_st(map, car)) ||  (o == 4 && ft_add(map, car)) ||
+	(o == 5 && ft_sub(map, car)) || (o == 6 && ft_and(map, car)) || /*
 	(o == 7 && ft_or(map, car)) || (o == 8 && ft_xor(map, car)) || */
 	(o == 9 && ft_zjmp(map, car)) /* || (o == 10 && ft_ldi(map, car)) ||
 	(o == 11 && ft_sti(map, car)) */ || (o == 13 && ft_lld(map, car)) /*||
