@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2019/12/21 20:22:45 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/21 21:26:11 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ typedef struct		s_cursor
 	int				cooldown;
 	int				registr[16];
 	int				carry;
+	int				live;
 }					t_cursor;
 
 typedef union	u_dir
@@ -126,7 +127,7 @@ int					ft_print_map_single(unsigned char map[MEM_SIZE][4]);
 t_cursor			*ft_make_array_careta(t_player *player, unsigned char map[MEM_SIZE][4]);
 int					ft_print_careta(t_cursor *careta);
 
-int					ft_do_cycle(unsigned char map[MEM_SIZE][4], t_cursor **car);
+int					ft_do_cycle(unsigned char map[MEM_SIZE][4], t_cursor **car, int cycle);
 
 void				ft_init_t_dir(unsigned char map[MEM_SIZE][4],
 					int position, t_dir *dir);
@@ -137,13 +138,14 @@ void				ft_init_args(unsigned char map[MEM_SIZE][4],
 int					ft_dir_or_ind(unsigned int arg, int tdir);
 int					ft_move(unsigned int args[4], char *valid, int dir);
 
+int					ft_live(unsigned char map[MEM_SIZE][4], t_cursor *car, int cycle);
 int					ft_ld(unsigned char map[MEM_SIZE][4], t_cursor *car);
 int					ft_lld(unsigned char map[MEM_SIZE][4], t_cursor *car);
 int					ft_zjmp(unsigned char map[MEM_SIZE][4], t_cursor *car);
 int					ft_st(unsigned char map[MEM_SIZE][4], t_cursor *car);
 int					ft_add(unsigned char map[MEM_SIZE][4], t_cursor *car);
 int					ft_sub(unsigned char map[MEM_SIZE][4], t_cursor *car);
-int					ft_fork(unsigned char map[MEM_SIZE][4], t_cursor *car, t_cursor **allcar, int *i);
-int					ft_lfork(unsigned char map[MEM_SIZE][4], t_cursor *car, t_cursor **allcar, int *i);
+int					ft_fork(unsigned char map[MEM_SIZE][4], t_cursor *car, t_cursor **allcar);
+int					ft_lfork(unsigned char map[MEM_SIZE][4], t_cursor *car, t_cursor **allcar);
 
 #endif

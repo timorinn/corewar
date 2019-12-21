@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 11:17:28 by bford             #+#    #+#             */
-/*   Updated: 2019/12/20 16:08:55 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/21 21:25:46 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,7 +175,7 @@ int		ft_print_map(unsigned char map[MEM_SIZE][4], t_cursor *car, t_player *playe
 		ft_print_backside(&cycle, player, car);
 		ft_print_params(car);
 	
-		ft_do_cycle(map, &car);
+		ft_do_cycle(map, &car, cycle);
 
 		ft_print_contur();
 		y = 0;
@@ -185,7 +185,7 @@ int		ft_print_map(unsigned char map[MEM_SIZE][4], t_cursor *car, t_player *playe
 		//wrefresh(win);
 		refresh();
 		c = getch();
-		//clear();
+		clear();
 	}
 	endwin();
 	return (1);

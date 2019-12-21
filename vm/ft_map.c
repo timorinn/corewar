@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/06 13:48:15 by bford             #+#    #+#             */
-/*   Updated: 2019/12/21 18:59:35 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/21 22:02:14 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ int		ft_map(int dump, t_player *player, int v)
 				ft_do_cycle(map, &car);
 			ft_print_map_single(map);
 		}
-		//ft_print_careta(car);
 	}
 	free(car);
 	return (1);

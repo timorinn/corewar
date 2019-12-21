@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 18:13:13 by bford             #+#    #+#             */
-/*   Updated: 2019/12/21 14:20:37 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/21 20:52:52 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ t_cursor	*ft_make_array_careta(t_player *player, unsigned char map[MEM_SIZE][4])
 	{
 		array[i].num = i;
 		array[i].carry = 0;
+		array[i].live = 0;
 		array[i].size = len;
 		array[i].cooldown = 0;
 		array[i].play_num = player->num;

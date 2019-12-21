@@ -6,13 +6,13 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 15:27:59 by bford             #+#    #+#             */
-/*   Updated: 2019/12/21 14:12:15 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/21 21:24:17 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int		ft_fork(unsigned char map[MEM_SIZE][4], t_cursor *car, t_cursor **allcar, int *i)
+int		ft_fork(unsigned char map[MEM_SIZE][4], t_cursor *car, t_cursor **allcar)
 {
 	t_ind		ind;
 	t_cursor	*newcar;
@@ -21,7 +21,6 @@ int		ft_fork(unsigned char map[MEM_SIZE][4], t_cursor *car, t_cursor **allcar, i
 	size = car[0].size - 1;
 	if (!(newcar = (t_cursor *)malloc(sizeof(t_cursor) * (size + 1))))
 		return (0);
-	(*i)++;
 	ft_init_t_ind(map, car->position + 1, &ind);
 	while (size >= 0)
 	{
