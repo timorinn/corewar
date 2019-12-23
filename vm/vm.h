@@ -63,6 +63,9 @@
 # include <stdint.h>
 # include <ncurses.h>
 
+#include <stdbool.h>
+
+
 # include <stdio.h>
 
 # define HEX "0123456789abcdef"
@@ -112,6 +115,16 @@ typedef union	u_ind
 	int16_t	data;
 }				t_ind;
 
+typedef struct	s_args
+{
+	uint8_t		types[4];
+	int32_t		nums[4];
+	int32_t		offsets[4];
+	int32_t 	total_offset;
+	uint8_t 	dir_size;
+	uint8_t		idx;
+}				t_args;
+
 int					ft_valid_input(int argc, char **argv);
 
 t_player			*ft_init_input(int argc, char **argv, int valid, int dump);
@@ -130,11 +143,15 @@ int					ft_print_careta(t_cursor *careta);
 int					ft_do_cycle(unsigned char map[MEM_SIZE][4], t_cursor **car, int cycle);
 
 void				ft_init_t_dir(unsigned char map[MEM_SIZE][4],
-					int position, t_dir *dir);
+		int position, t_dir *dir);
 void				ft_init_t_ind(unsigned char map[MEM_SIZE][4],
-					int position, t_ind *ind);
+		int position, t_ind *ind);
 void				ft_init_args(unsigned char map[MEM_SIZE][4],
-					int position, unsigned int args[4]);
+		int position, uint8_t args[4]);
+
+int					cw_vm_get_args(unsigned char map[MEM_SIZE][4],
+		t_cursor *car, t_args *args);
+
 int					ft_dir_or_ind(unsigned int arg, int tdir);
 int					ft_move(unsigned int args[4], char *valid, int dir);
 

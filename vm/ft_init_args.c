@@ -13,7 +13,7 @@
 #include "vm.h"
 
 void	ft_init_args(unsigned char map[MEM_SIZE][4],
-int position, unsigned int args[4])
+int position, uint8_t args[4])
 {
 	int		arg_type;
 
