@@ -12,12 +12,11 @@ int ft_and(unsigned char map[MEM_SIZE][4], t_cursor *car)
 	int				reg_num;
 
 	ft_bzero(&args, sizeof(t_args));
-	args.idx = 0;
-	get_nums(map, car, &args);
+	args.dir_size = 4;
+	vm_get_args(map, car, &args);
 	if (args.types[2] == REG_CODE)
 	{
-		if ((reg_num = get_reg_num(map, car, nums[2])) != -1)
-			car->registr[reg_num] = nums[0] & nums[1];
+
 	}
 
 	mvprintw(87, 16, "FREE PLACE! nums: = %d and %d", nums[0], nums[1]);

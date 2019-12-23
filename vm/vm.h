@@ -72,16 +72,16 @@
 
 static int			g_operation[16] = {10, 5, 5, 10, 10, 6, 6, 6, 20, 25, 25, 800/* 800 */, 10, 50, 1000, 2};
 
-typedef struct		s_header
-{
-	unsigned int	magic;
-	char			prog_name[PROG_NAME_LENGTH + 1];
-	unsigned int	prog_size;
-	char			comment[COMMENT_LENGTH + 1];
-}					t_header;
+//
+//typedef struct {
+//	unsigned int	magic;
+//	char			prog_name[PROG_NAME_LENGTH + 1];
+//	unsigned int	prog_size;
+//	char			comment[COMMENT_LENGTH + 1];
+//}					t_header;
+//
 
-typedef struct		s_player
-{
+typedef struct {
 	int				num;
 	char			*name;
 	char			*comment;
@@ -90,8 +90,7 @@ typedef struct		s_player
 	struct s_player	*next;
 }					t_player;
 
-typedef struct		s_cursor
-{
+typedef struct {
 	int				num;
 	int				play_num;
 	int				size;
@@ -101,29 +100,26 @@ typedef struct		s_cursor
 	int				registr[16];
 	int				carry;
 	int				live;
-}					t_cursor;
+}	t_cursor;
 
-typedef union	u_dir
-{
+typedef union {
 	int8_t bytes[4];
 	int32_t	data;
-}				t_dir;
+}	t_dir;
 
-typedef union	u_ind
-{
+typedef union {
 	int8_t	bytes[2];
 	int16_t	data;
-}				t_ind;
+}	t_ind;
 
-typedef struct	s_args
-{
+typedef struct {
 	uint8_t		types[4];
 	int32_t		nums[4];
+	int32_t 	nums_unfolded[4];
 	int32_t		offsets[4];
 	int32_t 	total_offset;
 	uint8_t 	dir_size;
-	uint8_t		idx;
-}				t_args;
+}	t_args;
 
 int					ft_valid_input(int argc, char **argv);
 
@@ -143,14 +139,18 @@ int					ft_print_careta(t_cursor *careta);
 int					ft_do_cycle(unsigned char map[MEM_SIZE][4], t_cursor **car, int cycle);
 
 void				ft_init_t_dir(unsigned char map[MEM_SIZE][4],
-		int position, t_dir *dir);
+		int position, t_dir *dir, uint8_t dir_size);
 void				ft_init_t_ind(unsigned char map[MEM_SIZE][4],
 		int position, t_ind *ind);
 void				ft_init_args(unsigned char map[MEM_SIZE][4],
 		int position, uint8_t args[4]);
 
-int					cw_vm_get_args(unsigned char map[MEM_SIZE][4],
+int					vm_get_args(unsigned char map[MEM_SIZE][4],
 		t_cursor *car, t_args *args);
+int					vm_unfold_indirect(unsigned char map[MEM_SIZE][4], uint16_t addr,
+								  bool is_idx_needed, uint8_t dir_size);
+void				vm_unfold_all(unsigned char map[MEM_SIZE][4], t_cursor *car,
+						  t_args *args, bool is_idx_needed);
 
 int					ft_dir_or_ind(unsigned int arg, int tdir);
 int					ft_move(unsigned int args[4], char *valid, int dir);
