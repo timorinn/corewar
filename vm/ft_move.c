@@ -12,7 +12,7 @@
 
 #include "vm.h"
 
-int		ft_move(unsigned int args[4], char *valid, int dir)
+int		ft_move(uint8_t args[4], char *valid, int dir)
 {
 	int		i;
 	int		move;

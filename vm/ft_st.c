@@ -26,7 +26,7 @@ t_cursor *car, unsigned int reg, int adress)
 	return (1);
 }
 
-int		ft_error_st(unsigned int args[4], int reg, int reg2, t_cursor *car)
+int		ft_error_st(uint8_t args[4], int reg, int reg2, t_cursor *car)
 {
 	if (args[0] != REG_CODE || (args[1] != REG_CODE && args[1] != IND_CODE) ||
 	reg < 1 || reg > 16 || (args[1] == REG_CODE && (reg2 < 1 || reg2 > 16)))
@@ -40,7 +40,7 @@ int		ft_error_st(unsigned int args[4], int reg, int reg2, t_cursor *car)
 
 int		ft_st(unsigned char map[MEM_SIZE][4], t_cursor *car)
 {
-	unsigned int	args[4]; 
+	uint8_t			args[4];
 	t_ind			ind;
 	unsigned int	reg;
 	unsigned int	reg2;

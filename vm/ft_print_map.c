@@ -183,9 +183,9 @@ int		ft_print_map(unsigned char map[MEM_SIZE][4], t_cursor *car, t_player *playe
 			ft_print_line(map, y - 1, car);
 
 		//wrefresh(win);
-		refresh();
+//		refresh();
 		c = getch();
-		clear();
+//		clear();
 	}
 	endwin();
 	return (1);

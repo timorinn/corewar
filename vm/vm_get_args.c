@@ -17,7 +17,7 @@ static void	get_dir(unsigned char map[MEM_SIZE][4], t_cursor *car,
 {
 	t_dir	dir;
 
-	ft_init_t_dir(map, car->position + args->total_offset, &dir);
+	ft_init_t_dir(map, car->position + args->total_offset, &dir, args->dir_size);
 	args->nums[arg_num] = dir.data;
 	args->offsets[arg_num] = args->offsets[arg_num - 1] + args->dir_size;
 	args->total_offset += args->offsets[arg_num];

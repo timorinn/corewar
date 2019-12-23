@@ -81,7 +81,8 @@ static int			g_operation[16] = {10, 5, 5, 10, 10, 6, 6, 6, 20, 25, 25, 800/* 800
 //}					t_header;
 //
 
-typedef struct {
+typedef struct		s_player
+{
 	int				num;
 	char			*name;
 	char			*comment;
@@ -153,18 +154,18 @@ void				vm_unfold_all(unsigned char map[MEM_SIZE][4], t_cursor *car,
 						  t_args *args, bool is_idx_needed);
 
 int					ft_dir_or_ind(unsigned int arg, int tdir);
-int					ft_move(unsigned int args[4], char *valid, int dir);
+int					ft_move(uint8_t args[4], char *valid, int dir);
 
 int					ft_live(unsigned char map[MEM_SIZE][4], t_cursor *car, int cycle);
 int					ft_ld(unsigned char map[MEM_SIZE][4], t_cursor *car);
 int					ft_lld(unsigned char map[MEM_SIZE][4], t_cursor *car);
 int					ft_zjmp(unsigned char map[MEM_SIZE][4], t_cursor *car);
 int					ft_st(unsigned char map[MEM_SIZE][4], t_cursor *car);
-int					ft_add(unsigned char map[MEM_SIZE][4], t_cursor *car);
-int					ft_sub(unsigned char map[MEM_SIZE][4], t_cursor *car);
+bool				ft_add(unsigned char map[MEM_SIZE][4], t_cursor *car);
+bool				ft_sub(unsigned char map[MEM_SIZE][4], t_cursor *car);
 int					ft_fork(unsigned char map[MEM_SIZE][4], t_cursor *car, t_cursor **allcar);
 int					ft_lfork(unsigned char map[MEM_SIZE][4], t_cursor *car, t_cursor **allcar);
-int					ft_and(unsigned char map[MEM_SIZE][4], t_cursor *car);
+bool				ft_and(unsigned char map[MEM_SIZE][4], t_cursor *car);
 
 bool				vm_validate_args(t_args args, char *validate);
 #endif

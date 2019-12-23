@@ -47,7 +47,7 @@ int		ft_do_cycle(unsigned char map[MEM_SIZE][4], t_cursor **car, int cycle)
 	{
 		if ((*car)[i].cooldown == 0)
 		{
-			i += ft_do_operation(map, &(*car)[i], car);
+			i += ft_do_operation(map, &(*car)[i], car, cycle);
 			if (map[(*car)[i].position][0] > 0 && map[(*car)[i].position][0] < 17)
 				(*car)[i].cooldown = g_operation[map[(*car)[i].position][0] - 1];
 			(*car)[i].operation = map[(*car)[i].position][0];

@@ -16,7 +16,7 @@ int		ft_live(unsigned char map[MEM_SIZE][4], t_cursor *car, int cycle)
 {
 	t_dir	dir;
 
-	ft_init_t_dir(map, car->position + 1, &dir);
+	ft_init_t_dir(map, car->position + 1, &dir, 4);
 	if (dir.data == car->play_num)
 		car->live = cycle;
 	car->position += 5;

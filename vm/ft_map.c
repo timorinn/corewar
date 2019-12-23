@@ -71,8 +71,8 @@ int		ft_map(int dump, t_player *player, int v)
 		ft_print_players(player);
 		if (dump != -1)
 		{
-			while (dump--)
-				ft_do_cycle(map, &car);
+//			while (dump--)
+//				ft_do_cycle(map, &car);
 			ft_print_map_single(map);
 		}
 	}
