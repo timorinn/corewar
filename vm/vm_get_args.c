@@ -8,7 +8,10 @@ static void	get_reg(unsigned char map[MEM_SIZE][4], t_cursor *car,
 					   t_args *args, int arg_num)
 {
 	args->nums[arg_num] = map[car->position + args->total_offset][0];
-	args->offsets[arg_num] = args->offsets[arg_num - 1] + args->dir_size;
+	if (arg_num == 0)
+		args->offsets[arg_num] = 1;
+	else
+		args->offsets[arg_num] = args->offsets[arg_num - 1] + 1;
 	args->total_offset += args->offsets[arg_num];
 }
 
@@ -19,7 +22,10 @@ static void	get_dir(unsigned char map[MEM_SIZE][4], t_cursor *car,
 
 	ft_init_t_dir(map, car->position + args->total_offset, &dir, args->dir_size);
 	args->nums[arg_num] = dir.data;
-	args->offsets[arg_num] = args->offsets[arg_num - 1] + args->dir_size;
+	if (arg_num == 0)
+		args->offsets[arg_num] = args->dir_size;
+	else
+		args->offsets[arg_num] = args->offsets[arg_num - 1] + args->dir_size;
 	args->total_offset += args->offsets[arg_num];
 }
 
@@ -30,7 +36,10 @@ static void	get_ind(unsigned char map[MEM_SIZE][4], t_cursor *car,
 
 	ft_init_t_ind(map, car->position + args->total_offset, &ind);
 	args->nums[arg_num] = ind.data;
-	args->offsets[arg_num] = args->offsets[arg_num - 1] + args->dir_size;
+	if (arg_num == 0)
+		args->offsets[arg_num] = IND_SIZE;
+	else
+		args->offsets[arg_num] = args->offsets[arg_num - 1] + IND_SIZE;
 	args->total_offset += args->offsets[arg_num];
 }
 
