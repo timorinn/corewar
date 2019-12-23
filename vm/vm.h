@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2019/12/21 20:22:45 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/23 21:00:17 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,4 +165,6 @@ int					ft_sub(unsigned char map[MEM_SIZE][4], t_cursor *car);
 int					ft_fork(unsigned char map[MEM_SIZE][4], t_cursor *car, t_cursor **allcar);
 int					ft_lfork(unsigned char map[MEM_SIZE][4], t_cursor *car, t_cursor **allcar);
 int					ft_and(unsigned char map[MEM_SIZE][4], t_cursor *car);
+
+bool				vm_validate_args(t_args args, char *validate);
 #endif

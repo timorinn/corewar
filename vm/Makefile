@@ -6,7 +6,7 @@
 #    By: bford <bford@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/05 17:55:08 by bford             #+#    #+#              #
-#    Updated: 2019/12/21 19:02:58 by bford            ###   ########.fr        #
+#    Updated: 2019/12/23 21:00:34 by bford            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRC =		ft_valid_input.c		\
 			ft_init_args.c			\
 			ft_dir_or_ind.c			\
 			ft_move.c				\
+			vm_validate_args.c		\
 			\
 			ft_ld.c					\
 			ft_lld.c				\
