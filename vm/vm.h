@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2019/12/23 21:00:17 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/23 21:43:18 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,7 +157,7 @@ int					ft_dir_or_ind(unsigned int arg, int tdir);
 int					ft_move(uint8_t args[4], char *valid, int dir);
 
 int					ft_live(unsigned char map[MEM_SIZE][4], t_cursor *car, int cycle);
-int					ft_ld(unsigned char map[MEM_SIZE][4], t_cursor *car);
+bool				ft_ld(unsigned char map[MEM_SIZE][4], t_cursor *car);
 int					ft_lld(unsigned char map[MEM_SIZE][4], t_cursor *car);
 int					ft_zjmp(unsigned char map[MEM_SIZE][4], t_cursor *car);
 int					ft_st(unsigned char map[MEM_SIZE][4], t_cursor *car);

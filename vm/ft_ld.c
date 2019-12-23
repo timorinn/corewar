@@ -6,12 +6,12 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/12 13:25:36 by bford             #+#    #+#             */
-/*   Updated: 2019/12/19 16:14:13 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/23 22:10:31 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
-
+/*
 static int		ft_ld_error(uint8_t args[4], unsigned int reg,
 t_cursor *car)
 {
@@ -56,4 +56,26 @@ int				ft_ld(unsigned char map[MEM_SIZE][4], t_cursor *car)
 	car->position += ft_move(args, "1100", 4) + 2;
 	car->position %= MEM_SIZE;
 	return (1);
+}
+*/
+
+bool			ft_ld(unsigned char map[MEM_SIZE][4], t_cursor *car)
+{
+	t_args		args;
+
+	ft_bzero(&args, sizeof(t_args));
+	args.dir_size = 4;
+	vm_get_args(map, car, &args);
+	if (vm_validate_args(args, "-IDR-----"))
+	{
+		mvprintw(89, 16, "FREE PLACE! kukl");
+
+		vm_unfold_all(map, car, &args, TRUE);
+		car->registr[args.nums[1]] = args.nums_unfolded[0];
+		mvprintw(90, 16, "FREE PLACE! dir = %d", args.nums_unfolded[0]);
+		car->carry = (car->registr[args.nums[1]] == 0 ? 1 : 0);
+	}
+	car->position += ft_move(args.types, "1100", 4) + 2;
+	car->position %= MEM_SIZE;
+	return (TRUE);
 }

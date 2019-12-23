@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 14:14:17 by bford             #+#    #+#             */
-/*   Updated: 2019/12/21 21:27:29 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/23 22:02:38 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int		ft_do_operation(unsigned char map[MEM_SIZE][4],
 	int		o;
 
 	o = car->operation;
-
 	if ( (o == 1 && ft_live(map, car, cycle)) || (o == 2 && ft_ld(map, car)) ||
 	(o == 3 && ft_st(map, car)) ||  (o == 4 && ft_add(map, car)) ||
 	(o == 5 && ft_sub(map, car)) || (o == 6 && ft_and(map, car)) || /*
@@ -26,7 +25,9 @@ int		ft_do_operation(unsigned char map[MEM_SIZE][4],
 	(o == 9 && ft_zjmp(map, car)) /* || (o == 10 && ft_ldi(map, car)) ||
 	(o == 11 && ft_sti(map, car)) */ || (o == 13 && ft_lld(map, car)) /*||
 	(o == 14 && ft_lldi(map, car)) || (o == 16 && ft_aff(map, car))*/)
+	{
 		return (0);
+	}
 	else if ((o == 12) || (o == 15))
 	{
 		if (o == 12)

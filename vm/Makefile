@@ -6,7 +6,7 @@
 #    By: bford <bford@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/05 17:55:08 by bford             #+#    #+#              #
-#    Updated: 2019/12/23 21:00:34 by bford            ###   ########.fr        #
+#    Updated: 2019/12/23 21:31:29 by bford            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,13 +31,19 @@ SRC =		ft_valid_input.c		\
 			ft_dir_or_ind.c			\
 			ft_move.c				\
 			vm_validate_args.c		\
+			vm_get_args.c			\
+			vm_unfold_all.c			\
 			\
 			ft_ld.c					\
 			ft_lld.c				\
 			ft_zjmp.c				\
 			ft_st.c					\
 			ft_fork.c				\
-			ft_lfork.c
+			ft_lfork.c				\
+			ft_add.c				\
+			ft_and.c				\
+			ft_live.c				\
+			ft_sub.c
 
 OBJ =		$(SRC:.c=.o)
 
