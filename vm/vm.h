@@ -117,8 +117,8 @@ typedef struct {
 	uint8_t		types[4];
 	int32_t		nums[4];
 	int32_t 	nums_unfolded[4];
-	int32_t		offsets[4];
-	int32_t 	total_offset;
+//	int32_t		offsets[4];
+	int32_t 	offset;
 	uint8_t 	dir_size;
 }	t_args;
 

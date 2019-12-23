@@ -28,5 +28,5 @@ void	ft_init_t_dir(unsigned char map[MEM_SIZE][4],
 	mvprintw(57, 200, "bit 1 = %5u | orig = %5u %02x", dir->bytes[1], map[(position + 2) % MEM_SIZE][0], map[(position + 2) % MEM_SIZE][0]);
 	mvprintw(58, 200, "bit 2 = %5u | orig = %5u %02x", dir->bytes[2], map[(position + 1) % MEM_SIZE][0], map[(position + 1) % MEM_SIZE][0]);
 	mvprintw(59, 200, "bit 3 = %5u | orig = %5u %02x", dir->bytes[3], map[position % MEM_SIZE][0], map[position % MEM_SIZE][0]);
-	mvprintw(60, 200, "RESULP DATA = *%u*", dir->data);
+	mvprintw(60, 200, "RESULP DATA = *%-12u*", dir->data);
 }
