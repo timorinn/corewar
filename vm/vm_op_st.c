@@ -74,7 +74,7 @@ bool	vm_op_st(uint8_t map[MEM_SIZE][4], t_cursor *car)
 	vm_get_args(map, car, &args);
 	if (vm_validate_args(args, "R--RI----"))
 	{
-		vm_unfold_all(map, car, &args, TRUE);
+		vm_unfold_all(map, car, &args, true);
 		if (args.types[1] == IND_CODE)
 		{
 			addr = (car->position + args.nums[1]) % MEM_SIZE;
@@ -88,5 +88,5 @@ bool	vm_op_st(uint8_t map[MEM_SIZE][4], t_cursor *car)
 			car->registr[args.nums[1]] = args.nums_unfolded[0];
 	}
 	car->position += ft_move(args.types, "1100", 4) + 2;
-	return (TRUE);
+	return (true);
 }

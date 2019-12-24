@@ -44,7 +44,7 @@ int				vm_op_ld(uint8_t map[MEM_SIZE][4], t_cursor *car)
 	ft_init_args(map, car->position, args);
 	ft_init_t_ind(map, car->position + 2, &ind);
 	ind.data = (args[0] == 3 ? ind.data % IDX_MOD : 2);
-	ft_init_t_dir(map, car->position + ind.data, &dir, 4);
+	dir = ft_init_t_dir(map, car->position + ind.data, 4);
 	//reg = (car[0].position + ft_dir_or_ind(args[0], 4) + 2 > (MEM_SIZE - 1) ? map[car[0].position + ft_dir_or_ind(args[0], 4) + 2 - MEM_SIZE][0] : map[car[0].position + 2 + ft_dir_or_ind(args[0], 4)][0]);
 	reg = ft_init_reg(map, car->position, args[0]) - 1;
 	//mvprintw(52, 200, "reg = %d | data = %d | pos = %d | dir_or_ind = %d", reg, dir.data, car[0].position, ft_dir_or_ind(args[0], 4));
@@ -57,7 +57,7 @@ int				vm_op_ld(uint8_t map[MEM_SIZE][4], t_cursor *car)
 	car->position %= MEM_SIZE;
 	return (1);
 }
-*/
+
 
 bool			vm_op_ld(uint8_t map[MEM_SIZE][4], t_cursor *car)
 {
@@ -68,14 +68,17 @@ bool			vm_op_ld(uint8_t map[MEM_SIZE][4], t_cursor *car)
 	vm_get_args(map, car, &args);
 	if (vm_validate_args(args, "-IDR-----"))
 	{
-//		mvprintw(89, 16, "FREE PLACE! kukl");
-
-		vm_unfold_all(map, car, &args, TRUE);
+		vm_unfold_all(map, car, &args, true);
 		car->registr[args.nums[1]] = args.nums_unfolded[0];
-//		mvprintw(90, 16, "FREE PLACE! dir = %d", args.nums_unfolded[0]);
 		car->carry = (car->registr[args.nums[1]] == 0 ? 1 : 0);
 	}
 	car->position += ft_move(args.types, "1100", 4) + 2;
 	car->position %= MEM_SIZE;
-	return (TRUE);
+	return (true);
+}
+*/
+
+bool			vm_op_ld(uint8_t map[MEM_SIZE][4], t_cursor *car)
+{
+	return (op_load(map, car, true));
 }

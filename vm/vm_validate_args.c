@@ -24,8 +24,8 @@ bool	vm_validate_args(t_args args, char *validate)
 		(validate[i * 3] == '-' || args.nums[i] < 1 || args.nums[i] > 16)) ||
 		(args.types[i] == IND_CODE && validate[i * 3 + 1] == '-') ||
 		(args.types[i] == DIR_CODE && validate[i * 3 + 2] == '-'))
-			return (FALSE);
+			return (false);
 		i++;
 	}
-	return (TRUE);
+	return (true);
 }

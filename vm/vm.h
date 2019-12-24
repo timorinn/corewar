@@ -139,8 +139,8 @@ int					ft_print_careta(t_cursor *careta);
 
 int					ft_do_cycle(uint8_t map[MEM_SIZE][4], t_cursor **car, int cycle);
 
-void				ft_init_t_dir(uint8_t map[MEM_SIZE][4],
-		int position, t_dir *dir, uint8_t dir_size);
+t_dir				ft_init_t_dir(uint8_t map[MEM_SIZE][4],
+		int position, uint8_t dir_size);
 void				ft_init_t_ind(uint8_t map[MEM_SIZE][4],
 		int position, t_ind *ind);
 void				ft_init_args(uint8_t map[MEM_SIZE][4],
@@ -155,12 +155,17 @@ int					ft_dir_or_ind(unsigned int arg, int tdir);
 int					ft_move(uint8_t args[4], char *valid, int dir);
 
 
-bool				vm_op_bitwise(uint8_t map[MEM_SIZE][4], t_cursor *car,
-							int32_t (*operation)(int32_t, int32_t));
+bool				op_bitwise(uint8_t map[MEM_SIZE][4], t_cursor *car,
+							   int32_t (*operation)(int32_t, int32_t));
+bool				op_load(uint8_t map[MEM_SIZE][4], t_cursor *car, bool is_idx_needed);
+bool				op_load_i(uint8_t map[MEM_SIZE][4], t_cursor *car, bool ll);
+
 
 int					vm_op_live(uint8_t map[MEM_SIZE][4], t_cursor *car, int cycle);
 bool				vm_op_ld(uint8_t map[MEM_SIZE][4], t_cursor *car);
-int					vm_op_lld(uint8_t map[MEM_SIZE][4], t_cursor *car);
+bool				vm_op_lld(uint8_t map[MEM_SIZE][4], t_cursor *car);
+bool				vm_op_ldi(uint8_t map[MEM_SIZE][4], t_cursor *car);
+bool				vm_op_lldi(uint8_t map[MEM_SIZE][4], t_cursor *car);
 int					vm_op_zjmp(uint8_t map[MEM_SIZE][4], t_cursor *car);
 bool				vm_op_st(uint8_t map[MEM_SIZE][4], t_cursor *car);
 bool				vm_op_sti(uint8_t map[MEM_SIZE][4], t_cursor *car);

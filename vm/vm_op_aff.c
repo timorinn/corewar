@@ -26,5 +26,5 @@ bool	vm_op_aff(uint8_t map[MEM_SIZE][4], t_cursor *car)
 	}
 	car->position += ft_move(args, "1110", 4) + 2;
 	car->position %= MEM_SIZE;
-	return (TRUE);
+	return (true);
 }

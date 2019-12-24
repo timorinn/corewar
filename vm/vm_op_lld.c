@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "vm.h"
-
+/*
 static int		ft_ld_error(uint8_t args[4], unsigned int reg,
 t_cursor *car)
 {
@@ -56,4 +56,10 @@ int				vm_op_lld(uint8_t map[MEM_SIZE][4], t_cursor *car)
 	car->position += ft_move(args, "1100", 4) + 2;
 	car->position %= MEM_SIZE;
 	return (1);
+}
+*/
+
+bool	vm_op_lld(uint8_t map[MEM_SIZE][4], t_cursor *car)
+{
+	return (op_load(map, car, false));
 }

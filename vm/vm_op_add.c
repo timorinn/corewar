@@ -30,5 +30,5 @@ bool	vm_op_add(uint8_t map[MEM_SIZE][4], t_cursor *car)
 	}
 	car->position += ft_move(args.types, "1110", args.dir_size) + 2;
 	car->position %= MEM_SIZE;
-	return (TRUE);
+	return (true);
 }

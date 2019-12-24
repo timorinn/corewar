@@ -19,5 +19,5 @@ inline static int32_t op_and(int32_t first, int32_t second)
 
 bool	vm_op_and(uint8_t map[MEM_SIZE][4], t_cursor *car)
 {
-	return (vm_op_bitwise(map, car, &op_and));
+	return (op_bitwise(map, car, &op_and));
 }

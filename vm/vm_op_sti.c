@@ -14,7 +14,7 @@ bool	vm_op_sti(uint8_t map[MEM_SIZE][4], t_cursor *car)
 	vm_get_args(map, car, &args);
 	if (vm_validate_args(args, "R--RIDR-D"))
 	{
-		vm_unfold_all(map, car, &args, FALSE);
+		vm_unfold_all(map, car, &args, false);
 		addr = (car->position + ((args.nums_unfolded[1] +
 				args.nums_unfolded[2]) % IDX_MOD)) % MEM_SIZE;
 		if (addr < 0)
@@ -28,8 +28,9 @@ bool	vm_op_sti(uint8_t map[MEM_SIZE][4], t_cursor *car)
 //		mvprintw(91, 16, "FREE PLACE! sti 2 and 3 args folded: %d and %d", args.nums[1], args.nums[2]);
 //
 //
-		ft_rewrite_map(map, car, car->registr[args.nums_unfolded[0]], addr);
+		ft_rewrite_map(map, car, car->registr[args.nums[0]], addr);
 	}
 	car->position += ft_move(args.types, "1110", 2) + 2;
-	return (TRUE);
+	car->position %= MEM_SIZE;
+	return (true);
 }

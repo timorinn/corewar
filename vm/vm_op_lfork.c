@@ -16,7 +16,7 @@ inline static int32_t op_lfork(int32_t position, int32_t ind)
 {
 	return (position + ind >= 0 ?
 	(position + ind) % MEM_SIZE :
-	(position + ind) + 4096);
+	(position + ind) + MEM_SIZE);
 }
 
 bool	vm_op_lfork(uint8_t map[MEM_SIZE][4], t_cursor *car,

@@ -41,8 +41,9 @@ t_cursor **allcar, int32_t (*operation)(int32_t, int32_t))
 	*/
 	newcar[0].position = operation(car->position, ind.data);
 	newcar[0].operation = map[newcar[0].position][0];
-	newcar[0].cooldown = newcar[0].operation > 0 && newcar[0].operation < 17 ? 
-	g_operation[newcar[0].operation] : 1;
+	newcar[0].cooldown = newcar[0].operation > 0 &&
+			newcar[0].operation < REG_NUMBER + 1 ?
+			g_operation[newcar[0].operation] : 1;
 	//free(*allcar);
 	*allcar = newcar;
 	return (TRUE);

@@ -19,6 +19,6 @@ inline static int32_t op_xor(int32_t first, int32_t second)
 
 bool	vm_op_xor(uint8_t map[MEM_SIZE][4], t_cursor *car)
 {
-	return (vm_op_bitwise(map, car, &op_xor));
+	return (op_bitwise(map, car, &op_xor));
 
 }

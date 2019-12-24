@@ -16,7 +16,7 @@ static void	get_dir(uint8_t map[MEM_SIZE][4], t_cursor *car,
 {
 	t_dir	dir;
 
-	ft_init_t_dir(map, car->position + args->offset, &dir, args->dir_size);
+	dir = ft_init_t_dir(map, car->position + args->offset, args->dir_size);
 	args->nums[arg_num] = dir.data;
 	args->offset += args->dir_size;
 }
@@ -48,8 +48,8 @@ int			vm_get_args(uint8_t map[MEM_SIZE][4], t_cursor *car, t_args *args)
 		else if (args->types[i] == DIR_CODE)
 			get_dir(map, car, args, i);
 		else
-			return (FALSE);
+			return (false);
 		i++;
 	}
-	return (TRUE);
+	return (true);
 }
