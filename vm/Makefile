@@ -6,7 +6,7 @@
 #    By: bford <bford@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/05 17:55:08 by bford             #+#    #+#              #
-#    Updated: 2019/12/24 12:49:48 by bford            ###   ########.fr        #
+#    Updated: 2019/12/24 16:11:49 by bford            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,8 @@ SRC =		ft_valid_input.c		\
 			vm_op_sti.c				\
 			op_bitwise.c			\
 			vm_op_or.c				\
-			vm_op_xor.c
+			vm_op_xor.c				\
+			vm_op_aff.c
 
 OBJ =		$(SRC:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2019/12/24 13:14:13 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/24 16:12:02 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,7 +171,7 @@ int					vm_op_lfork(uint8_t map[MEM_SIZE][4], t_cursor *car, t_cursor **allcar);
 bool				vm_op_and(uint8_t map[MEM_SIZE][4], t_cursor *car);
 bool				vm_op_or(uint8_t map[MEM_SIZE][4], t_cursor *car);
 bool				vm_op_xor(uint8_t map[MEM_SIZE][4], t_cursor *car);
-
+bool				vm_op_aff(uint8_t map[MEM_SIZE][4], t_cursor *car);
 
 bool				vm_validate_args(t_args args, char *validate);
 

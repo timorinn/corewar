@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 14:14:17 by bford             #+#    #+#             */
-/*   Updated: 2019/12/23 22:02:38 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/24 16:11:38 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,15 @@ int		ft_do_operation(uint8_t map[MEM_SIZE][4],
 	int		o;
 
 	o = car->operation;
-	if ((o == 1 && vm_op_live(map, car, cycle)) || (o == 2 && vm_op_ld(map, car)) ||
-		(o == 3 && vm_op_st(map, car)) || (o == 4 && vm_op_add(map, car)) ||
-		(o == 5 && vm_op_sub(map, car)) || (o == 6 && vm_op_and(map, car)) ||
-	(o == 7 && vm_op_or(map, car)) || (o == 8 && vm_op_xor(map, car)) ||
-	(o == 9 && vm_op_zjmp(map, car)) /* || (o == 10 && ft_ldi(map, car)) */ ||
-		(o == 11 && vm_op_sti(map, car)) || (o == 13 && vm_op_lld(map, car)) /*||
-	(o == 14 && ft_lldi(map, car)) || (o == 16 && ft_aff(map, car))*/)
+	if ((o == 1 && vm_op_live(map, car, cycle)) ||
+	(o == 2 && vm_op_ld(map, car)) || (o == 3 && vm_op_st(map, car)) ||
+	(o == 4 && vm_op_add(map, car)) || (o == 5 && vm_op_sub(map, car)) ||
+	(o == 6 && vm_op_and(map, car)) || (o == 7 && vm_op_or(map, car)) ||
+	(o == 8 && vm_op_xor(map, car)) || (o == 9 && vm_op_zjmp(map, car))
+	/* || (o == 10 && ft_ldi(map, car)) */ ||
+	(o == 11 && vm_op_sti(map, car)) ||
+	(o == 13 && vm_op_lld(map, car)) ||
+	/* (o == 14 && ft_lldi(map, car)) || */ (o == 16 && vm_op_aff(map, car)))
 	{
 		return (0);
 	}
