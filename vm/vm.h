@@ -148,8 +148,6 @@ void				ft_init_args(uint8_t map[MEM_SIZE][4],
 
 int					vm_get_args(uint8_t map[MEM_SIZE][4],
 		t_cursor *car, t_args *args);
-int					vm_unfold_indirect(uint8_t map[MEM_SIZE][4], uint16_t addr,
-								  bool is_idx_needed, uint8_t dir_size);
 void				vm_unfold_all(uint8_t map[MEM_SIZE][4], t_cursor *car,
 						  t_args *args, bool is_idx_needed);
 

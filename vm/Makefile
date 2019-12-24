@@ -32,7 +32,7 @@ SRC =		ft_valid_input.c		\
 			ft_move.c				\
 			vm_validate_args.c		\
 			vm_get_args.c			\
-			vm_unfold_all.c			\
+			vm_unfold_indirects.c	\
 			\
 			vm_op_ld.c				\
 			vm_op_lld.c				\

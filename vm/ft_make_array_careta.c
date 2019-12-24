@@ -36,7 +36,7 @@ t_cursor	*ft_make_array_careta(t_player *player, uint8_t map[MEM_SIZE][4])
 		array[i].position = MEM_SIZE / len * (len - i - 1);
 		array[i].operation = map[array[i].position][0];
 		array[i].cooldown = g_operation[array[i].operation - 1];
-		reg = 1;
+		reg = 0;
 		while (reg < REG_NUMBER && ++reg)
 			array[i].registr[reg - 1] = 0;
 		array[i].registr[1] = -player->num;
