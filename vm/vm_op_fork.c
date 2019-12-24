@@ -33,8 +33,9 @@ int		vm_op_fork(uint8_t map[MEM_SIZE][4], t_cursor *car, t_cursor **allcar)
 	newcar[0] = *car;
 	newcar[0].size = car->size + 1;
 	newcar[0].num = car->size;
-	newcar[0].position = (ind.data % MEM_SIZE > 0 ?
-	(ind.data % MEM_SIZE) % 4096 : 4096 + ind.data % MEM_SIZE);
+	newcar[0].position = (car->position + ind.data % IDX_MOD > 0 ?
+	(car->position + ind.data % IDX_MOD) % MEM_SIZE :
+	4096 + (car->position + ind.data % IDX_MOD));
 	newcar[0].operation = map[newcar[0].position][0];
 	newcar[0].cooldown = newcar[0].operation > 0 && newcar[0].operation < 17 ? 
 	g_operation[newcar[0].operation] : 1;

@@ -6,7 +6,7 @@
 #    By: bford <bford@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/06 11:34:46 by bford             #+#    #+#              #
-#    Updated: 2019/12/06 12:26:05 by bford            ###   ########.fr        #
+#    Updated: 2019/12/24 17:22:12 by bford            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,8 +41,8 @@ $(NAME):	$(OBJ)
 			ar -rcs $(NAME) $(OBJ)
 
 %.o:		%.c $(HEAD)
-			@gcc -I ./ -Wall -Wextra -Werror -g -c $< -o $@
-			@echo "Compiling libft..."
+			gcc -I ./ -Wall -Wextra -Werror -g -c $< -o $@
+
 clean:
 			rm -f $(OBJ)
 

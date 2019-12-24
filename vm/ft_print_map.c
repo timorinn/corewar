@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 11:17:28 by bford             #+#    #+#             */
-/*   Updated: 2019/12/24 17:17:31 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/24 17:21:25 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,7 +185,7 @@ int		ft_print_map(uint8_t map[MEM_SIZE][4], t_cursor *car, t_player *player)
 			ft_print_line(map, y - 1, car);
 
 		//wrefresh(win);
-		//refresh();
+		refresh();
 		c = getch();
 		//clear();
 	}
