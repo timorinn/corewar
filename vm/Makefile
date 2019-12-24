@@ -6,7 +6,7 @@
 #    By: bford <bford@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/05 17:55:08 by bford             #+#    #+#              #
-#    Updated: 2019/12/24 16:11:49 by bford            ###   ########.fr        #
+#    Updated: 2019/12/24 18:22:29 by bford            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ SRC =		ft_valid_input.c		\
 			vm_op_lld.c				\
 			vm_op_zjmp.c			\
 			vm_op_st.c				\
+			vm_op_all_fork.c		\
 			vm_op_fork.c			\
 			vm_op_lfork.c			\
 			vm_op_add.c				\
