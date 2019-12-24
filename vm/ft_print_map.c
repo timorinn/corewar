@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 11:17:28 by bford             #+#    #+#             */
-/*   Updated: 2019/12/24 13:01:04 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/24 17:17:31 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,8 @@ int		ft_print_backside(int *cycle, t_player *player, t_cursor *car)
 	y = 11;
 	attron(A_BOLD);
 	color_set(11, NULL);
-	mvprintw(7, 199, "Cycle : %d\n", (*cycle)++);
-	mvprintw(9, 199, "Processes : %d\n", car[0].size);
+	mvprintw(7, 199, "Cycle : %d", (*cycle)++);
+	mvprintw(9, 199, "Processes : %d", car[0].size);
 	while (player)
 	{
 		color_set(11, NULL);
@@ -169,6 +169,8 @@ int		ft_print_map(uint8_t map[MEM_SIZE][4], t_cursor *car, t_player *player)
 	//WINDOW *win = newwin(68, 197, 0, 0);
 	//box(win, 0, 0);
 
+	ft_print_contur();
+
 	char c = 's';
 	while (c != 'q')
 	{
@@ -177,7 +179,7 @@ int		ft_print_map(uint8_t map[MEM_SIZE][4], t_cursor *car, t_player *player)
 	
 		ft_do_cycle(map, &car, cycle);
 
-		ft_print_contur();
+		//ft_print_contur();
 		y = 0;
 		while (y < 64 && ++y)
 			ft_print_line(map, y - 1, car);
