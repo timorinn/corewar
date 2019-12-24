@@ -12,7 +12,7 @@
 
 #include "vm.h"
 
-void	ft_init_args(unsigned char map[MEM_SIZE][4],
+void	ft_init_args(uint8_t map[MEM_SIZE][4],
 int position, uint8_t args[4])
 {
 	int		arg_type;

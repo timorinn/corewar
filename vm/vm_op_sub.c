@@ -4,7 +4,7 @@
 
 #include "vm.h"
 
-bool	ft_sub(unsigned char map[MEM_SIZE][4], t_cursor *car)
+bool	vm_op_sub(uint8_t map[MEM_SIZE][4], t_cursor *car)
 {
 	t_args	args;
 

@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_live.c                                          :+:      :+:    :+:   */
+/*   vm_op_and.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kpsylock <kpsylock@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/21 20:54:32 by bford             #+#    #+#             */
-/*   Updated: 2019/12/21 22:01:59 by bford            ###   ########.fr       */
+/*   Created: 2019/12/24 09:35:25 by kpsylock          #+#    #+#             */
+/*   Updated: 2019/12/24 10:54:22 by kpsylock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int		ft_live(unsigned char map[MEM_SIZE][4], t_cursor *car, int cycle)
+inline static int32_t op_xor(int32_t first, int32_t second)
 {
-	t_dir	dir;
+	return (first ^ second);
+}
 
-	ft_init_t_dir(map, car->position + 1, &dir, 4);
-	if (dir.data == car->play_num)
-		car->live = cycle;
-	car->position += 5;
-	car->position %= MEM_SIZE;
-	return (1);
+bool	vm_op_xor(uint8_t map[MEM_SIZE][4], t_cursor *car)
+{
+	return (vm_op_bitwise(map, car, &op_xor));
+
 }

@@ -41,8 +41,8 @@ $(NAME):	$(OBJ)
 			ar -rcs $(NAME) $(OBJ)
 
 %.o:		%.c $(HEAD)
-			gcc -I ./ -Wall -Wextra -Werror -g -c $< -o $@
-
+			@gcc -I ./ -Wall -Wextra -Werror -g -c $< -o $@
+			@echo "Compiling libft..."
 clean:
 			rm -f $(OBJ)
 

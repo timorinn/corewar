@@ -41,7 +41,7 @@ void	ft_find_color(int position, t_cursor *car, int def)
 		color_set(def, NULL);
 }
 
-int		ft_print_line(unsigned char map[MEM_SIZE][4], int i, t_cursor *car)
+int		ft_print_line(uint8_t map[MEM_SIZE][4], int i, t_cursor *car)
 {
 	int	t;
 
@@ -155,7 +155,7 @@ int		ft_print_params(t_cursor *car)
 	return (1);
 }
 
-int		ft_print_map(unsigned char map[MEM_SIZE][4], t_cursor *car, t_player *player)
+int		ft_print_map(uint8_t map[MEM_SIZE][4], t_cursor *car, t_player *player)
 {
 	int y;
 	int cycle = 0;

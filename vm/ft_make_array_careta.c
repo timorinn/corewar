@@ -14,7 +14,7 @@
 
 //extern int g_operation[16];
 
-t_cursor	*ft_make_array_careta(t_player *player, unsigned char map[MEM_SIZE][4])
+t_cursor	*ft_make_array_careta(t_player *player, uint8_t map[MEM_SIZE][4])
 {
 	t_cursor	*array;
 	int		len;

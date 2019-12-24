@@ -12,18 +12,18 @@
 
 #include "vm.h"
 
-int		ft_do_operation(unsigned char map[MEM_SIZE][4],
+int		ft_do_operation(uint8_t map[MEM_SIZE][4],
 						t_cursor *car, t_cursor **allcar, int cycle)
 {
 	int		o;
 
 	o = car->operation;
-	if ( (o == 1 && ft_live(map, car, cycle)) || (o == 2 && ft_ld(map, car)) ||
-	(o == 3 && ft_st(map, car)) ||  (o == 4 && ft_add(map, car)) ||
-	(o == 5 && ft_sub(map, car)) || (o == 6 && ft_and(map, car)) || /*
-	(o == 7 && ft_or(map, car)) || (o == 8 && ft_xor(map, car)) || */
-	(o == 9 && ft_zjmp(map, car)) /* || (o == 10 && ft_ldi(map, car)) ||
-	(o == 11 && ft_sti(map, car)) */ || (o == 13 && ft_lld(map, car)) /*||
+	if ((o == 1 && vm_op_live(map, car, cycle)) || (o == 2 && vm_op_ld(map, car)) ||
+		(o == 3 && vm_op_st(map, car)) || (o == 4 && vm_op_add(map, car)) ||
+		(o == 5 && vm_op_sub(map, car)) || (o == 6 && vm_op_and(map, car)) ||
+	(o == 7 && vm_op_or(map, car)) || (o == 8 && vm_op_xor(map, car)) ||
+	(o == 9 && vm_op_zjmp(map, car)) /* || (o == 10 && ft_ldi(map, car)) */ ||
+		(o == 11 && vm_op_sti(map, car)) || (o == 13 && vm_op_lld(map, car)) /*||
 	(o == 14 && ft_lldi(map, car)) || (o == 16 && ft_aff(map, car))*/)
 	{
 		return (0);
@@ -31,15 +31,15 @@ int		ft_do_operation(unsigned char map[MEM_SIZE][4],
 	else if ((o == 12) || (o == 15))
 	{
 		if (o == 12)
-			return (ft_fork(map, car, allcar));
-		return (ft_lfork(map, car, allcar));
+			return (vm_op_fork(map, car, allcar));
+		return (vm_op_lfork(map, car, allcar));
 	}
 	car->position = (car->position == (MEM_SIZE - 1) ? 0 : car->position + 1);
 	//mvprintw(85 + 1, 16, "FREE PLACE! Car_position = %d", car->position);
 	return (0);
 }
 
-int		ft_do_cycle(unsigned char map[MEM_SIZE][4], t_cursor **car, int cycle)
+int		ft_do_cycle(uint8_t map[MEM_SIZE][4], t_cursor **car, int cycle)
 {
 	int		i;
 

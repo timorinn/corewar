@@ -4,14 +4,14 @@
 
 #include "vm.h"
 
-static void	get_reg(unsigned char map[MEM_SIZE][4], t_cursor *car,
+static void	get_reg(uint8_t map[MEM_SIZE][4], t_cursor *car,
 					   t_args *args, int arg_num)
 {
 	args->nums[arg_num] = map[car->position + args->offset][0];
 	args->offset += 1;
 }
 
-static void	get_dir(unsigned char map[MEM_SIZE][4], t_cursor *car,
+static void	get_dir(uint8_t map[MEM_SIZE][4], t_cursor *car,
 					   t_args *args, int arg_num)
 {
 	t_dir	dir;
@@ -21,7 +21,7 @@ static void	get_dir(unsigned char map[MEM_SIZE][4], t_cursor *car,
 	args->offset += args->dir_size;
 }
 
-static void	get_ind(unsigned char map[MEM_SIZE][4], t_cursor *car,
+static void	get_ind(uint8_t map[MEM_SIZE][4], t_cursor *car,
 					  t_args *args, int arg_num)
 {
 	t_ind	ind;
@@ -31,7 +31,7 @@ static void	get_ind(unsigned char map[MEM_SIZE][4], t_cursor *car,
 	args->offset += IND_SIZE;
 }
 
-int			vm_get_args(unsigned char map[MEM_SIZE][4], t_cursor *car, t_args *args)
+int			vm_get_args(uint8_t map[MEM_SIZE][4], t_cursor *car, t_args *args)
 {
 	int		i;
 

@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_map_single.c                              :+:      :+:    :+:   */
+/*   vm_op_and.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kpsylock <kpsylock@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/21 18:59:50 by bford             #+#    #+#             */
-/*   Updated: 2019/12/21 19:17:31 by bford            ###   ########.fr       */
+/*   Created: 2019/12/24 09:35:25 by kpsylock          #+#    #+#             */
+/*   Updated: 2019/12/24 10:54:22 by kpsylock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int		ft_print_map_single(uint8_t map[MEM_SIZE][4])
+inline static int32_t op_or(int32_t first, int32_t second)
 {
-	int		i;
+	return (first | second);
+}
 
-	i = 1;
-	while (i < MEM_SIZE + 1)
-	{
-		if (i % 64 == 1)
-			printf("0x%03x0 : ", i / 16);
-		printf("%02x ", map[i - 1][0]);
-		if (i % 64 == 0)
-			printf("\n");
-		i++;
-	}
-	return (1);
+bool	vm_op_or(uint8_t map[MEM_SIZE][4], t_cursor *car)
+{
+	return (vm_op_bitwise(map, car, &op_or));
 }

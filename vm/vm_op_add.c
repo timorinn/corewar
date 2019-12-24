@@ -15,7 +15,7 @@ inline static int	validate_regs(unsigned int r1, unsigned int r2,
 	return (1);
 }
 
-int					ft_add(unsigned char map[MEM_SIZE][4], t_cursor *car)
+int					vm_op_add(uint8_t map[MEM_SIZE][4], t_cursor *car)
 {
 	unsigned int	args[4];
 	unsigned int	reg1;
@@ -39,7 +39,7 @@ int					ft_add(unsigned char map[MEM_SIZE][4], t_cursor *car)
 	return (1);
 }
 */
-bool	ft_add(unsigned char map[MEM_SIZE][4], t_cursor *car)
+bool	vm_op_add(uint8_t map[MEM_SIZE][4], t_cursor *car)
 {
 	t_args	args;
 

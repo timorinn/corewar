@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_st.c                                            :+:      :+:    :+:   */
+/*   vm_op_st.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "vm.h"
 
-int		ft_rewrite_map(unsigned char map[MEM_SIZE][4],
+void	ft_rewrite_map(uint8_t map[MEM_SIZE][4],
 t_cursor *car, unsigned int reg, int adress)
 {
 	map[(adress + 3) % MEM_SIZE][0] = reg;
@@ -23,7 +23,6 @@ t_cursor *car, unsigned int reg, int adress)
 	map[(adress + 1) % MEM_SIZE][1] = car->play_num + 2;
 	map[adress % MEM_SIZE][0] = reg >> 24;
 	map[adress % MEM_SIZE][1] = car->play_num + 2;
-	return (1);
 }
 
 int		ft_error_st(uint8_t args[4], int reg, int reg2, t_cursor *car)
@@ -38,7 +37,7 @@ int		ft_error_st(uint8_t args[4], int reg, int reg2, t_cursor *car)
 	return (0);
 }
 
-int		ft_st(unsigned char map[MEM_SIZE][4], t_cursor *car)
+int		vm_op_st(uint8_t map[MEM_SIZE][4], t_cursor *car)
 {
 	uint8_t			args[4];
 	t_ind			ind;
@@ -55,9 +54,9 @@ int		ft_st(unsigned char map[MEM_SIZE][4], t_cursor *car)
 	if (ft_error_st(args, reg, reg2, car))
 		return (1);
 	if (args[1] == REG_CODE)
-		car->registr[reg2 - 1]  = car->registr[reg - 1];
+		car->registr[reg2] = car->registr[reg];
 	else
-		ft_rewrite_map(map, car, car->registr[reg - 1], adress);
+		ft_rewrite_map(map, car, car->registr[reg], adress);
 	car->position += ft_move(args, "1100", 4) + 2;
 	car->position %= MEM_SIZE;
 	return (1);

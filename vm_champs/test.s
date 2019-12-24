@@ -18,5 +18,7 @@ add r3, r4, r20
 add r3, r4, r20
 add r3, r4, r20
 add r3, r3, r3
-st r20, 30
+st r7, 50
+st r8, 60
+st r9, 70
 zjmp %-20

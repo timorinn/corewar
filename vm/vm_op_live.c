@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_init_t_ind.c                                    :+:      :+:    :+:   */
+/*   vm_op_live.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/14 19:59:37 by bford             #+#    #+#             */
-/*   Updated: 2019/12/19 14:06:50 by bford            ###   ########.fr       */
+/*   Created: 2019/12/21 20:54:32 by bford             #+#    #+#             */
+/*   Updated: 2019/12/21 22:01:59 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-void	ft_init_t_ind(uint8_t map[MEM_SIZE][4],
-int position, t_ind *ind)
+int		vm_op_live(uint8_t map[MEM_SIZE][4], t_cursor *car, int cycle)
 {
-	//(*ind).bytes[0] = (position + 1 > (MEM_SIZE - 1) ?
-	//map[position + 1 - MEM_SIZE][0] : map[position + 1][0]);
-	(*ind).bytes[0] = map[(position + 1) % MEM_SIZE][0];
-	//(*ind).bytes[1] = (position > (MEM_SIZE - 1) ?
-	//map[position - MEM_SIZE][0] : map[position][0]);
-	(*ind).bytes[1] = map[position % MEM_SIZE][0];
+	t_dir	dir;
+
+	ft_init_t_dir(map, car->position + 1, &dir, 4);
+	if (dir.data == car->play_num)
+		car->live = cycle;
+	car->position += 5;
+	car->position %= MEM_SIZE;
+	return (1);
 }

@@ -4,7 +4,7 @@
 
 #include "vm.h"
 
-int			vm_unfold_indirect(unsigned char map[MEM_SIZE][4], uint16_t addr,
+int			vm_unfold_indirect(uint8_t map[MEM_SIZE][4], uint16_t addr,
 								  bool is_idx_needed, uint8_t dir_size)
 {
 	t_dir		dir;
@@ -17,7 +17,7 @@ int			vm_unfold_indirect(unsigned char map[MEM_SIZE][4], uint16_t addr,
 	return (dir.data);
 }
 
-void		vm_unfold_all(unsigned char map[MEM_SIZE][4], t_cursor *car,
+void		vm_unfold_all(uint8_t map[MEM_SIZE][4], t_cursor *car,
 						  t_args *args, bool is_idx_needed)
 {
 	int i;

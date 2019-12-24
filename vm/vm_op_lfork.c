@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lfork.c                                         :+:      :+:    :+:   */
+/*   vm_op_lfork.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "vm.h"
 
-int		ft_lfork(unsigned char map[MEM_SIZE][4], t_cursor *car, t_cursor **allcar)
+int		vm_op_lfork(uint8_t map[MEM_SIZE][4], t_cursor *car, t_cursor **allcar)
 {
 	t_ind		ind;
 	t_cursor	*newcar;

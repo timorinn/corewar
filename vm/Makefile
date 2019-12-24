@@ -34,16 +34,17 @@ SRC =		ft_valid_input.c		\
 			vm_get_args.c			\
 			vm_unfold_all.c			\
 			\
-			ft_ld.c					\
-			ft_lld.c				\
-			ft_zjmp.c				\
-			ft_st.c					\
-			ft_fork.c				\
-			ft_lfork.c				\
-			ft_add.c				\
-			ft_and.c				\
-			ft_live.c				\
-			ft_sub.c
+			vm_op_ld.c					\
+			vm_op_lld.c				\
+			vm_op_zjmp.c				\
+			vm_op_st.c					\
+			vm_op_fork.c				\
+			vm_op_lfork.c				\
+			vm_op_add.c				\
+			vm_op_and.c				\
+			vm_op_live.c				\
+			vm_op_sub.c				\
+			vm_op_sti.c
 
 OBJ =		$(SRC:.c=.o)
 

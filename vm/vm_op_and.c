@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_init_t_ind.c                                    :+:      :+:    :+:   */
+/*   vm_op_and.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/14 19:59:37 by bford             #+#    #+#             */
-/*   Updated: 2019/12/19 14:06:50 by bford            ###   ########.fr       */
+/*   Created: 2019/12/23 21:35:25 by bford             #+#    #+#             */
+/*   Updated: 2019/12/23 21:39:13 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-void	ft_init_t_ind(uint8_t map[MEM_SIZE][4],
-int position, t_ind *ind)
+inline static int32_t op_and(int32_t first, int32_t second)
 {
-	//(*ind).bytes[0] = (position + 1 > (MEM_SIZE - 1) ?
-	//map[position + 1 - MEM_SIZE][0] : map[position + 1][0]);
-	(*ind).bytes[0] = map[(position + 1) % MEM_SIZE][0];
-	//(*ind).bytes[1] = (position > (MEM_SIZE - 1) ?
-	//map[position - MEM_SIZE][0] : map[position][0]);
-	(*ind).bytes[1] = map[position % MEM_SIZE][0];
+	return (first & second);
+}
+
+bool	vm_op_and(uint8_t map[MEM_SIZE][4], t_cursor *car)
+{
+	return (vm_op_bitwise(map, car, &op_and));
 }
