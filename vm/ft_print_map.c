@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 11:17:28 by bford             #+#    #+#             */
-/*   Updated: 2019/12/23 21:51:14 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/24 13:01:04 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,8 +141,8 @@ int		ft_print_params(t_cursor *car)
 		reg = 0;
 		while (reg < 8 && ++reg)
 		{
-			mvprintw(y + 1, 16 + (reg - 1) * 21, "r%02d: %10d   |   ", reg - 1, car[i].registr[reg - 1]);
-			mvprintw(y + 2, 16 + (reg - 1) * 21, "r%02d: %10d   |   ", reg - 1 + 8, car[i].registr[reg - 1 + 8]);
+			mvprintw(y + 1, 16 + (reg - 1) * 21, "r%02d: %10d   |   ", reg, car[i].registr[reg]);
+			mvprintw(y + 2, 16 + (reg - 1) * 21, "r%02d: %10d   |   ", reg + 8, car[i].registr[reg + 8]);
 		}
 		i--;
 		y += 4;

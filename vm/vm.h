@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2019/12/23 21:43:18 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/24 13:14:13 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,7 +164,7 @@ int					vm_op_live(uint8_t map[MEM_SIZE][4], t_cursor *car, int cycle);
 bool				vm_op_ld(uint8_t map[MEM_SIZE][4], t_cursor *car);
 int					vm_op_lld(uint8_t map[MEM_SIZE][4], t_cursor *car);
 int					vm_op_zjmp(uint8_t map[MEM_SIZE][4], t_cursor *car);
-int					vm_op_st(uint8_t map[MEM_SIZE][4], t_cursor *car);
+bool				vm_op_st(uint8_t map[MEM_SIZE][4], t_cursor *car);
 bool				vm_op_sti(uint8_t map[MEM_SIZE][4], t_cursor *car);
 bool				vm_op_add(uint8_t map[MEM_SIZE][4], t_cursor *car);
 bool				vm_op_sub(uint8_t map[MEM_SIZE][4], t_cursor *car);

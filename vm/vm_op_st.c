@@ -12,6 +12,7 @@
 
 #include "vm.h"
 
+
 void	ft_rewrite_map(uint8_t map[MEM_SIZE][4],
 t_cursor *car, unsigned int reg, int adress)
 {
@@ -24,6 +25,8 @@ t_cursor *car, unsigned int reg, int adress)
 	map[adress % MEM_SIZE][0] = reg >> 24;
 	map[adress % MEM_SIZE][1] = car->play_num + 2;
 }
+
+/*
 
 int		ft_error_st(uint8_t args[4], int reg, int reg2, t_cursor *car)
 {
@@ -60,4 +63,37 @@ int		vm_op_st(uint8_t map[MEM_SIZE][4], t_cursor *car)
 	car->position += ft_move(args, "1100", 4) + 2;
 	car->position %= MEM_SIZE;
 	return (1);
+}
+*/
+
+bool	vm_op_st(uint8_t map[MEM_SIZE][4], t_cursor *car)
+{
+	t_args		args;
+	int32_t		addr;
+
+	ft_bzero(&args, sizeof(t_args));
+	args.dir_size = 4;
+	vm_get_args(map, car, &args);
+	if (vm_validate_args(args, "R--RI----"))
+	{
+		if (args.types[1] == IND_CODE)
+		{
+			vm_unfold_all(map, car, &args, TRUE);
+			addr = (car->position + args.nums_unfolded[1]) % MEM_SIZE;
+			if (addr < 0)
+				addr += MEM_SIZE;
+
+		// mvprintw(86, 16, "FREE PLACE! addr: %d", addr);
+		// mvprintw(87, 16, "FREE PLACE! reg: %d", args.nums[0]);
+		// mvprintw(88, 16, "FREE PLACE! ->reg: %d", car->registr[args.nums[0]]);
+
+			ft_rewrite_map(map, car, car->registr[args.nums[0]], addr);
+		}
+		else
+			car->registr[args.nums[1]] = car->registr[args.nums[0]];
+	}
+
+//		ft_putstr("FREE PLACE! sti addr: blyat6");
+	car->position += ft_move(args.types, "1100", 2) + 2;
+	return (TRUE);
 }
