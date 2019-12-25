@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 14:14:17 by bford             #+#    #+#             */
-/*   Updated: 2019/12/24 16:11:38 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/25 14:40:09 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int		ft_do_cycle(uint8_t map[MEM_SIZE][4], t_cursor **car, int cycle)
 		{
 			i += ft_do_operation(map, &(*car)[i], car, cycle);
 			if (map[(*car)[i].position][0] > 0 && map[(*car)[i].position][0] < 17)
-				(*car)[i].cooldown = g_operation[map[(*car)[i].position][0] - 1];
+				(*car)[i].cooldown = g_operation[map[(*car)[i].position][0] - 1] - 1;
 			(*car)[i].operation = map[(*car)[i].position][0];
 		}
 		else
