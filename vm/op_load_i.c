@@ -7,7 +7,7 @@
 bool	op_load_i(uint8_t map[MEM_SIZE][4], t_cursor *car, bool ll)
 {
 	t_args		args;
-	int32_t		addr;
+	int16_t		addr;
 
 	ft_bzero(&args, sizeof(t_args));
 	args.dir_size = 2;
@@ -15,7 +15,7 @@ bool	op_load_i(uint8_t map[MEM_SIZE][4], t_cursor *car, bool ll)
 	if (vm_validate_args(args, "RIDR-DR--"))
 	{
 		vm_unfold_all(map, car, &args, true);
-		addr = (args.nums_unfolded[0] + args.nums_unfolded[1]);
+		addr = ((int16_t)args.nums_unfolded[0] + (int16_t)args.nums_unfolded[1]);
 		if (!ll)
 			addr %= IDX_MOD;
 		addr = (addr + car->position) % MEM_SIZE;
