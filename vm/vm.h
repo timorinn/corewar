@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2019/12/24 18:23:31 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/25 18:53:07 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ int					ft_lstdel_player(t_player *player);
 int					ft_lstlen_player(t_player *player);
 int					ft_error(int num, char *s);
 int					ft_map(int dump, t_player *player, int v);
-int					ft_print_map(uint8_t map[MEM_SIZE][4], t_cursor *car, t_player *player);
+int					ft_print_map(uint8_t map[MEM_SIZE][4], t_cursor *car, t_player *player, int dump);
 int					ft_print_players(t_player *player);
 int					ft_print_map_single(uint8_t map[MEM_SIZE][4]);
 t_cursor			*ft_make_array_careta(t_player *player, uint8_t map[MEM_SIZE][4]);

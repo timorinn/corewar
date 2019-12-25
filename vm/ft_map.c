@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/06 13:48:15 by bford             #+#    #+#             */
-/*   Updated: 2019/12/25 14:56:13 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/25 18:52:50 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int		ft_map(int dump, t_player *player, int v)
 	if (!player || !(car = ft_make_array_careta(player, map)))
 		return (0);
 	if (v)
-		ft_print_map(map, car, player);
+		ft_print_map(map, car, player, dump);
 	else
 		ft_no_print_map(map, car, player, dump);
 	free(car);

@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 11:17:28 by bford             #+#    #+#             */
-/*   Updated: 2019/12/24 17:21:25 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/25 18:52:32 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,7 +155,7 @@ int		ft_print_params(t_cursor *car)
 	return (1);
 }
 
-int		ft_print_map(uint8_t map[MEM_SIZE][4], t_cursor *car, t_player *player)
+int		ft_print_map(uint8_t map[MEM_SIZE][4], t_cursor *car, t_player *player, int dump)
 {
 	int y;
 	int cycle = 0;
@@ -186,7 +186,8 @@ int		ft_print_map(uint8_t map[MEM_SIZE][4], t_cursor *car, t_player *player)
 
 		//wrefresh(win);
 		refresh();
-		c = getch();
+		if (cycle >= dump)
+			c = getch();
 		//clear();
 	}
 	endwin();
