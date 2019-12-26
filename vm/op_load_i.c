@@ -21,7 +21,7 @@ bool	op_load_i(uint8_t map[MEM_SIZE][4], t_cursor *car, bool ll)
 		addr = (addr + car->position) % MEM_SIZE;
 		if (addr < 0)
 			addr += MEM_SIZE;
-		car->registr[args.nums[2]] = ft_init_t_dir(map, addr, args.dir_size).data;
+		car->registr[args.nums[2]] = ft_init_t_dir(map, addr, 4).data;
 	}
 	car->position += ft_move(args.types, "1110", 2) + 2;
 	car->position %= MEM_SIZE;
