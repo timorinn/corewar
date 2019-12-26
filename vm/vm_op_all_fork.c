@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/24 18:12:30 by bford             #+#    #+#             */
-/*   Updated: 2019/12/24 18:24:04 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/26 14:53:00 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_cursor **allcar, int32_t (*operation)(int32_t, int32_t))
 	newcar[0].operation = map[newcar[0].position][0];
 	newcar[0].cooldown = newcar[0].operation > 0 &&
 			newcar[0].operation < REG_NUMBER + 1 ?
-			g_operation[newcar[0].operation] : 1;
+			g_operation[newcar[0].operation /**/ - 1] /* */ - 1 : /* 1 */ 0;
 	//free(*allcar);
 	*allcar = newcar;
 	return (TRUE);

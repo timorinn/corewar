@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 11:17:28 by bford             #+#    #+#             */
-/*   Updated: 2019/12/25 18:52:32 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/26 14:09:08 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,8 +136,8 @@ int		ft_print_params(t_cursor *car)
 	color_set(11, NULL);
 	while (i >= 0)
 	{
-		mvprintw(y, 10, "Car #%d   | pl_num: %d | position: %4d | oper: %02x | cd: %3d | carry: %d | size: %d",
-		car[i].num ,car[i].play_num, car[i].position, car[i].operation, car[i].cooldown, car[i].carry, car[i].size);
+		mvprintw(y, 10, "Car #%d   | pl_num: %d | position: %4d | oper: %02x | cd: %3d | carry: %d | size: %2d | live: %5d",
+		car[i].num ,car[i].play_num, car[i].position, car[i].operation, car[i].cooldown, car[i].carry, car[i].size, car[i].live);
 		reg = 0;
 		while (reg < 8 && ++reg)
 		{
