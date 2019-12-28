@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vm_op_all_fork.c                                   :+:      :+:    :+:   */
+/*   op_all_fork.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,8 +12,8 @@
 
 #include "vm.h"
 
-bool	vm_op_all_fork(uint8_t map[MEM_SIZE][4], t_cycle *cycle,
-						t_cursor **cur, int32_t (*operation)(int32_t, int32_t))
+inline bool	op_all_fork(uint8_t map[MEM_SIZE][4], t_cycle *cycle,
+					t_cursor **allcar, int32_t (*operation)(int32_t, int32_t))
 {
 	t_ind		ind;
 	t_cursor	*newcur;
@@ -27,7 +27,7 @@ bool	vm_op_all_fork(uint8_t map[MEM_SIZE][4], t_cycle *cycle,
 	ft_init_t_ind(map, nowcur->position + 1, &ind);
 	while (size >= 0)
 	{
-		newcur[size + 1] = (*cur)[size];
+		newcur[size + 1] = (*allcar)[size];
 		if (newcur[size + 1].num == nowcur->num)
 			newcur[size + 1].position += 3;
 		newcur[size + 1].size = nowcur[0].size + 1;
@@ -46,7 +46,7 @@ bool	vm_op_all_fork(uint8_t map[MEM_SIZE][4], t_cycle *cycle,
 	newcur[0].cooldown = newcur[0].operation > 0 &&
 			newcur[0].operation < REG_NUMBER + 1 ?
 			g_operation[newcur[0].operation /**/ - 1] /* */ - 1 : /* 1 */ 0;
-	free(*cur);
-	*cur = newcur;
+	free(*allcar);
+	*allcar = newcur;
 	return (TRUE);
 }

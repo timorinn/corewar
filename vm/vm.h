@@ -155,7 +155,6 @@ void				ft_init_t_ind(uint8_t map[MEM_SIZE][4],
 		int position, t_ind *ind);
 void				ft_init_args(uint8_t map[MEM_SIZE][4],
 		int position, uint8_t args[4]);
-
 int					vm_get_args(uint8_t map[MEM_SIZE][4],
 								t_cursor *car, t_args *args);
 void				vm_unfold_all(uint8_t map[MEM_SIZE][4], t_cursor *car,
@@ -167,9 +166,13 @@ int					ft_move(uint8_t args[4], char *valid, int dir);
 
 bool				op_bitwise(uint8_t map[MEM_SIZE][4], int32_t (*operation)(int32_t, int32_t),
 								t_cycle *cycle);
+bool				op_add_sub(uint8_t map[MEM_SIZE][4],
+							   int32_t (*operation)(int32_t, int32_t), t_cycle *cycle);
 bool				op_load(uint8_t map[MEM_SIZE][4], bool is_idx_needed, t_cycle *cycle);
 bool				op_load_i(uint8_t map[MEM_SIZE][4], bool ll, t_cycle *cycle);
-
+bool				op_all_fork(uint8_t map[MEM_SIZE][4], t_cycle *cycle,
+								t_cursor **allcar,
+								int32_t (*operation)(int32_t, int32_t));
 
 int					vm_op_live(uint8_t map[MEM_SIZE][4], t_cycle *cycle);
 bool				vm_op_ld(uint8_t map[MEM_SIZE][4], t_cycle *cycle);
@@ -181,9 +184,6 @@ bool				vm_op_st(uint8_t map[MEM_SIZE][4], t_cycle *cycle);
 bool				vm_op_sti(uint8_t map[MEM_SIZE][4], t_cycle *cycle);
 bool				vm_op_add(uint8_t map[MEM_SIZE][4], t_cycle *cycle);
 bool				vm_op_sub(uint8_t map[MEM_SIZE][4], t_cycle *cycle);
-bool				vm_op_all_fork(uint8_t map[MEM_SIZE][4], t_cycle *cycle,
-									t_cursor **allcar,
-									int32_t (*operation)(int32_t, int32_t));
 bool				vm_op_fork(uint8_t map[MEM_SIZE][4], t_cursor **allcar, t_cycle *cycle);
 bool				vm_op_lfork(uint8_t map[MEM_SIZE][4], t_cursor **allcar, t_cycle *cycle);
 bool				vm_op_and(uint8_t map[MEM_SIZE][4], t_cycle *cycle);

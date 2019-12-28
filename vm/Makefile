@@ -41,7 +41,7 @@ SRC =		ft_valid_input.c		\
 			vm_op_lld.c				\
 			vm_op_zjmp.c			\
 			vm_op_st.c				\
-			vm_op_all_fork.c		\
+			op_all_fork.c		\
 			vm_op_fork.c			\
 			vm_op_lfork.c			\
 			vm_op_add.c				\
@@ -50,6 +50,7 @@ SRC =		ft_valid_input.c		\
 			vm_op_sub.c				\
 			vm_op_sti.c				\
 			op_bitwise.c			\
+			op_add_sub.c			\
 			vm_op_or.c				\
 			vm_op_xor.c				\
 			vm_op_aff.c				\

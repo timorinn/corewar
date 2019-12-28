@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "vm.h"
-
+/*
 bool	vm_op_sub(uint8_t map[MEM_SIZE][4], t_cycle *cycle)
 {
 	t_args		args;
@@ -25,6 +25,9 @@ bool	vm_op_sub(uint8_t map[MEM_SIZE][4], t_cycle *cycle)
 	{
 		cur->registr[args.nums[2]] = cur->registr[args.nums[0]] +
 									 cur->registr[args.nums[0]];
+
+// ^^^ And here is the fuckup again! Now fixed <3
+
 		if (cur->registr[args.nums[2]] == 0)
 			cur->carry = 1;
 		else
@@ -33,4 +36,15 @@ bool	vm_op_sub(uint8_t map[MEM_SIZE][4], t_cycle *cycle)
 	cur->position += ft_move(args.types, "1110", args.dir_size) + 2;
 	cur->position %= MEM_SIZE;
 	return (true);
+}
+*/
+
+inline static int32_t	sub(int32_t first, int32_t second)
+{
+	return (first - second);
+}
+
+bool					vm_op_sub(uint8_t map[MEM_SIZE][4], t_cycle *cycle)
+{
+	return (op_add_sub(map, &sub, cycle));
 }

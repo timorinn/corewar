@@ -12,7 +12,7 @@
 
 #include "vm.h"
 
-bool	op_load_i(uint8_t map[MEM_SIZE][4], bool ll, t_cycle *cycle)
+inline bool	op_load_i(uint8_t map[MEM_SIZE][4], bool ll, t_cycle *cycle)
 {
 	t_args		args;
 	int32_t		addr;
