@@ -6,7 +6,7 @@
 #    By: bford <bford@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/05 17:55:08 by bford             #+#    #+#              #
-#    Updated: 2019/12/28 17:06:39 by bford            ###   ########.fr        #
+#    Updated: 2019/12/28 20:28:28 by bford            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ SRC =		ft_valid_input.c		\
 			ft_lstnew_player.c		\
 			ft_lstlen_player.c		\
 			ft_lstdel_player.c		\
+			vm_delete_cursor.c		\
 			ft_error.c				\
 			ft_arena.c				\
 			ft_print_map.c			\
@@ -41,7 +42,6 @@ SRC =		ft_valid_input.c		\
 			vm_op_lld.c				\
 			vm_op_zjmp.c			\
 			vm_op_st.c				\
-			vm_op_all_fork.c		\
 			vm_op_fork.c			\
 			vm_op_lfork.c			\
 			vm_op_add.c				\
@@ -54,11 +54,10 @@ SRC =		ft_valid_input.c		\
 			vm_op_xor.c				\
 			vm_op_aff.c				\
 			\
+			op_all_fork.c			\
 			op_bitwise.c			\
 			op_load.c				\
-			op_load_i.c				\
-			\
-			vm_delete_logs.c
+			op_load_i.c
 
 OBJ =		$(SRC:.c=.o)
 

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vm_op_all_fork.c                                   :+:      :+:    :+:   */
+/*   op_all_fork.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/24 18:12:30 by bford             #+#    #+#             */
-/*   Updated: 2019/12/28 14:19:11 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/28 19:32:44 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-bool	vm_op_all_fork(uint8_t map[MEM_SIZE][4], t_cycle *cycle,
+bool	op_all_fork(uint8_t map[MEM_SIZE][4], t_cycle *cycle,
 						t_cursor **cur, int32_t (*operation)(int32_t, int32_t))
 {
 	t_ind		ind;

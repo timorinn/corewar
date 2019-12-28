@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2019/12/28 17:06:49 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/29 00:58:29 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ typedef struct		s_player
 typedef struct {
 	int				num;
 	int				play_num;
+	char			*file_name;
 	int				size;
 	int				position;
 	int				operation;
@@ -128,6 +129,9 @@ typedef struct {
 	t_cursor	*now_cur;
 	int			cycle_num;
 	int			dump;
+	int			cycles_to_die;
+	int			last_period_live;
+	int			check_num;
 }	t_cycle;
 
 int					ft_valid_input(int argc, char **argv);
@@ -169,7 +173,9 @@ bool				op_bitwise(uint8_t map[MEM_SIZE][4], int32_t (*operation)(int32_t, int32
 								t_cycle *cycle);
 bool				op_load(uint8_t map[MEM_SIZE][4], bool is_idx_needed, t_cycle *cycle);
 bool				op_load_i(uint8_t map[MEM_SIZE][4], bool ll, t_cycle *cycle);
-
+bool				op_all_fork(uint8_t map[MEM_SIZE][4], t_cycle *cycle,
+									t_cursor **allcar,
+									int32_t (*operation)(int32_t, int32_t));
 
 int					vm_op_live(uint8_t map[MEM_SIZE][4], t_cycle *cycle);
 bool				vm_op_ld(uint8_t map[MEM_SIZE][4], t_cycle *cycle);
@@ -181,9 +187,6 @@ bool				vm_op_st(uint8_t map[MEM_SIZE][4], t_cycle *cycle);
 bool				vm_op_sti(uint8_t map[MEM_SIZE][4], t_cycle *cycle);
 bool				vm_op_add(uint8_t map[MEM_SIZE][4], t_cycle *cycle);
 bool				vm_op_sub(uint8_t map[MEM_SIZE][4], t_cycle *cycle);
-bool				vm_op_all_fork(uint8_t map[MEM_SIZE][4], t_cycle *cycle,
-									t_cursor **allcar,
-									int32_t (*operation)(int32_t, int32_t));
 bool				vm_op_fork(uint8_t map[MEM_SIZE][4], t_cursor **allcar, t_cycle *cycle);
 bool				vm_op_lfork(uint8_t map[MEM_SIZE][4], t_cursor **allcar, t_cycle *cycle);
 bool				vm_op_and(uint8_t map[MEM_SIZE][4], t_cycle *cycle);
@@ -196,7 +199,5 @@ bool				vm_validate_args(t_args args, char *validate);
 
 void				ft_rewrite_map(uint8_t map[MEM_SIZE][4],
 					   t_cursor *car, uint32_t reg, int adress);
-
-void				vm_delete_logs(void);
-
+					   
 #endif
