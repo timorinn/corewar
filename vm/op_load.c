@@ -20,7 +20,7 @@ inline bool	op_load(uint8_t map[MEM_SIZE][4], bool is_idx_needed, t_cycle *cycle
 	cur = cycle->now_cur;
 	ft_bzero(&args, sizeof(t_args));
 	args.dir_size = 2;
-	if (is_idx_needed)
+	if (is_idx_needed == true)
 		args.dir_size += 2;
 	vm_get_args(map, cur, &args);
 	if (vm_validate_args(args, "-IDR-----"))

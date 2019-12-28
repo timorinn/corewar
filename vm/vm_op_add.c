@@ -12,28 +12,12 @@
 
 #include "vm.h"
 
-bool	vm_op_add(uint8_t map[MEM_SIZE][4], t_cycle *cycle)
+inline static int32_t	add(int32_t first, int32_t second)
 {
-	t_args		args;
-	t_cursor	*cur;
+	return (first + second);
+}
 
-	cur = cycle->now_cur;
-	ft_bzero(&args, sizeof(t_args));
-	args.dir_size = 4;
-	vm_get_args(map, cur, &args);
-	if (vm_validate_args(args, "R--R--R--"))
-	{
-		vm_unfold_all(map, cur, &args, true);
-//		cur->registr[args.nums[2]] = cur->registr[args.nums[0]] +
-//				cur->registr[args.nums[0]];
-		cur->registr[args.nums[2]] = args.nums_unfolded[0] +
-				args.nums_unfolded[1];
-		if (cur->registr[args.nums[2]] == 0)
-			cur->carry = 1;
-		else
-			cur->carry = 0;
-	}
-	cur->position += ft_move(args.types, "1110", args.dir_size) + 2;
-	cur->position %= MEM_SIZE;
-	return (true);
+bool					vm_op_add(uint8_t map[MEM_SIZE][4], t_cycle *cycle)
+{
+	return (op_add_sub(map, &add, cycle));
 }

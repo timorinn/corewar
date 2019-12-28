@@ -12,7 +12,7 @@
 
 #include "vm.h"
 
-bool	op_bitwise(uint8_t map[MEM_SIZE][4],
+inline bool	op_bitwise(uint8_t map[MEM_SIZE][4],
 					int32_t (*operation)(int32_t, int32_t), t_cycle *cycle)
 {
 	t_args 		args;
