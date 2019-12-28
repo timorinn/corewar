@@ -14,7 +14,7 @@
 
 bool	vm_op_add(uint8_t map[MEM_SIZE][4], t_cycle *cycle)
 {
-	t_args	args;
+	t_args		args;
 	t_cursor	*cur;
 
 	cur = cycle->now_cur;
@@ -23,8 +23,11 @@ bool	vm_op_add(uint8_t map[MEM_SIZE][4], t_cycle *cycle)
 	vm_get_args(map, cur, &args);
 	if (vm_validate_args(args, "R--R--R--"))
 	{
-		cur->registr[args.nums[2]] = cur->registr[args.nums[0]] +
-				cur->registr[args.nums[0]];
+		vm_unfold_all(map, cur, &args, true);
+//		cur->registr[args.nums[2]] = cur->registr[args.nums[0]] +
+//				cur->registr[args.nums[0]];
+		cur->registr[args.nums[2]] = args.nums_unfolded[0] +
+				args.nums_unfolded[1];
 		if (cur->registr[args.nums[2]] == 0)
 			cur->carry = 1;
 		else
