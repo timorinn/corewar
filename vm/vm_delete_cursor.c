@@ -1,22 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vm_init_cycle.c                                    :+:      :+:    :+:   */
+/*   vm_delete_cursor.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/28 13:28:34 by bford             #+#    #+#             */
-/*   Updated: 2019/12/29 01:14:25 by bford            ###   ########.fr       */
+/*   Created: 2019/12/28 19:35:48 by bford             #+#    #+#             */
+/*   Updated: 2019/12/28 19:38:32 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-void	vm_init_cycle(t_cycle *cycle, int player_size, int dump)
+int		vm_delete_cursor(t_cursor *cur)
 {
-	cycle->cycle_num = 0;
-	cycle->new_cur_num = player_size;
-	cycle->dump = dump;
-	
-	cycle->last_period_live = 0;
+	int		size;
+	int		i;
+
+	i = 0;
+	size = cur->size;
+	while (i < size)
+	{
+		if (cur[i].file_name)
+			free(cur[i].file_name);
+		i++;
+	}
+	free (cur);
+	return (0);
 }

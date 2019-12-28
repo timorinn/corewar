@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2019/12/29 00:58:29 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/29 01:13:06 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,13 +175,7 @@ bool				op_add_sub(uint8_t map[MEM_SIZE][4],
 bool				op_load(uint8_t map[MEM_SIZE][4], bool is_idx_needed, t_cycle *cycle);
 bool				op_load_i(uint8_t map[MEM_SIZE][4], bool ll, t_cycle *cycle);
 bool				op_all_fork(uint8_t map[MEM_SIZE][4], t_cycle *cycle,
-<<<<<<< HEAD
-									t_cursor **allcar,
-									int32_t (*operation)(int32_t, int32_t));
-=======
-								t_cursor **allcar,
-								int32_t (*operation)(int32_t, int32_t));
->>>>>>> refs/remotes/origin/master
+								t_cursor **cur, int32_t (*operation)(int32_t, int32_t));
 
 int					vm_op_live(uint8_t map[MEM_SIZE][4], t_cycle *cycle);
 bool				vm_op_ld(uint8_t map[MEM_SIZE][4], t_cycle *cycle);

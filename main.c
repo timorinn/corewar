@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 13:17:03 by bford             #+#    #+#             */
-/*   Updated: 2019/12/28 17:06:12 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/28 20:27:19 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ int			main(int argc, char **argv)
 	int			dump;
 
 	player = NULL;
-	vm_delete_logs();
 	dump = ft_init_dump(argc, argv);
 	player = ft_init_input(argc, argv, ft_valid_input(argc, argv), dump);
 	/* СЕГА ПРИ ОГРОМНОМ ЗНАЧЕНИИ ДАМПА! */
