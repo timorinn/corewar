@@ -12,14 +12,16 @@
 
 #include "vm.h"
 
-int		vm_op_live(uint8_t map[MEM_SIZE][4], t_cursor *car, int cycle)
+int		vm_op_live(uint8_t map[MEM_SIZE][4], t_cycle *cycle)
 {
-	t_dir	dir;
+	t_dir		dir;
+	t_cursor	*cur;
 
-	dir = ft_init_t_dir(map, car->position + 1, 4);
-	if (dir.data == -car->play_num)
-		car->live = cycle - 1;
-	car->position += 5;
-	car->position %= MEM_SIZE;
+	cur = cycle->now_cur;
+	dir = ft_init_t_dir(map, cur->position + 1, 4);
+	if (dir.data == -cur->play_num)
+		cur->live = cycle->cycle_num - 1;
+	cur->position += 5;
+	cur->position %= MEM_SIZE;
 	return (1);
 }

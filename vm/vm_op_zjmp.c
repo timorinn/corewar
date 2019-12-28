@@ -12,24 +12,22 @@
 
 #include "vm.h"
 
-/*
-*	Испольую Т_ИНД, тк размер Т_ДИР для этой операции равен 2.
-*/
-
-int		vm_op_zjmp(uint8_t map[MEM_SIZE][4], t_cursor *car)
+int		vm_op_zjmp(uint8_t map[MEM_SIZE][4], t_cycle *cycle)
 {
 	t_ind		ind;
+	t_cursor	*cur;
 
-	mvprintw(50, 200, "CARRy = %d", car->carry);
-	if (!car->carry)
+	cur = cycle->now_cur;
+	mvprintw(50, 200, "CARRy = %d", cur->carry);
+	if (!cur->carry)
 	{
-		car->position = car->position + 3 > (MEM_SIZE - 1) ?
-		car->position + 3 - MEM_SIZE : car->position + 3;
+		cur->position = cur->position + 3 > (MEM_SIZE - 1) ?
+		cur->position + 3 - MEM_SIZE : cur->position + 3;
 		return (1);
 	}
-	ft_init_t_ind(map, car->position + 1, &ind);
-	car->position = car->position + ind.data % IDX_MOD > (MEM_SIZE - 1) ?
-	car->position + ind.data % IDX_MOD - MEM_SIZE :
-	car->position + ind.data % IDX_MOD;
+	ft_init_t_ind(map, cur->position + 1, &ind);
+	cur->position = cur->position + ind.data % IDX_MOD > (MEM_SIZE - 1) ?
+	cur->position + ind.data % IDX_MOD - MEM_SIZE :
+	cur->position + ind.data % IDX_MOD;
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 11:17:28 by bford             #+#    #+#             */
-/*   Updated: 2019/12/26 14:09:08 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/28 14:12:55 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,10 +155,10 @@ int		ft_print_params(t_cursor *car)
 	return (1);
 }
 
-int		ft_print_map(uint8_t map[MEM_SIZE][4], t_cursor *car, t_player *player, int dump)
+int			ft_print_map(uint8_t map[MEM_SIZE][4], t_cursor **cur,
+						t_player *player, t_cycle *cycle)
 {
 	int y;
-	int cycle = 0;
 
 	initscr();
 	curs_set(0);
@@ -174,19 +174,19 @@ int		ft_print_map(uint8_t map[MEM_SIZE][4], t_cursor *car, t_player *player, int
 	char c = 's';
 	while (c != 'q')
 	{
-		ft_print_backside(&cycle, player, car);
-		ft_print_params(car);
+		ft_print_backside(&(cycle->cycle_num), player, *cur);
+		ft_print_params(*cur);
 	
-		ft_do_cycle(map, &car, cycle);
+		ft_do_cycle(map, cur, cycle);
 
 		//ft_print_contur();
 		y = 0;
 		while (y < 64 && ++y)
-			ft_print_line(map, y - 1, car);
+			ft_print_line(map, y - 1, *cur);
 
 		//wrefresh(win);
 		refresh();
-		if (cycle >= dump)
+		if (cycle->cycle_num >= cycle->dump)
 			c = getch();
 		//clear();
 	}

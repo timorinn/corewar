@@ -13,16 +13,16 @@
 #include "vm.h"
 
 void	ft_rewrite_map(uint8_t map[MEM_SIZE][4],
-t_cursor *car, unsigned int reg, int adress)
+t_cursor *cur, unsigned int reg, int adress)
 {
 	map[(adress + 3) % MEM_SIZE][0] = reg;
-	map[(adress + 3) % MEM_SIZE][1] = car->play_num + 2;
+	map[(adress + 3) % MEM_SIZE][1] = cur->play_num + 2;
 	map[(adress + 2) % MEM_SIZE][0] = reg >> 8;
-	map[(adress + 2) % MEM_SIZE][1] = car->play_num + 2;
+	map[(adress + 2) % MEM_SIZE][1] = cur->play_num + 2;
 	map[(adress + 1) % MEM_SIZE][0] = reg >> 16;
-	map[(adress + 1) % MEM_SIZE][1] = car->play_num + 2;
+	map[(adress + 1) % MEM_SIZE][1] = cur->play_num + 2;
 	map[adress % MEM_SIZE][0] = reg >> 24;
-	map[adress % MEM_SIZE][1] = car->play_num + 2;
+	map[adress % MEM_SIZE][1] = cur->play_num + 2;
 }
 /*
 int		ft_error_st(uint8_t args[4], int reg, int reg2, t_cursor *car)
@@ -64,29 +64,31 @@ bool	vm_op_st(uint8_t map[MEM_SIZE][4], t_cursor *car)
 }
 */
 
-bool	vm_op_st(uint8_t map[MEM_SIZE][4], t_cursor *car)
+bool	vm_op_st(uint8_t map[MEM_SIZE][4], t_cycle *cycle)
 {
 	t_args		args;
 	int32_t		addr;
+	t_cursor	*cur;
 
+	cur = cycle->now_cur;
 	ft_bzero(&args, sizeof(t_args));
 	args.dir_size = 4;
-	vm_get_args(map, car, &args);
+	vm_get_args(map, cur, &args);
 	if (vm_validate_args(args, "R--RI----"))
 	{
-		vm_unfold_all(map, car, &args, true);
+		vm_unfold_all(map, cur, &args, true);
 		if (args.types[1] == IND_CODE)
 		{
-			addr = (car->position + args.nums[1]) % MEM_SIZE;
+			addr = (cur->position + args.nums[1]) % MEM_SIZE;
 			if (addr < 0)
 				addr += MEM_SIZE;
 //			mvprintw(85, 16, "FREE PLACE! st ind: %d", args.nums_unfolded[1]);
 //			mvprintw(86, 16, "FREE PLACE! st addr: %d", addr);
-			ft_rewrite_map(map, car, args.nums_unfolded[0], addr);
+			ft_rewrite_map(map, cur, args.nums_unfolded[0], addr);
 		}
 		else
-			car->registr[args.nums[1]] = args.nums_unfolded[0];
+			cur->registr[args.nums[1]] = args.nums_unfolded[0];
 	}
-	car->position += ft_move(args.types, "1100", 4) + 2;
+	cur->position += ft_move(args.types, "1100", 4) + 2;
 	return (true);
 }

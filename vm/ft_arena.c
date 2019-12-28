@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/06 13:48:15 by bford             #+#    #+#             */
-/*   Updated: 2019/12/25 18:52:50 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/28 17:06:23 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,38 +56,38 @@ int		ft_init_map(uint8_t map[MEM_SIZE][4], t_player *player)
 	return (1);
 }
 
-int		ft_no_print_map(uint8_t map[MEM_SIZE][4], t_cursor *car, t_player *player, int dump)
+int		ft_no_print_map(uint8_t map[MEM_SIZE][4], t_cursor **cur,
+						t_player *player, t_cycle *cycle)
 {
-	int		cycle;
-
-	cycle = 0;
 	ft_print_players(player);
 	while (TRUE)
 	{
-		if (!(ft_do_cycle(map, &car, cycle)))
+		if (!(ft_do_cycle(map, cur, cycle)))
 			return (0);
-		if (dump == cycle)
+		if (cycle->dump == cycle->cycle_num)
 		{
 			ft_print_map_single(map);
 			break;
 		}
-		cycle++;
+		cycle->cycle_num++;
 	}
 	return (1);
 }
 
-int		ft_map(int dump, t_player *player, int v)
+int		ft_arena(int dump, t_player *player, int v)
 {
 	unsigned char	map[MEM_SIZE][4];
-	t_cursor		*car;
+	t_cursor		*cur;
+	t_cycle			cycle;
 
+	vm_init_cycle(&cycle, player->size, dump);
 	ft_init_map(map, player);
-	if (!player || !(car = ft_make_array_careta(player, map)))
+	if (!player || !(cur = ft_make_array_cursor(player, map)))
 		return (0);
 	if (v)
-		ft_print_map(map, car, player, dump);
+		ft_print_map(map, &cur, player, &cycle);
 	else
-		ft_no_print_map(map, car, player, dump);
-	free(car);
+		ft_no_print_map(map, &cur, player, &cycle);
+	free(cur);
 	return (1);
 }

@@ -6,25 +6,27 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/24 15:55:55 by bford             #+#    #+#             */
-/*   Updated: 2019/12/24 17:12:38 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/28 13:49:28 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-bool	vm_op_aff(uint8_t map[MEM_SIZE][4], t_cursor *car)
+bool	vm_op_aff(uint8_t map[MEM_SIZE][4], t_cycle *cycle)
 {
 	uint8_t	args[4];
+	t_cursor	*cur;
 
-	ft_init_args(map, car->position, args);
+	cur = cycle->now_cur;
+	ft_init_args(map, cur->position, args);
 	if (args[0] == 1 && !args[1] && !args[2] &&
-	map[car->position + 2][0] >= 1 &&
-	map[car->position + 2][0] <= 16)
+	map[cur->position + 2][0] >= 1 &&
+	map[cur->position + 2][0] <= 16)
 	{
-		mvprintw(67, 253, "Aff: %c", (char)(car->registr[map[car->position + 2][0]]));
+		mvprintw(67, 253, "Aff: %c", (char)(cur->registr[map[cur->position + 2][0]]));
 		refresh();
 	}
-	car->position += ft_move(args, "1110", 4) + 2;
-	car->position %= MEM_SIZE;
+	cur->position += ft_move(args, "1110", 4) + 2;
+	cur->position %= MEM_SIZE;
 	return (true);
 }

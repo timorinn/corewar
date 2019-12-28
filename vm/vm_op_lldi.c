@@ -1,10 +1,18 @@
-//
-// Created by Katharine Psylocke on 24/12/2019.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   vm_op_lldi.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/12/28 14:02:01 by bford             #+#    #+#             */
+/*   Updated: 2019/12/28 14:02:03 by bford            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "vm.h"
 
-bool	vm_op_lldi(uint8_t map[MEM_SIZE][4], t_cursor *car)
+bool	vm_op_lldi(uint8_t map[MEM_SIZE][4], t_cycle *cycle)
 {
-	return (op_load_i(map, car, true));
+	return (op_load_i(map, true, cycle));
 }
