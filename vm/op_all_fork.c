@@ -29,7 +29,7 @@ inline bool	op_all_fork(uint8_t map[MEM_SIZE][4], t_cycle *cycle,
 	{
 		newcur[size + 1] = (*cur)[size];
 		if (newcur[size + 1].num == nowcur->num)
-			newcur[size + 1].position += 3;
+			newcur[size + 1].position = (nowcur->num + 3) % MEM_SIZE;
 		newcur[size + 1].size = nowcur[0].size + 1;
 		size--;
 	}
