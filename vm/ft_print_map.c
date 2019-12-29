@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 11:17:28 by bford             #+#    #+#             */
-/*   Updated: 2019/12/29 05:27:56 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/29 06:49:39 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,15 @@ int		ft_print_line(uint8_t map[MEM_SIZE][4], int i, t_cursor *car,
 	move(i + 2, 3);
 	i *= 64;
 	t = 0;
-	while (t < 64 && ++t)
+	while (t < 64)
 	{
 		ft_find_color(t + i, car, map[t + i][1], cycle->cur_len);
 		if (map[t + i][1] == 1)
 			attron(A_BOLD);
-		printf("%02x", map[t + i][0]);
+		printw("%02x", map[t + i][0]);
 		attroff(A_BOLD);
 		color_set(1, NULL);
-		printf(" ");
+		printw(" ");
 		++t;
 	}
 	color_set(1, NULL);
@@ -99,16 +99,16 @@ int		ft_print_backside(t_cycle *cycle, t_player *player, t_cursor *car)
 	y = 11;
 	attron(A_BOLD);
 	color_set(11, NULL);
-	printf("Cycle : %d", cycle->cycle_num++);
-	printf("Processes : %d", car[0].size);
+	mvprintw(7, 199, "Cycle : %d", cycle->cycle_num++);
+	mvprintw(9, 199, "Processes : %d", car[0].size);
 	while (player)
 	{
-		//color_set(11, NULL);
-		printf("Player -%d :", (y - 11) / 4 + 1);
-		printf( "Last live :               %7d", 0);
-		printf("Lives in current period : %7d", 0);
+		color_set(11, NULL);
+		mvprintw(y, 199, "Player -%d :", (y - 11) / 4 + 1);
+		mvprintw(y + 1, 201, "Last live :               %7d", 0);
+		mvprintw(y + 2, 201, "Lives in current period : %7d", 0);
 		color_set(player->num + 2, NULL);
-		printf( "%.41s", player->name);
+		mvprintw(y, 211, "%.41s", player->name);
 		y += 4;
 		player = player->next;
 	}
@@ -138,13 +138,13 @@ int		ft_print_params(t_cursor *car, int cur_len)
 	color_set(11, NULL);
 	while (i >= 0)
 	{
-		printf("Car #%d   | pl_num: %d | position: %4d | oper: %02x | cd: %3d | carry: %d | live: %5d",
+		mvprintw(y, 10, "Car #%d   | pl_num: %d | position: %4d | oper: %02x | cd: %3d | carry: %d | live: %5d",
 		car[i].num ,car[i].play_num, car[i].position, car[i].operation, car[i].cooldown, car[i].carry, car[i].live);
 		reg = 0;
 		while (reg < 8 && ++reg)
 		{
-			printf("r%02d: %10d   |   ", reg, car[i].registr[reg]);
-			printf("r%02d: %10d   |   ", reg + 8, car[i].registr[reg + 8]);
+			mvprintw(y + 1, 16 + (reg - 1) * 21, "r%02d: %10d   |   ", reg, car[i].registr[reg]);
+			mvprintw(y + 2, 16 + (reg - 1) * 21, "r%02d: %10d   |   ", reg + 8, car[i].registr[reg + 8]);
 		}
 		i--;
 		y += 4;
@@ -181,8 +181,8 @@ int			ft_print_map(uint8_t map[MEM_SIZE][4], t_cursor **cur,
 			ft_print_line(map, y - 1, *cur, cycle);
 		refresh();
 		if (cycle->cycle_num >= cycle->dump)
-			break;
-		//	c = getch();
+		//	break;
+			c = getch();
 	}
 	endwin();
 	return (1);
