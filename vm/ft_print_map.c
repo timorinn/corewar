@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 11:17:28 by bford             #+#    #+#             */
-/*   Updated: 2019/12/29 06:49:39 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/29 17:09:48 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,13 +94,15 @@ int		ft_print_breakdown(int y)
 
 int		ft_print_backside(t_cycle *cycle, t_player *player, t_cursor *car)
 {
+	car+=0;
+
 	int		y;
 
 	y = 11;
 	attron(A_BOLD);
 	color_set(11, NULL);
 	mvprintw(7, 199, "Cycle : %d", cycle->cycle_num++);
-	mvprintw(9, 199, "Processes : %d", car[0].size);
+	mvprintw(9, 199, "Processes : %d", cycle->cur_len);
 	while (player)
 	{
 		color_set(11, NULL);
@@ -131,11 +133,13 @@ int		ft_print_backside(t_cycle *cycle, t_player *player, t_cursor *car)
 
 int		ft_print_params(t_cursor *car, int cur_len)
 {
-	int		i = cur_len - 1;
-	int		y = 70;
+	int		i;
+	int		y;
 	int		reg;
 
 	color_set(11, NULL);
+	y = 70;
+	i = cur_len - 1;
 	while (i >= 0)
 	{
 		mvprintw(y, 10, "Car #%d   | pl_num: %d | position: %4d | oper: %02x | cd: %3d | carry: %d | live: %5d",
@@ -181,7 +185,7 @@ int			ft_print_map(uint8_t map[MEM_SIZE][4], t_cursor **cur,
 			ft_print_line(map, y - 1, *cur, cycle);
 		refresh();
 		if (cycle->cycle_num >= cycle->dump)
-		//	break;
+			//break;
 			c = getch();
 	}
 	endwin();

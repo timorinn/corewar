@@ -15,8 +15,8 @@ diff res1 res2 > diff
 i=$(ls -l diff | cut -d " " -f8 | bc)
 while [ "$i" -eq 0 ]
 do
-	dump=$(($dump + 1))
-	#echo "dump eby4uu' = " $dump
+	dump=$(($dump + 500))
+	echo "dump eby4uu' = " $dump
 	./corewar -dump $dump bee_gees.cor jumper.cor > res1
 	./vm_champs/corewar -d $dump bee_gees.cor jumper.cor > res2
 	diff res1 res2 > diff

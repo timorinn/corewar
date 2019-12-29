@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2019/12/29 05:16:07 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/29 19:52:42 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,15 +73,6 @@
 
 static int			g_operation[16] = {10, 5, 5, 10, 10, 6, 6, 6, 20, 25, 25, 800/* 800 */, 10, 50, 1000, 2};
 
-//
-//typedef struct {
-//	unsigned int	magic;
-//	char			prog_name[PROG_NAME_LENGTH + 1];
-//	unsigned int	prog_size;
-//	char			comment[COMMENT_LENGTH + 1];
-//}					t_header;
-//
-
 typedef struct		s_player
 {
 	int				num;
@@ -96,7 +87,7 @@ typedef struct {
 	int				num;
 	int				play_num;
 	char			*file_name;
-	int				size;
+	//int				size;
 	int				position;
 	int				operation;
 	int				cooldown;
@@ -149,7 +140,7 @@ int					ft_print_map(uint8_t map[MEM_SIZE][4], t_cursor **car,
 int					ft_print_players(t_player *player);
 int					ft_print_map_single(uint8_t map[MEM_SIZE][4]);
 t_cursor			*ft_make_array_cursor(t_player *player, uint8_t map[MEM_SIZE][4]);
-int					ft_print_careta(t_cursor *careta);
+int					ft_print_cursor(t_cursor *careta, t_cycle cycle);
 
 int					ft_do_cycle(uint8_t map[MEM_SIZE][4], t_cursor **car, t_cycle *cycle);
 void				vm_init_cycle(t_cycle *cycle, int player_size, int dump);
@@ -201,4 +192,6 @@ bool				vm_validate_args(t_args args, char *validate);
 void				ft_rewrite_map(uint8_t map[MEM_SIZE][4],
 					   t_cursor *car, uint32_t reg, int adress);
 					   
+int					vm_check_cursor(uint8_t map[MEM_SIZE][4],
+									t_cursor **cur, t_cycle *cycle);
 #endif

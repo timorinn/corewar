@@ -21,17 +21,16 @@ inline bool	op_all_fork(uint8_t map[MEM_SIZE][4], t_cycle *cycle,
 	int			size;
 
 	nowcur = cycle->now_cur;
-	size = cycle->cur_len++;
-	if (!(newcur = malloc(sizeof(t_cursor) * (size + 1))))
+	size = ++cycle->cur_len;
+	if (!(newcur = malloc(sizeof(t_cursor) * size)))
 	 	return (FALSE);
 	ft_init_t_ind(map, nowcur->position + 1, &ind);
-	ft_memmove(newcur + 1, *cur, size * sizeof(t_cursor));
-	
-	while (size--)
-		newcur[size].size = cycle->cur_len;
-
+	ft_memmove(newcur + 1, *cur, (size - 1) * sizeof(t_cursor));
 	ft_memcpy(newcur, nowcur, sizeof(t_cursor));
-	//newcur[0].num = nowcur->size;
+	while (--size)
+		if (newcur[size].num == nowcur->num)
+			newcur[size].position = (nowcur->position + 3) % MEM_SIZE ;
+	//ft_memcpy(newcur, nowcur, sizeof(t_cursor));
 	newcur[0].num = cycle->new_cur_num++;
 	newcur[0].position = operation(nowcur->position, ind.data);
 	newcur[0].operation = map[newcur[0].position][0];
