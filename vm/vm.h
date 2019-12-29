@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2019/12/29 01:13:06 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/29 02:39:09 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,7 @@ typedef struct {
 	int			cycles_to_die;
 	int			last_period_live;
 	int			check_num;
+	int			cur_len;
 }	t_cycle;
 
 int					ft_valid_input(int argc, char **argv);
