@@ -68,7 +68,7 @@ inline bool	op_all_fork(uint8_t map[MEM_SIZE][4], t_cycle *cycle,
 	// 		newcur[0].operation < REG_NUMBER + 1 ?
 	// 		g_operation[newcur[0].operation /**/ - 1] /* */ - 1 : /* 1 */ 0;
 
-	//free(*cur);
+	free(*cur);
 	*cur = newcur;
 	return (TRUE);
 }

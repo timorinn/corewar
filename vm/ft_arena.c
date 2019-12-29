@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/06 13:48:15 by bford             #+#    #+#             */
-/*   Updated: 2019/12/28 20:27:57 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/29 04:36:40 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int		ft_arena(int dump, t_player *player, int v)
 	t_cursor		*cur;
 	t_cycle			cycle;
 
-	vm_init_cycle(&cycle, player->size, dump);
+	vm_init_cycle(&cycle, ft_lstlen_player(player), dump);
 	ft_init_map(map, player);
 	if (!player || !(cur = ft_make_array_cursor(player, map)))
 		return (0);

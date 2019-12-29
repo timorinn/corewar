@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2019/12/29 02:39:09 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/29 05:16:07 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,8 +125,8 @@ typedef struct {
 }	t_args;
 
 typedef struct {
-	int			new_cur_num;
 	t_cursor	*now_cur;
+	int			new_cur_num;
 	int			cycle_num;
 	int			dump;
 	int			cycles_to_die;

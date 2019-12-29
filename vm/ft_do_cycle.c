@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 14:14:17 by bford             #+#    #+#             */
-/*   Updated: 2019/12/28 13:42:00 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/29 04:31:29 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,11 @@ int		ft_do_operation(uint8_t map[MEM_SIZE][4],
 	(o == 13 && vm_op_lld(map, cycle)) || (o == 14 && vm_op_lldi(map, cycle)) ||
 	(o == 16 && vm_op_aff(map, cycle)))
 		return (0);
-	else if ((o == 12) || (o == 15))
+	else if (o == 12)
 		return (vm_op_fork(map, cur, cycle));
 	else if (o == 15)
 		return (vm_op_lfork(map, cur, cycle));
-	cycle->now_cur->position = (cycle->now_cur->position == (MEM_SIZE - 1) ?
-			0 : cycle->now_cur->position + 1);
+	cycle->now_cur->position = (cycle->now_cur->position + 1) % MEM_SIZE;
 	//mvprintw(85 + 1, 16, "FREE PLACE! Cur_position = %d", cur->position);
 	return (0);
 }
@@ -42,7 +41,7 @@ int		ft_do_cycle(uint8_t map[MEM_SIZE][4], t_cursor **cur, t_cycle *cycle)
 	int		i;
 
 	i = 0;
-	while (i < (*cur)->size)
+	while (i < cycle->cur_len)
 	{
 		if ((*cur)[i].cooldown == 0)
 		{

@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/28 14:02:23 by bford             #+#    #+#             */
-/*   Updated: 2019/12/29 04:01:55 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/29 04:14:57 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ int			vm_get_args(uint8_t map[MEM_SIZE][4], t_cursor *car, t_args *args)
 {
 	int		i;
 
-	ft_bzero(nums, sizeof(int) * 2);
 	ft_init_args(map, car->position, args->types);
 	args->offset = 2;
 	i = 0;
