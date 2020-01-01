@@ -1,7 +1,6 @@
 .name "Death"
 .comment "Fork"
 .extend
-
 	st	r1, :l1+1
 	st	r1, :l2+1
 	st	r1, :l3+1

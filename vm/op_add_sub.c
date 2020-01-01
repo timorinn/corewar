@@ -1,6 +1,14 @@
-//
-// Created by Katharine Psylocke on 28/12/2019.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   op_add_sub.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/12/31 17:53:10 by bford             #+#    #+#             */
+/*   Updated: 2019/12/31 23:36:12 by bford            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "vm.h"
 
@@ -14,7 +22,10 @@ inline bool	op_add_sub(uint8_t map[MEM_SIZE][4],
 	ft_bzero(&args, sizeof(t_args));
 	args.dir_size = 4;
 	vm_get_args(map, cur, &args);
+
+	// if (vm_validate_args(args, "R--R--R--"))								ARGS ERROR commit
 	if (vm_validate_args(args, "R--R--R--"))
+
 	{
 		vm_unfold_all(map, cur, &args, true);
 //		cur->registr[args.nums[2]] = args.nums_unfolded[0] +
@@ -27,7 +38,10 @@ inline bool	op_add_sub(uint8_t map[MEM_SIZE][4],
 //		else
 //			cur->carry = 0;
 	}
+
+	// cur->position += ft_move(args.types, "1110", args.dir_size) + 2;		ARGS ERROR commit
 	cur->position += ft_move(args.types, "1110", args.dir_size) + 2;
+	
 	cur->position %= MEM_SIZE;
 	return (true);
 }

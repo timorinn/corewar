@@ -18,7 +18,9 @@ int		vm_op_zjmp(uint8_t map[MEM_SIZE][4], t_cycle *cycle)
 	t_cursor	*cur;
 
 	cur = cycle->now_cur;
+
 	mvprintw(50, 200, "CARRy = %d", cur->carry);
+	
 	if (!cur->carry)
 	{
 		cur->position = cur->position + 3 > (MEM_SIZE - 1) ?

@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/28 14:02:23 by bford             #+#    #+#             */
-/*   Updated: 2019/12/29 04:14:57 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/31 23:36:57 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,10 @@ int			vm_get_args(uint8_t map[MEM_SIZE][4], t_cursor *car, t_args *args)
 	ft_init_args(map, car->position, args->types);
 	args->offset = 2;
 	i = 0;
+	
+	// while (i < 3)								ARGS ERROR commit
 	while (i < 3)
+	
 	{
 		if (args->types[i] == REG_CODE)
 			get_reg(map, car, args, i);
@@ -54,8 +57,10 @@ int			vm_get_args(uint8_t map[MEM_SIZE][4], t_cursor *car, t_args *args)
 			get_ind(map, car, args, i);
 		else if (args->types[i] == DIR_CODE)
 			get_dir(map, car, args, i);
-		else
-			return (false);
+
+		// else										ARGS ERROR commit
+		//	return (false);							ARGS ERROR commit
+		
 		i++;
 	}
 	return (true);

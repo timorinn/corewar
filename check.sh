@@ -7,18 +7,18 @@ else
 	echo "BBOD | kukl = " $kukl
 fi
 
-dump=0
+dump=4300
 i=0
-./corewar -dump $dump bee_gees.cor jumper.cor > res1
-./vm_champs/corewar -d $dump bee_gees.cor jumper.cor > res2
+./corewar -dump $dump bee_gees.cor mortel.cor > res1
+./vm_champs/corewar -d $dump bee_gees.cor mortel.cor > res2
 diff res1 res2 > diff
 i=$(ls -l diff | cut -d " " -f8 | bc)
 while [ "$i" -eq 0 ]
 do
-	dump=$(($dump + 500))
-	echo "dump eby4uu' = " $dump
-	./corewar -dump $dump bee_gees.cor jumper.cor > res1
-	./vm_champs/corewar -d $dump bee_gees.cor jumper.cor > res2
+	dump=$(($dump + 1))
+	#echo "dump eby4uu' = " $dump
+	./corewar -dump $dump bee_gees.cor mortel.cor > res1
+	./vm_champs/corewar -d $dump bee_gees.cor mortel.cor > res2
 	diff res1 res2 > diff
 	i=$(ls -l diff | cut -d " " -f8 | bc)
 	if [ $dump == $kukl ]

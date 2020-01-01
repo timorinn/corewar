@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 14:14:17 by bford             #+#    #+#             */
-/*   Updated: 2019/12/29 21:20:18 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/31 16:57:53 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,6 @@ int		ft_do_cycle(uint8_t map[MEM_SIZE][4], t_cursor **cur, t_cycle *cycle)
 		i++;
 	}
 	// Мб и в другом месте это добавить моожно?
-	vm_check_cursor(map, cur, cycle);
+	// vm_check_cursor(map, cur, cycle);
 	return (1);
 }

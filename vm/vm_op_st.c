@@ -74,7 +74,10 @@ bool	vm_op_st(uint8_t map[MEM_SIZE][4], t_cycle *cycle)
 	ft_bzero(&args, sizeof(t_args));
 	args.dir_size = 4;
 	vm_get_args(map, cur, &args);
+
+	// if (vm_validate_args(args, "R--RI----"))						ARGS ERROR commit
 	if (vm_validate_args(args, "R--RI----"))
+
 	{
 		vm_unfold_all(map, cur, &args, true);
 		if (args.types[1] == IND_CODE)
@@ -89,6 +92,9 @@ bool	vm_op_st(uint8_t map[MEM_SIZE][4], t_cycle *cycle)
 		else
 			cur->registr[args.nums[1]] = args.nums_unfolded[0];
 	}
+
+	// cur->position += ft_move(args.types, "1100", 4) + 2;			ARGS ERROR commit
 	cur->position += ft_move(args.types, "1100", 4) + 2;
+
 	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 11:17:28 by bford             #+#    #+#             */
-/*   Updated: 2019/12/29 17:09:48 by bford            ###   ########.fr       */
+/*   Updated: 2020/01/01 03:52:32 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,17 +107,18 @@ int		ft_print_backside(t_cycle *cycle, t_player *player, t_cursor *car)
 	{
 		color_set(11, NULL);
 		mvprintw(y, 199, "Player -%d :", (y - 11) / 4 + 1);
-		mvprintw(y + 1, 201, "Last live :               %7d", 0);
-		mvprintw(y + 2, 201, "Lives in current period : %7d", 0);
+		mvprintw(y + 1, 201, "Last live :               %7d", cycle->last_live[player->num]);
+		mvprintw(y + 2, 201, "Lives in current period : %7d", cycle->lives_in_current_period[player->num]);
 		color_set(player->num + 2, NULL);
 		mvprintw(y, 211, "%.41s", player->name);
 		y += 4;
 		player = player->next;
+
 	}
 	color_set(11, NULL);
 	mvprintw(y, 199, "Live breakdown for current period :");
 	mvprintw(y + 3, 199, "Live breakdown for last period :");
-	mvprintw(y + 6, 199, "CYCLE_TO_DIE : %d", CYCLE_TO_DIE);
+	mvprintw(y + 6, 199, "CYCLE_TO_DIE : %d", cycle->cycles_to_die);
 	mvprintw(y + 8, 199, "CYCLE_DELTA : %d", CYCLE_DELTA);
 	mvprintw(y + 10, 199, "NBR_LIVE : %d", NBR_LIVE);
 	mvprintw(y + 12, 199, "MAX_CHECKS : %d", MAX_CHECKS);
@@ -142,16 +143,19 @@ int		ft_print_params(t_cursor *car, int cur_len)
 	i = cur_len - 1;
 	while (i >= 0)
 	{
-		mvprintw(y, 10, "Car #%d   | pl_num: %d | position: %4d | oper: %02x | cd: %3d | carry: %d | live: %5d",
-		car[i].num ,car[i].play_num, car[i].position, car[i].operation, car[i].cooldown, car[i].carry, car[i].live);
-		reg = 0;
-		while (reg < 8 && ++reg)
+		if (car[i].play_num == 2)
 		{
-			mvprintw(y + 1, 16 + (reg - 1) * 21, "r%02d: %10d   |   ", reg, car[i].registr[reg]);
-			mvprintw(y + 2, 16 + (reg - 1) * 21, "r%02d: %10d   |   ", reg + 8, car[i].registr[reg + 8]);
+			mvprintw(y, 10, "Car #%3d   | pl_num: %d | position: %4d | oper: %02x | cd: %3d | carry: %d | live: %5d",
+			car[i].num ,car[i].play_num, car[i].position, car[i].operation, car[i].cooldown, car[i].carry, car[i].live);
+			reg = 0;
+			while (reg < 8 && ++reg)
+			{
+				mvprintw(y + 1, 16 + (reg - 1) * 21, "r%02d: %10d   |   ", reg, car[i].registr[reg]);
+				mvprintw(y + 2, 16 + (reg - 1) * 21, "r%02d: %10d   |   ", reg + 8, car[i].registr[reg + 8]);
+			}
+			y += 4;
 		}
 		i--;
-		y += 4;
 	}
 
 	/*
@@ -179,6 +183,7 @@ int			ft_print_map(uint8_t map[MEM_SIZE][4], t_cursor **cur,
 	{
 		ft_print_backside(cycle, player, *cur);
 		ft_print_params(*cur, cycle->cur_len);
+		vm_check_cursor(map, cur, cycle); // new
 		ft_do_cycle(map, cur, cycle);
 		y = 0;
 		while (y < 64 && ++y)

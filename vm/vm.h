@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2019/12/29 19:52:42 by bford            ###   ########.fr       */
+/*   Updated: 2020/01/01 03:06:49 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ typedef struct {
 	int				num;
 	int				play_num;
 	char			*file_name;
-	//int				size;
 	int				position;
 	int				operation;
 	int				cooldown;
@@ -121,9 +120,15 @@ typedef struct {
 	int			cycle_num;
 	int			dump;
 	int			cycles_to_die;
-	int			last_period_live;
+	int			waiting_die;
+	int			last_live[MAX_PLAYERS];
+	int			lives_in_current_period[MAX_PLAYERS];
+	int			lives_in_current_period_all;
 	int			check_num;
 	int			cur_len;
+	int			v;
+	int			checks;
+	int			winner_num;
 }	t_cycle;
 
 int					ft_valid_input(int argc, char **argv);
@@ -143,7 +148,7 @@ t_cursor			*ft_make_array_cursor(t_player *player, uint8_t map[MEM_SIZE][4]);
 int					ft_print_cursor(t_cursor *careta, t_cycle cycle);
 
 int					ft_do_cycle(uint8_t map[MEM_SIZE][4], t_cursor **car, t_cycle *cycle);
-void				vm_init_cycle(t_cycle *cycle, int player_size, int dump);
+void				vm_init_cycle(t_cycle *cycle, int player_size, int dump, int v);
 
 t_dir				ft_init_t_dir(uint8_t map[MEM_SIZE][4],
 		int position, uint8_t dir_size);

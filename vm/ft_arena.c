@@ -6,11 +6,23 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/06 13:48:15 by bford             #+#    #+#             */
-/*   Updated: 2019/12/29 04:36:40 by bford            ###   ########.fr       */
+/*   Updated: 2019/12/31 23:33:29 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
+
+int		vm_print_winner(t_player *player, int winner_num)
+{
+	while (player->num != winner_num)
+		player = player->next;
+	ft_putstr("Contestant ");
+	ft_putnbr(player->num);
+	ft_putstr(", \"");
+	ft_putstr(player->name);
+	ft_putstr("\", has won !\n");
+	return (1);
+}
 
 int		ft_add_player(uint8_t map[MEM_SIZE + 1][4], t_player *player, int start)
 {
@@ -64,11 +76,12 @@ int		ft_no_print_map(uint8_t map[MEM_SIZE][4], t_cursor **cur,
 	{
 		if (!(ft_do_cycle(map, cur, cycle)))
 			return (0);
+		vm_check_cursor(map, cur, cycle);				// обработать возвращение -1 1 0
+		if (cycle->cur_len < 1)
+			return (vm_print_winner(player, cycle->winner_num));
+		//vm_check_cursor(map, cur, cycle);				// new
 		if (cycle->dump == cycle->cycle_num)
-		{
-			ft_print_map_single(map);
-			break;
-		}
+			return(ft_print_map_single(map));
 		cycle->cycle_num++;
 	}
 	return (1);
@@ -80,7 +93,7 @@ int		ft_arena(int dump, t_player *player, int v)
 	t_cursor		*cur;
 	t_cycle			cycle;
 
-	vm_init_cycle(&cycle, ft_lstlen_player(player), dump);
+	vm_init_cycle(&cycle, ft_lstlen_player(player), dump, v);
 	ft_init_map(map, player);
 	if (!player || !(cur = ft_make_array_cursor(player, map)))
 		return (0);
