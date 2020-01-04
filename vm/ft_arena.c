@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/06 13:48:15 by bford             #+#    #+#             */
-/*   Updated: 2019/12/31 23:33:29 by bford            ###   ########.fr       */
+/*   Updated: 2020/01/04 17:44:27 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,24 @@ int		vm_print_winner(t_player *player, int winner_num)
 	return (1);
 }
 
-int		ft_add_player(uint8_t map[MEM_SIZE + 1][4], t_player *player, int start)
+int		ft_add_player(uint8_t map[MEM_SIZE /* + 1 */ ][4], t_player *player, int start)
 {
 	int				size;
 	int				num;
 	unsigned char	*code;
 	int				i;
 
-	i = 0;
 	num = player->num;
 	code = player->code;
 	size = player->size;
-	while (i < size && ++i)
+	map[start][2] = 1;
+	i = 0;
+	while (i < size)
 	{
-		map[start + i - 1][0] = code[i - 1];
-		map[start + i - 1][1] = num + 2;
+		map[start + i][0] = code[i];
+		//map[start + i][1] = num + 2;
+		map[start + i][1] = num;
+		i++;
 	}
 	return (1);
 }
@@ -56,12 +59,18 @@ int		ft_init_map(uint8_t map[MEM_SIZE][4], t_player *player)
 	int		len;
 
 	len = ft_lstlen_player(player);
+
 	i = 0;
-	while (i < MEM_SIZE + 1 && ++i)
+	while (i < MEM_SIZE + 1)
 	{
-		map[i - 1][0] = 0;
-		map[i - 1][1] = 1;
+		map[i][0] = 0;
+
+		// map[i][1] = 1;
+		map[i][1] = 5;
+		map[i][2] = 0;
+		i++;
 	}
+
 	i = 0;
 	while (i < len && ++i)
 		ft_add_player(map, ft_find_player(i, player), (MEM_SIZE / len) * (i - 1));
@@ -76,8 +85,8 @@ int		ft_no_print_map(uint8_t map[MEM_SIZE][4], t_cursor **cur,
 	{
 		if (!(ft_do_cycle(map, cur, cycle)))
 			return (0);
-		vm_check_cursor(map, cur, cycle);				// обработать возвращение -1 1 0
-		if (cycle->cur_len < 1)
+		if (vm_check_cursor(map, cur, cycle) == 1)				// обработать возвращение -1 1 0
+		// if (cycle->cur_len < 1)
 			return (vm_print_winner(player, cycle->winner_num));
 		//vm_check_cursor(map, cur, cycle);				// new
 		if (cycle->dump == cycle->cycle_num)

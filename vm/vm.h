@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2020/01/01 03:06:49 by bford            ###   ########.fr       */
+/*   Updated: 2020/01/04 18:43:07 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,6 @@ typedef struct {
 	int			last_live[MAX_PLAYERS];
 	int			lives_in_current_period[MAX_PLAYERS];
 	int			lives_in_current_period_all;
-	int			check_num;
 	int			cur_len;
 	int			v;
 	int			checks;
@@ -162,7 +161,7 @@ void				vm_unfold_all(uint8_t map[MEM_SIZE][4], t_cursor *car,
 						  			t_args *args, bool is_idx_needed);
 
 int					ft_dir_or_ind(unsigned int arg, int tdir);
-int					ft_move(uint8_t args[4], char *valid, int dir);
+void				ft_move(t_cursor *cur, uint8_t args[4], char *valid, int dir);
 
 
 bool				op_bitwise(uint8_t map[MEM_SIZE][4], int32_t (*operation)(int32_t, int32_t),

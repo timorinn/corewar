@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/28 14:01:52 by bford             #+#    #+#             */
-/*   Updated: 2019/12/31 23:38:16 by bford            ###   ########.fr       */
+/*   Updated: 2020/01/04 13:18:04 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,13 @@ bool	vm_op_sti(uint8_t map[MEM_SIZE][4], t_cycle *cycle)
 		ft_rewrite_map(map, cur, args.nums_unfolded[0], addr);
 	}
 
-	// cur->position += ft_move(args.types, "1110", 2) + 2;				ARGS ERROR commit
+	// cur->position += ft_move(args.types, "1110", 2) + 2; 			ARGS ERROR commit
+	/*
 	cur->position += ft_move(args.types, "1110", 2) + 2;
-	
 	cur->position %= MEM_SIZE;
+	*/
+	map[cur->position][2] = 0;
+	ft_move(cur, args.types, "1110", 2);
+	map[cur->position][2] = 1;
 	return (true);
 }

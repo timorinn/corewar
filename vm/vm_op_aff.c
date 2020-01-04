@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/24 15:55:55 by bford             #+#    #+#             */
-/*   Updated: 2019/12/31 23:37:24 by bford            ###   ########.fr       */
+/*   Updated: 2020/01/04 13:17:48 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,12 @@ bool	vm_op_aff(uint8_t map[MEM_SIZE][4], t_cycle *cycle)
 	}
 
 	// cur->position += ft_move(args, "1110", 4) + 2;					ARGS ERROR commit
+	/*
 	cur->position += ft_move(args, "1000", 4) + 2;
-	
 	cur->position %= MEM_SIZE;
+	*/
+	map[cur->position][2] = 0;
+	ft_move(cur, args, "1000", 4);
+	map[cur->position][2] = 1;
 	return (true);
 }

@@ -6,7 +6,7 @@
 #    By: bford <bford@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/05 17:55:08 by bford             #+#    #+#              #
-#    Updated: 2019/12/29 21:20:48 by bford            ###   ########.fr        #
+#    Updated: 2020/01/04 12:50:05 by bford            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRC =		ft_valid_input.c		\
 			vm_validate_args.c		\
 			vm_get_args.c			\
 			vm_unfold_indirects.c	\
+			ft_rewrite_map.c		\
 			\
 			vm_op_ld.c				\
 			vm_op_ldi.c				\

@@ -29,10 +29,17 @@ inline bool	op_all_fork(uint8_t map[MEM_SIZE][4], t_cycle *cycle,
 	ft_memcpy(newcur, nowcur, sizeof(t_cursor));
 	while (--size)
 		if (newcur[size].num == nowcur->num)
+		{
+			map[nowcur->position][2] = 0; // new
 			newcur[size].position = (nowcur->position + 3) % MEM_SIZE ;
+			map[newcur[size].position][2] = 1; // new
+		}
 	//ft_memcpy(newcur, nowcur, sizeof(t_cursor));
 	newcur[0].num = cycle->new_cur_num++;
 	newcur[0].position = operation(nowcur->position, ind.data);
+
+	map[newcur[0].position][2] = 1; // new
+
 	newcur[0].operation = map[newcur[0].position][0];
 	if (newcur[0].operation > 0 && newcur[0].operation < REG_NUMBER + 1)
 		newcur[0].cooldown = g_operation[newcur[0].operation - 1] - 1;

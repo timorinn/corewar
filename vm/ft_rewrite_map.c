@@ -1,0 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_rewrite_map.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/04 12:48:48 by bford             #+#    #+#             */
+/*   Updated: 2020/01/04 12:51:28 by bford            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "vm.h"
+
+void	ft_rewrite_map(uint8_t map[MEM_SIZE][4],
+t_cursor *cur, unsigned int reg, int adress)
+{
+	map[(adress + 3) % MEM_SIZE][0] = reg;
+	map[(adress + 3) % MEM_SIZE][1] = cur->play_num /* + 2 */ ;
+	map[(adress + 2) % MEM_SIZE][0] = reg >> 8;
+	map[(adress + 2) % MEM_SIZE][1] = cur->play_num /* + 2 */ ;
+	map[(adress + 1) % MEM_SIZE][0] = reg >> 16;
+	map[(adress + 1) % MEM_SIZE][1] = cur->play_num /* + 2 */ ;
+	map[adress % MEM_SIZE][0] = reg >> 24;
+	map[adress % MEM_SIZE][1] = cur->play_num /* + 2 */ ;
+}

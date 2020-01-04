@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/24 09:38:15 by kpsylock          #+#    #+#             */
-/*   Updated: 2019/12/31 23:36:28 by bford            ###   ########.fr       */
+/*   Updated: 2020/01/04 13:17:32 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,12 @@ inline bool	op_bitwise(uint8_t map[MEM_SIZE][4],
 	}
 
 	// cur->position += ft_move(args.types, "1110", 4) + 2;		ARGS ERROR commit
+	/*
 	cur->position += ft_move(args.types, "1110", 4) + 2;
-	
 	cur->position %= MEM_SIZE;
+	*/
+	map[cur->position][2] = 0;
+	ft_move(cur, args.types, "1110", 4);
+	map[cur->position][2] = 1;
 	return (true);
 }
