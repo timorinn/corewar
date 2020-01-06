@@ -12,69 +12,78 @@
 
 #include "vm.h"
 
+// inline bool	op_all_fork(uint8_t map[MEM_SIZE][4], t_cycle *cycle,
+// 					t_cursor **cur, int32_t (*operation)(int32_t, int32_t))
+// {
+// 	t_ind		ind;
+// 	t_cursor	*newcur;
+// 	t_cursor	*nowcur;
+// 	int			size;
+
+// 	nowcur = cycle->now_cur;
+// 	size = ++cycle->cur_len;
+// 	if (!(newcur = malloc(sizeof(t_cursor) * size)))
+// 	 	return (FALSE);
+// 	ft_init_t_ind(map, nowcur->position + 1, &ind);
+// 	ft_memmove(newcur + 1, *cur, (size - 1) * sizeof(t_cursor));
+// 	ft_memcpy(newcur, nowcur, sizeof(t_cursor));
+// 	while (--size)
+// 		if (newcur[size].num == nowcur->num)
+// 		{
+// 			map[nowcur->position][2] = 0; // new
+// 			newcur[size].position = (nowcur->position + 3) % MEM_SIZE ;
+// 			map[newcur[size].position][2] = 1; // new
+// 		}
+// 	//ft_memcpy(newcur, nowcur, sizeof(t_cursor));
+// 	newcur[0].num = cycle->new_cur_num++;
+// 	newcur[0].position = operation(nowcur->position, ind.data);
+
+// 	map[newcur[0].position][2] = 1; // new
+
+// 	newcur[0].operation = map[newcur[0].position][0];
+// 	if (newcur[0].operation > 0 && newcur[0].operation < REG_NUMBER + 1)
+// 		newcur[0].cooldown = g_operation[newcur[0].operation - 1] - 1;
+// 	else
+// 		newcur[0].cooldown = 0;
+	
+// 	free(*cur);
+// 	*cur = newcur;
+// 	return (TRUE);
+// }
+
+void		vm_copy_cursor(t_cursor *head, t_cursor *for_copy)
+{
+	head->carry = for_copy->carry;
+	head->play_num = for_copy->play_num;
+	head->live = for_copy->live;
+	ft_memmove(head->registr, for_copy->registr, sizeof(int) * (REG_NUMBER + 1));
+}
+
 inline bool	op_all_fork(uint8_t map[MEM_SIZE][4], t_cycle *cycle,
 					t_cursor **cur, int32_t (*operation)(int32_t, int32_t))
 {
+	t_cursor	*head_cur;
+	t_cursor	*now_cur;
 	t_ind		ind;
-	t_cursor	*newcur;
-	t_cursor	*nowcur;
-	int			size;
 
-	nowcur = cycle->now_cur;
-	size = ++cycle->cur_len;
-	if (!(newcur = malloc(sizeof(t_cursor) * size)))
-	 	return (FALSE);
-	ft_init_t_ind(map, nowcur->position + 1, &ind);
-	ft_memmove(newcur + 1, *cur, (size - 1) * sizeof(t_cursor));
-	ft_memcpy(newcur, nowcur, sizeof(t_cursor));
-	while (--size)
-		if (newcur[size].num == nowcur->num)
-		{
-			map[nowcur->position][2] = 0; // new
-			newcur[size].position = (nowcur->position + 3) % MEM_SIZE ;
-			map[newcur[size].position][2] = 1; // new
-		}
-	//ft_memcpy(newcur, nowcur, sizeof(t_cursor));
-	newcur[0].num = cycle->new_cur_num++;
-	newcur[0].position = operation(nowcur->position, ind.data);
-
-	map[newcur[0].position][2] = 1; // new
-
-	newcur[0].operation = map[newcur[0].position][0];
-	if (newcur[0].operation > 0 && newcur[0].operation < REG_NUMBER + 1)
-		newcur[0].cooldown = g_operation[newcur[0].operation - 1] - 1;
-	else
-		newcur[0].cooldown = 0;
+	now_cur = cycle->now_cur;
+	if (!(head_cur = malloc(sizeof(t_cursor))))
+		exit(1);
+	cycle->cur_len++;
+	ft_init_t_ind(map, now_cur->position + 1, &ind);
+	head_cur->position = operation(now_cur->position, ind.data);
 	
-
-	// size = nowcur[0].size - 1;
-	// if (!(newcur = (t_cursor *)malloc(sizeof(t_cursor) * (size + 2))))
-	// 	return (FALSE);
-	// ft_init_t_ind(map, nowcur->position + 1, &ind);
-
-	// while (size >= 0)
-	// {
-	// 	newcur[size + 1] = (*cur)[size];
-	// 	if (newcur[size + 1].num == nowcur->num)
-	// 		newcur[size + 1].position = (nowcur->num + 3) % MEM_SIZE;
-	// 	newcur[size + 1].size = nowcur[0].size + 1;
-	// 	size--;
-	// }
-	// newcur[0] = *nowcur;
-	// newcur[0].size = nowcur->size + 1;
-	// newcur[0].num = nowcur->size;
-	// /*
-	// newcar[0].position = (cur->position + ind.data % IDX_MOD > 0 ?
-	// (cur->position + ind.data % IDX_MOD) % MEM_SIZE :
-	// 4096 + (cur->position + ind.data % IDX_MOD));
-	// */
-	// newcur[0].position = operation(nowcur->position, ind.data);
-	// newcur[0].operation = map[newcur[0].position][0];
-	// newcur[0].cooldown = newcur[0].operation > 0 &&
-	// 		newcur[0].operation < REG_NUMBER + 1 ?
-	// 		g_operation[newcur[0].operation /**/ - 1] /* */ - 1 : /* 1 */ 0;
-
-	free(*cur);
-	*cur = newcur;
-	return (TRUE);
+	map[head_cur->position][2] += 1;
+	map[now_cur->position][2] -= 1;
+	now_cur->position = (now_cur->position + 3) % MEM_SIZE;
+	map[now_cur->position][2] += 1;
+	head_cur->operation = map[head_cur->position][0];
+	if (head_cur->operation > 0 && head_cur->operation < REG_NUMBER + 1)
+		head_cur->cooldown = g_operation[head_cur->operation - 1] - 1;
+	else
+		head_cur->cooldown = 0;
+	vm_copy_cursor(head_cur, now_cur);
+	head_cur->next = *cur;
+	*cur = head_cur;
+	return (true);
 }

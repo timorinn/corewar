@@ -6,7 +6,7 @@
 #    By: bford <bford@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/05 17:55:08 by bford             #+#    #+#              #
-#    Updated: 2020/01/04 12:50:05 by bford            ###   ########.fr        #
+#    Updated: 2020/01/05 16:25:27 by bford            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ SRC =		ft_valid_input.c		\
 			ft_print_map.c			\
 			ft_print_players.c		\
 			ft_print_map_single.c	\
-			ft_make_array_cursor.c	\
+			vm_make_start_list_cursor.c		\
 			ft_print_cursor.c		\
 			\
 			ft_do_cycle.c			\
@@ -61,7 +61,8 @@ SRC =		ft_valid_input.c		\
 			op_load.c				\
 			op_load_i.c				\
 			\
-			vm_check_cursor.c
+			vm_check_cursor.c		\
+			vm_lstdel_cursor.c
 
 OBJ =		$(SRC:.c=.o)
 

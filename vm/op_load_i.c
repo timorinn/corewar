@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/28 14:02:32 by bford             #+#    #+#             */
-/*   Updated: 2020/01/04 13:17:36 by bford            ###   ########.fr       */
+/*   Updated: 2020/01/05 17:15:52 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ inline bool	op_load_i(uint8_t map[MEM_SIZE][4], bool ll, t_cycle *cycle)
 	cur->position += ft_move(args.types, "1110", 2) + 2;
 	cur->position %= MEM_SIZE;
 	*/
-	map[cur->position][2] = 0;
+	map[cur->position][2] -= 1;
 	ft_move(cur, args.types, "1110", 2);
-	map[cur->position][2] = 1;
+	map[cur->position][2] += 1;
 	return (true);
 }

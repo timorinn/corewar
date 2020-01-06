@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/31 17:53:10 by bford             #+#    #+#             */
-/*   Updated: 2020/01/04 13:17:27 by bford            ###   ########.fr       */
+/*   Updated: 2020/01/05 17:15:01 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ inline bool	op_add_sub(uint8_t map[MEM_SIZE][4],
 	cur->position += ft_move(args.types, "1110", args.dir_size) + 2;
 	cur->position %= MEM_SIZE;
 	*/
-	map[cur->position][2] = 0;
+	map[cur->position][2] -= 1;
 	ft_move(cur, args.types, "1110", args.dir_size);
-	map[cur->position][2] = 1;
+	map[cur->position][2] += 1;
 	return (true);
 }

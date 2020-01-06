@@ -6,23 +6,26 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 11:17:28 by bford             #+#    #+#             */
-/*   Updated: 2020/01/04 22:02:06 by bford            ###   ########.fr       */
+/*   Updated: 2020/01/06 10:44:10 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int		vm_print_winner_v(t_player *player, t_cycle *cycle, int winner_y)
+int		vm_print_winner_v(t_player *player, t_cycle *cycle)
 {
 	while (player->num != cycle->winner_num)
 		player = player->next;
 	attron(A_BOLD);
 	color_set(11, NULL);
-	mvprintw(winner_y + 2, 199, "The winner is : ");
-	mvprintw(winner_y + 4, 199, "Press any key to finish");
+	mvprintw(9, 199, "Processes : %-5d", cycle->cur_len);
+	//mvprintw(7, 199, "Cycle : %d", cycle->cycle_num); // ??? А НАДО ЛИ? МБ ОШИБКА В ВЫЧИСЛЕНИЯХ ЦИКЛОВ?
+	mvprintw(cycle->winner_y + 12 + 2, 199, "The winner is : ");
+	mvprintw(cycle->winner_y + 12 + 4, 199, "Press any key to finish");
 	color_set(player->num, NULL);
-	mvprintw(winner_y + 2, 2015, player->name);
+	mvprintw(cycle->winner_y + 12 + 2, 215, player->name);
 	getch();
+	endwin();
 	return (1);
 }
 
@@ -82,11 +85,8 @@ void	ft_find_color(uint8_t map[MEM_SIZE][4], int position)
 		//color_set(5, NULL);
 }
 
-int		ft_print_line(uint8_t map[MEM_SIZE][4], int i, t_cursor *car,
-						t_cycle *cycle)
+int		ft_print_line(uint8_t map[MEM_SIZE][4], int i)
 {
-	cycle+=0;car+=0;
-
 	int	t;
 
 	move(i + 2, 3);
@@ -140,17 +140,15 @@ int		ft_print_breakdown(int y)
 	return (1);
 }
 
-int		ft_print_backside(t_cycle *cycle, t_player *player, t_cursor *car)
+int		ft_print_backside(t_cycle *cycle, t_player *player)
 {
-	car+=0;
-
 	int		y;
 
 	y = 11;
 	attron(A_BOLD);
 	color_set(11, NULL);
 	mvprintw(7, 199, "Cycle : %d", cycle->cycle_num++);
-	mvprintw(9, 199, "Processes : %d", cycle->cur_len);
+	mvprintw(9, 199, "Processes : %-5d", cycle->cur_len);
 	while (player)
 	{
 		color_set(11, NULL);
@@ -177,33 +175,32 @@ int		ft_print_backside(t_cycle *cycle, t_player *player, t_cursor *car)
 	mvprintw(y + 4, 250, "]");
 	attroff(A_BOLD);
 	ft_print_breakdown(y);
+	cycle->winner_y = y;
 	return (y + 12);
 }
 
-int		ft_print_params(t_cursor *car, int cur_len)
+int		ft_print_params(t_cursor *cur)
 {
-	int		i;
 	int		y;
 	int		reg;
 
 	color_set(11, NULL);
 	y = 70;
-	i = cur_len - 1;
-	while (i >= 0)
+	while (cur)
 	{
-		if (car[i].play_num == 2) // delete esli cho
-		{
+		//if (cur->play_num == 2) // delete esli cho
+		//{
 			mvprintw(y, 10, "Car #%3d   | pl_num: %d | position: %4d | oper: %02x | cd: %3d | carry: %d | live: %5d",
-			car[i].num ,car[i].play_num, car[i].position, car[i].operation, car[i].cooldown, car[i].carry, car[i].live);
+			cur->num ,cur->play_num, cur->position, cur->operation, cur->cooldown, cur->carry, cur->live);
 			reg = 0;
 			while (reg < 8 && ++reg)
 			{
-				mvprintw(y + 1, 16 + (reg - 1) * 21, "r%02d: %10d   |   ", reg, car[i].registr[reg]);
-				mvprintw(y + 2, 16 + (reg - 1) * 21, "r%02d: %10d   |   ", reg + 8, car[i].registr[reg + 8]);
+				mvprintw(y + 1, 16 + (reg - 1) * 21, "r%02d: %10d   |   ", reg, cur->registr[reg]);
+				mvprintw(y + 2, 16 + (reg - 1) * 21, "r%02d: %10d   |   ", reg + 8, cur->registr[reg + 8]);
 			}
 			y += 4;
-		}
-		i--;
+		//}
+		cur = cur->next;
 	}
 
 	/*
@@ -217,7 +214,6 @@ int			ft_print_map(uint8_t map[MEM_SIZE][4], t_cursor **cur,
 						t_player *player, t_cycle *cycle)
 {
 	int y;
-	int	winner_y;
 
 	initscr();
 	curs_set(0);
@@ -230,14 +226,16 @@ int			ft_print_map(uint8_t map[MEM_SIZE][4], t_cursor **cur,
 	char c = 's';
 	while (c != 'q')
 	{
-		winner_y = ft_print_backside(cycle, player, *cur);
-		ft_print_params(*cur, cycle->cur_len);
+		ft_print_backside(cycle, player);
+		// ft_print_params(*cur);
+
+		ft_do_cycle(map, cur, cycle); // мб надо поставить перед проверкой курсоров
 		if (vm_check_cursor(map, cur, cycle)) // new
-			return (vm_print_winner_v(player, cycle, winner_y));
-		ft_do_cycle(map, cur, cycle);
+			return (vm_print_winner_v(player, cycle));
+		// ft_do_cycle(map, cur, cycle); // мб надо поставить перед проверкой курсоров
 		y = 0;
 		while (y < 64 && ++y)
-			ft_print_line(map, y - 1, *cur, cycle);
+			ft_print_line(map, y - 1);
 		refresh();
 		if (cycle->cycle_num >= cycle->dump)
 			//break;

@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/29 00:43:38 by bford             #+#    #+#             */
-/*   Updated: 2020/01/04 19:44:15 by bford            ###   ########.fr       */
+/*   Updated: 2020/01/06 10:31:36 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int		vm_check_players(t_cursor *cur, t_cycle *cycle)
 }
 */
 
+/*
 int		vm_delete_one_cursor(uint8_t map[MEM_SIZE][4], t_cursor **cur,
 							int i, int size)
 {
@@ -44,30 +45,86 @@ int		vm_delete_one_cursor(uint8_t map[MEM_SIZE][4], t_cursor **cur,
 	*cur = new;
 	return (1);
 }
+*/
+
+// int		vm_check_cursor(uint8_t map[MEM_SIZE][4],
+// 						t_cursor **cur, t_cycle *cycle)
+// {
+// 	int		i;
+
+// 	if (cycle->cycle_num == cycle->waiting_die + 1)
+// 	{
+// 		i = 0;
+// 		///*
+// 		//cycle->cycles_to_die -= (cycle->lives_in_current_period_all >= NBR_LIVE ? CYCLE_DELTA : 0);
+// 		//cycle->lives_in_current_period_all = 0;
+// 		//*/
+// 		while (i < cycle->cur_len)
+// 		{
+// 			if ((*cur)[i].live + cycle->cycles_to_die < cycle->cycle_num)
+// 			{
+// 				if (!vm_delete_one_cursor(map, cur, i, --cycle->cur_len))
+// 					return (-1);
+// 				continue; // ?
+// 			}
+// 			i++;
+// 		}
+// 		if (cycle->lives_in_current_period_all >= NBR_LIVE ||
+// 		cycle->checks == MAX_CHECKS)
+// 		{
+// 			cycle->cycles_to_die -= CYCLE_DELTA;
+// 			cycle->checks = 0;
+// 		}
+// 		else
+// 			cycle->checks++;
+
+// 		//cycle->cycles_to_die -= (cycle->lives_in_current_period_all >= NBR_LIVE ? CYCLE_DELTA : 0);
+// 		cycle->waiting_die += cycle->cycles_to_die;
+// 		printf("WAITING DIE = %d\n", cycle->waiting_die);
+
+// 		cycle->lives_in_current_period_all = 0;
+// 		ft_bzero(cycle->lives_in_current_period, sizeof(int) * MAX_PLAYERS);
+// 	}
+// 	if (cycle->cycles_to_die <= 0)
+// 		return (1);
+// 	return (0);
+// }
+
 
 int		vm_check_cursor(uint8_t map[MEM_SIZE][4],
 						t_cursor **cur, t_cycle *cycle)
 {
-	map+=0;
+	t_cursor	*copy;
+	t_cursor	*for_del;
 
-	int		i;
-
-	if (cycle->cycle_num == cycle->waiting_die + 1)
+	if (cycle->cycle_num == cycle->waiting_die /* + 1 */)
 	{
-		i = 0;
-		/*
-		cycle->cycles_to_die -= (cycle->lives_in_current_period_all >= NBR_LIVE ? CYCLE_DELTA : 0);
-		cycle->lives_in_current_period_all = 0;
-		*/
-		while (i < cycle->cur_len)
+		copy = *cur;
+
+		if (*cur == NULL) // ЭТИ СТОКИ ДОЛЖНЫ БЫТЬ ЛИШНИМИ 
+			return (1); //
+		while (copy)
 		{
-			if ((*cur)[i].live + cycle->cycles_to_die < cycle->cycle_num)
+			if (copy->next && copy->next->live + cycle->cycles_to_die < cycle->cycle_num)
 			{
-				if (!vm_delete_one_cursor(map, cur, i, --cycle->cur_len))
-					return (-1);
-				continue; // ?
+				cycle->cur_len--;
+				for_del = copy->next;
+				map[for_del->position][2] -= 1;
+				copy->next = copy->next->next;
+				free(for_del);
+				for_del = NULL;
 			}
-			i++;
+			else
+				copy = copy->next;	
+		}
+		if ((*cur)->live + cycle->cycles_to_die < cycle->cycle_num)
+		{
+			cycle->cur_len--;
+			copy = (*cur)->next;
+			map[(*cur)->position][2] -= 1;
+			free(*cur);
+			if (!(*cur = copy))
+				return (1);
 		}
 		if (cycle->lives_in_current_period_all >= NBR_LIVE ||
 		cycle->checks == MAX_CHECKS)
@@ -77,11 +134,7 @@ int		vm_check_cursor(uint8_t map[MEM_SIZE][4],
 		}
 		else
 			cycle->checks++;
-
-		//cycle->cycles_to_die -= (cycle->lives_in_current_period_all >= NBR_LIVE ? CYCLE_DELTA : 0);
 		cycle->waiting_die += cycle->cycles_to_die;
-		printf("WAITING DIE = %d\n", cycle->waiting_die);
-
 		cycle->lives_in_current_period_all = 0;
 		ft_bzero(cycle->lives_in_current_period, sizeof(int) * MAX_PLAYERS);
 	}

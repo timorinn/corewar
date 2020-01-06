@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2020/01/04 18:43:07 by bford            ###   ########.fr       */
+/*   Updated: 2020/01/06 10:35:55 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,17 +83,17 @@ typedef struct		s_player
 	struct s_player	*next;
 }					t_player;
 
-typedef struct {
+typedef struct		s_cursor {
 	int				num;
 	int				play_num;
-	char			*file_name;
 	int				position;
 	int				operation;
 	int				cooldown;
 	int				registr[REG_NUMBER + 1];
 	int				carry;
 	int				live;
-}	t_cursor;
+	struct s_cursor	*next;
+}					t_cursor;
 
 typedef union {
 	int8_t bytes[4];
@@ -127,6 +127,7 @@ typedef struct {
 	int			cur_len;
 	int			v;
 	int			checks;
+	int			winner_y;
 	int			winner_num;
 }	t_cycle;
 
@@ -143,7 +144,7 @@ int					ft_print_map(uint8_t map[MEM_SIZE][4], t_cursor **car,
 								t_player *player, t_cycle *cycle);
 int					ft_print_players(t_player *player);
 int					ft_print_map_single(uint8_t map[MEM_SIZE][4]);
-t_cursor			*ft_make_array_cursor(t_player *player, uint8_t map[MEM_SIZE][4]);
+t_cursor			*vm_make_start_list_cursor(t_player *player, uint8_t map[MEM_SIZE][4]);
 int					ft_print_cursor(t_cursor *careta, t_cycle cycle);
 
 int					ft_do_cycle(uint8_t map[MEM_SIZE][4], t_cursor **car, t_cycle *cycle);
@@ -198,4 +199,5 @@ void				ft_rewrite_map(uint8_t map[MEM_SIZE][4],
 					   
 int					vm_check_cursor(uint8_t map[MEM_SIZE][4],
 									t_cursor **cur, t_cycle *cycle);
+void				vm_lstdel_cursor(t_cursor *cursor);
 #endif

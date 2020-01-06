@@ -84,8 +84,8 @@ bool	vm_op_st(uint8_t map[MEM_SIZE][4], t_cycle *cycle)
 	// cur->position += ft_move(args.types, "1100", 4) + 2;			ARGS ERROR commit
 	//cur->position += ft_move(args.types, "1100", 4) + 2;
 	//cur->position %= MEM_SIZE;
-	map[cur->position][2] = 0;
+	map[cur->position][2] -= 1;
 	ft_move(cur, args.types, "1100", 4);
-	map[cur->position][2] = 1;
+	map[cur->position][2] += 1;
 	return (true);
 }

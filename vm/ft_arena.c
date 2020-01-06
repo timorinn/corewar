@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/06 13:48:15 by bford             #+#    #+#             */
-/*   Updated: 2020/01/04 17:44:27 by bford            ###   ########.fr       */
+/*   Updated: 2020/01/05 22:36:40 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,9 @@ int		ft_no_print_map(uint8_t map[MEM_SIZE][4], t_cursor **cur,
 	ft_print_players(player);
 	while (TRUE)
 	{
-		if (!(ft_do_cycle(map, cur, cycle)))
-			return (0);
-		if (vm_check_cursor(map, cur, cycle) == 1)				// обработать возвращение -1 1 0
-		// if (cycle->cur_len < 1)
+		ft_do_cycle(map, cur, cycle);
+		if (vm_check_cursor(map, cur, cycle) == 1)
 			return (vm_print_winner(player, cycle->winner_num));
-		//vm_check_cursor(map, cur, cycle);				// new
 		if (cycle->dump == cycle->cycle_num)
 			return(ft_print_map_single(map));
 		cycle->cycle_num++;
@@ -104,12 +101,12 @@ int		ft_arena(int dump, t_player *player, int v)
 
 	vm_init_cycle(&cycle, ft_lstlen_player(player), dump, v);
 	ft_init_map(map, player);
-	if (!player || !(cur = ft_make_array_cursor(player, map)))
-		return (0);
+	if (!player || !(cur = vm_make_start_list_cursor(player, map)))
+		exit(1);
 	if (v)
 		ft_print_map(map, &cur, player, &cycle);
 	else
 		ft_no_print_map(map, &cur, player, &cycle);
-	free(cur);
+	vm_lstdel_cursor(cur);
 	return (1);
 }
