@@ -55,8 +55,11 @@ int			vm_get_args(uint8_t map[MEM_SIZE][4], t_cursor *car, t_args *args)
 			get_reg(map, car, args, i);
 		else if (args->types[i] == IND_CODE)
 			get_ind(map, car, args, i);
-		else if (args->types[i] == DIR_CODE)
+		else if (args->types[i] == DIR_CODE && args->dir_size == 4)
 			get_dir(map, car, args, i);
+		else if (args->types[i] == DIR_CODE && args->dir_size == 2)
+			get_ind(map, car, args, i);
+
 
 		// else										ARGS ERROR commit
 		//	return (false);							ARGS ERROR commit

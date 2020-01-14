@@ -12,14 +12,14 @@
 
 #include "vm.h"
 
-bool	vm_validate_args(t_args args, char *validate)
+bool	vm_validate_args(t_args args, char const *validate, uint8_t max_args)
 {
-	int i;
+	uint8_t i;
 
 	i = 0;
 
 	// while (i < MAX_ARGS_NUMBER - 1)											ARGS ERROR coomit
-	while (i < MAX_ARGS_NUMBER - 1)
+	while (i < max_args)
 	
 	{
 		if (/*(args.types[i] == 0 && ft_strncmp(&validate[i * 3], "---", 3)) || */

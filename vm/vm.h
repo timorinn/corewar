@@ -191,7 +191,7 @@ bool				vm_op_or(uint8_t map[MEM_SIZE][4], t_cycle *cycle);
 bool				vm_op_xor(uint8_t map[MEM_SIZE][4], t_cycle *cycle);
 bool				vm_op_aff(uint8_t map[MEM_SIZE][4], t_cycle *cycle);
 
-bool				vm_validate_args(t_args args, char *validate);
+bool				vm_validate_args(t_args args, char const *validate, uint8_t max_args);
 
 
 void				ft_rewrite_map(uint8_t map[MEM_SIZE][4],

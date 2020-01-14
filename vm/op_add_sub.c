@@ -24,7 +24,7 @@ inline bool	op_add_sub(uint8_t map[MEM_SIZE][4],
 	vm_get_args(map, cur, &args);
 
 	// if (vm_validate_args(args, "R--R--R--"))								ARGS ERROR commit
-	if (vm_validate_args(args, "R--R--R--"))
+	if (vm_validate_args(args, "R--R--R--", 3))
 
 	{
 		vm_unfold_all(map, cur, &args, true);

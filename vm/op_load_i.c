@@ -15,7 +15,8 @@
 inline bool	op_load_i(uint8_t map[MEM_SIZE][4], bool ll, t_cycle *cycle)
 {
 	t_args		args;
-	int32_t		addr;
+	int16_t		addr;
+	int32_t 	offset;
 	t_cursor	*cur;
 
 	cur = cycle->now_cur;
@@ -24,14 +25,15 @@ inline bool	op_load_i(uint8_t map[MEM_SIZE][4], bool ll, t_cycle *cycle)
 	vm_get_args(map, cur, &args);
 
 	// if (vm_validate_args(args, "RIDR-DR--"))										ARGS ERROR commit
-	if (vm_validate_args(args, "RIDR-DR--"))
+	if (vm_validate_args(args, "RIDR-DR--", 3))
 
 	{
 		vm_unfold_all(map, cur, &args, true);
-		addr = ((int16_t)args.nums_unfolded[0] + (int16_t)args.nums_unfolded[1]);
-		if (!ll)
-			addr %= IDX_MOD;
-		addr = (addr + cur->position) % MEM_SIZE;
+//		offset = args.nums_unfolded[0] + args.nums_unfolded[1];
+		offset = ((int16_t)args.nums_unfolded[0] + (int16_t)args.nums_unfolded[1]);
+		if (ll == false)
+			offset %= IDX_MOD;
+		addr = (cur->position + offset) % MEM_SIZE;
 		if (addr < 0)
 			addr += MEM_SIZE;
 		cur->registr[args.nums[2]] = ft_init_t_dir(map, addr, 4).data;

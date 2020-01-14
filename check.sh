@@ -1,4 +1,16 @@
-kukl=$1 
+#!/bin/bash
+
+dump=$1
+kukl=$2 
+
+if [ -z "$dump" ]
+then
+ dump=1
+	echo "HE BBOD | dump = " $dump
+else
+	echo "BBOD | dump = " $dump
+fi
+
 if [ -z "$kukl" ]
 then
 	kukl=-1
@@ -7,7 +19,6 @@ else
 	echo "BBOD | kukl = " $kukl
 fi
 
-dump=0
 i=0
 ./corewar -dump $dump jumper.cor jumper.cor mortel.cor > res1
 ./vm_champs/corewar -d $dump jumper.cor jumper.cor mortel.cor > res2

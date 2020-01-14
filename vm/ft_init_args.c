@@ -17,7 +17,7 @@ int position, uint8_t args[4])
 {
 	int		arg_type;
 
-	arg_type = position == (MEM_SIZE - 1) ? map[0][0] : map[position + 1][0];
+	arg_type = (position == (MEM_SIZE - 1) ? map[0][0] : map[position + 1][0]);
 	args[0] = (arg_type >> 6) & 3;
 	args[1] = (arg_type >> 4) & 3;
 	args[2] = (arg_type >> 2) & 3;
