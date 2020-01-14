@@ -16,7 +16,7 @@ bool	vm_op_sti(uint8_t map[MEM_SIZE][4], t_cycle *cycle)
 {
 	t_args		args;
 	int32_t		addr;
-	int16_t		offset;
+	int32_t		offset;
 	t_cursor	*cur;
 
 	cur = cycle->now_cur;
@@ -29,7 +29,7 @@ bool	vm_op_sti(uint8_t map[MEM_SIZE][4], t_cycle *cycle)
 
 	{
 
-		if (cycle->cycle_num == 8194)
+		if (cycle->cycle_num == 8729)
 			mvprintw(86, 90, "sti target_cycle: %d", cycle->cycle_num);
 
 		vm_unfold_all(map, cur, &args, false);
@@ -43,7 +43,7 @@ bool	vm_op_sti(uint8_t map[MEM_SIZE][4], t_cycle *cycle)
 //								  args.nums_unfolded[2]) % IDX_MOD)) % MEM_SIZE;
 		if (addr < 0)
 			addr += MEM_SIZE;
-//		/
+		/*
 		move(85, 0);
 		clrtobot();
 		mvprintw(86, 16, "sti addr: %d", addr);
@@ -61,15 +61,15 @@ bool	vm_op_sti(uint8_t map[MEM_SIZE][4], t_cycle *cycle)
 		mvprintw(97, 16, "byte from addr: %02x", (int)(map[(addr + 0) % MEM_SIZE][0]));
 
 
-//		*/
+		*/
 		ft_rewrite_map(map, cur, args.nums_unfolded[0], addr);
 
-
+/*
 		mvprintw(94, 50, "byte from addr: %02x", (int)(map[(addr + 3) % MEM_SIZE][0]));
 		mvprintw(95, 50, "byte from addr: %02x", (int)(map[(addr + 2) % MEM_SIZE][0]));
 		mvprintw(96, 50, "byte from addr: %02x", (int)(map[(addr + 1) % MEM_SIZE][0]));
 		mvprintw(97, 50, "byte from addr: %02x", (int)(map[(addr + 0) % MEM_SIZE][0]));
-
+*/
 	}
 
 	// cur->position += ft_move(args.types, "1110", 2) + 2; 			ARGS ERROR commit

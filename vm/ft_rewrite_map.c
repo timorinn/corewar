@@ -15,12 +15,12 @@
 void	ft_rewrite_map(uint8_t map[MEM_SIZE][4],
 t_cursor *cur, unsigned int reg, int adress)
 {
-	map[(adress + 3) % MEM_SIZE][0] = reg;
+	map[(adress + 3) % MEM_SIZE][0] = (uint8_t)reg;
 	map[(adress + 3) % MEM_SIZE][1] = cur->play_num /* + 2 */ ;
-	map[(adress + 2) % MEM_SIZE][0] = reg >> 8;
+	map[(adress + 2) % MEM_SIZE][0] = (uint8_t)(reg >> 8);
 	map[(adress + 2) % MEM_SIZE][1] = cur->play_num /* + 2 */ ;
-	map[(adress + 1) % MEM_SIZE][0] = reg >> 16;
+	map[(adress + 1) % MEM_SIZE][0] = (uint8_t)(reg >> 16);
 	map[(adress + 1) % MEM_SIZE][1] = cur->play_num /* + 2 */ ;
-	map[adress % MEM_SIZE][0] = reg >> 24;
+	map[adress % MEM_SIZE][0] = (uint8_t)(reg >> 24);
 	map[adress % MEM_SIZE][1] = cur->play_num /* + 2 */ ;
 }

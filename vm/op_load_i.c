@@ -15,7 +15,7 @@
 inline bool	op_load_i(uint8_t map[MEM_SIZE][4], bool ll, t_cycle *cycle)
 {
 	t_args		args;
-	int16_t		addr;
+	int32_t		addr;
 	int32_t 	offset;
 	t_cursor	*cur;
 
@@ -23,6 +23,8 @@ inline bool	op_load_i(uint8_t map[MEM_SIZE][4], bool ll, t_cycle *cycle)
 	ft_bzero(&args, sizeof(t_args));
 	args.dir_size = 2;
 	vm_get_args(map, cur, &args);
+	if (cycle->cycle_num == 8704)
+		mvprintw(101, 90, "ldi target_cycle: %d", cycle->cycle_num);
 
 	// if (vm_validate_args(args, "RIDR-DR--"))										ARGS ERROR commit
 	if (vm_validate_args(args, "RIDR-DR--", 3))
@@ -30,7 +32,7 @@ inline bool	op_load_i(uint8_t map[MEM_SIZE][4], bool ll, t_cycle *cycle)
 	{
 		vm_unfold_all(map, cur, &args, true);
 //		offset = args.nums_unfolded[0] + args.nums_unfolded[1];
-		offset = ((int16_t)args.nums_unfolded[0] + (int16_t)args.nums_unfolded[1]);
+		offset = (args.nums_unfolded[0] + args.nums_unfolded[1]);
 		if (ll == false)
 			offset %= IDX_MOD;
 		addr = (cur->position + offset) % MEM_SIZE;

@@ -1,43 +1,52 @@
 #!/bin/bash
 
 dump=$1
-kukl=$2 
+limit=$2
+
+if [ -z "$dump" ]
+then
+  echo "First argument - cycle to start with, second argument - cycle to stop on."
+fi
 
 if [ -z "$dump" ]
 then
  dump=1
-	echo "HE BBOD | dump = " $dump
+	echo "Default start = " $dump
 else
-	echo "BBOD | dump = " $dump
+	echo "start = " $dump
 fi
 
-if [ -z "$kukl" ]
+if [ -z "$limit" ]
 then
-	kukl=-1
-	echo "HE BBOD | kukl = " $kukl
+	limit=-1
+	echo "No limit"
 else
-	echo "BBOD | kukl = " $kukl
+	echo "limit = " $limit
 fi
+
+rm -rf res1
+rm -rf res2
+rm -rf difference
 
 i=0
 ./corewar -dump $dump jumper.cor jumper.cor mortel.cor > res1
 ./vm_champs/corewar -d $dump jumper.cor jumper.cor mortel.cor > res2
-diff res1 res2 > diff
-i=$(ls -l diff | cut -d " " -f8 | bc)
+diff res1 res2 > difference
+i=$(ls -l difference | cut -d " " -f8 | bc)
 while [ "$i" -eq 0 ]
 do
 	dump=$(($dump + 1))
 	# echo "dump eby4uu' = " $dump
 	./corewar -dump $dump jumper.cor jumper.cor mortel.cor > res1
 	./vm_champs/corewar -d $dump jumper.cor jumper.cor mortel.cor > res2
-	diff res1 res2 > diff
-	i=$(ls -l diff | cut -d " " -f8 | bc)
-	if [ $dump == $kukl ]
+	diff res1 res2 > difference
+	i=$(ls -l difference | cut -d " " -f8 | bc)
+	if [ $dump == $limit ]
 	then
-		echo "dump == kukl"
+		echo "Yay! Done, no difference!"
 		exit
 	fi
 done
-echo "First error with dump = " $dump
+echo "First error on cycle " $dump
 cat diff
 

@@ -19,5 +19,8 @@ inline static int32_t op_xor(int32_t first, int32_t second)
 
 bool	vm_op_xor(uint8_t map[MEM_SIZE][4], t_cycle *cycle)
 {
+//	move(78, 0);
+//	clrtobot();
+//	mvprintw(79, 16, "XOR");
 	return (op_bitwise(map, &op_xor, cycle));
 }
