@@ -21,5 +21,7 @@ inline static int32_t op_lfork(int32_t position, int32_t ind)
 
 bool	vm_op_lfork(uint8_t map[MEM_SIZE][4], t_cursor **cur, t_cycle *cycle)
 {
+	if (cycle->log)
+		vm_print_log_op("lfork", cycle);
 	return (op_all_fork(map, cycle, cur, &op_lfork));
 }

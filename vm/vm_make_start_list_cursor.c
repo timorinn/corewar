@@ -25,16 +25,19 @@ static void		vm_init_cursor(t_cursor *cursor, t_player *player,
 	cursor->next = NULL;
 }
 
-t_cursor	*vm_make_start_list_cursor(t_player *player,
+t_cursor	*vm_make_start_list_cursor(t_player *player, int8_t player_qty,
 										uint8_t map[MEM_SIZE][4])
 {
 	t_cursor	*cursor;
 	t_cursor	*start;
 	int			position;
+	int32_t 	cursor_num;
 
 	position = MEM_SIZE / ft_lstlen_player(player);
 	if (!(cursor = malloc(sizeof(t_cursor))))
 		exit(1);
+	cursor_num = 1;
+	cursor->num = cursor_num++;
 	vm_init_cursor(cursor, player, map, 0);
 	start = cursor;
 	player = player->next;
@@ -43,6 +46,7 @@ t_cursor	*vm_make_start_list_cursor(t_player *player,
 		if (!(cursor->next = malloc(sizeof(t_cursor))))
 			exit(1);
 		cursor = cursor->next;
+		cursor->num = cursor_num++;
 		vm_init_cursor(cursor, player, map, position);
 		position += position;
 		player = player->next;

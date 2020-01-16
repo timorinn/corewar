@@ -80,6 +80,8 @@ int			ft_valid_input(int argc, char **argv)
 	ft_init_numbers(nums);
 	if (argc < 2 || !ft_valid_dump(argc, argv, &i))
 		return (0);
+	if (!ft_strcmp(argv[i], "-log"))
+		i++;
 	argc -= (ft_strcmp(argv[argc - 1], "-v") ? 0 : 1);
 	while (i < argc && ++i)
 	{

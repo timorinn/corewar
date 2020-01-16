@@ -12,7 +12,16 @@
 
 #include "vm.h"
 
-bool	vm_op_sti(uint8_t map[MEM_SIZE][4], t_cycle *cycle)
+static inline void	vm_print_log_sti(t_args *args, int32_t addr)
+{
+	int32_t offset;
+
+	offset = args->nums_unfolded[1] + args->nums_unfolded[2];
+	printf("%20c -> store to %d + %d = %d (with pc and mod %d)\n", '|', args->nums_unfolded[1], args->nums_unfolded[2], offset, addr);
+	fflush(stdout);
+}
+
+bool				vm_op_sti(uint8_t map[MEM_SIZE][4], t_cycle *cycle)
 {
 	t_args		args;
 	int32_t		addr;
@@ -23,16 +32,19 @@ bool	vm_op_sti(uint8_t map[MEM_SIZE][4], t_cycle *cycle)
 	ft_bzero(&args, sizeof(t_args));
 	args.dir_size = 2;
 	vm_get_args(map, cur, &args);
-
+	if (cycle->log)
+		vm_print_log_op("sti", cycle);
 	// if (vm_validate_args(args, "R--RIDR-D"))							ARGS ERROR commit
 	if (vm_validate_args(args, "R--RIDR-D", 3))
 
 	{
-
-		if (cycle->cycle_num == 8729)
-			mvprintw(86, 90, "sti target_cycle: %d", cycle->cycle_num);
+//
+//		if (cycle->cycle_num == 8729)
+//			mvprintw(86, 90, "sti target_cycle: %d", cycle->cycle_num);
 
 		vm_unfold_all(map, cur, &args, false);
+		if (cycle->log == true)
+			vm_print_log_args(&args, 3);
 //		if (cycle->cycle_num == 8194 && cur->position == 3330)
 //			args.nums_unfolded[1] = args.nums_unfolded[0];
 //		if (cycle->cycle_num >= 8193 && cycle->cycle_num <= 8199)
@@ -60,8 +72,9 @@ bool	vm_op_sti(uint8_t map[MEM_SIZE][4], t_cycle *cycle)
 		mvprintw(96, 16, "byte from addr: %02x", (int)(map[(addr + 1) % MEM_SIZE][0]));
 		mvprintw(97, 16, "byte from addr: %02x", (int)(map[(addr + 0) % MEM_SIZE][0]));
 
-
 		*/
+		if (cycle->log)
+			vm_print_log_sti(&args, addr);
 		ft_rewrite_map(map, cur, args.nums_unfolded[0], addr);
 
 /*
@@ -71,6 +84,8 @@ bool	vm_op_sti(uint8_t map[MEM_SIZE][4], t_cycle *cycle)
 		mvprintw(97, 50, "byte from addr: %02x", (int)(map[(addr + 0) % MEM_SIZE][0]));
 */
 	}
+	else if (cycle->log)
+		ft_putendl(" failed!");
 
 	// cur->position += ft_move(args.types, "1110", 2) + 2; 			ARGS ERROR commit
 	/*

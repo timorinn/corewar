@@ -34,7 +34,7 @@ void		ft_print_code(t_player *player)
 	}
 	write(1, "\n\n", 2);
 }
-
+/*
 void		ft_print_player_param(t_player *player, int code)
 {
 	while (player)
@@ -46,22 +46,34 @@ void		ft_print_player_param(t_player *player, int code)
 		player = player->next;
 	}
 }
+*/
 
 int			ft_init_dump(int argc, char **argv)
 {
 	return (argc > 1 && !ft_strcmp(argv[1], "-dump") ? ft_atoi(argv[2]) : -1);
 }
 
+bool		vm_get_log_flag(int ac, char **av, t_flags flags)
+{
+	int8_t offset;
+
+	offset = flags.offset;
+	return (ac > (offset + 1) && !ft_strcmp(av[offset + 1], "-log") ? true : false);
+}
+
 int			main(int argc, char **argv)
 {
 	t_player	*player;
-	int			dump;
+	t_flags		flags;
 
 	player = NULL;
-	dump = ft_init_dump(argc, argv);
-	player = ft_init_input(argc, argv, ft_valid_input(argc, argv), dump);
+	flags.dump = ft_init_dump(argc, argv);
+	flags.offset = (flags.dump == -1 ? 0 : 2);
+	flags.log = vm_get_log_flag(argc, argv, flags);
+	flags.offset += (flags.log == false ? 0 : 1);
+	player = ft_init_input(argc, argv, ft_valid_input(argc, argv), flags);
 	/* СЕГА ПРИ ОГРОМНОМ ЗНАЧЕНИИ ДАМПА! */
-	ft_arena(dump, player, ft_visu(argc, argv));
+	ft_arena(flags, player, ft_visu(argc, argv));
 
 	//ft_print_player_param(player, 0);
 

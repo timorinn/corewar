@@ -43,7 +43,7 @@ int			ft_make_player_num(t_player *player, int *numbers)
 	return (1);
 }
 
-t_player	*ft_init_input(int argc, char **argv, int valid, int dump)
+t_player	*ft_init_input(int argc, char **argv, int valid, t_flags flags)
 {
 	t_player	*player;
 	int			numbers[MAX_PLAYERS];
@@ -53,12 +53,22 @@ t_player	*ft_init_input(int argc, char **argv, int valid, int dump)
 	player = NULL;
 	if (!valid)
 		return (NULL);
-	i += (dump != -1 ? 2 : 0);
+	i += flags.offset;
+//	printf("\nDebug log i = %d\n", i);
+//	i += (dump != -1 ? 2 : 0);
 	ft_init_numbers(numbers);
 	argc -= (ft_strcmp(argv[argc - 1], "-v") ? 0 : 1);
 	while (i < argc && ++i)
 		if (!ft_init_player(argv, &i, &player, numbers))
 			return (NULL + ft_lstdel_player(player));
+
+//	while (i < argc)// && argc)
+//	{
+//		if (!ft_init_player(argv, &argc, &player, numbers))
+//			return (NULL + ft_lstdel_player(player));
+//		argc--;
+//	}
+
 	return (ft_make_player_num(player, numbers) ?
 	player : NULL + ft_lstdel_player(player) + ft_error(4, 0));
 }

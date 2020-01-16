@@ -18,7 +18,8 @@ int		vm_op_zjmp(uint8_t map[MEM_SIZE][4], t_cycle *cycle)
 	t_cursor	*cur;
 
 	cur = cycle->now_cur;
-
+	if (cycle->log)
+		vm_print_log_op("zjmp", cycle);
 /*
 	mvprintw(50, 200, "CARRy = %d", cur->carry);
 	map[cur->position][2] = 0;
@@ -48,7 +49,10 @@ int		vm_op_zjmp(uint8_t map[MEM_SIZE][4], t_cycle *cycle)
 	if (cur->position < 0)
 		cur->position += MEM_SIZE;
 	cur->position %= MEM_SIZE;
-
+//
+	if (cycle->log == true)
+		ft_putendl(" It could be zjmp args here, but there is this text.");
+//
 	map[cur->position][2] += 1;
 	return (1);
 }

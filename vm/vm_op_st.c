@@ -62,7 +62,8 @@ bool	vm_op_st(uint8_t map[MEM_SIZE][4], t_cycle *cycle)
 	ft_bzero(&args, sizeof(t_args));
 	args.dir_size = 4;
 	vm_get_args(map, cur, &args);
-
+	if (cycle->log)
+		vm_print_log_op("st", cycle);
 //	if (cycle->cycle_num == 8159)
 //		mvprintw(86, 90, "st target_cycle: %d", cycle->cycle_num);
 		// if (vm_validate_args(args, "R--RI----"))						ARGS ERROR commit
@@ -70,6 +71,8 @@ bool	vm_op_st(uint8_t map[MEM_SIZE][4], t_cycle *cycle)
 
 	{
 		vm_unfold_all(map, cur, &args, true);
+		if (cycle->log == true)
+			vm_print_log_args(&args, 2);
 		if (args.types[1] == IND_CODE)
 		{
 			addr = (cur->position + args.nums[1]) % MEM_SIZE;
@@ -82,6 +85,8 @@ bool	vm_op_st(uint8_t map[MEM_SIZE][4], t_cycle *cycle)
 		else if (args.types[1] == REG_CODE)
 			cur->registr[args.nums[1]] = args.nums_unfolded[0];
 	}
+	else if (cycle->log)
+		ft_putendl(" failed!");
 
 	// cur->position += ft_move(args.types, "1100", 4) + 2;			ARGS ERROR commit
 	//cur->position += ft_move(args.types, "1100", 4) + 2;

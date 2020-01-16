@@ -83,25 +83,33 @@ int		ft_no_print_map(uint8_t map[MEM_SIZE][4], t_cursor **cur,
 	ft_print_players(player);
 	while (TRUE)
 	{
+		//////////// ft_printf!!
+		if (cycle->log == true)
+			printf("It is now cycle %d\n", cycle->cycle_num);
+		//
 		ft_do_cycle(map, cur, cycle);
 		if (vm_check_cursor(map, cur, cycle) == 1)
 			return (vm_print_winner(player, cycle->winner_num));
 		if (cycle->dump == cycle->cycle_num)
 			return(ft_print_map_single(map));
 		cycle->cycle_num++;
+//		if (cycle->cycle_num == 11315)
+//			continue ;
 	}
 	return (1);
 }
 
-int		ft_arena(int dump, t_player *player, int v)
+int		ft_arena(t_flags flags, t_player *player, int v)
 {
 	unsigned char	map[MEM_SIZE][4];
 	t_cursor		*cur;
 	t_cycle			cycle;
+	int8_t			player_qty;
 
-	vm_init_cycle(&cycle, ft_lstlen_player(player), dump, v);
+	player_qty = ft_lstlen_player(player);
+	vm_init_cycle(&cycle, player_qty, flags, v);
 	ft_init_map(map, player);
-	if (!player || !(cur = vm_make_start_list_cursor(player, map)))
+	if (!player || !(cur = vm_make_start_list_cursor(player, player_qty, map)))
 		exit(1);
 	if (v)
 		ft_print_map(map, &cur, player, &cycle);

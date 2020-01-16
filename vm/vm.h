@@ -116,39 +116,47 @@ typedef struct {
 
 typedef struct {
 	t_cursor	*now_cur;
-	int			new_cur_num;
-	int			cycle_num;
-	int			dump;
-	int			cycles_to_die;
-	int			waiting_die;
-	int			last_live[MAX_PLAYERS];
-	int			lives_in_current_period[MAX_PLAYERS];
-	int			lives_in_current_period_all;
-	int			cur_len;
-	int			v;
-	int			checks;
-	int			winner_y;
-	int			winner_num;
+	int32_t		new_cur_num;
+	int32_t		cycle_num;
+	int32_t		dump;
+	bool		log;
+	int32_t		cycles_to_die;
+	int32_t		waiting_die;
+	int32_t		last_live[MAX_PLAYERS];
+	int32_t		lives_in_current_period[MAX_PLAYERS];
+	int32_t		lives_in_current_period_all;
+	int32_t		cur_len;
+	int32_t		v;
+	int32_t		checks;
+	int32_t		winner_y;
+	int32_t		winner_num;
+	int64_t 	processes_qty;
 }	t_cycle;
+
+typedef struct {
+	int32_t	dump;
+	bool	log;
+	int8_t	offset;
+}	t_flags;
 
 int					ft_valid_input(int argc, char **argv);
 
-t_player			*ft_init_input(int argc, char **argv, int valid, int dump);
+t_player			*ft_init_input(int argc, char **argv, int valid, t_flags flags);
 int					ft_init_player(char **argv, int *i, t_player **player, int *numbers);
 t_player			*ft_lstnew_player(int num);
 int					ft_lstdel_player(t_player *player);
 int					ft_lstlen_player(t_player *player);
 int					ft_error(int num, char *s);
-int					ft_arena(int dump, t_player *player, int v);
+int					ft_arena(t_flags flags, t_player *player, int v);
 int					ft_print_map(uint8_t map[MEM_SIZE][4], t_cursor **car,
 								t_player *player, t_cycle *cycle);
 int					ft_print_players(t_player *player);
 int					ft_print_map_single(uint8_t map[MEM_SIZE][4]);
-t_cursor			*vm_make_start_list_cursor(t_player *player, uint8_t map[MEM_SIZE][4]);
+t_cursor			*vm_make_start_list_cursor(t_player *player, int8_t player_qty, uint8_t map[MEM_SIZE][4]);
 int					ft_print_cursor(t_cursor *careta, t_cycle cycle);
 
 int					ft_do_cycle(uint8_t map[MEM_SIZE][4], t_cursor **car, t_cycle *cycle);
-void				vm_init_cycle(t_cycle *cycle, int player_size, int dump, int v);
+void				vm_init_cycle(t_cycle *cycle, int player_size, t_flags flags, int v);
 
 t_dir				ft_init_t_dir(uint8_t map[MEM_SIZE][4],
 		int position, uint8_t dir_size);
@@ -200,4 +208,8 @@ void				ft_rewrite_map(uint8_t map[MEM_SIZE][4],
 int					vm_check_cursor(uint8_t map[MEM_SIZE][4],
 									t_cursor **cur, t_cycle *cycle);
 void				vm_lstdel_cursor(t_cursor *cursor);
+
+void	vm_print_log_op(char *op, t_cycle *cycle);
+void	vm_print_log_args(t_args *args, uint8_t max_args);
+
 #endif

@@ -30,6 +30,8 @@ inline bool	op_add_sub(uint8_t map[MEM_SIZE][4],
 		vm_unfold_all(map, cur, &args, true);
 //		cur->registr[args.nums[2]] = args.nums_unfolded[0] +
 //				args.nums_unfolded[1];
+		if (cycle->log == true)
+			vm_print_log_args(&args, 3);
 		cur->registr[args.nums[2]] = (*operation)
 				(args.nums_unfolded[0], args.nums_unfolded[1]);
 		cur->carry = (cur->registr[args.nums[2]] == 0 ? 1 : 0);
@@ -38,7 +40,8 @@ inline bool	op_add_sub(uint8_t map[MEM_SIZE][4],
 //		else
 //			cur->carry = 0;
 	}
-
+	else if (cycle->log == true)
+		ft_putendl(" failed!");
 	// cur->position += ft_move(args.types, "1110", args.dir_size) + 2;		ARGS ERROR commit
 	/*
 	cur->position += ft_move(args.types, "1110", args.dir_size) + 2;

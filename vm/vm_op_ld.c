@@ -80,5 +80,9 @@ bool			vm_op_ld(uint8_t map[MEM_SIZE][4], t_cursor *car)
 
 bool			vm_op_ld(uint8_t map[MEM_SIZE][4], t_cycle *cycle)
 {
+//	if (cycle->log == true)
+//
+	if (cycle->log)
+		vm_print_log_op("ld", cycle);
 	return (op_load(map, true, cycle));
 }

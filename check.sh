@@ -48,5 +48,5 @@ do
 	fi
 done
 echo "First error on cycle " $dump
-cat diff
+cat difference
 

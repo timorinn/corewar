@@ -72,7 +72,7 @@ inline bool	op_all_fork(uint8_t map[MEM_SIZE][4], t_cycle *cycle,
 	cycle->cur_len++;
 	ft_init_t_ind(map, now_cur->position + 1, &ind);
 	head_cur->position = operation(now_cur->position, ind.data);
-	
+	head_cur->num = ++cycle->processes_qty;
 	map[head_cur->position][2] += 1;
 	map[now_cur->position][2] -= 1;
 	now_cur->position = (now_cur->position + 3) % MEM_SIZE;
@@ -85,5 +85,9 @@ inline bool	op_all_fork(uint8_t map[MEM_SIZE][4], t_cycle *cycle,
 	vm_copy_cursor(head_cur, now_cur);
 	head_cur->next = *cur;
 	*cur = head_cur;
+//
+	if (cycle->log == true)
+		ft_putendl(" It could be fork/lfork args here, but there is this text.");
+//
 	return (true);
 }

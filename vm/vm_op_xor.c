@@ -22,5 +22,7 @@ bool	vm_op_xor(uint8_t map[MEM_SIZE][4], t_cycle *cycle)
 //	move(78, 0);
 //	clrtobot();
 //	mvprintw(79, 16, "XOR");
+	if (cycle->log)
+		vm_print_log_op("xor", cycle);
 	return (op_bitwise(map, &op_xor, cycle));
 }

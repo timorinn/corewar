@@ -14,5 +14,7 @@
 
 bool	vm_op_ldi(uint8_t map[MEM_SIZE][4], t_cycle *cycle)
 {
+	if (cycle->log)
+		vm_print_log_op("ldi", cycle);
 	return (op_load_i(map, false, cycle));
 }
