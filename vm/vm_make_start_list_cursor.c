@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 18:13:13 by bford             #+#    #+#             */
-/*   Updated: 2020/01/17 14:50:42 by bford            ###   ########.fr       */
+/*   Updated: 2020/01/17 16:16:52 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,20 @@ t_cursor	*vm_make_start_list_cursor(t_player *player, int8_t player_qty,
 	player = player->next;
 	while (player)
 	{
-		if (!(cursor->next = malloc(sizeof(t_cursor))))
+		// if (!(cursor->next = malloc(sizeof(t_cursor))))
+		// 	exit(1);
+		// cursor = cursor->next;
+		// cursor->num = cursor_num++;
+		// vm_init_cursor(cursor, player, map, position);
+		// position += position;
+		// player = player->next;
+		if (!(cursor = malloc(sizeof(t_cursor))))
 			exit(1);
-		cursor = cursor->next;
 		cursor->num = cursor_num++;
 		vm_init_cursor(cursor, player, map, position);
 		position += position;
+		cursor->next = start;
+		start = cursor;
 		player = player->next;
 	}
 	return (start);
