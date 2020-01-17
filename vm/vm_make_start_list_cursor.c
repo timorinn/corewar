@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 18:13:13 by bford             #+#    #+#             */
-/*   Updated: 2020/01/05 18:01:13 by bford            ###   ########.fr       */
+/*   Updated: 2020/01/17 14:50:42 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ t_cursor	*vm_make_start_list_cursor(t_player *player, int8_t player_qty,
 	t_cursor	*start;
 	int			position;
 	int32_t 	cursor_num;
+
+	player_qty+=0;
 
 	position = MEM_SIZE / ft_lstlen_player(player);
 	if (!(cursor = malloc(sizeof(t_cursor))))

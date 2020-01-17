@@ -6,7 +6,7 @@
 #    By: bford <bford@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/05 17:55:08 by bford             #+#    #+#              #
-#    Updated: 2020/01/05 16:25:27 by bford            ###   ########.fr        #
+#    Updated: 2020/01/17 14:54:13 by bford            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,7 +62,9 @@ SRC =		ft_valid_input.c		\
 			op_load_i.c				\
 			\
 			vm_check_cursor.c		\
-			vm_lstdel_cursor.c
+			vm_lstdel_cursor.c		\
+			\
+			vm_print_log.c
 
 OBJ =		$(SRC:.c=.o)
 
