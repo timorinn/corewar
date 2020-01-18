@@ -26,6 +26,8 @@ void	vm_print_log_args(t_args *args, uint8_t max_args)
 			printf(" %d", args->nums[i]);
 		else if (args->types[i] == IND_CODE)
 			printf(" ind%d,unfolded %d", args->nums[i], args->nums_unfolded[i]);
+		else
+			printf("Error has happened here. Args types: %d %d %d    ", args->types[0], args->types[1], args->types[2]);
 		i++;
 	}
 	fflush(stdout);

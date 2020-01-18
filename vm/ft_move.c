@@ -34,5 +34,7 @@ void	ft_move(t_cursor *cur, uint8_t args[4], char *valid, int dir)
 	}
 	cur->position += move;
 	cur->position %= MEM_SIZE;
+	cur->operation = -1;
+	cur->cooldown = 0;
 	//return (move);
 }

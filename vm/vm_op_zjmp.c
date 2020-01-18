@@ -49,15 +49,17 @@ int		vm_op_zjmp(uint8_t map[MEM_SIZE][4], t_cycle *cycle)
 	{
 		vm_print_log_op("zjmp", cycle);
 		printf(" %d ", ind.data); // printf
-		cur->carry ? printf("OK\n") : printf("FAIL\n"); //printf
+		cur->carry ? printf("OK\n") : printf("FAILED\n"); //printf
 	}
 
-	cur->position = (cur->position +
-		(cur->carry ? ind.data % IDX_MOD : 3)) ; //% MEM_SIZE;
+	cur->position += (cur->carry ? (ind.data % IDX_MOD) : 3) ; //% MEM_SIZE;
+	cur->position %= MEM_SIZE;
 	if (cur->position < 0)
 		cur->position += MEM_SIZE;
-	cur->position %= MEM_SIZE;
-//
+	cur->operation = -1;
+	cur->cooldown = 0;
+
+	//
 	// if (cycle->log == true)
 	// 	ft_putendl(" It could be zjmp args here, but there is this text.");
 //

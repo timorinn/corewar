@@ -47,18 +47,21 @@ int		ft_do_cycle(uint8_t map[MEM_SIZE][4], t_cursor **cur, t_cycle *cycle)
 	copy = *cur;
 	while (copy)
 	{
+		if (copy->operation == -1 && map[copy->position][0] > 0 && map[copy->position][0] < 17)
+		{
+			copy->cooldown = g_operation[map[copy->position][0] - 1] - 1;
+			copy->operation = map[copy->position][0];
+		}
 		if (copy->cooldown == 0)
 		{
 			cycle->now_cur = copy;
 			ft_do_operation(map, cur, cycle);
-			if (map[copy->position][0] > 0 && map[copy->position][0] < 17)
-				copy->cooldown = g_operation[map[copy->position][0] - 1] - 1;
-			copy->operation = map[copy->position][0];
+			cycle->now_cur->operation = -1;
+			cycle->now_cur->cooldown = 0;
 		}
 		else
 			copy->cooldown--;
 		copy = copy->next;
-
 	}
 	return (1);
 }

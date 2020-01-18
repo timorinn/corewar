@@ -16,11 +16,16 @@ int		vm_print_winner(t_player *player, int winner_num)
 {
 	while (player->num != winner_num)
 		player = player->next;
-	ft_putstr("Contestant ");
-	ft_putnbr(player->num);
-	ft_putstr(", \"");
-	ft_putstr(player->name);
-	ft_putstr("\", has won !\n");
+
+	/////////ft_printf
+
+	printf("Contestant %d, \"%s\", has won!\n", player->num, player->name);
+
+//	ft_putstr("Contestant ");
+//	ft_putnbr(player->num);
+//	ft_putstr(", \"");
+//	ft_putstr(player->name);
+//	ft_putstr("\", has won !\n");
 	return (1);
 }
 
@@ -84,7 +89,7 @@ int		ft_no_print_map(uint8_t map[MEM_SIZE][4], t_cursor **cur,
 	while (TRUE)
 	{
 		//////////// ft_printf!!
-		if (cycle->log == true)
+		if (cycle->log == true && cycle->cycle_num != 0) /////////Cycle zero??
 			printf("It is now cycle %d\n", cycle->cycle_num);
 		//
 		ft_do_cycle(map, cur, cycle);

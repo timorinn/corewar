@@ -101,11 +101,11 @@ int		vm_check_cursor(uint8_t map[MEM_SIZE][4],
 	{
 		copy = *cur;
 
-		if (*cur == NULL) // ЭТИ СТОКИ ДОЛЖНЫ БЫТЬ ЛИШНИМИ 
-			return (1); //
+//		if (*cur == NULL) // ЭТИ СТОКИ ДОЛЖНЫ БЫТЬ ЛИШНИМИ
+//			return (1); //
 		while (copy)
 		{
-			if (copy->next && copy->next->live + cycle->cycles_to_die < cycle->cycle_num)
+			if (copy->next && copy->next->live + cycle->cycles_to_die <= cycle->cycle_num)
 			{
 				cycle->cur_len--;
 				for_del = copy->next;
@@ -117,7 +117,8 @@ int		vm_check_cursor(uint8_t map[MEM_SIZE][4],
 			else
 				copy = copy->next;	
 		}
-		if ((*cur)->live + cycle->cycles_to_die < cycle->cycle_num)
+		// <= or < ?? //
+		if ((*cur)->live + cycle->cycles_to_die <= cycle->cycle_num)
 		{
 			cycle->cur_len--;
 			copy = (*cur)->next;
@@ -126,14 +127,19 @@ int		vm_check_cursor(uint8_t map[MEM_SIZE][4],
 			if (!(*cur = copy))
 				return (1);
 		}
+		cycle->checks++;
 		if (cycle->lives_in_current_period_all >= NBR_LIVE ||
 		cycle->checks == MAX_CHECKS)
 		{
 			cycle->cycles_to_die -= CYCLE_DELTA;
+			////////////////////////////////      printf
+			if (cycle->log)
+				printf("Cycle to die is now %d\n", cycle->cycles_to_die);
+			///////////////////////////////
 			cycle->checks = 0;
 		}
-		else
-			cycle->checks++;
+//		else
+//			cycle->checks++;
 		cycle->waiting_die += cycle->cycles_to_die;
 		cycle->lives_in_current_period_all = 0;
 		ft_bzero(cycle->lives_in_current_period, sizeof(int) * MAX_PLAYERS);

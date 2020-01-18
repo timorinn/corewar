@@ -79,11 +79,19 @@ inline bool	op_all_fork(uint8_t map[MEM_SIZE][4], t_cycle *cycle,
 	map[now_cur->position][2] -= 1;
 	now_cur->position = (now_cur->position + 3) % MEM_SIZE;
 	map[now_cur->position][2] += 1;
-	head_cur->operation = map[head_cur->position][0];
-	if (head_cur->operation > 0 && head_cur->operation < REG_NUMBER + 1)
-		head_cur->cooldown = g_operation[head_cur->operation - 1] - 1;
-	else
-		head_cur->cooldown = 0;
+
+	now_cur->operation = -1;
+	now_cur->cooldown = 0;
+
+///	head_cur->operation = map[head_cur->position][0];
+///	if (head_cur->operation > 0 && head_cur->operation < 17)
+///		head_cur->cooldown = g_operation[head_cur->operation - 1] - 1;
+///	else
+///		head_cur->cooldown = 0;
+
+	head_cur->operation = -1;
+	head_cur->cooldown = 0;
+
 	vm_copy_cursor(head_cur, now_cur);
 	head_cur->next = *cur;
 	*cur = head_cur;

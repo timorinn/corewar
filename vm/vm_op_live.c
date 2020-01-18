@@ -45,6 +45,10 @@ int		vm_op_live(uint8_t map[MEM_SIZE][4], t_cycle *cycle)
 	map[cur->position][2] -= 1;
 	cur->position = (cur->position + 5) % MEM_SIZE;
 	map[cur->position][2] += 1;
+
+	cur->operation = -1;
+	cur->cooldown = 0;
+
 	//
 	// if (cycle->log == true)
 	// 	ft_putendl(" It could be live args here, but there is this text.");

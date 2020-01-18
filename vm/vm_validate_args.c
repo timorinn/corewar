@@ -22,7 +22,8 @@ bool	vm_validate_args(t_args args, char const *validate, uint8_t max_args)
 	while (i < max_args)
 	
 	{
-		if (/*(args.types[i] == 0 && ft_strncmp(&validate[i * 3], "---", 3)) || */
+//		if (/*(args.types[i] == 0 && ft_strncmp(&validate[i * 3], "---", 3)) || */
+		if ((args.types[i] == 0 && ft_strncmp(&validate[i * 3], "---", 3)) ||
 		(args.types[i] == REG_CODE &&
 		(validate[i * 3] == '-' || args.nums[i] < 1 || args.nums[i] > 16)) ||
 		(args.types[i] == IND_CODE && validate[i * 3 + 1] == '-') ||
