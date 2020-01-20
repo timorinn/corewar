@@ -1,23 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr_d.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/10 17:01:40 by bford             #+#    #+#             */
-/*   Updated: 2020/01/20 18:05:54 by bford            ###   ########.fr       */
+/*   Created: 2019/10/02 17:18:57 by bford             #+#    #+#             */
+/*   Updated: 2019/10/06 18:08:46 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-int		ft_putstr(char const *s)
+int		ft_putnbr_d(long long d, t_pf **l, int len)
 {
-	int		len;
+	long long	i;
 
-	len = (int)ft_strlen(s);
-	if (s)
-		write(1, s, len);
-	return (len);
+	i = (d > 9 || d < -9 ? (long long)ft_power(10, len - 1) : 1);
+	if (d < 0 && len > 1)
+	{
+		ft_many_write((d / i) * (-1) + '0', 1, l);
+		d %= i;
+		i /= 10;
+	}
+	d = (d < 0 ? -d : d);
+	while (i)
+	{
+		ft_many_write(d / i + '0', 1, l);
+		d %= i;
+		i /= 10;
+	}
+	return (1);
 }

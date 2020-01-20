@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr_o.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/10 17:01:40 by bford             #+#    #+#             */
-/*   Updated: 2020/01/20 18:05:54 by bford            ###   ########.fr       */
+/*   Created: 2019/10/02 18:45:31 by bford             #+#    #+#             */
+/*   Updated: 2019/10/02 19:53:13 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-int		ft_putstr(char const *s)
+int		ft_putnbr_o(unsigned long long u, t_pf **l, int len)
 {
-	int		len;
+	unsigned long long	i;
 
-	len = (int)ft_strlen(s);
-	if (s)
-		write(1, s, len);
-	return (len);
+	i = (u > 7 ? (unsigned long long)ft_power(8, len - 1) : 1);
+	while (i)
+	{
+		ft_many_write(u / i + '0', 1, l);
+		u %= i;
+		i /= 8;
+	}
+	return (1);
 }

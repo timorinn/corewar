@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_s.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/10 17:01:40 by bford             #+#    #+#             */
-/*   Updated: 2020/01/20 18:05:54 by bford            ###   ########.fr       */
+/*   Created: 2019/09/29 11:05:48 by bford             #+#    #+#             */
+/*   Updated: 2019/10/06 18:09:02 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdlib.h>
+#include <unistd.h>
+#include <stdarg.h>
+#include "ft_printf.h"
 
-int		ft_putstr(char const *s)
+int		ft_s(t_pf **l, va_list a)
 {
-	int		len;
+	char	*s;
 
-	len = (int)ft_strlen(s);
-	if (s)
-		write(1, s, len);
-	return (len);
+	if ((*l)->p || (*l)->s || (*l)->o || (*l)->s || (*l)->f || (*l)->nol)
+		return (0);
+	s = va_arg(a, char *);
+	if (!s)
+		ft_s2(l, "(null)");
+	else
+		ft_s2(l, s);
+	return (1);
 }

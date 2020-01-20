@@ -1,23 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_clearlist.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/10 17:01:40 by bford             #+#    #+#             */
-/*   Updated: 2020/01/20 18:05:54 by bford            ###   ########.fr       */
+/*   Created: 2019/09/30 16:44:26 by bford             #+#    #+#             */
+/*   Updated: 2019/10/06 14:27:21 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
+#include <stdlib.h>
 
-int		ft_putstr(char const *s)
+int		ft_clearlist(t_pf **l)
 {
-	int		len;
-
-	len = (int)ft_strlen(s);
-	if (s)
-		write(1, s, len);
-	return (len);
+	if (l && *l)
+	{
+		(*l)->p = 0;
+		(*l)->m = 0;
+		(*l)->o = 0;
+		(*l)->s = 0;
+		(*l)->nol = 0;
+		(*l)->i1 = 0;
+		(*l)->i1was = 0;
+		(*l)->point = 0;
+		(*l)->i2 = 0;
+		(*l)->i2was = 0;
+		(*l)->f = 0;
+		(*l)->c = 0;
+		(*l)->all = 0;
+		free(*l);
+		*l = NULL;
+	}
+	return (1);
 }

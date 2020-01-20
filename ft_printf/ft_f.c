@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_f.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/10 17:01:40 by bford             #+#    #+#             */
-/*   Updated: 2020/01/20 18:05:54 by bford            ###   ########.fr       */
+/*   Created: 2019/10/03 18:22:50 by bford             #+#    #+#             */
+/*   Updated: 2019/10/06 18:07:55 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-int		ft_putstr(char const *s)
+int		ft_f(t_pf **l, va_list a)
 {
-	int		len;
+	int		flag;
 
-	len = (int)ft_strlen(s);
-	if (s)
-		write(1, s, len);
-	return (len);
+	flag = (*l)->f;
+	if ((flag == 0 && ft_f_func(l, (long double)va_arg(a, double))) ||
+	(flag == 4 && ft_f_func(l, (long double)va_arg(a, double))) ||
+	(flag == 5 &&
+	ft_f_func(l, (long double)va_arg(a, long double))))
+		return (1);
+	return (0);
 }

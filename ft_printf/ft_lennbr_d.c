@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_lennbr_d.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/10 17:01:40 by bford             #+#    #+#             */
-/*   Updated: 2020/01/20 18:05:54 by bford            ###   ########.fr       */
+/*   Created: 2019/10/06 14:30:02 by bford             #+#    #+#             */
+/*   Updated: 2019/10/06 14:30:06 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-int		ft_putstr(char const *s)
+int		ft_lennbr_d(long long d, long long c)
 {
-	int		len;
+	int len;
 
-	len = (int)ft_strlen(s);
-	if (s)
-		write(1, s, len);
+	len = 1;
+	while (d /= c)
+		len++;
 	return (len);
 }

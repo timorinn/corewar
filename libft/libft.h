@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 16:20:54 by bford             #+#    #+#             */
-/*   Updated: 2019/12/06 12:25:30 by bford            ###   ########.fr       */
+/*   Updated: 2020/01/20 18:20:09 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ int					ft_putchar(char c);
 int					ft_putstr(char const *s);
 int					ft_putendl(char const *s);
 void				ft_putnbr(int n);
+int					ft_putstr_num(const char *s, int n);
 int					ft_putchar_fd(char c, int fd);
 int					ft_putstr_fd(char const *s, int fd);
 int					ft_putendl_fd(char const *s, int fd);
