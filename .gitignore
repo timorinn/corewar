@@ -5,3 +5,12 @@
 /diff
 /difference
 /corewar.dSYM
+/vm_champs
+*.a
+*log*
+/cmake-build-debug
+.idea
+t1
+t2
+*.cor
+.DS_Store
