@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/29 00:43:38 by bford             #+#    #+#             */
-/*   Updated: 2020/01/06 10:31:36 by bford            ###   ########.fr       */
+/*   Updated: 2020/01/20 17:59:08 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,8 @@ int		vm_check_cursor(uint8_t map[MEM_SIZE][4],
 	t_cursor	*copy;
 	t_cursor	*for_del;
 
+	if (cycle->cycles_to_die <= 0)
+		return (1);
 	if (cycle->cycle_num == cycle->waiting_die /* + 1 */)
 	{
 		copy = *cur;
@@ -144,7 +146,5 @@ int		vm_check_cursor(uint8_t map[MEM_SIZE][4],
 		cycle->lives_in_current_period_all = 0;
 		ft_bzero(cycle->lives_in_current_period, sizeof(int) * MAX_PLAYERS);
 	}
-	if (cycle->cycles_to_die <= 0)
-		return (1);
 	return (0);
 }

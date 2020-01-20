@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 13:17:03 by bford             #+#    #+#             */
-/*   Updated: 2019/12/28 20:27:19 by bford            ###   ########.fr       */
+/*   Updated: 2020/01/20 17:58:23 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ void		ft_print_player_param(t_player *player, int code)
 
 int			ft_init_dump(int argc, char **argv)
 {
-	return (argc > 1 && !ft_strcmp(argv[1], "-dump") ? ft_atoi(argv[2]) : -1);
+
+	return (argc > 1 && !ft_strcmp(argv[1], "-dump") && ft_isint(argv[2], 1, 1, 1) ? ft_atoi(argv[2]) : -1);
 }
 
 bool		vm_get_log_flag(int ac, char **av, t_flags flags)
