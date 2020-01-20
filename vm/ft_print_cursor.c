@@ -20,12 +20,12 @@ int		ft_print_cursor(t_cursor *car, t_cycle cycle)
 	i = 0;
 	while (i < cycle.cur_len)
 	{
-		printf("t_cursor pnum = %d | pos = %4d | op = %2d | cd = %3d | ",
+		ft_printf("t_cursor pnum = %d | pos = %4d | op = %2d | cd = %3d | ",
 		car[i].play_num, car[i].position, car[i].operation, car[i].cooldown);
 		reg = 0;
 		while (reg < 16 && ++reg)
-			printf("r%d %d | ", reg, car[i].registr[reg - 1]);
-		printf("\n");
+			ft_printf("r%d %d | ", reg, car[i].registr[reg - 1]);
+		ft_printf("\n");
 		++i;
 	}
 	return (1);

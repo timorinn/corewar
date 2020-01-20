@@ -17,7 +17,7 @@ static inline void	vm_print_log_ldi(t_args *args, int32_t addr)
 	int32_t offset;
 
 	offset = args->nums_unfolded[0] + args->nums_unfolded[1];
-	printf("%20c -> load from %d + %d = %d (with pc and mod %d)\n", '|', args->nums_unfolded[0], args->nums_unfolded[1], offset, addr);
+	ft_printf("%20c -> load from %d + %d = %d (with pc and mod %d)\n", '|', args->nums_unfolded[0], args->nums_unfolded[1], offset, addr);
 	fflush(stdout);
 }
 

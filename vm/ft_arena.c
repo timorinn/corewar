@@ -19,7 +19,7 @@ int		vm_print_winner(t_player *player, int winner_num)
 
 	/////////ft_printf
 
-	printf("Contestant %d, \"%s\", has won!\n", player->num, player->name);
+	ft_printf("Contestant %d, \"%s\", has won !\n", player->num, player->name);
 
 //	ft_putstr("Contestant ");
 //	ft_putnbr(player->num);
@@ -88,9 +88,14 @@ int		ft_no_print_map(uint8_t map[MEM_SIZE][4], t_cursor **cur,
 	ft_print_players(player);
 	while (TRUE)
 	{
+//		if (cycle->cycle_num == 0)
+//		{
+//			cycle->cycle_num++;
+//			continue;
+//		}
 		//////////// ft_printf!!
 		if (cycle->log == true && cycle->cycle_num != 0) /////////Cycle zero??
-			printf("It is now cycle %d\n", cycle->cycle_num);
+			ft_printf("It is now cycle %d\n", cycle->cycle_num);
 		//
 		ft_do_cycle(map, cur, cycle);
 		if (vm_check_cursor(map, cur, cycle) == 1)
@@ -114,7 +119,7 @@ int		ft_arena(t_flags flags, t_player *player, int v)
 	player_qty = ft_lstlen_player(player);
 	vm_init_cycle(&cycle, player_qty, flags, v);
 	ft_init_map(map, player);
-	if (!player || !(cur = vm_make_start_list_cursor(player, player_qty, map)))
+	if (!player || !(cur = vm_make_start_list_cursor(player, map)))
 		exit(1);
 	if (v)
 		ft_print_map(map, &cur, player, &cycle);

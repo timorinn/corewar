@@ -17,7 +17,10 @@ int		ft_lstlen_player(t_player *player)
 	int	i;
 
 	i = 0;
-	while (player && ++i)
+	while (player)
+	{
 		player = player->next;
+		i++;
+	}
 	return (i);
 }

@@ -48,8 +48,8 @@ int		vm_op_zjmp(uint8_t map[MEM_SIZE][4], t_cycle *cycle)
 	if (cycle->log)
 	{
 		vm_print_log_op("zjmp", cycle);
-		printf(" %d ", ind.data); // printf
-		cur->carry ? printf("OK\n") : printf("FAILED\n"); //printf
+		ft_printf(" %d ", ind.data); // printf
+		cur->carry ? ft_printf("OK\n") : ft_printf("FAILED\n"); //printf
 	}
 
 	cur->position += (cur->carry ? (ind.data % IDX_MOD) : 3) ; //% MEM_SIZE;

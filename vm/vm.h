@@ -59,6 +59,7 @@
 **************************************\n"
 
 # include "../libft/libft.h"
+# include "../ft_printf/ft_printf.h"
 # include <fcntl.h>
 # include <stdint.h>
 # include <ncurses.h>
@@ -116,7 +117,7 @@ typedef struct {
 
 typedef struct {
 	t_cursor	*now_cur;
-	int32_t		new_cur_num;
+//	int32_t		new_cur_num;
 	int32_t		cycle_num;
 	int32_t		dump;
 	bool		log;
@@ -152,7 +153,7 @@ int					ft_print_map(uint8_t map[MEM_SIZE][4], t_cursor **car,
 								t_player *player, t_cycle *cycle);
 int					ft_print_players(t_player *player);
 int					ft_print_map_single(uint8_t map[MEM_SIZE][4]);
-t_cursor			*vm_make_start_list_cursor(t_player *player, int8_t player_qty, uint8_t map[MEM_SIZE][4]);
+t_cursor			*vm_make_start_list_cursor(t_player *player, uint8_t map[MEM_SIZE][4]);
 int					ft_print_cursor(t_cursor *careta, t_cycle cycle);
 
 int					ft_do_cycle(uint8_t map[MEM_SIZE][4], t_cursor **car, t_cycle *cycle);

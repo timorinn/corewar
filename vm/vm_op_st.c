@@ -68,10 +68,9 @@ bool	vm_op_st(uint8_t map[MEM_SIZE][4], t_cycle *cycle)
 //		mvprintw(86, 90, "st target_cycle: %d", cycle->cycle_num);
 		// if (vm_validate_args(args, "R--RI----"))						ARGS ERROR commit
 	if (vm_validate_args(args, "R--RI----", 2))
-
 	{
 		vm_unfold_all(map, cur, &args, true);
-		if (cycle->log == true)
+		if (cycle->log)
 			vm_print_log_args(&args, 2);
 		if (args.types[1] == IND_CODE)
 		{

@@ -16,7 +16,7 @@ void	vm_init_cycle(t_cycle *cycle, int player_size, t_flags flags, int v)
 {
 	cycle->v = v;
 	cycle->cycle_num = 0;
-	cycle->new_cur_num = player_size;
+//	cycle->new_cur_num = player_size;
 	cycle->dump = flags.dump;
 	cycle->log = flags.log;
 	cycle->cur_len = player_size;

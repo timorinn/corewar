@@ -20,11 +20,11 @@ void		ft_print_bit(uint32_t n)
 	while (shift < 32)
 	{
 		if ((shift & 0b111) == 0)
-			printf(" ");
-		printf("%d", (n & ((uint32_t)1 << shift)) ? 1 : 0);
+			ft_printf(" ");
+		ft_printf("%d", (n & ((uint32_t)1 << shift)) ? 1 : 0);
 		shift++;
 	}
-	printf("_\n");
+	ft_printf("_\n");
 }
 
 int			ft_make_player_name(t_player *player, char *name)

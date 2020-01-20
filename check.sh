@@ -29,16 +29,16 @@ rm -rf res2
 rm -rf difference
 
 i=0
-./corewar -dump $dump jumper.cor jumper.cor mortel.cor > res1
-./vm_champs/corewar -d $dump jumper.cor jumper.cor mortel.cor > res2
+./corewar -dump $dump kamelkaze.cor jumper.cor bee_gees.cor > res1
+./vm_champs/corewar -d $dump kamelkaze.cor jumper.cor bee_gees.cor > res2
 diff res1 res2 > difference
 i=$(ls -l difference | cut -d " " -f8 | bc)
 while [ "$i" -eq 0 ]
 do
 	dump=$(($dump + 1))
 	# echo "dump eby4uu' = " $dump
-	./corewar -dump $dump jumper.cor jumper.cor mortel.cor > res1
-	./vm_champs/corewar -d $dump jumper.cor jumper.cor mortel.cor > res2
+	./corewar -dump $dump kamelkaze.cor jumper.cor bee_gees.cor > res1
+	./vm_champs/corewar -d $dump kamelkaze.cor jumper.cor bee_gees.cor > res2
 	diff res1 res2 > difference
 	i=$(ls -l difference | cut -d " " -f8 | bc)
 	if [ $dump == $limit ]

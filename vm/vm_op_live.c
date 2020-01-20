@@ -23,7 +23,7 @@ int		vm_op_live(uint8_t map[MEM_SIZE][4], t_cycle *cycle)
 	if (cycle->log)
 	{
 		vm_print_log_op("live", cycle);
-		printf(" %d\n", dir.data);
+		ft_printf(" %d\n", dir.data);
 	}
 
 	cur->live = cycle->cycle_num - 1;

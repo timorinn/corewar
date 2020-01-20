@@ -18,7 +18,7 @@ int		ft_do_operation(uint8_t map[MEM_SIZE][4],
 	int		o;
 
 	o = cycle->now_cur->operation;
-//	printf("Here is the operation number: %02x, here is the cycle number: %d; here is the cursor position: %d\n", o, cycle->cycle_num ,cycle->now_cur->position);
+//	ft_printf("Here is the operation number: %02x, here is the cycle number: %d; here is the cursor position: %d\n", o, cycle->cycle_num ,cycle->now_cur->position);
 	if ((o == 1 && vm_op_live(map, cycle)) ||
 	(o == 2 && vm_op_ld(map, cycle)) || (o == 3 && vm_op_st(map, cycle)) ||
 	(o == 4 && vm_op_add(map, cycle)) || (o == 5 && vm_op_sub(map, cycle)) ||

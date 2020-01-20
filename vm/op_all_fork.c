@@ -73,7 +73,7 @@ inline bool	op_all_fork(uint8_t map[MEM_SIZE][4], t_cycle *cycle,
 	ft_init_t_ind(map, now_cur->position + 1, &ind);
 	head_cur->position = operation(now_cur->position, ind.data);
 	if (cycle->log == true)
-		printf(" %d (%d)\n", ind.data, head_cur->position);
+		ft_printf(" %d (%d)\n", ind.data, head_cur->position);
 	head_cur->num = ++cycle->processes_qty;
 	map[head_cur->position][2] += 1;
 	map[now_cur->position][2] -= 1;

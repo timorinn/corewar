@@ -17,7 +17,7 @@ static inline void	vm_print_log_sti(t_args *args, int32_t addr)
 	int32_t offset;
 
 	offset = args->nums_unfolded[1] + args->nums_unfolded[2];
-	printf("%20c -> store to %d + %d = %d (with pc and mod %d)\n", '|', args->nums_unfolded[1], args->nums_unfolded[2], offset, addr);
+	ft_printf("%20c -> store to %d + %d = %d (with pc and mod %d)\n", '|', args->nums_unfolded[1], args->nums_unfolded[2], offset, addr);
 	fflush(stdout);
 }
 

@@ -80,7 +80,7 @@ int		vm_delete_one_cursor(uint8_t map[MEM_SIZE][4], t_cursor **cur,
 
 // 		//cycle->cycles_to_die -= (cycle->lives_in_current_period_all >= NBR_LIVE ? CYCLE_DELTA : 0);
 // 		cycle->waiting_die += cycle->cycles_to_die;
-// 		printf("WAITING DIE = %d\n", cycle->waiting_die);
+// 		ft_printf("WAITING DIE = %d\n", cycle->waiting_die);
 
 // 		cycle->lives_in_current_period_all = 0;
 // 		ft_bzero(cycle->lives_in_current_period, sizeof(int) * MAX_PLAYERS);
@@ -136,7 +136,7 @@ int		vm_check_cursor(uint8_t map[MEM_SIZE][4],
 			cycle->cycles_to_die -= CYCLE_DELTA;
 			////////////////////////////////      printf
 			if (cycle->log)
-				printf("Cycle to die is now %d\n", cycle->cycles_to_die);
+				ft_printf("Cycle to die is now %d\n", cycle->cycles_to_die);
 			///////////////////////////////
 			cycle->checks = 0;
 		}

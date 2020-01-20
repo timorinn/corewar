@@ -34,7 +34,7 @@ all:		$(NAME)
 			gcc -Wall -Werror -Wextra -g -I $(LIBFT) -I $(VM) -o $@ -c $<
 
 $(NAME):	$(LIBFTA) $(VMA) $(FTPRINTFA) $(OBJ) ./libft/libft.a ./vm/libvm.a ./ft_printf/libftprintf.a
-			gcc -Wall -Werror -Wextra -g -o corewar $(OBJ) -L ./libft -lft -L ./vm -lvm -lncurses
+			gcc -Wall -Werror -Wextra -g -o corewar $(OBJ) -L ./libft -lft -L ./vm -lvm -L ./ft_printf -lftprintf -lncurses
 
 FORCE:		;
 

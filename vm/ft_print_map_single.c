@@ -20,10 +20,10 @@ int		ft_print_map_single(uint8_t map[MEM_SIZE][4])
 	while (i < MEM_SIZE + 1)
 	{
 		if (i % 64 == 1)
-			printf("0x%03x0 : ", i / 16);
-		printf("%02x ", map[i - 1][0]);
+			ft_printf("0x%03x0 : ", i / 16);
+		ft_printf("%02x ", map[i - 1][0]);
 		if (i % 64 == 0)
-			printf("\n");
+			ft_printf("\n");
 		i++;
 	}
 	return (1);

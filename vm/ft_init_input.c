@@ -54,7 +54,7 @@ t_player	*ft_init_input(int argc, char **argv, int valid, t_flags flags)
 	if (!valid)
 		return (NULL);
 	i += flags.offset;
-//	printf("\nDebug log i = %d\n", i);
+//	ft_printf("\nDebug log i = %d\n", i);
 //	i += (dump != -1 ? 2 : 0);
 	ft_init_numbers(numbers);
 	argc -= (ft_strcmp(argv[argc - 1], "-v") ? 0 : 1);
