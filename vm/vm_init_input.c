@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_init_input.c                                    :+:      :+:    :+:   */
+/*   vm_init_input.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "vm.h"
 
-static void	ft_init_numbers(int *nums)
+inline static void	vm_init_numbers(int8_t nums[MAX_PLAYERS])
 {
 	int		i;
 
@@ -21,13 +21,14 @@ static void	ft_init_numbers(int *nums)
 		nums[i - 1] = 0;
 }
 
-int			ft_make_player_num(t_player *player, int *numbers)
+int8_t		ft_make_player_num(t_player *player,
+		const int8_t numbers[MAX_PLAYERS])
 {
-	int		i;
-	int		len;
+	int8_t	i;
+	int8_t	len;
 
 	i = 0;
-	len = ft_lstlen_player(player);
+	len = vm_lstlen_player(player);
 	while (player)
 	{
 		if (player->num == 0)
@@ -43,10 +44,10 @@ int			ft_make_player_num(t_player *player, int *numbers)
 	return (1);
 }
 
-t_player	*ft_init_input(int argc, char **argv, int valid, t_flags flags)
+t_player	*vm_init_input(int argc, char **argv, int8_t valid, t_flags flags)
 {
 	t_player	*player;
-	int			numbers[MAX_PLAYERS];
+	int8_t		numbers[MAX_PLAYERS];
 	int			i;
 
 	i = 1;
@@ -54,21 +55,11 @@ t_player	*ft_init_input(int argc, char **argv, int valid, t_flags flags)
 	if (!valid)
 		return (NULL);
 	i += flags.offset;
-//	ft_printf("\nDebug log i = %d\n", i);
-//	i += (dump != -1 ? 2 : 0);
-	ft_init_numbers(numbers);
+	vm_init_numbers(numbers);
 	argc -= (ft_strcmp(argv[argc - 1], "-v") ? 0 : 1);
 	while (i < argc && ++i)
-		if (!ft_init_player(argv, &i, &player, numbers))
-			return (NULL + ft_lstdel_player(player));
-
-//	while (i < argc)// && argc)
-//	{
-//		if (!ft_init_player(argv, &argc, &player, numbers))
-//			return (NULL + ft_lstdel_player(player));
-//		argc--;
-//	}
-
+		if (!vm_init_player(argv, &i, &player, numbers))
+			return (NULL + vm_lstdel_player(player));
 	return (ft_make_player_num(player, numbers) ?
-	player : NULL + ft_lstdel_player(player) + ft_error(4, 0));
+	player : NULL + vm_lstdel_player(player) + vm_error(4, 0));
 }

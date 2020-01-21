@@ -11,7 +11,7 @@ static inline int	vm_unfold_indirect(uint8_t map[MEM_SIZE][4], uint16_t addr, ui
 	addr %= MEM_SIZE;
 	if (addr < 0)
 		addr += MEM_SIZE;
-	dir = ft_init_t_dir(map, addr, dir_size);
+	dir = vm_init_t_dir(map, addr, dir_size);
 	return (dir.data);
 }
 

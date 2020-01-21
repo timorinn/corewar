@@ -18,7 +18,7 @@ int		vm_op_live(uint8_t map[MEM_SIZE][4], t_cycle *cycle)
 	t_cursor	*cur;
 
 	cur = cycle->now_cur;
-	dir = ft_init_t_dir(map, cur->position + 1, 4);
+	dir = vm_init_t_dir(map, cur->position + 1, 4);
 
 	if (cycle->log)
 	{

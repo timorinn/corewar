@@ -13,40 +13,10 @@
 #include "libft.h"
 #include "vm.h"
 
-int			ft_visu(int argc, char **argv)
+int8_t		ft_visu(int argc, char **argv)
 {
 	return (!ft_strcmp(argv[argc - 1], "-v"));
 }
-
-void		ft_print_code(t_player *player)
-{
-	int				i;
-	int				size;
-	unsigned char	*code;
-
-	i = 0;
-	size = player->size;
-	code = player->code;
-	while (i < size && ++i)
-	{
-		printf("%x", code[i - 1]);
-		write(1, " ", 1);
-	}
-	write(1, "\n\n", 2);
-}
-/*
-void		ft_print_player_param(t_player *player, int code)
-{
-	while (player)
-	{
-		printf("Player[%d] | Name = %s\n", player->num, player->name);
-		printf("	%s\n", player->comment);
-		if (code)
-			ft_print_code(player);
-		player = player->next;
-	}
-}
-*/
 
 int			ft_init_dump(int argc, char **argv)
 {
@@ -72,11 +42,11 @@ int			main(int argc, char **argv)
 	flags.offset = (flags.dump == -1 ? 0 : 2);
 	flags.log = vm_get_log_flag(argc, argv, flags);
 	flags.offset += (flags.log == false ? 0 : 1);
-	player = ft_init_input(argc, argv, ft_valid_input(argc, argv), flags);
+	player = vm_init_input(argc, argv, vm_valid_input(argc, argv), flags);
 	/* СЕГА ПРИ ОГРОМНОМ ЗНАЧЕНИИ ДАМПА! */
-	ft_arena(flags, player, ft_visu(argc, argv));
+	vm_arena(flags, player, ft_visu(argc, argv));
 
 	//ft_print_player_param(player, 0);
 
-	return (ft_lstdel_player(player));
+	return (vm_lstdel_player(player));
 }

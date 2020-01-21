@@ -10,31 +10,29 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRC =		ft_valid_input.c		\
-			ft_init_input.c			\
-			ft_init_player.c		\
-			ft_lstnew_player.c		\
-			ft_lstlen_player.c		\
-			ft_lstdel_player.c		\
-			ft_error.c				\
-			ft_arena.c				\
-			ft_print_map.c			\
-			ft_print_players.c		\
-			ft_print_map_single.c	\
+SRC =		vm_valid_input.c		\
+			vm_make_player_params.c	\
+			vm_init_input.c			\
+			vm_init_player.c		\
+			vm_error.c				\
+			vm_arena.c				\
+			vm_print_map.c			\
+			vm_print_players.c		\
+			vm_print_map_single.c	\
 			vm_make_start_list_cursor.c		\
-			ft_print_cursor.c		\
-			\
-			ft_do_cycle.c			\
-			ft_init_t_dir.c			\
-			ft_init_t_ind.c			\
-			ft_init_args.c			\
+			vm_print_cursor.c		\
+			vm_no_print_map.c		\
+			vm_do_cycle.c			\
+			vm_init_t_dir.c			\
+			vm_init_t_ind.c			\
+			vm_init_args.c			\
 			vm_init_cycle.c			\
-			ft_dir_or_ind.c			\
-			ft_move.c				\
+			vm_dir_or_ind.c			\
+			vm_move.c				\
 			vm_validate_args.c		\
 			vm_get_args.c			\
 			vm_unfold_indirects.c	\
-			ft_rewrite_map.c		\
+			vm_rewrite_map.c		\
 			\
 			vm_op_ld.c				\
 			vm_op_ldi.c				\
@@ -63,12 +61,12 @@ SRC =		ft_valid_input.c		\
 			\
 			vm_check_cursor.c		\
 			vm_lstdel_cursor.c		\
-			\
+			vm_player_lst.c			\
 			vm_print_log.c
 
 OBJ =		$(SRC:.c=.o)
 
-HEAD =		vm.h
+HEAD =		vm.h vm_init_player.h
 
 NAME =		libvm.a
 

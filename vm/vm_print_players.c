@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_players.c                                 :+:      :+:    :+:   */
+/*   vm_print_players.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "vm.h"
 
-int     ft_print_players(t_player *player)
+int     vm_print_players(t_player *player)
 {
     ft_putstr("Introducing contestants...\n");
     while (player)

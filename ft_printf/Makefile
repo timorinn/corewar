@@ -51,15 +51,15 @@ NAME =		libftprintf.a
 all:		$(NAME)
 
 $(NAME):	$(OBJ)
-			ar -rcs $(NAME) $(OBJ)
+			@ar -rcs $(NAME) $(OBJ)
 
 %.o:		%.c $(HEAD)
-			gcc -I ./ -Wall -Wextra -Werror -g -c $< -o $@
+			@gcc -I ./ -Wall -Wextra -Werror -g -c $< -o $@
 
 clean:
-			rm -f $(OBJ)
+			@rm -f $(OBJ)
 
 fclean:		clean
-			rm -f $(NAME)
+			@rm -f $(NAME)
 
 re:			fclean all

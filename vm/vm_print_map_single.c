@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_init_t_ind.c                                    :+:      :+:    :+:   */
+/*   vm_print_map_single.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/14 19:59:37 by bford             #+#    #+#             */
-/*   Updated: 2019/12/19 14:06:50 by bford            ###   ########.fr       */
+/*   Created: 2019/12/21 18:59:50 by bford             #+#    #+#             */
+/*   Updated: 2019/12/21 19:17:31 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-void	ft_init_t_ind(uint8_t map[MEM_SIZE][4],
-int position, t_ind *ind)
+int		vm_print_map_single(uint8_t map[MEM_SIZE][4])
 {
-	//(*ind).bytes[0] = (position + 1 > (MEM_SIZE - 1) ?
-	//map[position + 1 - MEM_SIZE][0] : map[position + 1][0]);
-	(*ind).bytes[0] = map[(position + 1) % MEM_SIZE][0];
-	//(*ind).bytes[1] = (position > (MEM_SIZE - 1) ?
-	//map[position - MEM_SIZE][0] : map[position][0]);
-	(*ind).bytes[1] = map[position % MEM_SIZE][0];
+	int		i;
+
+	i = 1;
+	while (i < MEM_SIZE + 1)
+	{
+		if (i % 64 == 1)
+			ft_printf("0x%03x0 : ", i / 16);
+		ft_printf("%02x ", map[i - 1][0]);
+		if (i % 64 == 0)
+			ft_printf("\n");
+		i++;
+	}
+	return (1);
 }

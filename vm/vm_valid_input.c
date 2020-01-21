@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_valid_input.c                                   :+:      :+:    :+:   */
+/*   vm_valid_input.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,23 +12,23 @@
 
 #include "vm.h"
 
-static int	ft_check_name_player(const char *name)
+inline static bool	check_name_player(const char *name)
 {
 	while (*name && *name != '.')
 		name++;
-	return (*name && !ft_strcmp(name, ".cor") ? 1 : 0);
+	return (*name && !ft_strcmp(name, ".cor") ? true : false);
 }
 
-static void	ft_init_numbers(int *nums)
+inline static void	init_numbers(int8_t *nums)
 {
-	int		i;
+	int8_t	i;
 
 	i = 0;
 	while (i < MAX_PLAYERS && ++i)
 		nums[i - 1] = 0;
 }
 
-static int	ft_valid_argv(int argc, char **argv, int *i, int *players)
+inline static int	valid_argv(int argc, char **argv, int *i, int8_t *players)
 {
 	if (!ft_strcmp(argv[*i - 1], "-n"))
 	{
@@ -46,19 +46,18 @@ static int	ft_valid_argv(int argc, char **argv, int *i, int *players)
 			return (ft_putstr_fd("Error: -n: invalid player number\n", 2));
 		else if (players[ft_atoi(argv[*i]) - 1] != 0)
 			return (ft_putstr_fd("Error: -n: repeat player number\n", 2));
-		else if (!ft_check_name_player(argv[*i + 1]))
-			return (ft_error(1, argv[*i - 1]));
+		else if (!check_name_player(argv[*i + 1]))
+			return (vm_error(1, argv[*i - 1]));
 		return ((players[ft_atoi(argv[*i]) - 1] += 1) && (*i += 2));
 	}
-	return (ft_check_name_player(argv[*i - 1]) ? 1 :
-	ft_error(1, argv[*i - 1]));
+	return (check_name_player(argv[*i - 1]) ? 1 :
+	vm_error(1, argv[*i - 1]));
 }
 
-static int	ft_valid_dump(int argc, char **argv, int *i)
+inline static int	valid_dump(int argc, char **argv, int *i)
 {
 	if (!ft_strcmp(argv[1], "-dump"))
 	{
-		//return (argc >= 4 && ft_isint(argv[2], 1, 0, 1) && (*i += 2) ? 1 : 0);
 		if (argc < 4)
 			return (ft_putstr("Error: not enough arguments\n"));
 		else if (!ft_isint(argv[2], 1, 0, 1))
@@ -69,26 +68,26 @@ static int	ft_valid_dump(int argc, char **argv, int *i)
 	return (1);
 }
 
-int			ft_valid_input(int argc, char **argv)
+inline int8_t		vm_valid_input(int argc, char **argv)
 {
 	int		i;
 	int		players_num;
-	int		nums[MAX_PLAYERS];
+	int8_t	nums[MAX_PLAYERS];
 
 	i = 1;
 	players_num = 0;
-	ft_init_numbers(nums);
-	if (argc < 2 || !ft_valid_dump(argc, argv, &i))
+	init_numbers(nums);
+	if (argc < 2 || !valid_dump(argc, argv, &i))
 		return (0);
 	if (!ft_strcmp(argv[i], "-log"))
 		i++;
 	argc -= (ft_strcmp(argv[argc - 1], "-v") ? 0 : 1);
 	while (i < argc && ++i)
 	{
-		if (!ft_valid_argv(argc, argv, &i, nums))
+		if (!valid_argv(argc, argv, &i, nums))
 			return (0);
 		if (++players_num > MAX_PLAYERS)
-			return (ft_error(7, 0));
+			return (vm_error(7, 0));
 	}
 	return (1);
 }

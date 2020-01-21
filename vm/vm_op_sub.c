@@ -33,7 +33,7 @@ bool	vm_op_sub(uint8_t map[MEM_SIZE][4], t_cycle *cycle)
 		else
 			cur->carry = 0;
 	}
-	cur->position += ft_move(args.types, "1110", args.dir_size) + 2;
+	cur->position += vm_move(args.types, "1110", args.dir_size) + 2;
 	cur->position %= MEM_SIZE;
 	return (true);
 }

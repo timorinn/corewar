@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_init_t_dir.c                                    :+:      :+:    :+:   */
+/*   vm_init_t_dir.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "vm.h"
 
-t_dir	ft_init_t_dir(uint8_t map[MEM_SIZE][4],
+t_dir	vm_init_t_dir(uint8_t map[MEM_SIZE][4],
 	int position, uint8_t dir_size)
 {
 	t_dir dir;

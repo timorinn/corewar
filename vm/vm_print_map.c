@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_map.c                                     :+:      :+:    :+:   */
+/*   vm_print_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -29,7 +29,7 @@ int		vm_print_winner_v(t_player *player, t_cycle *cycle)
 	return (1);
 }
 
-int		ft_init_colors(void)
+inline static void		vm_init_colors(void)
 {
 	init_pair(1, COLOR_GREEN, COLOR_BLACK);
 	init_pair(2, COLOR_BLUE, COLOR_BLACK);
@@ -55,7 +55,6 @@ int		ft_init_colors(void)
 	init_pair(10, COLOR_BLACK, COLOR_CYAN);
 	init_pair(11, COLOR_WHITE, COLOR_BLACK);
 	*/
-	return (1);
 }
 
 /*
@@ -76,7 +75,7 @@ void	ft_find_color(int position, t_cursor *cur, int def, int cur_len)
 }
 */
 
-void	ft_find_color(uint8_t map[MEM_SIZE][4], int position)
+void	vm_find_color(uint8_t map[MEM_SIZE][4], int position)
 {
 	if (map[position][2])
 		color_set(map[position][1] + 5, NULL);
@@ -85,7 +84,7 @@ void	ft_find_color(uint8_t map[MEM_SIZE][4], int position)
 		//color_set(5, NULL);
 }
 
-int		ft_print_line(uint8_t map[MEM_SIZE][4], int i)
+int		vm_print_line(uint8_t map[MEM_SIZE][4], int i)
 {
 	int	t;
 
@@ -95,7 +94,7 @@ int		ft_print_line(uint8_t map[MEM_SIZE][4], int i)
 	while (t < 64)
 	{
 		//ft_find_color(t + i, car, map[t + i][1], cycle->cur_len);
-		ft_find_color(map, t + i);
+		vm_find_color(map, t + i);
 		if (map[t + i][1] == 5)
 			attron(A_BOLD);
 		printw("%02x", map[t + i][0]);
@@ -111,7 +110,7 @@ int		ft_print_line(uint8_t map[MEM_SIZE][4], int i)
 	return (1);
 }
 
-int		ft_print_contur(void)
+int		vm_print_contur(void)
 {
 	int	i;
 
@@ -132,15 +131,17 @@ int		ft_print_contur(void)
 	return (1);
 }
 
-int		ft_print_breakdown(int y)
+int		vm_print_breakdown(int y)
 {
 	color_set(11, NULL);
-	mvprintw(y + 1, 200, "--------------------------------------------------");
-	mvprintw(y + 4, 200, "--------------------------------------------------");
+//	mvprintw(y + 1, 200, "--------------------------------------------------");
+//	mvprintw(y + 4, 200, "--------------------------------------------------");
+	mvprintw(y + 1, 200, "--------BREAKDOWN-SUPPOSED-TO-BE-HERE-------------");
+	mvprintw(y + 4, 200, "----------BUT-THERE-IS-NO-BREAKDOWN---------------");
 	return (1);
 }
 
-int		ft_print_backside(t_cycle *cycle, t_player *player)
+int		vm_print_backside(t_cycle *cycle, t_player *player)
 {
 	int		y;
 
@@ -174,12 +175,12 @@ int		ft_print_backside(t_cycle *cycle, t_player *player)
 	mvprintw(y + 1, 250, "]");
 	mvprintw(y + 4, 250, "]");
 	attroff(A_BOLD);
-	ft_print_breakdown(y);
+	vm_print_breakdown(y);
 	cycle->winner_y = y;
 	return (y + 12);
 }
-
-int		ft_print_params(t_cursor *cur)
+/*
+int		vm_print_params(t_cursor *cur)
 {
 	int		y;
 	int		reg;
@@ -203,14 +204,14 @@ int		ft_print_params(t_cursor *cur)
 		cur = cur->next;
 	}
 
-	/*
-	mvprintw(90 + 1, 16, "FREE PLACE!");
-	*/
+
+	//mvprintw(90 + 1, 16, "FREE PLACE!");
+
 
 	return (y);
 }
-
-int			ft_print_map(uint8_t map[MEM_SIZE][4], t_cursor **cur,
+*/
+int			vm_print_map(uint8_t map[MEM_SIZE][4], t_cursor **cur,
 						t_player *player, t_cycle *cycle)
 {
 	int y;
@@ -218,24 +219,22 @@ int			ft_print_map(uint8_t map[MEM_SIZE][4], t_cursor **cur,
 	initscr();
 	curs_set(0);
 	start_color();
-	ft_init_colors();
+	vm_init_colors();
 	refresh();
 	noecho();
-	ft_print_contur();
-
+	vm_print_contur();
 	char c = 's';
 	while (c != 'q')
 	{
-		ft_print_backside(cycle, player);
+		vm_print_backside(cycle, player);
 		// ft_print_params(*cur);
-
-		ft_do_cycle(map, cur, cycle); // мб надо поставить перед проверкой курсоров
+		vm_do_cycle(map, cur, cycle); // мб надо поставить перед проверкой курсоров
 		if (vm_check_cursor(map, cur, cycle)) // new
 			return (vm_print_winner_v(player, cycle));
-		// ft_do_cycle(map, cur, cycle); // мб надо поставить перед проверкой курсоров
+		// vm_do_cycle(map, cur, cycle); // мб надо поставить перед проверкой курсоров
 		y = 0;
 		while (y < 64 && ++y)
-			ft_print_line(map, y - 1);
+			vm_print_line(map, y - 1);
 		refresh();
 		if (cycle->cycle_num >= cycle->dump)
 			//break;

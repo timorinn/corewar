@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlen_player.c                                 :+:      :+:    :+:   */
+/*   vm_dir_or_ind.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/06 15:53:12 by bford             #+#    #+#             */
-/*   Updated: 2020/01/05 17:11:58 by bford            ###   ########.fr       */
+/*   Created: 2019/12/14 20:59:37 by bford             #+#    #+#             */
+/*   Updated: 2019/12/14 22:18:02 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int		ft_lstlen_player(t_player *player)
+int8_t	vm_dir_or_ind(unsigned int arg, int8_t tdir)
 {
-	int	i;
-
-	i = 0;
-	while (player)
-	{
-		player = player->next;
-		i++;
-	}
-	return (i);
+	if (arg == DIR_CODE)
+		return (tdir);
+	else if (arg == IND_CODE)
+		return (IND_SIZE);
+	else if (arg == REG_CODE )
+		return (1);
+	return (0);
 }

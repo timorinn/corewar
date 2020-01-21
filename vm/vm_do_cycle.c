@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_do_cycle.c                                      :+:      :+:    :+:   */
+/*   vm_do_cycle.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -40,7 +40,7 @@ int		ft_do_operation(uint8_t map[MEM_SIZE][4],
 	return (1);
 }
 
-int		ft_do_cycle(uint8_t map[MEM_SIZE][4], t_cursor **cur, t_cycle *cycle)
+int		vm_do_cycle(uint8_t map[MEM_SIZE][4], t_cursor **cur, t_cycle *cycle)
 {
 	t_cursor	*copy;
 

@@ -1,18 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdel_player.c                                 :+:      :+:    :+:   */
+/*   vm_player_lst.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kpsylock <kpsylock@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/04 16:56:04 by bford             #+#    #+#             */
-/*   Updated: 2019/12/06 13:10:05 by bford            ###   ########.fr       */
+/*   Created: 2020/01/21 19:03:03 by kpsylock          #+#    #+#             */
+/*   Updated: 2020/01/21 19:03:03 by kpsylock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "vm.h"
 
-int		ft_lstdel_player(t_player *player)
+int8_t	vm_lstlen_player(t_player *player)
+{
+	int	i;
+
+	i = 0;
+	while (player)
+	{
+		player = player->next;
+		i++;
+	}
+	return (i);
+}
+
+t_player	*vm_lstnew_player(int num)
+{
+	t_player	*player;
+
+	if (!(player = (t_player *)malloc(sizeof(t_player))))
+		return (NULL + vm_error(12, 0));
+	player->num = num;
+	player->name = NULL;
+	player->comment = NULL;
+	player->code = NULL;
+	player->size = 0;
+	player->next = NULL;
+	return (player);
+}
+
+int		vm_lstdel_player(t_player *player)
 {
 	t_player	*buf;
 

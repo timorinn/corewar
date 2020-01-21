@@ -1,30 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_map_single.c                              :+:      :+:    :+:   */
+/*   vm_move.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/21 18:59:50 by bford             #+#    #+#             */
-/*   Updated: 2019/12/21 19:17:31 by bford            ###   ########.fr       */
+/*   Created: 2019/12/14 22:27:01 by bford             #+#    #+#             */
+/*   Updated: 2020/01/04 13:10:52 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int		ft_print_map_single(uint8_t map[MEM_SIZE][4])
+void	vm_move(t_cursor *cur, uint8_t args[4], char *valid, int dir)
 {
 	int		i;
+	int		move;
 
-	i = 1;
-	while (i < MEM_SIZE + 1)
+	i = 0;
+	move = 2;
+	while (i < MAX_ARGS_NUMBER)
 	{
-		if (i % 64 == 1)
-			ft_printf("0x%03x0 : ", i / 16);
-		ft_printf("%02x ", map[i - 1][0]);
-		if (i % 64 == 0)
-			ft_printf("\n");
+		if (valid[i] - '0' != 0)
+		{
+			if (args[i] == REG_CODE)
+				move += 1;
+			else if (args[i] == DIR_CODE)
+				move += dir;
+			else if (args[i] == IND_CODE)
+				move += 2;
+		}
 		i++;
 	}
-	return (1);
+	cur->position += move;
+	cur->position %= MEM_SIZE;
+	cur->operation = -1;
+	cur->cooldown = 0;
+	//return (move);
 }

@@ -75,7 +75,7 @@ bool				vm_op_sti(uint8_t map[MEM_SIZE][4], t_cycle *cycle)
 		*/
 		if (cycle->log)
 			vm_print_log_sti(&args, addr);
-		ft_rewrite_map(map, cur, args.nums_unfolded[0], addr);
+		vm_rewrite_map(map, cur, args.nums_unfolded[0], addr);
 
 /*
 		mvprintw(94, 50, "byte from addr: %02x", (int)(map[(addr + 3) % MEM_SIZE][0]));
@@ -87,13 +87,13 @@ bool				vm_op_sti(uint8_t map[MEM_SIZE][4], t_cycle *cycle)
 	else if (cycle->log)
 		ft_putendl(" failed!");
 
-	// cur->position += ft_move(args.types, "1110", 2) + 2; 			ARGS ERROR commit
+	// cur->position += vm_move(args.types, "1110", 2) + 2; 			ARGS ERROR commit
 	/*
-	cur->position += ft_move(args.types, "1110", 2) + 2;
+	cur->position += vm_move(args.types, "1110", 2) + 2;
 	cur->position %= MEM_SIZE;
 	*/
 	map[cur->position][2] -= 1;
-	ft_move(cur, args.types, "1110", 2);
+	vm_move(cur, args.types, "1110", 2);
 	map[cur->position][2] += 1;
 	return (true);
 }

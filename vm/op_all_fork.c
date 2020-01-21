@@ -24,7 +24,7 @@
 // 	size = ++cycle->cur_len;
 // 	if (!(newcur = malloc(sizeof(t_cursor) * size)))
 // 	 	return (FALSE);
-// 	ft_init_t_ind(map, nowcur->position + 1, &ind);
+// 	vm_init_t_ind(map, nowcur->position + 1, &ind);
 // 	ft_memmove(newcur + 1, *cur, (size - 1) * sizeof(t_cursor));
 // 	ft_memcpy(newcur, nowcur, sizeof(t_cursor));
 // 	while (--size)
@@ -70,7 +70,7 @@ inline bool	op_all_fork(uint8_t map[MEM_SIZE][4], t_cycle *cycle,
 	if (!(head_cur = malloc(sizeof(t_cursor))))
 		exit(1);
 	cycle->cur_len++;
-	ft_init_t_ind(map, now_cur->position + 1, &ind);
+	vm_init_t_ind(map, now_cur->position + 1, &ind);
 	head_cur->position = operation(now_cur->position, ind.data);
 	if (cycle->log == true)
 		ft_printf(" %d (%d)\n", ind.data, head_cur->position);

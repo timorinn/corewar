@@ -36,13 +36,13 @@ int		vm_op_zjmp(uint8_t map[MEM_SIZE][4], t_cycle *cycle)
 	//		//cur->position + ind.data % IDX_MOD;
 	// cur->position += ind.data % IDX_MOD;
 	// cur->position %= MEM_SIZE;
-	ft_init_t_ind(map, cur->position + 1, &ind);
+	vm_init_t_ind(map, cur->position + 1, &ind);
 	cur->position = (cur->position + ind.data % IDX_MOD) % MEM_SIZE;
 	map[cur->position][2] = 1;
 */
 
 	map[cur->position][2] -= 1;
-	ft_init_t_ind(map, cur->position + 1, &ind);
+	vm_init_t_ind(map, cur->position + 1, &ind);
 
 
 	if (cycle->log)

@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew_player.c                                 :+:      :+:    :+:   */
+/*   vm_init_t_ind.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/04 16:51:53 by bford             #+#    #+#             */
-/*   Updated: 2019/12/05 20:20:36 by bford            ###   ########.fr       */
+/*   Created: 2019/12/14 19:59:37 by bford             #+#    #+#             */
+/*   Updated: 2019/12/19 14:06:50 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-t_player		*ft_lstnew_player(int num)
+void	vm_init_t_ind(uint8_t map[MEM_SIZE][4],
+int position, t_ind *ind)
 {
-	t_player	*player;
-
-	if (!(player = (t_player *)malloc(sizeof(t_player))))
-		return (NULL + ft_error(12, 0));
-	player->num = num;
-	player->name = NULL;
-	player->comment = NULL;
-	player->code = NULL;
-	player->size = 0;
-	player->next = NULL;
-	return (player);
+	//(*ind).bytes[0] = (position + 1 > (MEM_SIZE - 1) ?
+	//map[position + 1 - MEM_SIZE][0] : map[position + 1][0]);
+	(*ind).bytes[0] = map[(position + 1) % MEM_SIZE][0];
+	//(*ind).bytes[1] = (position > (MEM_SIZE - 1) ?
+	//map[position - MEM_SIZE][0] : map[position][0]);
+	(*ind).bytes[1] = map[position % MEM_SIZE][0];
 }

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_init_args.c                                     :+:      :+:    :+:   */
+/*   vm_init_args.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,8 +12,8 @@
 
 #include "vm.h"
 
-void	ft_init_args(uint8_t map[MEM_SIZE][4],
-int position, uint8_t args[4])
+void	vm_init_args(uint8_t map[MEM_SIZE][4],
+int16_t position, uint8_t args[4])
 {
 	int		arg_type;
 

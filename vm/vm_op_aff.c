@@ -18,7 +18,7 @@ bool	vm_op_aff(uint8_t map[MEM_SIZE][4], t_cycle *cycle)
 	t_cursor	*cur;
 
 	cur = cycle->now_cur;
-	ft_init_args(map, cur->position, args);
+	vm_init_args(map, cur->position, args);
 
 	// if (args[0] == 1 && !args[1] && !args[2] &&						ARGS ERROR commit
 	if (args[0] == 1 && !args[1] && !args[2] &&
@@ -39,13 +39,13 @@ bool	vm_op_aff(uint8_t map[MEM_SIZE][4], t_cycle *cycle)
 		}
 	}
 
-	// cur->position += ft_move(args, "1110", 4) + 2;					ARGS ERROR commit
+	// cur->position += vm_move(args, "1110", 4) + 2;					ARGS ERROR commit
 	/*
-	cur->position += ft_move(args, "1000", 4) + 2;
+	cur->position += vm_move(args, "1000", 4) + 2;
 	cur->position %= MEM_SIZE;
 	*/
 	map[cur->position][2] -= 1;
-	ft_move(cur, args, "1000", 4);
+	vm_move(cur, args, "1000", 4);
 	map[cur->position][2] += 1;
 	return (true);
 }

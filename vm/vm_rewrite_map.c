@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_rewrite_map.c                                   :+:      :+:    :+:   */
+/*   vm_rewrite_map.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "vm.h"
 
-void	ft_rewrite_map(uint8_t map[MEM_SIZE][4],
+void	vm_rewrite_map(uint8_t map[MEM_SIZE][4],
 t_cursor *cur, unsigned int reg, int adress)
 {
 	map[(adress + 3) % MEM_SIZE][0] = (uint8_t)reg;

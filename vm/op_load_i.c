@@ -49,19 +49,19 @@ inline bool			op_load_i(uint8_t map[MEM_SIZE][4], bool ll, t_cycle *cycle)
 		addr = (cur->position + offset) % MEM_SIZE;
 		if (addr < 0)
 			addr += MEM_SIZE;
-		cur->registr[args.nums[2]] = ft_init_t_dir(map, addr, 4).data;
+		cur->registr[args.nums[2]] = vm_init_t_dir(map, addr, 4).data;
 		if (cycle->log)
 			vm_print_log_ldi(&args, addr);
 	}
 	else if (cycle->log == true)
 		ft_putendl(" failed!");
-	// cur->position += ft_move(args.types, "1110", 2) + 2;							ARGS ERROR commit
+	// cur->position += vm_move(args.types, "1110", 2) + 2;							ARGS ERROR commit
 	/*
-	cur->position += ft_move(args.types, "1110", 2) + 2;
+	cur->position += vm_move(args.types, "1110", 2) + 2;
 	cur->position %= MEM_SIZE;
 	*/
 	map[cur->position][2] -= 1;
-	ft_move(cur, args.types, "1110", 2);
+	vm_move(cur, args.types, "1110", 2);
 	map[cur->position][2] += 1;
 	return (true);
 }

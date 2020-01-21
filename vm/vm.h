@@ -60,6 +60,7 @@
 
 # include "../libft/libft.h"
 # include "../ft_printf/ft_printf.h"
+
 # include <fcntl.h>
 # include <stdint.h>
 # include <ncurses.h>
@@ -76,11 +77,11 @@ static int			g_operation[16] = {10, 5, 5, 10, 10, 6, 6, 6, 20, 25, 25, 800/* 800
 
 typedef struct		s_player
 {
-	int				num;
+	int8_t			num;
 	char			*name;
 	char			*comment;
 	unsigned char	*code;
-	int				size;
+	int32_t			size;
 	struct s_player	*next;
 }					t_player;
 
@@ -140,38 +141,47 @@ typedef struct {
 	int8_t	offset;
 }	t_flags;
 
-int					ft_valid_input(int argc, char **argv);
 
-t_player			*ft_init_input(int argc, char **argv, int valid, t_flags flags);
-int					ft_init_player(char **argv, int *i, t_player **player, int *numbers);
-t_player			*ft_lstnew_player(int num);
-int					ft_lstdel_player(t_player *player);
-int					ft_lstlen_player(t_player *player);
-int					ft_error(int num, char *s);
-int					ft_arena(t_flags flags, t_player *player, int v);
-int					ft_print_map(uint8_t map[MEM_SIZE][4], t_cursor **car,
+
+# include "vm_init_player.h"
+
+
+
+int8_t				vm_valid_input(int argc, char **argv);
+
+t_player			*vm_init_input(int argc, char **argv, int8_t valid,
+		t_flags flags);
+int8_t				vm_init_player(char **argv, int *i, t_player **player,
+		int8_t *numbers);
+t_player			*vm_lstnew_player(int num);
+int					vm_lstdel_player(t_player *player);
+int8_t				vm_lstlen_player(t_player *player);
+int8_t				vm_error(int8_t num, char *s);
+void				vm_arena(t_flags flags, t_player *player, int v);
+int					vm_print_map(uint8_t map[MEM_SIZE][4], t_cursor **car,
 								t_player *player, t_cycle *cycle);
-int					ft_print_players(t_player *player);
-int					ft_print_map_single(uint8_t map[MEM_SIZE][4]);
+void				vm_no_print_map(uint8_t map[MEM_SIZE][4], t_cursor **cur,
+							   t_player *player, t_cycle *cycle);
+int					vm_print_players(t_player *player);
+int					vm_print_map_single(uint8_t map[MEM_SIZE][4]);
 t_cursor			*vm_make_start_list_cursor(t_player *player, uint8_t map[MEM_SIZE][4]);
-int					ft_print_cursor(t_cursor *careta, t_cycle cycle);
-
-int					ft_do_cycle(uint8_t map[MEM_SIZE][4], t_cursor **car, t_cycle *cycle);
+int					vm_print_cursor(t_cursor *careta, t_cycle cycle);
+int					vm_do_cycle(uint8_t map[MEM_SIZE][4], t_cursor **car, t_cycle *cycle);
 void				vm_init_cycle(t_cycle *cycle, int player_size, t_flags flags, int v);
 
-t_dir				ft_init_t_dir(uint8_t map[MEM_SIZE][4],
+t_dir				vm_init_t_dir(uint8_t map[MEM_SIZE][4],
 		int position, uint8_t dir_size);
-void				ft_init_t_ind(uint8_t map[MEM_SIZE][4],
+void				vm_init_t_ind(uint8_t map[MEM_SIZE][4],
 		int position, t_ind *ind);
-void				ft_init_args(uint8_t map[MEM_SIZE][4],
-		int position, uint8_t args[4]);
+void				vm_init_args(uint8_t map[MEM_SIZE][4],
+		int16_t position, uint8_t args[4]);
 int					vm_get_args(uint8_t map[MEM_SIZE][4],
 								t_cursor *car, t_args *args);
 void				vm_unfold_all(uint8_t map[MEM_SIZE][4], t_cursor *car,
 						  			t_args *args, bool is_idx_needed);
 
-int					ft_dir_or_ind(unsigned int arg, int tdir);
-void				ft_move(t_cursor *cur, uint8_t args[4], char *valid, int dir);
+int8_t				vm_dir_or_ind(unsigned int arg, int8_t tdir);
+void				vm_move(t_cursor *cur, uint8_t args[4], char *valid, int dir);
 
 
 bool				op_bitwise(uint8_t map[MEM_SIZE][4], int32_t (*operation)(int32_t, int32_t),
@@ -203,7 +213,7 @@ bool				vm_op_aff(uint8_t map[MEM_SIZE][4], t_cycle *cycle);
 bool				vm_validate_args(t_args args, char const *validate, uint8_t max_args);
 
 
-void				ft_rewrite_map(uint8_t map[MEM_SIZE][4],
+void				vm_rewrite_map(uint8_t map[MEM_SIZE][4],
 					   t_cursor *car, uint32_t reg, int adress);
 					   
 int					vm_check_cursor(uint8_t map[MEM_SIZE][4],

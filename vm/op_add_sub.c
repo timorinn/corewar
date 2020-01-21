@@ -42,13 +42,13 @@ inline bool	op_add_sub(uint8_t map[MEM_SIZE][4],
 	}
 	else if (cycle->log == true)
 		ft_putendl(" failed!");
-	// cur->position += ft_move(args.types, "1110", args.dir_size) + 2;		ARGS ERROR commit
+	// cur->position += vm_move(args.types, "1110", args.dir_size) + 2;		ARGS ERROR commit
 	/*
-	cur->position += ft_move(args.types, "1110", args.dir_size) + 2;
+	cur->position += vm_move(args.types, "1110", args.dir_size) + 2;
 	cur->position %= MEM_SIZE;
 	*/
 	map[cur->position][2] -= 1;
-	ft_move(cur, args.types, "1110", args.dir_size);
+	vm_move(cur, args.types, "1110", args.dir_size);
 	map[cur->position][2] += 1;
 	return (true);
 }

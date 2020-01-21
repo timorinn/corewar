@@ -12,8 +12,8 @@
 
 #include "vm.h"
 
-static void		vm_init_cursor(t_cursor *cursor, t_player *player,
-							uint8_t map[MEM_SIZE][4], int position)
+inline static void		init_cursor(t_cursor *cursor, t_player *player,
+							uint8_t map[MEM_SIZE][4], int16_t position)
 {
 	cursor->play_num = player->num;
 	cursor->carry = 0;
@@ -25,40 +25,44 @@ static void		vm_init_cursor(t_cursor *cursor, t_player *player,
 	cursor->next = NULL;
 }
 
-t_cursor	*vm_make_start_list_cursor(t_player *player,
+inline static t_cursor	*create_cursor(uint8_t map[MEM_SIZE][4],
+		t_player *player, int16_t position, t_cursor *start)
+{
+	t_cursor	*cursor;
+
+	if (!(cursor = malloc(sizeof(t_cursor))))
+		exit(1);
+	init_cursor(cursor, player, map, position);
+	if (start != NULL)
+	{
+		cursor->next = start;
+		cursor->num = start->num + 1;
+	}
+	else
+		cursor->num = 1;
+	return (cursor);
+}
+
+t_cursor				*vm_make_start_list_cursor(t_player *player,
 										uint8_t map[MEM_SIZE][4])
 {
 	t_cursor	*cursor;
 	t_cursor	*start;
-	int			position;
-	int			pos_offset;
-	int32_t 	cursor_num;
+	int16_t		position;
+	int16_t		pos_offset;
 
-	position = MEM_SIZE / ft_lstlen_player(player);
-	pos_offset = position;
+	pos_offset = MEM_SIZE / vm_lstlen_player(player);
+	position = 0;
 	if (!(cursor = malloc(sizeof(t_cursor))))
 		exit(1);
-	cursor_num = 1;
-	cursor->num = cursor_num++;
-	vm_init_cursor(cursor, player, map, 0);
+	cursor->num = 1;
+	init_cursor(cursor, player, map, position);
 	start = cursor;
 	player = player->next;
 	while (player)
 	{
-		// if (!(cursor->next = malloc(sizeof(t_cursor))))
-		// 	exit(1);
-		// cursor = cursor->next;
-		// cursor->num = cursor_num++;
-		// vm_init_cursor(cursor, player, map, position);
-		// position += position;
-		// player = player->next;
-		if (!(cursor = malloc(sizeof(t_cursor))))
-			exit(1);
-		cursor->num = cursor_num++;
-		vm_init_cursor(cursor, player, map, position);
 		position += pos_offset;
-		cursor->next = start;
-		start = cursor;
+		start = create_cursor(map, player, position, start);
 		player = player->next;
 	}
 	return (start);
