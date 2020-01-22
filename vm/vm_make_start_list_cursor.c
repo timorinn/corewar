@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 18:13:13 by bford             #+#    #+#             */
-/*   Updated: 2020/01/17 16:16:52 by bford            ###   ########.fr       */
+/*   Updated: 2020/01/22 19:44:05 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ inline static t_cursor	*create_cursor(uint8_t map[MEM_SIZE][4],
 	t_cursor	*cursor;
 
 	if (!(cursor = malloc(sizeof(t_cursor))))
-		exit(1);
+		exit(vm_error(12, 0));
 	init_cursor(cursor, player, map, position);
 	if (start != NULL)
 	{
@@ -54,7 +54,7 @@ t_cursor				*vm_make_start_list_cursor(t_player *player,
 	pos_offset = MEM_SIZE / vm_lstlen_player(player);
 	position = 0;
 	if (!(cursor = malloc(sizeof(t_cursor))))
-		exit(1);
+		exit(vm_error(12, 0));
 	cursor->num = 1;
 	init_cursor(cursor, player, map, position);
 	start = cursor;
