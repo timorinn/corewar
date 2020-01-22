@@ -219,12 +219,12 @@ inline static char		visu_pause(void)
 	c = 0;
 	color_set(11, NULL);
 	attron(A_BOLD);
-	mvprintw(5, 199, "**  PAUSED **");
+	mvprintw(3, 199, "**  PAUSE  **");
 	while (true)
 	{
 		if (c == 'q' || c == ' ')
 		{
-			mvprintw(5, 199, "** RUNNING **");
+			mvprintw(3, 199, "** RUNNING **");
 			color_set(10, NULL);
 			attroff(A_BOLD);
 			return (c);
@@ -234,34 +234,20 @@ inline static char		visu_pause(void)
 	}
 }
 
-int			vm_print_map(uint8_t map[MEM_SIZE][4], t_cursor **cur,
-						t_player *player, t_cycle *cycle)
+inline static int32_t	visu_main_cycle(uint8_t map[MEM_SIZE][4], t_cycle *cycle,
+		t_player *player, t_cursor **cur)
 {
-	int y;
-	char c;
-	WINDOW *w;
+	int		y;
+	char	c;
 
-	cbreak();
-	w = initscr();
-	nodelay(w, TRUE);
-//	initscr();
-	curs_set(0);
-	start_color();
-	vm_init_colors();
-	refresh();
-	noecho();
-	vm_print_contur();
 	c = 0;
-	vm_print_backside(cycle, player);
-	y = 0;
-	while (y < 64 && ++y)
-		vm_print_line(map, y - 1);
-	visu_pause();
+	c = visu_pause();
 	while (c != 'q')
 	{
 		vm_print_backside(cycle, player);
 		// ft_print_params(*cur);
-		vm_do_cycle(map, cur, cycle); // мб надо поставить перед проверкой курсоров
+		vm_do_cycle(map, cur,
+					cycle); // мб надо поставить перед проверкой курсоров
 		if (vm_check_cursor(map, cur, cycle)) // new
 			return (vm_print_winner_v(player, cycle));
 		// vm_do_cycle(map, cur, cycle); // мб надо поставить перед проверкой курсоров
@@ -275,4 +261,47 @@ int			vm_print_map(uint8_t map[MEM_SIZE][4], t_cursor **cur,
 	}
 	endwin();
 	return (1);
+}
+
+int32_t					vm_print_map(uint8_t map[MEM_SIZE][4], t_cursor **cur,
+		t_player *player, t_cycle *cycle)
+{
+	int y;
+//	char c;
+	WINDOW *w;
+
+	cbreak();
+	w = initscr();
+	nodelay(w, TRUE);
+	curs_set(0);
+	start_color();
+	vm_init_colors();
+	refresh();
+	noecho();
+	vm_print_contur();
+	vm_print_backside(cycle, player);
+	y = 0;
+	while (y < 64 && ++y)
+		vm_print_line(map, y - 1);
+	return (visu_main_cycle(map, cycle, player, cur));
+//	c = 0;
+//	c = visu_pause();
+//	while (c != 'q')
+//	{
+//		vm_print_backside(cycle, player);
+//		// ft_print_params(*cur);
+//		vm_do_cycle(map, cur, cycle); // мб надо поставить перед проверкой курсоров
+//		if (vm_check_cursor(map, cur, cycle)) // new
+//			return (vm_print_winner_v(player, cycle));
+//		// vm_do_cycle(map, cur, cycle); // мб надо поставить перед проверкой курсоров
+//		y = 0;
+//		while (y < 64 && ++y)
+//			vm_print_line(map, y - 1);
+//		refresh();
+//		c = getch();
+//		if (c == ' ')
+//			c = visu_pause();
+//	}
+//	endwin();
+//	return (1);
 }

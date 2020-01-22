@@ -13,138 +13,20 @@
 #ifndef VM_H
 # define VM_H
 
-# define IND_SIZE				2
-# define REG_SIZE				4
-# define DIR_SIZE				REG_SIZE
-
-# define REG_CODE				1
-# define DIR_CODE				2
-# define IND_CODE				3
-
-# define MAX_ARGS_NUMBER		4
-# define MAX_PLAYERS			4
-# define MEM_SIZE				(4 * 1024)
-# define IDX_MOD				(MEM_SIZE / 8)
-# define CHAMP_MAX_SIZE			(MEM_SIZE / 6)
-
-# define COMMENT_CHAR			'#'
-# define LABEL_CHAR				':'
-# define DIRECT_CHAR			'%'
-# define SEPARATOR_CHAR			','
-
-# define LABEL_CHARS			"abcdefghijklmnopqrstuvwxyz_0123456789"
-
-# define NAME_CMD_STRING		".name"
-# define COMMENT_CMD_STRING		".comment"
-
-# define REG_NUMBER				16
-
-# define CYCLE_TO_DIE			1536
-# define CYCLE_DELTA			50
-# define NBR_LIVE				21
-# define MAX_CHECKS				10
-
-# define T_REG					1
-# define T_DIR					2
-# define T_IND					4
-# define T_LAB					8
-
-# define PROG_NAME_LENGTH		(128)
-# define COMMENT_LENGTH			(2048)
-# define COREWAR_EXEC_MAGIC		0xea83f3
-
-# define GRANICA "************************************************************\
-******************************************************************************\
-******************************************************************************\
-**************************************\n"
-
-# include "../libft/libft.h"
-# include "../ft_printf/ft_printf.h"
-
 # include <fcntl.h>
 # include <stdint.h>
 # include <ncurses.h>
 # include <dirent.h>
-
-#include <stdbool.h>
-
-
+# include <stdbool.h>
 # include <stdio.h>
+# include "../libft/libft.h"
+# include "../ft_printf/ft_printf.h"
+#include "vm_defines.h"
+# include "vm_structs.h"
+# include "vm_init_player.h"
 
-# define HEX "0123456789abcdef"
 
 static int			g_operation[16] = {10, 5, 5, 10, 10, 6, 6, 6, 20, 25, 25, 800/* 800 */, 10, 50, 1000, 2};
-
-typedef struct		s_player
-{
-	int8_t			num;
-	char			*name;
-	char			*comment;
-	unsigned char	*code;
-	int32_t			size;
-	struct s_player	*next;
-}					t_player;
-
-typedef struct		s_cursor {
-	int				num;
-	int				play_num;
-	int				position;
-	int				operation;
-	int				cooldown;
-	int				registr[REG_NUMBER + 1];
-	int				carry;
-	int				live;
-	struct s_cursor	*next;
-}					t_cursor;
-
-typedef union {
-	int8_t			bytes[4];
-	int32_t			data;
-}	t_dir;
-
-typedef union {
-	int8_t			bytes[2];
-	int16_t			data;
-}	t_ind;
-
-typedef struct {
-	uint8_t			types[4];
-	int32_t			nums[4];
-	int32_t 		nums_unfolded[4];
-//	int32_t			offsets[4];
-	int32_t 		offset;
-	uint8_t 		dir_size;
-}	t_args;
-
-typedef struct {
-	t_cursor		*now_cur;
-//	int32_t			new_cur_num;
-	int32_t			cycle_num;
-	int32_t			dump;
-	bool			log;
-	int32_t			cycles_to_die;
-	int32_t			waiting_die;
-	int32_t			last_live[MAX_PLAYERS];
-	int32_t			lives_in_current_period[MAX_PLAYERS];
-	int32_t			lives_in_current_period_all;
-	int32_t			cur_len;
-	int32_t			v;
-	int32_t			checks;
-	int32_t			winner_y;
-	int32_t			winner_num;
-	int64_t 		processes_qty;
-}	t_cycle;
-
-typedef struct {
-	int32_t			dump;
-	bool			log;
-	int8_t			offset;
-	bool			v;
-}	t_flags;
-
-
-
-# include "vm_init_player.h"
 
 
 
