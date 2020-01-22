@@ -6,15 +6,15 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/28 13:28:34 by bford             #+#    #+#             */
-/*   Updated: 2020/01/01 03:07:15 by bford            ###   ########.fr       */
+/*   Updated: 2020/01/22 15:59:14 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-void	vm_init_cycle(t_cycle *cycle, int player_size, t_flags flags, int v)
+void	vm_init_cycle(t_cycle *cycle, int player_size, t_flags flags)
 {
-	cycle->v = v;
+	cycle->v = flags.v;
 	cycle->cycle_num = 0;
 //	cycle->new_cur_num = player_size;
 	cycle->dump = flags.dump;

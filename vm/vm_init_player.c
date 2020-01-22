@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 16:59:08 by bford             #+#    #+#             */
-/*   Updated: 2019/12/14 16:41:47 by bford            ###   ########.fr       */
+/*   Updated: 2020/01/22 15:24:11 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ inline static int8_t	make_lst_player(int fd, t_player **player, int num)
 	if (!(*player))
 	{
 		if (!(*player = vm_lstnew_player(num)))
-			return (0);
+			exit(vm_error(12, 0));
 		copy = *player;
 	}
 	else
@@ -56,7 +56,7 @@ inline static int8_t	make_lst_player(int fd, t_player **player, int num)
 		while (copy->next)
 			copy = copy->next;
 		if (!(copy->next = vm_lstnew_player(num)))
-			return (0);
+			exit(vm_error(12, 0));
 		copy = copy->next;
 	}
 	return (init_new_player(fd, copy));

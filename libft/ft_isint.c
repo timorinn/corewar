@@ -6,11 +6,13 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 16:28:32 by bford             #+#    #+#             */
-/*   Updated: 2019/11/07 15:39:57 by bford            ###   ########.fr       */
+/*   Updated: 2020/01/22 13:06:46 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+#include <stdio.h>
 
 static int	ft_check_last(const char *s, int last)
 {
@@ -21,9 +23,7 @@ static int	ft_check_last(const char *s, int last)
 		return (*s ? 1 : 0);
 	}
 	else if (last == 2)
-	{
 		return (*s ? 1 : 0);
-	}
 	return (0);
 }
 
@@ -36,7 +36,7 @@ int			ft_isint(const char *s, int sign, int first, int last)
 	len = 0;
 	if (!s)
 		return (0);
-	if (first && !(ft_isdigit(*s) || *s == '-'))
+	if (first && !(ft_isdigit(*s)))
 		return (0);
 	while (*s == ' ' || (*s >= 9 && *s <= 13))
 		s++;

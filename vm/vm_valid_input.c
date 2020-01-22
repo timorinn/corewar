@@ -6,88 +6,59 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 12:53:12 by bford             #+#    #+#             */
-/*   Updated: 2019/12/09 17:25:56 by bford            ###   ########.fr       */
+/*   Updated: 2020/01/22 15:02:23 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-inline static bool	check_name_player(const char *name)
+inline static void	check_name_player(const char *name)
 {
 	while (*name && *name != '.')
 		name++;
-	return (*name && !ft_strcmp(name, ".cor") ? true : false);
+	if (!*name || ft_strcmp(name, ".cor"))
+		exit(vm_error(1, (char *)name));
 }
 
-inline static void	init_numbers(int8_t *nums)
+inline static void valid_argv(int argc, char **argv, int *i, int8_t *players)
 {
-	int8_t	i;
+	int		player_num;
 
-	i = 0;
-	while (i < MAX_PLAYERS && ++i)
-		nums[i - 1] = 0;
-}
-
-inline static int	valid_argv(int argc, char **argv, int *i, int8_t *players)
-{
-	if (!ft_strcmp(argv[*i - 1], "-n"))
+	if (!ft_strcmp(argv[*i], "-n"))
 	{
-		/* НЕ УДАЛЯТЬ!
-		return (argc >= *i + 2 && ft_isint(argv[*i], 1, 0, 1) &&
-		ft_atoi(argv[*i]) > 0 && ft_atoi(argv[*i]) <= MAX_PLAYERS &&
-		players[ft_atoi(argv[*i]) - 1] == 0 &&
-		(players[ft_atoi(argv[*i]) - 1] += 1) &&
-		ft_check_name_player(argv[*i + 1]) && (*i += 2) ? 1 : 0);
-		*/
 		if (argc < *i + 2)
-			return (ft_putstr_fd("Error: -n: not enough arguments\n", 2));
-		else if (!ft_isint(argv[*i], 1, 0, 1) || ft_atoi(argv[*i]) < 1 ||
-		ft_atoi(argv[*i]) > MAX_PLAYERS)
-			return (ft_putstr_fd("Error: -n: invalid player number\n", 2));
-		else if (players[ft_atoi(argv[*i]) - 1] != 0)
-			return (ft_putstr_fd("Error: -n: repeat player number\n", 2));
-		else if (!check_name_player(argv[*i + 1]))
-			return (vm_error(1, argv[*i - 1]));
-		return ((players[ft_atoi(argv[*i]) - 1] += 1) && (*i += 2));
+			exit(vm_error(3, 0));
+		player_num = ft_atoi(argv[*i + 1]);
+		if (!ft_isint(argv[*i + 1], 1, 1, 1) || player_num < 1 ||
+		player_num > MAX_PLAYERS)
+			exit(vm_error(10, 0));
+		else if (players[player_num - 1] != 0)
+			exit(vm_error(11, 0));
+		check_name_player(argv[*i + 2]);
+		players[player_num - 1] += 1;
+		*i += 2;
 	}
-	return (check_name_player(argv[*i - 1]) ? 1 :
-	vm_error(1, argv[*i - 1]));
+	check_name_player(argv[*i]);
 }
 
-inline static int	valid_dump(int argc, char **argv, int *i)
-{
-	if (!ft_strcmp(argv[1], "-dump"))
-	{
-		if (argc < 4)
-			return (ft_putstr("Error: not enough arguments\n"));
-		else if (!ft_isint(argv[2], 1, 0, 1))
-			return (ft_putstr("Error: -dump: wrong number of cycles\n"));
-		else
-			return ((*i += 2));
-	}
-	return (1);
-}
-
-inline int8_t		vm_valid_input(int argc, char **argv)
+inline void		vm_valid_input(int argc, char **argv, t_flags flags)
 {
 	int		i;
-	int		players_num;
+	int		players_count;
 	int8_t	nums[MAX_PLAYERS];
 
 	i = 1;
-	players_num = 0;
-	init_numbers(nums);
-	if (argc < 2 || !valid_dump(argc, argv, &i))
-		return (0);
-	if (!ft_strcmp(argv[i], "-log"))
-		i++;
+	players_count = 0;
+	ft_bzero(nums, sizeof(int8_t) * MAX_PLAYERS);
+	i += (flags.dump != -1 ? 2 : 0) + (flags.log ? 1 : 0);
+	if (flags.dump != -1 && flags.log)
+		exit(vm_error(13, 0));
 	argc -= (ft_strcmp(argv[argc - 1], "-v") ? 0 : 1);
-	while (i < argc && ++i)
+	while (i < argc)
 	{
-		if (!valid_argv(argc, argv, &i, nums))
-			return (0);
-		if (++players_num > MAX_PLAYERS)
-			return (vm_error(7, 0));
+		valid_argv(argc, argv, &i, nums);
+		if (++players_count > MAX_PLAYERS)
+			exit(vm_error(7, 0));
+		i++;
 	}
-	return (1);
 }

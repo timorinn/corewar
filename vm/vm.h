@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2020/01/17 14:53:59 by bford            ###   ########.fr       */
+/*   Updated: 2020/01/22 16:00:14 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,47 +98,48 @@ typedef struct		s_cursor {
 }					t_cursor;
 
 typedef union {
-	int8_t bytes[4];
-	int32_t	data;
+	int8_t			bytes[4];
+	int32_t			data;
 }	t_dir;
 
 typedef union {
-	int8_t	bytes[2];
-	int16_t	data;
+	int8_t			bytes[2];
+	int16_t			data;
 }	t_ind;
 
 typedef struct {
-	uint8_t		types[4];
-	int32_t		nums[4];
-	int32_t 	nums_unfolded[4];
-//	int32_t		offsets[4];
-	int32_t 	offset;
-	uint8_t 	dir_size;
+	uint8_t			types[4];
+	int32_t			nums[4];
+	int32_t 		nums_unfolded[4];
+//	int32_t			offsets[4];
+	int32_t 		offset;
+	uint8_t 		dir_size;
 }	t_args;
 
 typedef struct {
-	t_cursor	*now_cur;
-//	int32_t		new_cur_num;
-	int32_t		cycle_num;
-	int32_t		dump;
-	bool		log;
-	int32_t		cycles_to_die;
-	int32_t		waiting_die;
-	int32_t		last_live[MAX_PLAYERS];
-	int32_t		lives_in_current_period[MAX_PLAYERS];
-	int32_t		lives_in_current_period_all;
-	int32_t		cur_len;
-	int32_t		v;
-	int32_t		checks;
-	int32_t		winner_y;
-	int32_t		winner_num;
-	int64_t 	processes_qty;
+	t_cursor		*now_cur;
+//	int32_t			new_cur_num;
+	int32_t			cycle_num;
+	int32_t			dump;
+	bool			log;
+	int32_t			cycles_to_die;
+	int32_t			waiting_die;
+	int32_t			last_live[MAX_PLAYERS];
+	int32_t			lives_in_current_period[MAX_PLAYERS];
+	int32_t			lives_in_current_period_all;
+	int32_t			cur_len;
+	int32_t			v;
+	int32_t			checks;
+	int32_t			winner_y;
+	int32_t			winner_num;
+	int64_t 		processes_qty;
 }	t_cycle;
 
 typedef struct {
-	int32_t	dump;
-	bool	log;
-	int8_t	offset;
+	int32_t			dump;
+	bool			log;
+	int8_t			offset;
+	bool			v;
 }	t_flags;
 
 
@@ -147,17 +148,16 @@ typedef struct {
 
 
 
-int8_t				vm_valid_input(int argc, char **argv);
+void				vm_valid_input(int argc, char **argv, t_flags flags);
 
-t_player			*vm_init_input(int argc, char **argv, int8_t valid,
-		t_flags flags);
+t_player			*vm_init_input(int argc, char **argv, t_flags flags);
 int8_t				vm_init_player(char **argv, int *i, t_player **player,
 		int8_t *numbers);
 t_player			*vm_lstnew_player(int num);
 int					vm_lstdel_player(t_player *player);
 int8_t				vm_lstlen_player(t_player *player);
 int8_t				vm_error(int8_t num, char *s);
-void				vm_arena(t_flags flags, t_player *player, int v);
+void				vm_arena(t_flags flags, t_player *player);
 int					vm_print_map(uint8_t map[MEM_SIZE][4], t_cursor **car,
 								t_player *player, t_cycle *cycle);
 void				vm_no_print_map(uint8_t map[MEM_SIZE][4], t_cursor **cur,
@@ -167,7 +167,7 @@ int					vm_print_map_single(uint8_t map[MEM_SIZE][4]);
 t_cursor			*vm_make_start_list_cursor(t_player *player, uint8_t map[MEM_SIZE][4]);
 int					vm_print_cursor(t_cursor *careta, t_cycle cycle);
 int					vm_do_cycle(uint8_t map[MEM_SIZE][4], t_cursor **car, t_cycle *cycle);
-void				vm_init_cycle(t_cycle *cycle, int player_size, t_flags flags, int v);
+void				vm_init_cycle(t_cycle *cycle, int player_size, t_flags flags);
 
 t_dir				vm_init_t_dir(uint8_t map[MEM_SIZE][4],
 		int position, uint8_t dir_size);
