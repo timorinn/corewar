@@ -211,19 +211,52 @@ int		vm_print_params(t_cursor *cur)
 	return (y);
 }
 */
+
+inline static char		visu_pause(void)
+{
+	char c;
+
+	c = 0;
+	color_set(11, NULL);
+	attron(A_BOLD);
+	mvprintw(5, 199, "**  PAUSED **");
+	while (true)
+	{
+		if (c == 'q' || c == ' ')
+		{
+			mvprintw(5, 199, "** RUNNING **");
+			color_set(10, NULL);
+			attroff(A_BOLD);
+			return (c);
+		}
+		c = 0;
+		c = getch();
+	}
+}
+
 int			vm_print_map(uint8_t map[MEM_SIZE][4], t_cursor **cur,
 						t_player *player, t_cycle *cycle)
 {
 	int y;
+	char c;
+	WINDOW *w;
 
-	initscr();
+	cbreak();
+	w = initscr();
+	nodelay(w, TRUE);
+//	initscr();
 	curs_set(0);
 	start_color();
 	vm_init_colors();
 	refresh();
 	noecho();
 	vm_print_contur();
-	char c = 's';
+	c = 0;
+	vm_print_backside(cycle, player);
+	y = 0;
+	while (y < 64 && ++y)
+		vm_print_line(map, y - 1);
+	visu_pause();
 	while (c != 'q')
 	{
 		vm_print_backside(cycle, player);
@@ -236,9 +269,9 @@ int			vm_print_map(uint8_t map[MEM_SIZE][4], t_cursor **cur,
 		while (y < 64 && ++y)
 			vm_print_line(map, y - 1);
 		refresh();
-		if (cycle->cycle_num >= cycle->dump)
-			//break;
-			c = getch();
+		c = getch();
+		if (c == ' ')
+			c = visu_pause();
 	}
 	endwin();
 	return (1);
