@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/21 18:45:54 by bford             #+#    #+#             */
-/*   Updated: 2019/12/21 18:55:12 by bford            ###   ########.fr       */
+/*   Updated: 2020/01/22 17:18:50 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,8 @@ int     vm_print_players(t_player *player)
     ft_putstr("Introducing contestants...\n");
     while (player)
     {
-        ft_putstr("* Player ");
-        ft_putnbr(player->num);
-        ft_putstr(", weighing ");
-        ft_putnbr(player->size);
-        ft_putstr(" bytes, \"");
-        ft_putstr(player->name);
-        ft_putstr("\" (\"");
-        ft_putstr(player->comment);
-        ft_putstr("\") !\n");
+        ft_printf("* Player %d, weighting %d bytes, \"%s\" (\"%s\") !\n",
+                player->num, player->size, player->name, player->comment);
         player = player->next;
     }
     return (1);

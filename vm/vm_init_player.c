@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 16:59:08 by bford             #+#    #+#             */
-/*   Updated: 2020/01/22 15:24:11 by bford            ###   ########.fr       */
+/*   Updated: 2020/01/22 16:34:05 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ inline static int8_t	check_magic(char *start)
 	return (*(uint32_t *)start = COREWAR_EXEC_MAGIC);
 }
 
-inline static int8_t	init_new_player(int fd, t_player *player)
+inline static void	init_new_player(int fd, t_player *player)
 {
 	char	buf[COMMENT_LENGTH + 1];
 
-	return (((!(buf[4] = '\0') && (read(fd, buf, 4) != 4 ||
+	if (((!(buf[4] = '\0') && (read(fd, buf, 4) != 4 ||
 	!check_magic(buf)) && !vm_error(2, 0)) ||
 	((!(buf[PROG_NAME_LENGTH] = '\0')
 	&& read(fd, buf, PROG_NAME_LENGTH) != PROG_NAME_LENGTH &&
@@ -37,10 +37,11 @@ inline static int8_t	init_new_player(int fd, t_player *player)
 	*(uint32_t *)buf != 0) && !vm_error(2, 0))) ||
 	((!(buf[player->size] -= buf[player->size]) &&
 	read(fd, buf, player->size + 1) != player->size && !vm_error(2, 0)) ||
-	!make_player_code(player, buf, player->size))) ? 0 : 1);
+	!make_player_code(player, buf, player->size))))
+		exit(vm_error(2, 0));
 }
 
-inline static int8_t	make_lst_player(int fd, t_player **player, int num)
+inline static void	make_lst_player(int fd, t_player **player, int num)
 {
 	t_player	*copy;
 
@@ -59,10 +60,10 @@ inline static int8_t	make_lst_player(int fd, t_player **player, int num)
 			exit(vm_error(12, 0));
 		copy = copy->next;
 	}
-	return (init_new_player(fd, copy));
+	init_new_player(fd, copy);
 }
 
-int8_t					vm_init_player(char **argv, int *i, t_player **player,
+void				vm_init_player(char **argv, int *i, t_player **player,
 		int8_t *numbers)
 {
 	int	num;
@@ -72,7 +73,8 @@ int8_t					vm_init_player(char **argv, int *i, t_player **player,
 	ft_atoi(argv[*i - 2]) : 0);
 	num ? numbers[num - 1] = 1 : 0;
 	fd = open(argv[*i - 1], O_RDONLY);
-	if (fd == -1 || (read(fd, NULL, 0) == -1 && close(fd)))
-		return (vm_error(1, argv[*i - 1]));
-	return (make_lst_player(fd, player, num) + close(fd) ? 1 : 0);
+	if (fd == -1 || read(fd, NULL, 0) == -1)
+		exit(vm_error(1, argv[*i - 1]));
+	make_lst_player(fd, player, num);
+	close(fd);
 }

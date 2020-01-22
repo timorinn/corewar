@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 13:17:03 by bford             #+#    #+#             */
-/*   Updated: 2020/01/22 16:07:32 by bford            ###   ########.fr       */
+/*   Updated: 2020/01/22 17:14:26 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,14 @@ void		vm_init_flags(int argc, char **argv, t_flags *flags)
 
 void		vm_usage(int argc)
 {
-	if (argc == 0)
-	{
-		exit(ft_putstr("USAGE!!!\n"));
-	}
+	if (argc == 1)
+		exit(ft_putstr(
+			"Usage: ./corewar [-dump N] \
+[-log] [-n N] <champion1.cor> [-n N] <...> [-v]\n\
+	-dump N		: Dumps memory after N cycles then exits\n\
+	-log		: Show logs\n\
+	-n		: Assign a number N to the champion\n\
+	-v		: Ncurses output mode\n"));
 }
 
 int			main(int argc, char **argv)

@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 12:53:12 by bford             #+#    #+#             */
-/*   Updated: 2020/01/22 15:02:23 by bford            ###   ########.fr       */
+/*   Updated: 2020/01/22 16:46:51 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,13 @@
 
 inline static void	check_name_player(const char *name)
 {
+	char	*copy;
+
+	copy = (char *)name;
 	while (*name && *name != '.')
 		name++;
 	if (!*name || ft_strcmp(name, ".cor"))
-		exit(vm_error(1, (char *)name));
+		exit(vm_error(1, copy));
 }
 
 inline static void valid_argv(int argc, char **argv, int *i, int8_t *players)
@@ -51,7 +54,7 @@ inline void		vm_valid_input(int argc, char **argv, t_flags flags)
 	players_count = 0;
 	ft_bzero(nums, sizeof(int8_t) * MAX_PLAYERS);
 	i += (flags.dump != -1 ? 2 : 0) + (flags.log ? 1 : 0);
-	if (flags.dump != -1 && flags.log)
+	if (flags.v && flags.log)
 		exit(vm_error(13, 0));
 	argc -= (ft_strcmp(argv[argc - 1], "-v") ? 0 : 1);
 	while (i < argc)

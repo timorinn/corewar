@@ -6,13 +6,13 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 15:48:03 by bford             #+#    #+#             */
-/*   Updated: 2020/01/22 15:23:53 by bford            ###   ########.fr       */
+/*   Updated: 2020/01/22 16:38:33 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int8_t		ft_make_player_num(t_player *player,
+void		ft_make_player_num(t_player *player,
 		const int8_t numbers[MAX_PLAYERS])
 {
 	int8_t	i;
@@ -29,10 +29,9 @@ int8_t		ft_make_player_num(t_player *player,
 			player->num = ++i;
 		}
 		if (player->num > len)
-			return (0);
+			exit(vm_error(4, 0));
 		player = player->next;
 	}
-	return (1);
 }
 
 t_player	*vm_init_input(int argc, char **argv, t_flags flags)
@@ -49,6 +48,6 @@ t_player	*vm_init_input(int argc, char **argv, t_flags flags)
 	argc -= (ft_strcmp(argv[argc - 1], "-v") ? 0 : 1);
 	while (i < argc && ++i)
 		vm_init_player(argv, &i, &player, numbers);
-	return (ft_make_player_num(player, numbers) ?
-	player : NULL + vm_lstdel_player(player) + vm_error(4, 0));
+	ft_make_player_num(player, numbers);
+	return (player);
 }

@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2020/01/22 16:00:14 by bford            ###   ########.fr       */
+/*   Updated: 2020/01/22 16:25:05 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,7 @@ typedef struct {
 void				vm_valid_input(int argc, char **argv, t_flags flags);
 
 t_player			*vm_init_input(int argc, char **argv, t_flags flags);
-int8_t				vm_init_player(char **argv, int *i, t_player **player,
+void				vm_init_player(char **argv, int *i, t_player **player,
 		int8_t *numbers);
 t_player			*vm_lstnew_player(int num);
 int					vm_lstdel_player(t_player *player);
