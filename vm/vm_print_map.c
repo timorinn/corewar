@@ -110,6 +110,18 @@ int		vm_print_line(uint8_t map[MEM_SIZE][4], int i)
 	return (1);
 }
 
+inline static void	print_border(void)
+{
+	mvprintw(0, 0, "**********************************************************\
+******************************************************************************\
+******************************************************************************\
+****************************************\n");
+	mvprintw(67, 0, "*********************************************************\
+******************************************************************************\
+******************************************************************************\
+*****************************************\n");
+}
+
 int		vm_print_contur(void)
 {
 	int	i;
@@ -117,8 +129,7 @@ int		vm_print_contur(void)
 	// color_set(2, NULL);
 	color_set(10, NULL);
 	attron(A_BOLD);
-	mvprintw(0, 0, GRANICA);
-	mvprintw(67, 0, GRANICA);
+	print_border();
 	i = 0;
 	while (i < 68 && ++i)
 	{
@@ -234,7 +245,7 @@ inline static char		visu_pause(void)
 	}
 }
 
-inline static int32_t	visu_main_cycle(uint8_t map[MEM_SIZE][4], t_cycle *cycle,
+inline static void	visu_main_cycle(uint8_t map[MEM_SIZE][4], t_cycle *cycle,
 		t_player *player, t_cursor **cur)
 {
 	int		y;
@@ -245,12 +256,13 @@ inline static int32_t	visu_main_cycle(uint8_t map[MEM_SIZE][4], t_cycle *cycle,
 	while (c != 'q')
 	{
 		vm_print_backside(cycle, player);
-		// ft_print_params(*cur);
-		vm_do_cycle(map, cur,
-					cycle); // мб надо поставить перед проверкой курсоров
+		vm_do_cycle(map, cur, cycle); // мб надо поставить перед проверкой курсоров
 		if (vm_check_cursor(map, cur, cycle)) // new
-			return (vm_print_winner_v(player, cycle));
-		// vm_do_cycle(map, cur, cycle); // мб надо поставить перед проверкой курсоров
+		{
+			vm_print_winner_v(player, cycle);
+			visu_pause();
+			return ;
+		}// vm_do_cycle(map, cur, cycle); // мб надо поставить перед проверкой курсоров
 		y = 0;
 		while (y < 64 && ++y)
 			vm_print_line(map, y - 1);
@@ -260,10 +272,9 @@ inline static int32_t	visu_main_cycle(uint8_t map[MEM_SIZE][4], t_cycle *cycle,
 			c = visu_pause();
 	}
 	endwin();
-	return (1);
 }
 
-int32_t					vm_print_map(uint8_t map[MEM_SIZE][4], t_cursor **cur,
+void					vm_print_map(uint8_t map[MEM_SIZE][4], t_cursor **cur,
 		t_player *player, t_cycle *cycle)
 {
 	int y;
@@ -283,7 +294,7 @@ int32_t					vm_print_map(uint8_t map[MEM_SIZE][4], t_cursor **cur,
 	y = 0;
 	while (y < 64 && ++y)
 		vm_print_line(map, y - 1);
-	return (visu_main_cycle(map, cycle, player, cur));
+	visu_main_cycle(map, cycle, player, cur);
 //	c = 0;
 //	c = visu_pause();
 //	while (c != 'q')

@@ -5,6 +5,11 @@
 #ifndef VM_STRUCTS_H
 #define VM_STRUCTS_H
 
+typedef union {
+	uint8_t bytes[4];
+	uint32_t all;
+}	magic_header;
+
 typedef struct		s_player
 {
 	int8_t			num;

@@ -14,13 +14,25 @@
 
 inline static int8_t	check_magic(char *start)
 {
-	return (*(uint32_t *)start = COREWAR_EXEC_MAGIC);
+	magic_header	magic;
+	magic_header 	true_magic;
+
+	true_magic.bytes[0] = (COREWAR_EXEC_MAGIC >> 32) & 0xFF;
+	true_magic.bytes[1] = (COREWAR_EXEC_MAGIC >> 16) & 0xFF;
+	true_magic.bytes[2] = (COREWAR_EXEC_MAGIC >> 8) & 0xFF;
+	true_magic.bytes[3] = (COREWAR_EXEC_MAGIC >> 0) & 0xFF;
+	magic.all = *(uint32_t *)start;
+	if (magic.all == true_magic.all)
+		return (true);
+	else
+		return (false);
 }
 
 inline static void	init_new_player(int fd, t_player *player)
 {
 	char	buf[COMMENT_LENGTH + 1];
 
+	ft_bzero(buf, sizeof(char) * (COMMENT_LENGTH + 1));
 	if (((!(buf[4] = '\0') && (read(fd, buf, 4) != 4 ||
 	!check_magic(buf)) && !vm_error(2, 0)) ||
 	((!(buf[PROG_NAME_LENGTH] = '\0')
@@ -38,7 +50,7 @@ inline static void	init_new_player(int fd, t_player *player)
 	((!(buf[player->size] -= buf[player->size]) &&
 	read(fd, buf, player->size + 1) != player->size && !vm_error(2, 0)) ||
 	!make_player_code(player, buf, player->size))))
-		exit(vm_error(2, 0));
+		exit(1);
 }
 
 inline static void	make_lst_player(int fd, t_player **player, int num)

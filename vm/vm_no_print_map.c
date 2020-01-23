@@ -6,9 +6,25 @@
 
 inline static void	vm_print_winner(t_player *player, int winner_num)
 {
-	while (player->num != winner_num)
+	while (player->next && player->num != winner_num)
 		player = player->next;
 	ft_printf("Contestant %d, \"%s\", has won !\n", player->num, player->name);
+}
+
+inline static void	print_map_single(uint8_t map[MEM_SIZE][4])
+{
+	int		i;
+
+	i = 1;
+	while (i < MEM_SIZE + 1)
+	{
+		if (i % DUMP_WIDTH == 1)
+			ft_printf("0x%03x0 : ", i / 16);
+		ft_printf("%02x ", map[i - 1][0]);
+		if (i % DUMP_WIDTH == 0)
+			ft_printf("\n");
+		i++;
+	}
 }
 
 void				vm_no_print_map(uint8_t map[MEM_SIZE][4], t_cursor **cur,
@@ -27,7 +43,7 @@ void				vm_no_print_map(uint8_t map[MEM_SIZE][4], t_cursor **cur,
 		}
 		if (cycle->dump == cycle->cycle_num)
 		{
-			vm_print_map_single(map);
+			print_map_single(map);
 			break ;
 		}
 		cycle->cycle_num++;

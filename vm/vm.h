@@ -40,12 +40,11 @@ int					vm_lstdel_player(t_player *player);
 int8_t				vm_lstlen_player(t_player *player);
 int8_t				vm_error(int8_t num, char *s);
 void				vm_arena(t_flags flags, t_player *player);
-int					vm_print_map(uint8_t map[MEM_SIZE][4], t_cursor **car,
+void				vm_print_map(uint8_t map[MEM_SIZE][4], t_cursor **car,
 								t_player *player, t_cycle *cycle);
 void				vm_no_print_map(uint8_t map[MEM_SIZE][4], t_cursor **cur,
 							   t_player *player, t_cycle *cycle);
 int					vm_print_players(t_player *player);
-int					vm_print_map_single(uint8_t map[MEM_SIZE][4]);
 t_cursor			*vm_make_start_list_cursor(t_player *player, uint8_t map[MEM_SIZE][4]);
 int					vm_print_cursor(t_cursor *careta, t_cycle cycle);
 int					vm_do_cycle(uint8_t map[MEM_SIZE][4], t_cursor **car, t_cycle *cycle);
