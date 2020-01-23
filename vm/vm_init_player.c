@@ -12,17 +12,17 @@
 
 #include "vm_init_player.h"
 
-inline static int8_t	check_magic(char *start)
+inline static int8_t	check_magic(const char *start)
 {
-	magic_header	magic;
+	uint32_t		magic;
 	magic_header 	true_magic;
 
-	true_magic.bytes[0] = (COREWAR_EXEC_MAGIC >> 32) & 0xFF;
+	true_magic.bytes[0] = (COREWAR_EXEC_MAGIC >> 24) & 0xFF;
 	true_magic.bytes[1] = (COREWAR_EXEC_MAGIC >> 16) & 0xFF;
 	true_magic.bytes[2] = (COREWAR_EXEC_MAGIC >> 8) & 0xFF;
 	true_magic.bytes[3] = (COREWAR_EXEC_MAGIC >> 0) & 0xFF;
-	magic.all = *(uint32_t *)start;
-	if (magic.all == true_magic.all)
+	magic = *(uint32_t *)start;
+	if (magic == true_magic.all)
 		return (true);
 	else
 		return (false);
