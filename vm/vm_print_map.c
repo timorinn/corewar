@@ -159,7 +159,7 @@ int		vm_print_backside(t_cycle *cycle, t_player *player)
 	y = 11;
 	attron(A_BOLD);
 	color_set(11, NULL);
-	mvprintw(7, 199, "Cycle : %d", cycle->cycle_num++);
+	mvprintw(7, 199, "Cycle : %d", ++cycle->cycle_num);
 	mvprintw(9, 199, "Processes : %-5d", cycle->cur_len);
 	while (player)
 	{
@@ -246,7 +246,6 @@ void					vm_print_map(uint8_t map[MEM_SIZE][4], t_cursor **cur,
 		t_player *player, t_cycle *cycle)
 {
 	int y;
-//	char c;
 	WINDOW *w;
 
 	cbreak();
@@ -263,24 +262,4 @@ void					vm_print_map(uint8_t map[MEM_SIZE][4], t_cursor **cur,
 	while (y < 64 && ++y)
 		vm_print_line(map, y - 1);
 	visu_main_cycle(map, cycle, player, cur);
-//	c = 0;
-//	c = visu_pause();
-//	while (c != 'q')
-//	{
-//		vm_print_backside(cycle, player);
-//		// ft_print_params(*cur);
-//		vm_do_cycle(map, cur, cycle); // мб надо поставить перед проверкой курсоров
-//		if (vm_check_cursor(map, cur, cycle)) // new
-//			return (vm_print_winner_v(player, cycle));
-//		// vm_do_cycle(map, cur, cycle); // мб надо поставить перед проверкой курсоров
-//		y = 0;
-//		while (y < 64 && ++y)
-//			vm_print_line(map, y - 1);
-//		refresh();
-//		c = getch();
-//		if (c == ' ')
-//			c = visu_pause();
-//	}
-//	endwin();
-//	return (1);
 }
