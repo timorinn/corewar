@@ -38,7 +38,7 @@ void				vm_init_player(char **argv, int *i, t_player **player,
 t_player			*vm_lstnew_player(int num);
 int					vm_lstdel_player(t_player *player);
 int8_t				vm_lstlen_player(t_player *player);
-int8_t				vm_error(int8_t num, char *s);
+int8_t				vm_error(int8_t num, const char *s);
 void				vm_arena(t_flags flags, t_player *player);
 void				vm_print_map(uint8_t map[MEM_SIZE][4], t_cursor **car,
 								t_player *player, t_cycle *cycle);
@@ -62,7 +62,8 @@ void				vm_unfold_all(uint8_t map[MEM_SIZE][4], t_cursor *car,
 						  			t_args *args, bool is_idx_needed);
 
 int8_t				vm_dir_or_ind(unsigned int arg, int8_t tdir);
-void				vm_move(t_cursor *cur, uint8_t args[4], char *valid, int dir);
+void				vm_move(t_cursor *cur, const uint8_t args[4],
+		const char *valid, int dir);
 
 
 bool				op_bitwise(uint8_t map[MEM_SIZE][4], int32_t (*operation)(int32_t, int32_t),

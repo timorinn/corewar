@@ -12,7 +12,8 @@
 
 #include "vm.h"
 
-void	vm_move(t_cursor *cur, uint8_t args[4], char *valid, int dir)
+inline void	vm_move(t_cursor *cur, const uint8_t args[4], const char *valid,
+		int dir)
 {
 	int		i;
 	int		move;
@@ -36,5 +37,4 @@ void	vm_move(t_cursor *cur, uint8_t args[4], char *valid, int dir)
 	cur->position %= MEM_SIZE;
 	cur->operation = -1;
 	cur->cooldown = 0;
-	//return (move);
 }

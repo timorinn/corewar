@@ -14,13 +14,15 @@
 
 inline static void	check_name_player(const char *name)
 {
-	char	*copy;
+	uint32_t	len;
 
-	copy = (char *)name;
-	while (*name && *name != '.')
-		name++;
-	if (!*name || ft_strcmp(name, ".cor"))
-		exit(vm_error(1, copy));
+	if (name != NULL)
+		len = ft_strlen(name);
+	else
+		len = 0;
+	if (len >= 4 && !ft_strcmp(&(name[len - 4]), ".cor"))
+		return ;
+	exit(vm_error(1, name));
 }
 
 inline static void valid_argv(int argc, char **argv, int *i, int8_t *players)

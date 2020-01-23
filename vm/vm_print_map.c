@@ -145,10 +145,8 @@ int		vm_print_contur(void)
 int		vm_print_breakdown(int y)
 {
 	color_set(11, NULL);
-//	mvprintw(y + 1, 200, "--------------------------------------------------");
-//	mvprintw(y + 4, 200, "--------------------------------------------------");
-	mvprintw(y + 1, 200, "--------BREAKDOWN-SUPPOSED-TO-BE-HERE-------------");
-	mvprintw(y + 4, 200, "----------BUT-THERE-IS-NO-BREAKDOWN---------------");
+	mvprintw(y + 1, 200, "------------THERE-IS-NO-BREAKDOWN-----------------");
+	mvprintw(y + 4, 200, "-----------BREAKDOWN-IS-USELESS-;)----------------");
 	return (1);
 }
 

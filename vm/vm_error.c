@@ -12,7 +12,7 @@
 
 #include "vm.h"
 
-int8_t		vm_error(int8_t num, char *s)
+int8_t		vm_error(int8_t num, const char *s)
 {
 	if (num == 1)
 	{
