@@ -18,7 +18,6 @@ static inline void	vm_print_log_sti(t_args *args, int32_t addr)
 
 	offset = args->nums_unfolded[1] + args->nums_unfolded[2];
 	ft_printf("%20c -> store to %d + %d = %d (with pc and mod %d)\n", '|', args->nums_unfolded[1], args->nums_unfolded[2], offset, addr);
-	fflush(stdout);
 }
 
 bool				vm_op_sti(uint8_t map[MEM_SIZE][4], t_cycle *cycle)
@@ -32,6 +31,7 @@ bool				vm_op_sti(uint8_t map[MEM_SIZE][4], t_cycle *cycle)
 	ft_bzero(&args, sizeof(t_args));
 	args.dir_size = 2;
 	vm_get_args(map, cur, &args);
+	args.dir_size += 2;
 	if (cycle->log)
 		vm_print_log_op("sti", cycle);
 	// if (vm_validate_args(args, "R--RIDR-D"))							ARGS ERROR commit

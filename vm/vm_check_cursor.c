@@ -102,7 +102,6 @@ int		vm_check_cursor(uint8_t map[MEM_SIZE][4],
 	if (cycle->cycle_num == cycle->waiting_die /* + 1 */)
 	{
 		copy = *cur;
-
 //		if (*cur == NULL) // ЭТИ СТОКИ ДОЛЖНЫ БЫТЬ ЛИШНИМИ
 //			return (1); //
 		while (copy)
@@ -117,7 +116,7 @@ int		vm_check_cursor(uint8_t map[MEM_SIZE][4],
 				for_del = NULL;
 			}
 			else
-				copy = copy->next;	
+				copy = copy->next;
 		}
 		// <= or < ?? //
 		if ((*cur)->live + cycle->cycles_to_die <= cycle->cycle_num)
@@ -134,10 +133,8 @@ int		vm_check_cursor(uint8_t map[MEM_SIZE][4],
 		cycle->checks == MAX_CHECKS)
 		{
 			cycle->cycles_to_die -= CYCLE_DELTA;
-			////////////////////////////////      printf
 			if (cycle->log)
 				ft_printf("Cycle to die is now %d\n", cycle->cycles_to_die);
-			///////////////////////////////
 			cycle->checks = 0;
 		}
 //		else

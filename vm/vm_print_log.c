@@ -6,9 +6,7 @@
 
 void	vm_print_log_op(char *op, t_cycle *cycle)
 {
-	///////ft_printf!!
 	ft_printf("P % 4d, pos = %-4d | %s", cycle->now_cur->num, cycle->now_cur->position, op);
-	fflush(stdout);
 }
 
 void	vm_print_log_args(t_args *args, uint8_t max_args)
@@ -30,7 +28,6 @@ void	vm_print_log_args(t_args *args, uint8_t max_args)
 			ft_printf("Error has happened here. Args types: %d %d %d    ", args->types[0], args->types[1], args->types[2]);
 		i++;
 	}
-	fflush(stdout);
 	ft_putendl("");
 }
 

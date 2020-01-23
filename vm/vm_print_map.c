@@ -14,7 +14,7 @@
 
 int		vm_print_winner_v(t_player *player, t_cycle *cycle)
 {
-	while (player->num != cycle->winner_num)
+	while (player->next && player->num != cycle->winner_num)
 		player = player->next;
 	attron(A_BOLD);
 	color_set(11, NULL);
@@ -190,38 +190,6 @@ int		vm_print_backside(t_cycle *cycle, t_player *player)
 	cycle->winner_y = y;
 	return (y + 12);
 }
-/*
-int		vm_print_params(t_cursor *cur)
-{
-	int		y;
-	int		reg;
-
-	color_set(11, NULL);
-	y = 70;
-	while (cur)
-	{
-		//if (cur->play_num == 2) // delete esli cho
-		//{
-			mvprintw(y, 10, "Car #%3d   | pl_num: %d | position: %4d | oper: %02x | cd: %3d | carry: %d | live: %5d",
-			cur->num ,cur->play_num, cur->position, cur->operation, cur->cooldown, cur->carry, cur->live);
-			reg = 0;
-			while (reg < 8 && ++reg)
-			{
-				mvprintw(y + 1, 16 + (reg - 1) * 21, "r%02d: %10d   |   ", reg, cur->registr[reg]);
-				mvprintw(y + 2, 16 + (reg - 1) * 21, "r%02d: %10d   |   ", reg + 8, cur->registr[reg + 8]);
-			}
-			y += 4;
-		//}
-		cur = cur->next;
-	}
-
-
-	//mvprintw(90 + 1, 16, "FREE PLACE!");
-
-
-	return (y);
-}
-*/
 
 inline static char		visu_pause(void)
 {

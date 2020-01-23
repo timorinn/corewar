@@ -45,7 +45,7 @@
 # define COMMENT_LENGTH			(2048)
 # define COREWAR_EXEC_MAGIC		0x00ea83f3
 
-# define DUMP_WIDTH				32
+# define DUMP_WIDTH				64
 
 # define HEX "0123456789abcdef"
 

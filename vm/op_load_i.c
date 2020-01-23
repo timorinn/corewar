@@ -18,7 +18,6 @@ static inline void	vm_print_log_ldi(t_args *args, int32_t addr)
 
 	offset = args->nums_unfolded[0] + args->nums_unfolded[1];
 	ft_printf("%20c -> load from %d + %d = %d (with pc and mod %d)\n", '|', args->nums_unfolded[0], args->nums_unfolded[1], offset, addr);
-	fflush(stdout);
 }
 
 inline bool			op_load_i(uint8_t map[MEM_SIZE][4], bool ll, t_cycle *cycle)
@@ -32,9 +31,7 @@ inline bool			op_load_i(uint8_t map[MEM_SIZE][4], bool ll, t_cycle *cycle)
 	ft_bzero(&args, sizeof(t_args));
 	args.dir_size = 2;
 	vm_get_args(map, cur, &args);
-	if (cycle->cycle_num == 8704)
-		mvprintw(101, 90, "ldi target_cycle: %d", cycle->cycle_num);
-
+	args.dir_size += 2;
 	// if (vm_validate_args(args, "RIDR-DR--"))										ARGS ERROR commit
 	if (vm_validate_args(args, "RIDR-DR--", 3))
 
