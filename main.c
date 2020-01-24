@@ -13,19 +13,16 @@
 #include "libft.h"
 #include "vm.h"
 
-int8_t		ft_visu(int argc, char **argv)
-{
-	return (!ft_strcmp(argv[argc - 1], "-v"));
-}
-
 void		ft_init_dump(int argc, char **argv, t_flags *flags)
 {
-	if (argc > 2 && (!ft_strcmp(argv[1], /**/ "-d")))
+	if (argc > 2 && (!ft_strcmp(argv[1], "-dump")))
 	{
 		if (!ft_isint(argv[2], 1, 1, 1))
 			exit(vm_error(6, 0));
 		flags->dump = ft_atoi(argv[2]);
 	}
+	else
+		flags->dump = -1;
 }
 
 bool		vm_get_log_flag(int ac, char **av, t_flags flags)
