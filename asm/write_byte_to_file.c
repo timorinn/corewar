@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   write_byte_to_file.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
+/*   By: swedde <swedde@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/09 11:31:55 by bford             #+#    #+#             */
-/*   Updated: 2020/01/24 21:12:23 by bford            ###   ########.fr       */
+/*   Created: 2019/12/25 17:20:01 by swedde            #+#    #+#             */
+/*   Updated: 2019/12/25 17:20:27 by swedde           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "asm.h"
 
-void	*ft_memset(void *b, int c, size_t len)
+int		write_byte_to_file(t_all *gen, unsigned char c)
 {
-	while (len--)
-		((unsigned char *)(b))[len] = c;
-	return (b);
+	if (write(gen->fd, &c, 1) == -1)
+	{
+		ft_putendl("Error: Failed to write to file");
+		do_exit(NULL, gen);
+	}
+	return (1);
 }

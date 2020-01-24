@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   print_point.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/09 11:31:55 by bford             #+#    #+#             */
-/*   Updated: 2020/01/24 21:12:23 by bford            ###   ########.fr       */
+/*   Created: 2019/12/15 23:10:18 by swedde            #+#    #+#             */
+/*   Updated: 2019/12/26 18:59:03 by nsheev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "asm.h"
 
-void	*ft_memset(void *b, int c, size_t len)
+void	print_point(t_point a)
 {
-	while (len--)
-		((unsigned char *)(b))[len] = c;
-	return (b);
+	ft_putstr("Ln ");
+	ft_putnbr(a.x);
+	ft_putstr(", Col ");
+	ft_putnbr(a.y);
 }

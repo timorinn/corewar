@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   char_to_string.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/09 11:31:55 by bford             #+#    #+#             */
-/*   Updated: 2020/01/24 21:12:23 by bford            ###   ########.fr       */
+/*   Created: 2019/12/15 21:56:48 by swedde            #+#    #+#             */
+/*   Updated: 2019/12/26 18:59:48 by nsheev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "asm.h"
 
-void	*ft_memset(void *b, int c, size_t len)
+char	*char_to_string(char c)
 {
-	while (len--)
-		((unsigned char *)(b))[len] = c;
-	return (b);
+	char *s;
+
+	s = ft_strnew(1);
+	s[0] = c;
+	return (s);
 }

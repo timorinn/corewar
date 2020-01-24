@@ -1,20 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   do_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/09 11:31:55 by bford             #+#    #+#             */
-/*   Updated: 2020/01/24 21:12:23 by bford            ###   ########.fr       */
+/*   Created: 2019/12/12 13:40:41 by nsheev            #+#    #+#             */
+/*   Updated: 2019/12/26 19:04:27 by nsheev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "asm.h"
 
-void	*ft_memset(void *b, int c, size_t len)
+void	do_exit(char **error_mes, t_all *gen)
 {
-	while (len--)
-		((unsigned char *)(b))[len] = c;
-	return (b);
+	if (error_mes)
+	{
+		ft_putendl(*error_mes);
+		ft_strdel(error_mes);
+	}
+	ft_strdel(&gen->file_name);
+	lst_del_token(gen->token);
+	ft_strdel(&gen->file);
+	free(gen);
+	exit(-1);
 }

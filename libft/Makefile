@@ -6,7 +6,7 @@
 #    By: bford <bford@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/06 11:34:46 by bford             #+#    #+#              #
-#    Updated: 2020/01/22 11:45:13 by bford            ###   ########.fr        #
+#    Updated: 2020/01/24 21:12:49 by bford            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,9 @@ SRC	=		ft_strlen.c ft_strcpy.c ft_strncpy.c ft_strdup.c		\
 			ft_isint.c ft_strjoin_free.c ft_delstr_arr.c			\
 			ft_array_size.c	ft_strndup.c ft_isspace.c				\
 			get_next_line.c ft_lstnew_gnl.c ft_strndupu.c			\
-			ft_putstr_num.c
+			ft_putstr_num.c											\
+			\
+			ft_atol.c
 
 OBJ =		$(SRC:.c=.o)
 
@@ -38,7 +40,7 @@ NAME =		libft.a
 
 all:		$(NAME)
 
-$(NAME):	$(OBJ)
+$(NAME):	$(OBJ) libft.h
 			ar -rcs $(NAME) $(OBJ)
 
 %.o:		%.c $(HEAD)
