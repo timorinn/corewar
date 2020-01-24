@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 16:59:08 by bford             #+#    #+#             */
-/*   Updated: 2020/01/22 16:34:05 by bford            ###   ########.fr       */
+/*   Updated: 2020/01/24 13:08:44 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 inline static int8_t	check_magic(const char *start)
 {
-	uint32_t		magic;
-	magic_header 	true_magic;
+	uint32_t	magic;
+	t_magic		true_magic;
 
 	true_magic.bytes[0] = (COREWAR_EXEC_MAGIC >> 24) & 0xFF;
 	true_magic.bytes[1] = (COREWAR_EXEC_MAGIC >> 16) & 0xFF;
@@ -28,7 +28,7 @@ inline static int8_t	check_magic(const char *start)
 		return (false);
 }
 
-inline static void	init_new_player(int fd, t_player *player)
+inline static void		init_new_player(int fd, t_player *player)
 {
 	char	buf[COMMENT_LENGTH + 1];
 
@@ -53,7 +53,7 @@ inline static void	init_new_player(int fd, t_player *player)
 		exit(1);
 }
 
-inline static void	make_lst_player(int fd, t_player **player, int num)
+inline static void		make_lst_player(int fd, t_player **player, int num)
 {
 	t_player	*copy;
 
@@ -75,7 +75,7 @@ inline static void	make_lst_player(int fd, t_player **player, int num)
 	init_new_player(fd, copy);
 }
 
-void				vm_init_player(char **argv, int *i, t_player **player,
+void					vm_init_player(char **argv, int *i, t_player **player,
 		int8_t *numbers)
 {
 	int	num;

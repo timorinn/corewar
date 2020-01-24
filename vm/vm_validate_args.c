@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/23 20:28:11 by bford             #+#    #+#             */
-/*   Updated: 2020/01/01 01:42:08 by bford            ###   ########.fr       */
+/*   Updated: 2020/01/24 12:46:18 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,8 @@ bool	vm_validate_args(t_args args, char const *validate, uint8_t max_args)
 	uint8_t i;
 
 	i = 0;
-
-	// while (i < MAX_ARGS_NUMBER - 1)											ARGS ERROR coomit
 	while (i < max_args)
-	
 	{
-//		if (/*(args.types[i] == 0 && ft_strncmp(&validate[i * 3], "---", 3)) || */
 		if ((args.types[i] == 0 && ft_strncmp(&validate[i * 3], "---", 3)) ||
 		(args.types[i] == REG_CODE &&
 		(validate[i * 3] == '-' || args.nums[i] < 1 || args.nums[i] > 16)) ||

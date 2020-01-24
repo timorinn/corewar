@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/28 14:01:52 by bford             #+#    #+#             */
-/*   Updated: 2020/01/05 17:17:10 by bford            ###   ########.fr       */
+/*   Updated: 2020/01/24 12:59:19 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,7 @@ bool				vm_op_sti(uint8_t map[MEM_SIZE][4], t_cycle *cycle)
 	args.dir_size += 2;
 	if (cycle->log)
 		vm_print_log_op("sti", cycle);
-	// if (vm_validate_args(args, "R--RIDR-D"))							ARGS ERROR commit
 	if (vm_validate_args(args, "R--RIDR-D", 3))
-
 	{
 //
 //		if (cycle->cycle_num == 8729)

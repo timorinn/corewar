@@ -1,14 +1,22 @@
-//
-// Created by Katharine Psylocke on 22/01/2020.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   vm_structs.h                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/24 12:48:31 by bford             #+#    #+#             */
+/*   Updated: 2020/01/24 12:52:17 by bford            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef VM_STRUCTS_H
-#define VM_STRUCTS_H
+# define VM_STRUCTS_H
 
-typedef union {
-	uint8_t bytes[4];
-	uint32_t all;
-}	magic_header;
+typedef	union {
+	uint8_t		bytes[4];
+	uint32_t	all;
+}	t_magic;
 
 typedef struct		s_player
 {
@@ -45,15 +53,13 @@ typedef union {
 typedef struct {
 	uint8_t			types[4];
 	int32_t			nums[4];
-	int32_t 		nums_unfolded[4];
-//	int32_t			offsets[4];
-	int32_t 		offset;
-	uint8_t 		dir_size;
+	int32_t			nums_unfolded[4];
+	int32_t			offset;
+	uint8_t			dir_size;
 }	t_args;
 
 typedef struct {
 	t_cursor		*now_cur;
-//	int32_t			new_cur_num;
 	int32_t			cycle_num;
 	int32_t			dump;
 	bool			log;
@@ -67,7 +73,7 @@ typedef struct {
 	int32_t			checks;
 	int32_t			winner_y;
 	int32_t			winner_num;
-	int64_t 		processes_qty;
+	int64_t			processes_qty;
 }	t_cycle;
 
 typedef struct {

@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   vm_player_lst.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kpsylock <kpsylock@student.21-school.ru>   +#+  +:+       +#+        */
+/*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 19:03:03 by kpsylock          #+#    #+#             */
-/*   Updated: 2020/01/21 19:03:03 by kpsylock         ###   ########.fr       */
+/*   Updated: 2020/01/24 12:58:23 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "vm.h"
 
-int8_t	vm_lstlen_player(t_player *player)
+int8_t		vm_lstlen_player(t_player *player)
 {
 	int	i;
 
@@ -39,7 +40,7 @@ t_player	*vm_lstnew_player(int num)
 	return (player);
 }
 
-int		vm_lstdel_player(t_player *player)
+int			vm_lstdel_player(t_player *player)
 {
 	t_player	*buf;
 

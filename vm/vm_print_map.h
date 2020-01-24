@@ -1,10 +1,15 @@
-//
-// Created by Katharine Psylocke on 21/01/2020.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   vm_print_map.h                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/24 12:57:02 by bford             #+#    #+#             */
+/*   Updated: 2020/01/24 12:57:15 by bford            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef VM_PRINT_MAP_H
-#define VM_PRINT_MAP_H
-//
-// template of ptint_map header
-//
-#endif //VM_PRINT_MAP_H
+# define VM_PRINT_MAP_H
+#endif

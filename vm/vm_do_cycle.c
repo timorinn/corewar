@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 14:14:17 by bford             #+#    #+#             */
-/*   Updated: 2020/01/05 22:26:23 by bford            ###   ########.fr       */
+/*   Updated: 2020/01/24 13:38:35 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ int		ft_do_operation(uint8_t map[MEM_SIZE][4],
 	(o == 6 && vm_op_and(map, cycle)) || (o == 7 && vm_op_or(map, cycle)) ||
 	(o == 8 && vm_op_xor(map, cycle)) || (o == 9 && vm_op_zjmp(map, cycle)) ||
 	(o == 10 && vm_op_ldi(map, cycle)) || (o == 11 && vm_op_sti(map, cycle)) ||
-	(o == 13 && vm_op_lld(map, cycle)) || (o == 14 && vm_op_lldi(map, cycle)) ||
+	(o == 13 && vm_op_lld(map, cycle)) ||
+	(o == 14 && vm_op_lldi(map, cycle)) ||
 	(o == 16 && vm_op_aff(map, cycle)))
 		return (1);
 	else if (o == 12)
@@ -35,8 +36,6 @@ int		ft_do_operation(uint8_t map[MEM_SIZE][4],
 	map[cycle->now_cur->position][2] -= 1;
 	cycle->now_cur->position = (cycle->now_cur->position + 1) % MEM_SIZE;
 	map[cycle->now_cur->position][2] += 1;
-
-	//mvprintw(85 + 1, 16, "FREE PLACE! Cur_position = %d", cur->position);
 	return (1);
 }
 
@@ -47,7 +46,8 @@ int		vm_do_cycle(uint8_t map[MEM_SIZE][4], t_cursor **cur, t_cycle *cycle)
 	copy = *cur;
 	while (copy)
 	{
-		if (copy->operation == -1 && map[copy->position][0] > 0 && map[copy->position][0] < 17)
+		if (copy->operation == -1 &&
+		map[copy->position][0] > 0 && map[copy->position][0] < 17)
 		{
 			copy->cooldown = g_operation[map[copy->position][0] - 1] - 1;
 			copy->operation = map[copy->position][0];

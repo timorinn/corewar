@@ -1,6 +1,14 @@
-//
-// Created by Katharine Psylocke on 21/01/2020.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   vm_make_player_params.c                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/24 13:22:19 by bford             #+#    #+#             */
+/*   Updated: 2020/01/24 13:22:36 by bford            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "vm.h"
 
@@ -16,7 +24,8 @@ inline int8_t	make_player_comment(t_player *player, char *comment)
 
 inline int8_t	make_player_code(t_player *player, char *code, int code_size)
 {
-	return ((player->code = ft_strndupu(code, code_size)) ? 1 : vm_error(12, 0));
+	return ((player->code = ft_strndupu(code, code_size)) ?
+			1 : vm_error(12, 0));
 }
 
 inline int8_t	make_code_size(int *code_size, char *buf)

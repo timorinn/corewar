@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/14 20:59:37 by bford             #+#    #+#             */
-/*   Updated: 2019/12/14 22:18:02 by bford            ###   ########.fr       */
+/*   Updated: 2020/01/24 13:51:40 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int8_t	vm_dir_or_ind(unsigned int arg, int8_t tdir)
 		return (tdir);
 	else if (arg == IND_CODE)
 		return (IND_SIZE);
-	else if (arg == REG_CODE )
+	else if (arg == REG_CODE)
 		return (1);
 	return (0);
 }

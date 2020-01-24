@@ -1,10 +1,19 @@
-//
-// Created by Katharine Psylocke on 23/12/2019.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   vm_unfold_indirects.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/24 12:47:37 by bford             #+#    #+#             */
+/*   Updated: 2020/01/24 12:47:56 by bford            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "vm.h"
 
-static inline int	vm_unfold_indirect(uint8_t map[MEM_SIZE][4], uint16_t addr, uint8_t dir_size)
+static inline int	vm_unfold_indirect(uint8_t map[MEM_SIZE][4],
+		uint16_t addr, uint8_t dir_size)
 {
 	t_dir		dir;
 
@@ -16,7 +25,7 @@ static inline int	vm_unfold_indirect(uint8_t map[MEM_SIZE][4], uint16_t addr, ui
 }
 
 void				vm_unfold_all(uint8_t map[MEM_SIZE][4], t_cursor *car,
-							  t_args *args, bool is_idx_needed)
+		t_args *args, bool is_idx_needed)
 {
 	int i;
 

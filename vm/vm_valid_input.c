@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 12:53:12 by bford             #+#    #+#             */
-/*   Updated: 2020/01/22 16:46:51 by bford            ###   ########.fr       */
+/*   Updated: 2020/01/24 12:45:44 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ inline static void	check_name_player(const char *name)
 	exit(vm_error(1, name));
 }
 
-inline static void valid_argv(int argc, char **argv, int *i, int8_t *players)
+inline static void	valid_argv(int argc, char **argv, int *i, int8_t *players)
 {
 	int		player_num;
 
@@ -46,7 +46,7 @@ inline static void valid_argv(int argc, char **argv, int *i, int8_t *players)
 	check_name_player(argv[*i]);
 }
 
-inline void		vm_valid_input(int argc, char **argv, t_flags flags)
+inline void			vm_valid_input(int argc, char **argv, t_flags flags)
 {
 	int		i;
 	int		players_count;

@@ -6,7 +6,7 @@
 #    By: bford <bford@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/05 17:55:08 by bford             #+#    #+#              #
-#    Updated: 2020/01/17 14:54:13 by bford            ###   ########.fr        #
+#    Updated: 2020/01/24 12:35:34 by bford            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,6 @@ SRC =		vm_valid_input.c		\
 			vm_arena.c				\
 			vm_print_map.c			\
 			vm_print_players.c		\
-			vm_print_map_single.c	\
 			vm_make_start_list_cursor.c		\
 			vm_print_cursor.c		\
 			vm_no_print_map.c		\

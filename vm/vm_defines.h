@@ -1,9 +1,17 @@
-//
-// Created by Katharine Psylocke on 22/01/2020.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   vm_defines.h                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/24 13:52:10 by bford             #+#    #+#             */
+/*   Updated: 2020/01/24 13:52:14 by bford            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef VM_DEFINES_H
-#define VM_DEFINES_H
+# define VM_DEFINES_H
 
 # define IND_SIZE				2
 # define REG_SIZE				4

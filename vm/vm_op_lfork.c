@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vm_op_lfork.c                                         :+:      :+:    :+:   */
+/*   vm_op_lfork.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/21 14:07:59 by bford             #+#    #+#             */
-/*   Updated: 2019/12/21 21:24:08 by bford            ###   ########.fr       */
+/*   Created: 2020/01/24 13:13:53 by bford             #+#    #+#             */
+/*   Updated: 2020/01/24 13:13:55 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-inline static int32_t op_lfork(int32_t position, int32_t ind)
+inline static int32_t	op_lfork(int32_t position, int32_t ind)
 {
 	return (position + ind >= 0 ?
 	(position + ind) % MEM_SIZE :
 	(position + ind) % MEM_SIZE + MEM_SIZE);
 }
 
-bool	vm_op_lfork(uint8_t map[MEM_SIZE][4], t_cursor **cur, t_cycle *cycle)
+bool					vm_op_lfork(uint8_t map[MEM_SIZE][4],
+		t_cursor **cur, t_cycle *cycle)
 {
 	if (cycle->log)
 		vm_print_log_op("lfork", cycle);

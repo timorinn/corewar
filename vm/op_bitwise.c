@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/24 09:38:15 by kpsylock          #+#    #+#             */
-/*   Updated: 2020/01/05 17:15:18 by bford            ###   ########.fr       */
+/*   Updated: 2020/01/24 13:59:35 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ inline bool	op_bitwise(uint8_t map[MEM_SIZE][4],
 	ft_bzero(&args, sizeof(t_args));
 	args.dir_size = 4;
 	vm_get_args(map, cur, &args);
-
-	// if (vm_validate_args(args, "RIDRIDR--"))					ARGS ERROR commit
 	if (vm_validate_args(args, "RIDRIDR--", 3))
 	{
 		vm_unfold_all(map, cur, &args, true);

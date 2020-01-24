@@ -6,21 +6,21 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/28 14:02:23 by bford             #+#    #+#             */
-/*   Updated: 2019/12/31 23:36:57 by bford            ###   ########.fr       */
+/*   Updated: 2020/01/24 13:39:33 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
 static void	get_reg(uint8_t map[MEM_SIZE][4], t_cursor *car,
-					   t_args *args, int arg_num)
+		t_args *args, int arg_num)
 {
 	args->nums[arg_num] = map[car->position + args->offset][0];
 	args->offset += 1;
 }
 
 static void	get_dir(uint8_t map[MEM_SIZE][4], t_cursor *car,
-					   t_args *args, int arg_num)
+		t_args *args, int arg_num)
 {
 	t_dir	dir;
 
@@ -30,7 +30,7 @@ static void	get_dir(uint8_t map[MEM_SIZE][4], t_cursor *car,
 }
 
 static void	get_ind(uint8_t map[MEM_SIZE][4], t_cursor *car,
-					  t_args *args, int arg_num)
+		t_args *args, int arg_num)
 {
 	t_ind	ind;
 
@@ -46,10 +46,7 @@ int			vm_get_args(uint8_t map[MEM_SIZE][4], t_cursor *car, t_args *args)
 	vm_init_args(map, car->position, args->types);
 	args->offset = 2;
 	i = 0;
-	
-	// while (i < 3)								ARGS ERROR commit
 	while (i < 3)
-	
 	{
 		if (args->types[i] == REG_CODE)
 			get_reg(map, car, args, i);
@@ -59,11 +56,6 @@ int			vm_get_args(uint8_t map[MEM_SIZE][4], t_cursor *car, t_args *args)
 			get_dir(map, car, args, i);
 		else if (args->types[i] == DIR_CODE && args->dir_size == 2)
 			get_ind(map, car, args, i);
-
-
-		// else										ARGS ERROR commit
-		//	return (false);							ARGS ERROR commit
-		
 		i++;
 	}
 	return (true);
