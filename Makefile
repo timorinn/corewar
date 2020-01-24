@@ -14,42 +14,28 @@
 
 NAME =		corewar
 
-LIBFT_PATH =	./libft/
-LIBFT_A =	libft.a
-LIBFT = $(addprefix $(LIBFT_PATH),$(LIBFT_A))
-
-FT_PRINTF_PATH = ../ft_printf/
-FT_PRINTF_A = libftprintf.a
-FT_PRINTF = $(addprefix $(FT_PRINTF_PATH),$(FT_PRINTF_A))
-
-VM =		./vm
-ASM =		./asm
+VM_BINARY =		corewar
+VM_PATH =		./vm_src
+ASM_PATH =		./asm_src
+ASM_BINARY =	asm
 
 
-all:		$(NAME)
+all:		$(NAME) $(VM_BINARY) $(ASM_BINARY)
 
-$(NAME): $(VM) $(ASM)
+$(NAME): $(VM_BINARY) $(ASM_BINARY)
 
-$(VM): $(LIBFT) $(FT_PRINTF)
-			make -C ./vm
+$(VM_BINARY):
+			make -C $(VM_PATH)
 
-$(ASM): $(LIBFT) $(FT_PRINTF)
-			make -C ./asm
-
-$(FTPRINTFA):
-			make -C ./ft_printf
-
-$(LIBFTA):
-			make -C ./libft
+$(ASM_BINARY):
+			make -C $(ASM_PATH)
 
 clean:
-			make clean -C ./ft_printf
-			make clean -C ./vm
-			make clean -C ./libft
+			make clean -C $(VM_PATH)
+			make clean -C $(ASM_PATH)
 
 fclean:
-			make fclean -C ./ft_printf
-			make fclean -C ./libft
-			make fclean -C ./vm
+			make fclean -C $(VM_PATH)
+			make fclean -C $(ASM_PATH)
 
 re:			fclean all

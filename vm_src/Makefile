@@ -42,7 +42,6 @@ SRC =		vm_valid_input.c		\
 			vm_get_args.c			\
 			vm_unfold_indirects.c	\
 			vm_rewrite_map.c		\
-			\
 			vm_op_ld.c				\
 			vm_op_ldi.c				\
 			vm_op_lldi.c			\
@@ -62,10 +61,8 @@ SRC =		vm_valid_input.c		\
 			vm_op_or.c				\
 			vm_op_xor.c				\
 			vm_op_aff.c				\
-			\
 			op_load.c				\
 			op_load_i.c				\
-			\
 			vm_check_cursor.c		\
 			vm_lstdel_cursor.c		\
 			vm_player_lst.c			\
@@ -76,31 +73,31 @@ OBJ =		$(SRC:.c=.o)
 
 HEADERS =	vm.h vm_defines.h vm_structs.h vm_print_map.h vm_init_player.h
 
-NAME =		corewar
+NAME =		../corewar
 
 all:		$(NAME)
 
-$(NAME):	$(OBJ) $(HEADERS)
-			gcc -Wall -Wextra -Werror -o3 -march=native -I ./ -g -o ../corewar $(OBJ) -L $(LIBFT_PATH) -lft -L $(FT_PRINTF_PATH) -lftprintf -lncurses
+$(NAME):	$(OBJ) $(HEADERS) $(LIBFT) $(FT_PRINTF)
+			gcc -Wall -Wextra -Werror -o3 -march=native -I ./ -I $(LIBFT_PATH) -I $(FT_PRINTF_PATH) -g -o ../corewar $(OBJ) -L $(LIBFT_PATH) -lft -L $(FT_PRINTF_PATH) -lftprintf -lncurses
 
-#$(LIBFT):
-#			make -C $(LIBFT_PATH)
-#
-#$(FT_PRINTF):
-#			make -C $(FT_PRINTF_PATH)
+$(LIBFT):
+			make -C $(LIBFT_PATH)
+
+$(FT_PRINTF):
+			make -C $(FT_PRINTF_PATH)
 
 %.o:		%.c $(HEADERS)
 			gcc -I ./ -Wall -Wextra -Werror -o3 -march=native -g -c $< -o $@
 
 clean:
 			/bin/rm -f $(OBJ)
-#			make clean -C $(LIBFT_PATH)
-#			make clean -C $(FT_PRINTF_PATH)
+			make clean -C $(LIBFT_PATH)
+			make clean -C $(FT_PRINTF_PATH)
 
 fclean:
 			/bin/rm -f $(OBJ)
 			/bin/rm -f $(NAME)
-#			make fclean -C $(LIBFT_PATH)
-#			make fclean -C $(FT_PRINTF_PATH)
+			make fclean -C $(LIBFT_PATH)
+			make fclean -C $(FT_PRINTF_PATH)
 
 re:			fclean all
