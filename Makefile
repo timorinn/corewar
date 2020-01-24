@@ -10,51 +10,44 @@
 #                                                                              #
 # **************************************************************************** #
 
+.PHONY: 	all clean fclean re
+
 NAME =		corewar
 
-SRC =		main.c
+LIBFT_PATH =	./libft/
+LIBFT_A =	libft.a
+LIBFT = $(addprefix $(LIBFT_PATH),$(LIBFT_A))
 
-LIBFT = 	./libft
+FT_PRINTF_PATH = ../ft_printf/
+FT_PRINTF_A = libftprintf.a
+FT_PRINTF = $(addprefix $(FT_PRINTF_PATH),$(FT_PRINTF_A))
 
 VM =		./vm
+ASM =		./asm
 
-LIBFTA =	./libft/libft.a
-
-VMA =		./vm/libvm.a
-
-FTPRINTFA =	./ft_printf/libftprintf.a
-
-OBJ =		$(SRC:.c=.o)
-
-.PHONY: 	all clean fclean re
 
 all:		$(NAME)
 
-%.o:		%.c
-			gcc -Wall -Werror -Wextra -g -I $(LIBFT) -I $(VM) -o $@ -c $<
+$(NAME): $(VM) $(ASM)
 
-$(NAME):	$(LIBFTA) $(VMA) $(FTPRINTFA) $(OBJ) ./libft/libft.a ./vm/libvm.a ./ft_printf/libftprintf.a
-			gcc -Wall -Werror -Wextra -g -o corewar $(OBJ) -L ./libft -lft -L ./vm -lvm -L ./ft_printf -lftprintf -lncurses
-
-FORCE:		;
-
-$(VMA):		FORCE
+$(VM): $(LIBFT) $(FT_PRINTF)
 			make -C ./vm
 
-$(FTPRINTFA):		FORCE
+$(ASM): $(LIBFT) $(FT_PRINTF)
+			make -C ./asm
+
+$(FTPRINTFA):
 			make -C ./ft_printf
 
-$(LIBFTA):	FORCE
+$(LIBFTA):
 			make -C ./libft
 
 clean:
-			rm -f main.o
 			make clean -C ./ft_printf
 			make clean -C ./vm
 			make clean -C ./libft
 
-fclean:		clean
-			rm -f $(NAME)
+fclean:
 			make fclean -C ./ft_printf
 			make fclean -C ./libft
 			make fclean -C ./vm

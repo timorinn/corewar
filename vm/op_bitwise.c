@@ -25,26 +25,14 @@ inline bool	op_bitwise(uint8_t map[MEM_SIZE][4],
 	if (vm_validate_args(args, "RIDRIDR--", 3))
 	{
 		vm_unfold_all(map, cur, &args, true);
-/*		mvprintw(80, 16, "target reg index: %08x", args.nums[2]);
-		mvprintw(81, 16, "target reg: %08x", cur->registr[args.nums[2]]);
-		mvprintw(82, 16, "first reg: %08x", args.nums_unfolded[0]);
-		mvprintw(83, 16, "second reg: %08x", args.nums_unfolded[1]);
-//		mvprintw(79, 16, "OR/XOR/AND");
-*/
 		if (cycle->log == true)
 			vm_print_log_args(&args, 3);
 		cur->registr[args.nums[2]] = (*operation)
 				(args.nums_unfolded[0], args.nums_unfolded[1]);
-//		mvprintw(84, 16, "result in target reg: %08x", cur->registr[args.nums[2]]);
 		cur->carry = (cur->registr[args.nums[2]] == 0 ? 1 : 0);
 	}
 	else if (cycle->log == true)
 		ft_putendl(" failed!");
-	// cur->position += vm_move(args.types, "1110", 4) + 2;		ARGS ERROR commit
-	/*
-	cur->position += vm_move(args.types, "1110", 4) + 2;
-	cur->position %= MEM_SIZE;
-	*/
 	map[cur->position][2] -= 1;
 	vm_move(cur, args.types, "1110", 4);
 	map[cur->position][2] += 1;

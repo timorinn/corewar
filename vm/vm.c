@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+//#include "libft.h"
 #include "vm.h"
 
 void		ft_init_dump(int argc, char **argv, t_flags *flags)

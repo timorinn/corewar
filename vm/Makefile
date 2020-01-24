@@ -10,6 +10,16 @@
 #                                                                              #
 # **************************************************************************** #
 
+.PHONY: 	all clean fclean re
+
+LIBFT_PATH =	../libft/
+LIBFT_A =	libft.a
+LIBFT = $(addprefix $(LIBFT_PATH),$(LIBFT_A))
+
+FT_PRINTF_PATH = ../ft_printf/
+FT_PRINTF_A = libftprintf.a
+FT_PRINTF = $(addprefix $(FT_PRINTF_PATH),$(FT_PRINTF_A))
+
 SRC =		vm_valid_input.c		\
 			vm_make_player_params.c	\
 			vm_init_input.c			\
@@ -53,34 +63,44 @@ SRC =		vm_valid_input.c		\
 			vm_op_xor.c				\
 			vm_op_aff.c				\
 			\
-			op_all_fork.c			\
-			op_bitwise.c			\
 			op_load.c				\
 			op_load_i.c				\
 			\
 			vm_check_cursor.c		\
 			vm_lstdel_cursor.c		\
 			vm_player_lst.c			\
-			vm_print_log.c
+			vm_print_log.c			\
+			vm.c
 
 OBJ =		$(SRC:.c=.o)
 
-HEAD =		vm.h vm_init_player.h
+HEADERS =	vm.h vm_defines.h vm_structs.h vm_print_map.h vm_init_player.h
 
-NAME =		libvm.a
+NAME =		corewar
 
 all:		$(NAME)
 
-$(NAME):	$(OBJ)
-			ar -rcs $(NAME) $(OBJ)
+$(NAME):	$(OBJ) $(HEADERS)
+			gcc -Wall -Wextra -Werror -o3 -march=native -I ./ -g -o ../corewar $(OBJ) -L $(LIBFT_PATH) -lft -L $(FT_PRINTF_PATH) -lftprintf -lncurses
 
-%.o:		%.c $(HEAD)
-			gcc -I ./ -Wall -Wextra -Werror -g -c $< -o $@
+#$(LIBFT):
+#			make -C $(LIBFT_PATH)
+#
+#$(FT_PRINTF):
+#			make -C $(FT_PRINTF_PATH)
+
+%.o:		%.c $(HEADERS)
+			gcc -I ./ -Wall -Wextra -Werror -o3 -march=native -g -c $< -o $@
 
 clean:
-			rm -f $(OBJ)
+			/bin/rm -f $(OBJ)
+#			make clean -C $(LIBFT_PATH)
+#			make clean -C $(FT_PRINTF_PATH)
 
-fclean:		clean
-			rm -f $(NAME)
+fclean:
+			/bin/rm -f $(OBJ)
+			/bin/rm -f $(NAME)
+#			make fclean -C $(LIBFT_PATH)
+#			make fclean -C $(FT_PRINTF_PATH)
 
 re:			fclean all
