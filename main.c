@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 13:17:03 by bford             #+#    #+#             */
-/*   Updated: 2020/01/22 17:14:26 by bford            ###   ########.fr       */
+/*   Updated: 2020/01/24 15:55:30 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,16 @@ int8_t		ft_visu(int argc, char **argv)
 	return (!ft_strcmp(argv[argc - 1], "-v"));
 }
 
-int			ft_init_dump(int argc, char **argv)
+void		ft_init_dump(int argc, char **argv, t_flags *flags)
 {
-	if (argc > 2 && !ft_strcmp(argv[1], "-dump"))
+	if (argc > 2 && (!ft_strcmp(argv[1], "-dump") || !ft_strcmp(argv[1], "-dump64")))
 	{
 		if (!ft_isint(argv[2], 1, 1, 1))
 			exit(vm_error(6, 0));
-		return (ft_atoi(argv[2]));
+		flags->dump_size = (!ft_strcmp(argv[1], "-dump64") ? 64 : 32);
+		flags->dump = ft_atoi(argv[2]);
+		// return (ft_atoi(argv[2]));
 	}
-	return (-1);
 }
 
 bool		vm_get_log_flag(int ac, char **av, t_flags flags)
@@ -39,7 +40,7 @@ bool		vm_get_log_flag(int ac, char **av, t_flags flags)
 
 void		vm_init_flags(int argc, char **argv, t_flags *flags)
 {
-	flags->dump = ft_init_dump(argc, argv);
+	ft_init_dump(argc, argv, flags);
 	flags->offset = (flags->dump == -1 ? 0 : 2);
 	flags->log = vm_get_log_flag(argc, argv, *flags);
 	flags->offset += (flags->log == false ? 0 : 1);

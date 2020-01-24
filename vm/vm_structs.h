@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 12:48:31 by bford             #+#    #+#             */
-/*   Updated: 2020/01/24 12:52:17 by bford            ###   ########.fr       */
+/*   Updated: 2020/01/24 15:56:22 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef struct {
 	t_cursor		*now_cur;
 	int32_t			cycle_num;
 	int32_t			dump;
+	int32_t			dump_size;
 	bool			log;
 	int32_t			cycles_to_die;
 	int32_t			waiting_die;
@@ -78,6 +79,7 @@ typedef struct {
 
 typedef struct {
 	int32_t			dump;
+	int32_t			dump_size;
 	bool			log;
 	int8_t			offset;
 	bool			v;
