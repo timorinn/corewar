@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 13:21:45 by bford             #+#    #+#             */
-/*   Updated: 2020/01/24 15:58:39 by bford            ###   ########.fr       */
+/*   Updated: 2020/01/24 16:07:48 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,32 +19,17 @@ inline static void	vm_print_winner(t_player *player, int winner_num)
 	ft_printf("Contestant %d, \"%s\", has won !\n", player->num, player->name);
 }
 
-inline static void	print_map_single(uint8_t map[MEM_SIZE][4], /* dump 32 64 */ t_cycle *cycle)
+inline static void	print_map_single(uint8_t map[MEM_SIZE][4])
 {
-	// int		i;
-
-	// i = 1;
-	// while (i < MEM_SIZE + 1)
-	// {
-	// 	if (i % DUMP_WIDTH == 1)
-	// 		ft_printf("0x%03x0 : ", i / 16);
-	// 	ft_printf("%02x ", map[i - 1][0]);
-	// 	if (i % DUMP_WIDTH == 0)
-	// 		ft_printf("\n");
-	// 	i++;
-	// }
-
 	int		i;
-	int		dump_size;
 
-	dump_size = cycle->dump_size;
 	i = 1;
 	while (i < MEM_SIZE + 1)
 	{
-		if (i % dump_size == 1)
+		if (i % DUMP_WIDTH == 1)
 			ft_printf("0x%03x0 : ", i / 16);
 		ft_printf("%02x ", map[i - 1][0]);
-		if (i % dump_size == 0)
+		if (i % DUMP_WIDTH == 0)
 			ft_printf("\n");
 		i++;
 	}
@@ -66,7 +51,7 @@ void				vm_no_print_map(uint8_t map[MEM_SIZE][4], t_cursor **cur,
 		}
 		if (cycle->dump == cycle->cycle_num)
 		{
-			print_map_single(map, /* dump 32 64 */ cycle);
+			print_map_single(map);
 			break ;
 		}
 		cycle->cycle_num++;

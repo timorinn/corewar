@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 13:17:03 by bford             #+#    #+#             */
-/*   Updated: 2020/01/24 15:55:30 by bford            ###   ########.fr       */
+/*   Updated: 2020/01/24 16:10:18 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,11 @@ int8_t		ft_visu(int argc, char **argv)
 
 void		ft_init_dump(int argc, char **argv, t_flags *flags)
 {
-	if (argc > 2 && (!ft_strcmp(argv[1], "-dump") || !ft_strcmp(argv[1], "-dump64")))
+	if (argc > 2 && (!ft_strcmp(argv[1], /**/ "-d")))
 	{
 		if (!ft_isint(argv[2], 1, 1, 1))
 			exit(vm_error(6, 0));
-		flags->dump_size = (!ft_strcmp(argv[1], "-dump64") ? 64 : 32);
 		flags->dump = ft_atoi(argv[2]);
-		// return (ft_atoi(argv[2]));
 	}
 }
 

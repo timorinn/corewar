@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/28 13:28:34 by bford             #+#    #+#             */
-/*   Updated: 2020/01/24 15:56:41 by bford            ###   ########.fr       */
+/*   Updated: 2020/01/24 16:06:00 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	vm_init_cycle(t_cycle *cycle, int player_size, t_flags flags)
 	cycle->v = flags.v;
 	cycle->cycle_num = 0;
 	cycle->dump = flags.dump;
-	cycle->dump_size = flags.dump_size;
 	cycle->log = flags.log;
 	cycle->cur_len = player_size;
 	cycle->lives_in_current_period_all = 0;
