@@ -6,22 +6,26 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/28 14:02:32 by bford             #+#    #+#             */
-/*   Updated: 2020/01/24 13:55:38 by bford            ###   ########.fr       */
+/*   Updated: 2020/01/25 14:09:10 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-static inline void	vm_print_log_ldi(t_args *args, int32_t addr)
+static inline void	vm_print_log_ldi(t_args *args, int32_t addr,
+		t_cycle *cycle)
 {
 	int32_t offset;
 
+	if (cycle->log == false)
+		return ;
 	offset = args->nums_unfolded[0] + args->nums_unfolded[1];
 	ft_printf("%20c -> load from %d + %d = %d (with pc and mod %d)\n", '|',
 			args->nums_unfolded[0], args->nums_unfolded[1], offset, addr);
 }
 
-inline bool			op_load_i(uint8_t map[MEM_SIZE][4], bool ll, t_cycle *cycle)
+inline bool			op_load_i(uint8_t map[MEM_SIZE][4],
+		bool ll, t_cycle *cycle)
 {
 	t_args		args;
 	int32_t		addr;
@@ -36,18 +40,13 @@ inline bool			op_load_i(uint8_t map[MEM_SIZE][4], bool ll, t_cycle *cycle)
 	if (vm_validate_args(args, "RIDR-DR--", 3))
 	{
 		vm_unfold_all(map, cur, &args, true);
-//		offset = args.nums_unfolded[0] + args.nums_unfolded[1];
-		if (cycle->log == true)
-			vm_print_log_args(&args, 3);
+		vm_print_log_args(&args, 3, cycle);
 		offset = (args.nums_unfolded[0] + args.nums_unfolded[1]);
-		if (ll == false)
-			offset %= IDX_MOD;
+		offset %= (ll == false ? IDX_MOD : 1);
 		addr = (cur->position + offset) % MEM_SIZE;
-		if (addr < 0)
-			addr += MEM_SIZE;
+		addr += (addr < 0 ? MEM_SIZE : 0);
 		cur->registr[args.nums[2]] = vm_init_t_dir(map, addr, 4).data;
-		if (cycle->log)
-			vm_print_log_ldi(&args, addr);
+		vm_print_log_ldi(&args, addr, cycle);
 	}
 	else if (cycle->log == true)
 		ft_putendl(" failed!");

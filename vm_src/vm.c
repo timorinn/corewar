@@ -1,16 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   vm.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 13:17:03 by bford             #+#    #+#             */
-/*   Updated: 2020/01/24 16:10:18 by bford            ###   ########.fr       */
+/*   Updated: 2020/01/25 14:06:58 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "libft.h"
 #include "vm.h"
 
 void		ft_init_dump(int argc, char **argv, t_flags *flags)
@@ -30,7 +29,8 @@ bool		vm_get_log_flag(int ac, char **av, t_flags flags)
 	int8_t offset;
 
 	offset = flags.offset;
-	return (ac > (offset + 1) && !ft_strcmp(av[offset + 1], "-log") ? true : false);
+	return (ac > (offset + 1) && !ft_strcmp(av[offset + 1], "-log") ?
+	true : false);
 }
 
 void		vm_init_flags(int argc, char **argv, t_flags *flags)
@@ -64,8 +64,5 @@ int			main(int argc, char **argv)
 	vm_init_flags(argc, argv, &flags);
 	player = vm_init_input(argc, argv, flags);
 	vm_arena(flags, player);
-
-	//ft_print_player_param(player, 0);
-
 	return (vm_lstdel_player(player));
 }

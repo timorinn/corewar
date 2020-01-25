@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/24 09:35:25 by kpsylock          #+#    #+#             */
-/*   Updated: 2020/01/24 13:11:39 by bford            ###   ########.fr       */
+/*   Updated: 2020/01/25 13:34:50 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,6 @@ inline static int32_t	op_xor(int32_t first, int32_t second)
 
 bool					vm_op_xor(uint8_t map[MEM_SIZE][4], t_cycle *cycle)
 {
-//	move(78, 0);
-//	clrtobot();
-//	mvprintw(79, 16, "XOR");
 	if (cycle->log)
 		vm_print_log_op("xor", cycle);
 	return (op_bitwise(map, &op_xor, cycle));

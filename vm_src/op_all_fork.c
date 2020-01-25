@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   op_all_fork.c                                   :+:      :+:    :+:   */
+/*   op_all_fork.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/24 18:12:30 by bford             #+#    #+#             */
-/*   Updated: 2019/12/28 19:32:44 by bford            ###   ########.fr       */
+/*   Created: 2020/01/25 14:10:30 by bford             #+#    #+#             */
+/*   Updated: 2020/01/25 14:10:31 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,19 +41,10 @@ inline bool	op_all_fork(uint8_t map[MEM_SIZE][4], t_cycle *cycle,
 	map[now_cur->position][2] -= 1;
 	now_cur->position = (now_cur->position + 3) % MEM_SIZE;
 	map[now_cur->position][2] += 1;
-
 	now_cur->operation = -1;
 	now_cur->cooldown = 0;
-
-///	head_cur->operation = map[head_cur->position][0];
-///	if (head_cur->operation > 0 && head_cur->operation < 17)
-///		head_cur->cooldown = g_operation[head_cur->operation - 1] - 1;
-///	else
-///		head_cur->cooldown = 0;
-
 	head_cur->operation = -1;
 	head_cur->cooldown = 0;
-
 	vm_copy_cursor(head_cur, now_cur);
 	head_cur->next = *cur;
 	*cur = head_cur;

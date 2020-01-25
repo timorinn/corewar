@@ -6,14 +6,14 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/31 17:53:10 by bford             #+#    #+#             */
-/*   Updated: 2020/01/05 17:15:01 by bford            ###   ########.fr       */
+/*   Updated: 2020/01/25 14:12:50 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
 inline bool	op_add_sub(uint8_t map[MEM_SIZE][4],
-				   int32_t (*operation)(int32_t, int32_t), t_cycle *cycle)
+		int32_t (*operation)(int32_t, int32_t), t_cycle *cycle)
 {
 	t_args		args;
 	t_cursor	*cur;
@@ -22,31 +22,16 @@ inline bool	op_add_sub(uint8_t map[MEM_SIZE][4],
 	ft_bzero(&args, sizeof(t_args));
 	args.dir_size = 4;
 	vm_get_args(map, cur, &args);
-
-	// if (vm_validate_args(args, "R--R--R--"))								ARGS ERROR commit
 	if (vm_validate_args(args, "R--R--R--", 3))
-
 	{
 		vm_unfold_all(map, cur, &args, true);
-//		cur->registr[args.nums[2]] = args.nums_unfolded[0] +
-//				args.nums_unfolded[1];
-		if (cycle->log == true)
-			vm_print_log_args(&args, 3);
+		vm_print_log_args(&args, 3, cycle);
 		cur->registr[args.nums[2]] = (*operation)
-				(args.nums_unfolded[0], args.nums_unfolded[1]);
+(args.nums_unfolded[0], args.nums_unfolded[1]);
 		cur->carry = (cur->registr[args.nums[2]] == 0 ? 1 : 0);
-//		if (cur->registr[args.nums[2]] == 0)
-//			cur->carry = 1;
-//		else
-//			cur->carry = 0;
 	}
 	else if (cycle->log == true)
 		ft_putendl(" failed!");
-	// cur->position += vm_move(args.types, "1110", args.dir_size) + 2;		ARGS ERROR commit
-	/*
-	cur->position += vm_move(args.types, "1110", args.dir_size) + 2;
-	cur->position %= MEM_SIZE;
-	*/
 	map[cur->position][2] -= 1;
 	vm_move(cur, args.types, "1110", args.dir_size);
 	map[cur->position][2] += 1;

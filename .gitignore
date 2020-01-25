@@ -7,7 +7,6 @@
 /corewar.dSYM
 /vm_champs
 *.a
-*log*
 /cmake-build-debug
 .idea
 t1

@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2020/01/24 13:45:39 by bford            ###   ########.fr       */
+/*   Updated: 2020/01/25 13:36:08 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ int					vm_check_cursor(uint8_t map[MEM_SIZE][4],
 									t_cursor **cur, t_cycle *cycle);
 void				vm_lstdel_cursor(t_cursor *cursor);
 void				vm_print_log_op(char *op, t_cycle *cycle);
-void				vm_print_log_args(t_args *args, uint8_t max_args);
+void				vm_print_log_args(t_args *args, uint8_t max_args,
+									t_cycle *cycle);
 
 #endif
