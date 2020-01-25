@@ -6,7 +6,7 @@
 /*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/12 15:32:55 by nsheev            #+#    #+#             */
-/*   Updated: 2020/01/25 16:54:14 by nsheev           ###   ########.fr       */
+/*   Updated: 2020/01/25 17:29:09 by nsheev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -235,13 +235,11 @@ int			is_reg_arg(char *s)
 	a = i;
 	while (ft_isdigit(s[a]))
 		a++;
-	if (a > 13)
+	if (a > 3)
 		return (0);
 	if (ft_isdigit(s[i]))
 	{
 		j = ft_atol(&s[i]);
-		if (j > 99)
-			return (0);
 		i += num_len(j);
 		if (is_delim(s[i]))
 			return (1);
