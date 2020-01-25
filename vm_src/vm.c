@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 13:17:03 by bford             #+#    #+#             */
-/*   Updated: 2020/01/25 17:31:28 by bford            ###   ########.fr       */
+/*   Updated: 2020/01/25 19:04:39 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ void		vm_check_ovewrflow_dump(char *argv, int dump)
 	int		nbr_len;
 
 	argv_len = ft_strlen(argv);
-	if (!argv_len || argv_len > 10 || dump < 0)
+	if (!argv_len || argv_len > 10 || dump < 0 ||
+	(*argv == '0' && *(argv + 1) != '\0'))
 		exit(vm_error(6, 0));
 	while (*argv)
 		if (!ft_isdigit(*argv++))
