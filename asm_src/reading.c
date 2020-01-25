@@ -6,7 +6,7 @@
 /*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/12 15:32:55 by nsheev            #+#    #+#             */
-/*   Updated: 2020/01/25 17:43:04 by nsheev           ###   ########.fr       */
+/*   Updated: 2020/01/25 19:50:25 by nsheev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -241,7 +241,7 @@ int			is_reg_arg(char *s)
 	{
 		j = ft_atol(&s[i]);
 		i += num_len(j);
-		if (is_delim(s[i]))
+		if (is_delim(s[i]) || s[i] == COMMENT_CHAR || s[i] == ';')
 			return (1);
 	}
 	return (0);
@@ -276,7 +276,8 @@ int			is_dir_arg(char *s)
 		i++;
 	while (ft_isdigit(s[i]))
 		i++;
-	if (is_delim(s[i]) && ft_isdigit(s[i - 1]))
+	if ((is_delim(s[i]) || s[i] == COMMENT_CHAR || s[i] == ';')
+	&& ft_isdigit(s[i - 1]))
 		return (1);
 	return (0);
 }
@@ -349,7 +350,7 @@ int			is_ind_arg(char *s)
 		i++;
 	while (ft_isdigit(s[i]))
 		i++;
-	if (is_delim(s[i]) && i != 0)
+	if ((is_delim(s[i]) || s[i] == COMMENT_CHAR || s[i] == ';') && i != 0)
 		return (1);
 	return (0);
 }
