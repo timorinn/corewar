@@ -22,12 +22,12 @@ ASM_BINARY =	asm
 
 all:		$(NAME) $(VM_BINARY) $(ASM_BINARY)
 
-$(NAME): $(VM_BINARY) $(ASM_BINARY)
+$(NAME): FORCE $(VM_BINARY) $(ASM_BINARY)
 
-$(VM_BINARY):
+$(VM_BINARY): FORCE
 			make -C $(VM_PATH)
 
-$(ASM_BINARY):
+$(ASM_BINARY): FORCE
 			make -C $(ASM_PATH)
 
 clean:
@@ -39,3 +39,5 @@ fclean:
 			make fclean -C $(ASM_PATH)
 
 re:			fclean all
+
+FORCE: ;
