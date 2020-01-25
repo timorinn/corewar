@@ -3,19 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 20:37:59 by bford             #+#    #+#             */
-/*   Updated: 2019/09/07 15:46:09 by bford            ###   ########.fr       */
+/*   Updated: 2020/01/25 16:25:34 by nsheev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_strcmp(const char *s1, const char *s2)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	while (*s1 == *s2 && *s1)
-	{
-		s1++;
-		s2++;
-	}
-	return (unsigned char)(*s1) - (unsigned char)(*s2);
+	int i;
+
+	i = 0;
+	if (!s1 || !s2)
+		return (1);
+	while (s1[i] && s1[i] == s2[i])
+		i++;
+	return (unsigned char)(s1[i]) - (unsigned char)(s2[i]);
 }

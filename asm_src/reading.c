@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reading.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: swedde <swedde@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/12 15:32:55 by nsheev            #+#    #+#             */
-/*   Updated: 2020/01/23 03:07:24 by swedde           ###   ########.fr       */
+/*   Updated: 2020/01/25 16:54:14 by nsheev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -235,7 +235,7 @@ int			is_reg_arg(char *s)
 	a = i;
 	while (ft_isdigit(s[a]))
 		a++;
-	if (a > 12)
+	if (a > 13)
 		return (0);
 	if (ft_isdigit(s[i]))
 	{
