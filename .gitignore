@@ -14,3 +14,4 @@ t2
 *.cor
 .DS_Store
 /*/.DS_Store
+asm.dSYM

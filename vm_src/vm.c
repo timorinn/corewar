@@ -6,19 +6,41 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 13:17:03 by bford             #+#    #+#             */
-/*   Updated: 2020/01/25 14:06:58 by bford            ###   ########.fr       */
+/*   Updated: 2020/01/25 17:31:28 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-void		ft_init_dump(int argc, char **argv, t_flags *flags)
+void		vm_check_ovewrflow_dump(char *argv, int dump)
+{
+	int		argv_len;
+	int		nbr_len;
+
+	argv_len = ft_strlen(argv);
+	if (!argv_len || argv_len > 10 || dump < 0)
+		exit(vm_error(6, 0));
+	while (*argv)
+		if (!ft_isdigit(*argv++))
+			exit(vm_error(6, 0));
+	if (dump == 0)
+		return ;
+	nbr_len = 0;
+	while (dump)
+	{
+		dump /= 10;
+		nbr_len++;
+	}
+	if (nbr_len != argv_len)
+		exit(vm_error(6, 0));
+}
+
+void		vm_init_dump(int argc, char **argv, t_flags *flags)
 {
 	if (argc > 2 && (!ft_strcmp(argv[1], "-dump")))
 	{
-		if (!ft_isint(argv[2], 1, 1, 1))
-			exit(vm_error(6, 0));
 		flags->dump = ft_atoi(argv[2]);
+		vm_check_ovewrflow_dump(argv[2], flags->dump);
 	}
 	else
 		flags->dump = -1;
@@ -35,7 +57,7 @@ bool		vm_get_log_flag(int ac, char **av, t_flags flags)
 
 void		vm_init_flags(int argc, char **argv, t_flags *flags)
 {
-	ft_init_dump(argc, argv, flags);
+	vm_init_dump(argc, argv, flags);
 	flags->offset = (flags->dump == -1 ? 0 : 2);
 	flags->log = vm_get_log_flag(argc, argv, *flags);
 	flags->offset += (flags->log == false ? 0 : 1);

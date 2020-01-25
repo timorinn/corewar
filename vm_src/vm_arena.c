@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/06 13:48:15 by bford             #+#    #+#             */
-/*   Updated: 2020/01/22 15:59:27 by bford            ###   ########.fr       */
+/*   Updated: 2020/01/25 17:31:00 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void					vm_arena(t_flags flags, t_player *player)
 	vm_init_cycle(&cycle, player_qty, flags);
 	init_map(map, player);
 	if (!player || !(cur = vm_make_start_list_cursor(player, map)))
-		exit(1);
+		exit(vm_error(10, 0));
 	if (cycle.v)
 		vm_print_map(map, &cur, player, &cycle);
 	else
