@@ -12,6 +12,11 @@
 
 .PHONY: all clean fclean re
 
+COMPILER = clang
+CFLAGS = -Wall -Wextra -Werror -o3 -march=native
+
+NAME =		libftprintf.a
+
 SRC =				ft_c.c ft_clearlist.c 		\
 					ft_d_func.c ft_d.c 			\
 					ft_f_func.c 				\
@@ -46,15 +51,13 @@ OBJ =		$(SRC:.c=.o)
 
 HEAD =		ft_printf.h
 
-NAME =		libftprintf.a
-
 all:		$(NAME)
 
 $(NAME):	$(OBJ)
 			ar -rcs $(NAME) $(OBJ)
 
 %.o:		%.c $(HEAD)
-			gcc -I ./ -Wall -Wextra -Werror -g -c $< -o $@
+			$(COMPILER) $(CFLAGS) -I ./ -g -c $< -o $@
 
 clean:
 			rm -f $(OBJ)

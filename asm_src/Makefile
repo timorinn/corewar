@@ -12,6 +12,9 @@
 
 .PHONY: 	all clean fclean re
 
+COMPILER = clang
+CFLAGS = -Wall -Wextra -Werror -o3 -march=native
+
 LIBFT_PATH =	../libft/
 LIBFT_A =	libft.a
 LIBFT = $(addprefix $(LIBFT_PATH),$(LIBFT_A))
@@ -43,7 +46,7 @@ NAME =		../asm
 all:		$(NAME)
 
 $(NAME):	$(OBJ) $(LIBFT) $(FT_PRINTF)
-			gcc -Wall -Wextra -Werror $(OBJ) -L ../libft -lft -o $(NAME)
+			$(COMPILER) $(CFLAGS) $(OBJ) -L ../libft -lft -o $(NAME)
 
 $(LIBFT):
 			make -C $(LIBFT_PATH)
@@ -52,7 +55,7 @@ $(FT_PRINTF):
 			make -C $(FT_PRINTF_PATH)
 
 %.o:		%.c $(HEAD)
-			gcc -I ./ -Wall -Wextra -Werror -g -c $< -o $@
+			$(COMPILER) $(CFLAGS) -I ./ -g -c $< -o $@
 
 clean:
 			/bin/rm -f $(OBJ)

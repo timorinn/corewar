@@ -42,7 +42,7 @@ inline bool			op_load_i(uint8_t map[MEM_SIZE][4],
 		vm_unfold_all(map, cur, &args, true);
 		vm_print_log_args(&args, 3, cycle);
 		offset = (args.nums_unfolded[0] + args.nums_unfolded[1]);
-		offset %= (ll == false ? IDX_MOD : 1);
+		offset %= (ll == false ? IDX_MOD : (offset + 1));
 		addr = (cur->position + offset) % MEM_SIZE;
 		addr += (addr < 0 ? MEM_SIZE : 0);
 		cur->registr[args.nums[2]] = vm_init_t_dir(map, addr, 4).data;

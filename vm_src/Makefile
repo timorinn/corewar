@@ -12,6 +12,9 @@
 
 .PHONY: 	all clean fclean re
 
+COMPILER = clang
+CFLAGS = -Wall -Wextra -Werror -o3 -march=native
+
 LIBFT_PATH =	../libft/
 LIBFT_A =	libft.a
 LIBFT = $(addprefix $(LIBFT_PATH),$(LIBFT_A))
@@ -78,7 +81,7 @@ NAME =		../corewar
 all:		$(NAME)
 
 $(NAME):	$(OBJ) $(HEADERS) $(LIBFT) $(FT_PRINTF)
-			gcc -Wall -Wextra -Werror -o3 -march=native -I ./ -I $(LIBFT_PATH) -I $(FT_PRINTF_PATH) -g -o ../corewar $(OBJ) -L $(LIBFT_PATH) -lft -L $(FT_PRINTF_PATH) -lftprintf -lncurses
+			$(COMPILER) $(CFLAGS) -I ./ -I $(LIBFT_PATH) -I $(FT_PRINTF_PATH) -g -o ../corewar $(OBJ) -L $(LIBFT_PATH) -lft -L $(FT_PRINTF_PATH) -lftprintf -lncurses
 
 $(LIBFT):
 			make -C $(LIBFT_PATH)
@@ -87,7 +90,7 @@ $(FT_PRINTF):
 			make -C $(FT_PRINTF_PATH)
 
 %.o:		%.c $(HEADERS)
-			gcc -I ./ -Wall -Wextra -Werror -o3 -march=native -g -c $< -o $@
+			$(COMPILER) $(CFLAGS) -I ./ -g -c $< -o $@
 
 clean:
 			/bin/rm -f $(OBJ)

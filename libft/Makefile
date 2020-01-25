@@ -10,6 +10,13 @@
 #                                                                              #
 # **************************************************************************** #
 
+.PHONY: all clean fclean re
+
+COMPILER = clang
+CFLAGS = -Wall -Wextra -Werror -o3 -march=native
+
+NAME =		libft.a
+
 SRC	=		ft_strlen.c ft_strcpy.c ft_strncpy.c ft_strdup.c		\
 			ft_strcmp.c ft_strcat.c ft_strncat.c ft_strstr.c		\
 			ft_strnstr.c ft_strncmp.c ft_isalpha.c ft_isdigit.c		\
@@ -36,15 +43,13 @@ OBJ =		$(SRC:.c=.o)
 
 HEAD =		libft.h
 
-NAME =		libft.a
-
 all:		$(NAME)
 
 $(NAME):	$(OBJ) libft.h
 			ar -rcs $(NAME) $(OBJ)
 
 %.o:		%.c $(HEAD)
-			gcc -I ./ -Wall -Wextra -Werror -g -c $< -o $@
+			$(COMPILER) $(CFLAGS) -I ./ -g -c $< -o $@
 
 clean:
 			rm -f $(OBJ)
