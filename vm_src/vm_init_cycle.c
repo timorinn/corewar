@@ -18,6 +18,7 @@ void	vm_init_cycle(t_cycle *cycle, int player_size, t_flags flags)
 	cycle->cycle_num = 0;
 	cycle->dump = flags.dump;
 	cycle->log = flags.log;
+	cycle->aff = flags.aff;
 	cycle->cur_len = player_size;
 	cycle->lives_in_current_period_all = 0;
 	cycle->checks = 0;

@@ -19,8 +19,8 @@
 # include <dirent.h>
 # include <stdbool.h>
 # include <stdio.h>
-# include "../libft/libft.h"
-# include "../ft_printf/ft_printf.h"
+# include "libft.h"
+# include "ft_printf.h"
 # include "vm_defines.h"
 # include "vm_structs.h"
 # include "vm_init_player.h"
@@ -32,6 +32,7 @@ static int		g_operation[16] = {
 
 void				vm_valid_input(int argc, char **argv, t_flags flags);
 t_player			*vm_init_input(int argc, char **argv, t_flags flags);
+void				vm_init_flags(int argc, char **argv, t_flags *flags);
 void				vm_init_player(char **argv, int *i, t_player **player,
 									int8_t *numbers);
 t_player			*vm_lstnew_player(int num);
@@ -109,6 +110,6 @@ int					vm_check_cursor(uint8_t map[MEM_SIZE][4],
 void				vm_lstdel_cursor(t_cursor *cursor);
 void				vm_print_log_op(char *op, t_cycle *cycle);
 void				vm_print_log_args(t_args *args, uint8_t max_args,
-									t_cycle *cycle);
+									bool log);
 
 #endif

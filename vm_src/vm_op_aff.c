@@ -19,7 +19,7 @@ bool	vm_op_aff(uint8_t map[MEM_SIZE][4], t_cycle *cycle)
 
 	cur = cycle->now_cur;
 	vm_init_args(map, cur->position, args);
-	if (args[0] == 1 && !args[1] && !args[2] &&
+	if (cycle->aff == true && args[0] == 1 && !args[1] && !args[2] &&
 	map[cur->position + 2][0] >= 1 &&
 	map[cur->position + 2][0] <= 16)
 	{

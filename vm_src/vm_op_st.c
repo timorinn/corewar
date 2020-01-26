@@ -12,10 +12,19 @@
 
 #include "vm.h"
 
-bool	vm_op_st(uint8_t map[MEM_SIZE][4], t_cycle *cycle)
+inline static void	handle_indirect(uint8_t map[MEM_SIZE][4], t_args *args,
+		t_cursor *cur)
+{
+	int32_t		addr;
+
+	addr = (cur->position + args->nums[1]) % MEM_SIZE;
+	addr += (addr < 0 ? MEM_SIZE : 0);
+	vm_rewrite_map(map, cur, args->nums_unfolded[0], addr);
+}
+
+bool				vm_op_st(uint8_t map[MEM_SIZE][4], t_cycle *cycle)
 {
 	t_args		args;
-	int32_t		addr;
 	t_cursor	*cur;
 
 	cur = cycle->now_cur;
@@ -26,13 +35,9 @@ bool	vm_op_st(uint8_t map[MEM_SIZE][4], t_cycle *cycle)
 	if (vm_validate_args(args, "R--RI----", 2))
 	{
 		vm_unfold_all(map, cur, &args, true);
-		vm_print_log_args(&args, 2, cycle);
+		vm_print_log_args(&args, 2, cycle->log);
 		if (args.types[1] == IND_CODE)
-		{
-			addr = (cur->position + args.nums[1]) % MEM_SIZE;
-			addr += (addr < 0 ? MEM_SIZE : 0);
-			vm_rewrite_map(map, cur, args.nums_unfolded[0], addr);
-		}
+			handle_indirect(map, &args, cur);
 		else if (args.types[1] == REG_CODE)
 			cur->registr[args.nums[1]] = args.nums_unfolded[0];
 	}

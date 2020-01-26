@@ -70,18 +70,24 @@ SRC =		vm_valid_input.c		\
 			vm_lstdel_cursor.c		\
 			vm_player_lst.c			\
 			vm_print_log.c			\
+			vm_get_flags.c			\
+			vm_print_map_colors.c	\
+			vm_print_map_static.c	\
+			vm_print_map_dynamic.c	\
 			vm.c
 
 OBJ =		$(SRC:.c=.o)
 
-HEADERS =	vm.h vm_defines.h vm_structs.h vm_print_map.h vm_init_player.h
+HEADERS_NAMES =	vm.h vm_defines.h vm_structs.h vm_print_map.h vm_init_player.h
+HEADERS_PATH = ./includes/
+HEADERS = $(addprefix $(HEADERS_PATH), $(HEADERS_NAMES))
 
 NAME =		../corewar
 
 all:		$(NAME)
 
 $(NAME):	$(OBJ) $(HEADERS) $(LIBFT) $(FT_PRINTF)
-			$(COMPILER) $(CFLAGS) -I ./ -I $(LIBFT_PATH) -I $(FT_PRINTF_PATH) -g -o ../corewar $(OBJ) -L $(LIBFT_PATH) -lft -L $(FT_PRINTF_PATH) -lftprintf -lncurses
+			$(COMPILER) $(CFLAGS) -I $(HEADERS_PATH) -I $(LIBFT_PATH) -I $(FT_PRINTF_PATH) -g -o ../corewar $(OBJ) -L $(LIBFT_PATH) -lft -L $(FT_PRINTF_PATH) -lftprintf -lncurses
 
 $(LIBFT):
 			make -C $(LIBFT_PATH)
@@ -90,7 +96,7 @@ $(FT_PRINTF):
 			make -C $(FT_PRINTF_PATH)
 
 %.o:		%.c $(HEADERS)
-			$(COMPILER) $(CFLAGS) -I ./ -g -c $< -o $@
+			$(COMPILER) $(CFLAGS) -I $(HEADERS_PATH) -I $(LIBFT_PATH) -I $(FT_PRINTF_PATH) -g -c $< -o $@
 
 clean:
 			/bin/rm -f $(OBJ)

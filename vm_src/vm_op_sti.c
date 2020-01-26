@@ -23,6 +23,15 @@ static inline void	vm_print_log_sti(t_args *args, int32_t addr, t_cycle *cycle)
 			args->nums_unfolded[1], args->nums_unfolded[2], offset, addr);
 }
 
+inline static void	init_args(uint8_t map[MEM_SIZE][4],
+								t_cursor *cur, t_args *args)
+{
+	ft_bzero(args, sizeof(t_args));
+	args->dir_size = 2;
+	vm_get_args(map, cur, args);
+	args->dir_size += 2;
+}
+
 bool				vm_op_sti(uint8_t map[MEM_SIZE][4], t_cycle *cycle)
 {
 	t_args		args;
@@ -31,15 +40,12 @@ bool				vm_op_sti(uint8_t map[MEM_SIZE][4], t_cycle *cycle)
 	t_cursor	*cur;
 
 	cur = cycle->now_cur;
-	ft_bzero(&args, sizeof(t_args));
-	args.dir_size = 2;
-	vm_get_args(map, cur, &args);
-	args.dir_size += 2;
+	init_args(map, cur, &args);
 	vm_print_log_op("sti", cycle);
 	if (vm_validate_args(args, "R--RIDR-D", 3))
 	{
 		vm_unfold_all(map, cur, &args, false);
-		vm_print_log_args(&args, 3, cycle);
+		vm_print_log_args(&args, 3, cycle->log);
 		offset = args.nums_unfolded[1] + args.nums_unfolded[2];
 		addr = (cur->position + (offset % IDX_MOD)) % MEM_SIZE;
 		addr += (addr < 0 ? MEM_SIZE : 0);

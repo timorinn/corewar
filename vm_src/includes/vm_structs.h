@@ -64,6 +64,7 @@ typedef struct {
 	int32_t			dump;
 	int32_t			dump_size;
 	bool			log;
+	bool			aff;
 	int32_t			cycles_to_die;
 	int32_t			waiting_die;
 	int32_t			last_live[MAX_PLAYERS];
@@ -83,6 +84,7 @@ typedef struct {
 	bool			log;
 	int8_t			offset;
 	bool			v;
+	bool			aff;
 }	t_flags;
 
 #endif

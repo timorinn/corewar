@@ -24,6 +24,15 @@ static inline void	vm_print_log_ldi(t_args *args, int32_t addr,
 			args->nums_unfolded[0], args->nums_unfolded[1], offset, addr);
 }
 
+inline static void	init_args(uint8_t map[MEM_SIZE][4],
+		t_cursor *cur, t_args *args)
+{
+	ft_bzero(args, sizeof(t_args));
+	args->dir_size = 2;
+	vm_get_args(map, cur, args);
+	args->dir_size += 2;
+}
+
 inline bool			op_load_i(uint8_t map[MEM_SIZE][4],
 		bool ll, t_cycle *cycle)
 {
@@ -33,14 +42,11 @@ inline bool			op_load_i(uint8_t map[MEM_SIZE][4],
 	t_cursor	*cur;
 
 	cur = cycle->now_cur;
-	ft_bzero(&args, sizeof(t_args));
-	args.dir_size = 2;
-	vm_get_args(map, cur, &args);
-	args.dir_size += 2;
+	init_args(map, cur, &args);
 	if (vm_validate_args(args, "RIDR-DR--", 3))
 	{
 		vm_unfold_all(map, cur, &args, true);
-		vm_print_log_args(&args, 3, cycle);
+		vm_print_log_args(&args, 3, cycle->log);
 		offset = (args.nums_unfolded[0] + args.nums_unfolded[1]);
 		offset %= (ll == false ? IDX_MOD : (offset + 1));
 		addr = (cur->position + offset) % MEM_SIZE;

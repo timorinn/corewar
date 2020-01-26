@@ -27,7 +27,7 @@ inline bool	op_load(uint8_t map[MEM_SIZE][4], bool is_idx_needed,
 	if (vm_validate_args(args, "-IDR-----", 2))
 	{
 		vm_unfold_all(map, cur, &args, is_idx_needed);
-		vm_print_log_args(&args, 2, cycle);
+		vm_print_log_args(&args, 2, cycle->log);
 		cur->registr[args.nums[1]] = args.nums_unfolded[0];
 		cur->carry = (cur->registr[args.nums[1]] == 0 ? 1 : 0);
 	}

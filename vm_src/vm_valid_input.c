@@ -55,7 +55,7 @@ inline void			vm_valid_input(int argc, char **argv, t_flags flags)
 	i = 1;
 	players_count = 0;
 	ft_bzero(nums, sizeof(int8_t) * MAX_PLAYERS);
-	i += (flags.dump != -1 ? 2 : 0) + (flags.log ? 1 : 0);
+	i += (flags.dump != -1 ? 2 : 0) + (flags.log ? 1 : 0) + (flags.aff ? 1 : 0);
 	if (flags.v && flags.log)
 		exit(vm_error(13, 0));
 	argc -= (ft_strcmp(argv[argc - 1], "-v") ? 0 : 1);

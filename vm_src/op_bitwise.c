@@ -25,7 +25,7 @@ inline bool	op_bitwise(uint8_t map[MEM_SIZE][4],
 	if (vm_validate_args(args, "RIDRIDR--", 3))
 	{
 		vm_unfold_all(map, cur, &args, true);
-		vm_print_log_args(&args, 3, cycle);
+		vm_print_log_args(&args, 3, cycle->log);
 		cur->registr[args.nums[2]] = (*operation)
 (args.nums_unfolded[0], args.nums_unfolded[1]);
 		cur->carry = (cur->registr[args.nums[2]] == 0 ? 1 : 0);

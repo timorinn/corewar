@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   vm_print_log.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kpsylock <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/25 13:09:52 by bford             #+#    #+#             */
-/*   Updated: 2020/01/25 13:22:41 by bford            ###   ########.fr       */
+/*   Created: 2020/01/26 21:10:42 by kpsylock          #+#    #+#             */
+/*   Updated: 2020/01/26 21:10:45 by kpsylock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-void	vm_print_log_op(char *op, t_cycle *cycle)
+void		vm_print_log_op(char *op, t_cycle *cycle)
 {
 	if (cycle->log == false)
 		return ;
@@ -20,12 +20,12 @@ void	vm_print_log_op(char *op, t_cycle *cycle)
 			cycle->now_cur->num, cycle->now_cur->position, op);
 }
 
-void	vm_print_log_args(t_args *args, uint8_t max_args, t_cycle *cycle)
+inline void	vm_print_log_args(t_args *args, uint8_t max_args, bool log)
 {
 	uint8_t i;
 
 	i = 0;
-	if (cycle->log == false)
+	if (log == false)
 		return ;
 	while (i < max_args)
 	{
