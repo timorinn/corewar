@@ -15,7 +15,7 @@
 static void	get_reg(uint8_t map[MEM_SIZE][4], t_cursor *car,
 		t_args *args, int arg_num)
 {
-	args->nums[arg_num] = map[car->position + args->offset][0];
+	args->nums[arg_num] = map[(car->position + args->offset) % MEM_SIZE][0];
 	args->offset += 1;
 }
 
@@ -24,7 +24,8 @@ static void	get_dir(uint8_t map[MEM_SIZE][4], t_cursor *car,
 {
 	t_dir	dir;
 
-	dir = vm_init_t_dir(map, car->position + args->offset, args->dir_size);
+	dir = vm_init_t_dir(map, (car->position + args->offset) % MEM_SIZE,
+			args->dir_size);
 	args->nums[arg_num] = dir.data;
 	args->offset += args->dir_size;
 }
@@ -34,7 +35,7 @@ static void	get_ind(uint8_t map[MEM_SIZE][4], t_cursor *car,
 {
 	t_ind	ind;
 
-	vm_init_t_ind(map, car->position + args->offset, &ind);
+	vm_init_t_ind(map, (car->position + args->offset) % MEM_SIZE, &ind);
 	args->nums[arg_num] = ind.data;
 	args->offset += IND_SIZE;
 }

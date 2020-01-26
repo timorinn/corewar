@@ -199,7 +199,7 @@ inline static void	visu_main_cycle(uint8_t map[MEM_SIZE][4], t_cycle *cycle,
 			vm_print_line(map, y - 1);
 		refresh();
 		c = getch();
-		if (c == ' ')
+		if (c == ' ' || cycle->cycle_num == cycle->dump)
 			c = visu_pause();
 	}
 	endwin();
