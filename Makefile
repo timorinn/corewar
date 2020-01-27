@@ -20,12 +20,10 @@ ASM_PATH =		./asm_src
 ASM_BINARY =	asm
 
 
-all:		$(NAME) $(VM_BINARY) $(ASM_BINARY)
+all:		$(NAME) $(ASM_BINARY)
 
-$(NAME): FORCE $(VM_BINARY) $(ASM_BINARY)
-
-$(VM_BINARY): FORCE
-			make -C $(VM_PATH)
+$(NAME): FORCE $(ASM_BINARY)
+		make -C $(VM_PATH)
 
 $(ASM_BINARY): FORCE
 			make -C $(ASM_PATH)
