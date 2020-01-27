@@ -1,5 +1,5 @@
-.name "bford"
-.comment "Au'dar_mou_Jly4IIIuu' Dpyr!"
+.name "cTyTTop Mo3roBuHbl"
+.comment "He oTJlu4uJl 4ePB9 oT oTTaPblIIIa"
 
 ld	%0, r2
 st	r1, 6
