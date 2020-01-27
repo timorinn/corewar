@@ -27,7 +27,8 @@ static inline int	vm_unfold_indirect(uint8_t map[MEM_SIZE][4],
 void				vm_unfold_all(uint8_t map[MEM_SIZE][4], t_cursor *car,
 		t_args *args, bool is_idx_needed)
 {
-	int i;
+	int		i;
+	int32_t	addr;
 
 	i = 0;
 	while (i < 3)
@@ -36,8 +37,11 @@ void				vm_unfold_all(uint8_t map[MEM_SIZE][4], t_cursor *car,
 		{
 			if (is_idx_needed)
 				args->nums[i] %= IDX_MOD;
-			args->nums_unfolded[i] = vm_unfold_indirect(map, car->position +
-					args->nums[i], args->dir_size);
+			addr = car->position + args->nums[i];
+			if (!is_idx_needed)
+				addr %= IDX_MOD;
+			args->nums_unfolded[i] = vm_unfold_indirect(map, addr, args->dir_size);
+
 		}
 		else if (args->types[i] == REG_CODE)
 			args->nums_unfolded[i] = car->registr[args->nums[i]];

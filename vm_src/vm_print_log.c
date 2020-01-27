@@ -34,11 +34,11 @@ inline void	vm_print_log_args(t_args *args, uint8_t max_args, bool log)
 		else if (args->types[i] == DIR_CODE)
 			ft_printf(" %d", args->nums[i]);
 		else if (args->types[i] == IND_CODE)
-			ft_printf(" ind%d,unfolded %d",
+			ft_printf(" ind |%d|,unfolded |%d| ",
 					args->nums[i], args->nums_unfolded[i]);
-		else
-			ft_printf("Error has happened here. Args types: %d %d %d    ",
-					args->types[0], args->types[1], args->types[2]);
+//		else
+//			ft_printf("Error has happened here. Args types: %d %d %d    ",
+//					args->types[0], args->types[1], args->types[2]);
 		i++;
 	}
 	ft_putendl("");
