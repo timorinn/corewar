@@ -17,13 +17,13 @@ int		check_for_delete_first(uint8_t map[MEM_SIZE][4],
 {
 	t_cursor	*copy;
 
-	if ((*cur)->live + cycle->cycles_to_die <= cycle->cycle_num)
+	if (cur[0]->live + cycle->cycles_to_die <= cycle->cycle_num)
 	{
 		cycle->cur_len--;
-		copy = (*cur)->next;
-		map[(*cur)->position][2] -= 1;
-		free(*cur);
-		if (!(*cur = copy))
+		copy = cur[0]->next;
+		map[cur[0]->position][2] -= 1;
+		free(cur[0]);
+		if (!(cur[0] = copy))
 			return (1);
 	}
 	return (0);

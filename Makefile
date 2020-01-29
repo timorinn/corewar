@@ -19,7 +19,6 @@ VM_PATH =		./vm_src
 ASM_PATH =		./asm_src
 ASM_BINARY =	asm
 
-
 all:		$(NAME) $(ASM_BINARY)
 
 $(NAME): FORCE $(ASM_BINARY)

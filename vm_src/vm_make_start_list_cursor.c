@@ -55,6 +55,7 @@ t_cursor				*vm_make_start_list_cursor(t_player *player,
 	position = 0;
 	if (!(cursor = malloc(sizeof(t_cursor))))
 		exit(vm_error(12, 0));
+	ft_bzero(cursor, sizeof(t_cursor));
 	cursor->num = 1;
 	init_cursor(cursor, player, map, position);
 	start = cursor;
