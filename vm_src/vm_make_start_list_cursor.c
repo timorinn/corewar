@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 18:13:13 by bford             #+#    #+#             */
-/*   Updated: 2020/01/22 19:44:05 by bford            ###   ########.fr       */
+/*   Updated: 2020/01/29 15:31:44 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ inline static void		init_cursor(t_cursor *cursor, t_player *player,
 	cursor->carry = 0;
 	cursor->position = position;
 	cursor->operation = map[cursor->position][0];
-	cursor->cooldown = g_operation[cursor->operation - 1];
+	if (cursor->operation > 0 && cursor->operation < 17)
+		cursor->cooldown = g_operation[cursor->operation - 1];
+	else
+		cursor->cooldown = 1;
 	ft_bzero(cursor->registr, sizeof(int) * (REG_NUMBER + 1));
 	cursor->registr[1] = -player->num;
 	cursor->next = NULL;
