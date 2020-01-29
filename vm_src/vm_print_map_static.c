@@ -20,7 +20,7 @@ int		vm_print_winner_v(t_player *player, t_cycle *cycle)
 	color_set(11, NULL);
 	mvprintw(9, 199, "Processes : %-5d", cycle->cur_len);
 	mvprintw(cycle->winner_y + 12 + 2, 199, "The winner is : ");
-	mvprintw(cycle->winner_y + 12 + 4, 199, "Press any key to finish");
+	mvprintw(cycle->winner_y + 12 + 4, 199, "Press Q to finish");
 	color_set(player->num, NULL);
 	mvprintw(cycle->winner_y + 12 + 2, 215, player->name);
 	getch();
