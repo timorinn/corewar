@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 12:47:37 by bford             #+#    #+#             */
-/*   Updated: 2020/01/24 12:47:56 by bford            ###   ########.fr       */
+/*   Updated: 2020/01/29 17:11:33 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ void				vm_unfold_all(uint8_t map[MEM_SIZE][4], t_cursor *car,
 			addr = car->position + args->nums[i];
 			if (!is_idx_needed)
 				addr %= IDX_MOD;
-			args->nums_unfolded[i] = vm_unfold_indirect(map, addr, args->dir_size);
-
+			args->nums_unfolded[i] = vm_unfold_indirect(map,
+					addr, args->dir_size);
 		}
 		else if (args->types[i] == REG_CODE)
 			args->nums_unfolded[i] = car->registr[args->nums[i]];
