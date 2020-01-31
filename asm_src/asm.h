@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asm.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 17:41:33 by swedde            #+#    #+#             */
-/*   Updated: 2020/01/24 21:06:28 by bford            ###   ########.fr       */
+/*   Updated: 2020/01/31 19:28:04 by nsheev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,9 +103,22 @@ void				start_analyz(t_all *gen, t_token *token);
 void				recording(t_all *gen);
 void				set_size_code(t_all *gen, t_token *token);
 int					write_short_to_file(t_all *gen, short to_file);
-t_token				*next_token(t_token *token, int i);
 int					write_byte_to_file(t_all *gen, unsigned char c);
 int					write_nam_com_to_file(t_all *gen, int len, int type);
 void				print_token_type(int i);
+t_token				*next_token(t_token *token, int i);
+void				print_expexted_exit(t_all *gen, t_token *token, int i, ...);
+int					is_equal_token_type(t_token *token, int i, ...);
+void				parse_live(t_all *gen, t_token *token);
+void				parse_ld(t_all *gen, t_token *token);
+void				parse_st(t_all *gen, t_token *token);
+void				parse_add(t_all *gen, t_token *token);
+void				parse_and(t_all *gen, t_token *token);
+void				parse_ldi(t_all *gen, t_token *token);
+void				parse_sti(t_all *gen, t_token *token);
+void				parse_aff(t_all *gen, t_token *token);
+void				parse_op(t_all *gen, t_token *token);
+void				parse_name(t_all *gen, t_token *token);
+void				parse_comment(t_all *gen, t_token *token);
 
 #endif

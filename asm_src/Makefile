@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bford <bford@student.42.fr>                +#+  +:+       +#+         #
+#    By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/11 19:17:02 by swedde            #+#    #+#              #
-#    Updated: 2020/01/24 21:09:44 by bford            ###   ########.fr        #
+#    Updated: 2020/01/31 19:35:14 by nsheev           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,14 @@ SRC =		set_def_gen.c			\
 			write_short_to_file.c 	\
 			write_byte_to_file.c 	\
 			write_nam_com_to_file.c	\
-			main.c
+			main.c					\
+			is_equal_token_type.c	\
+			next_token.c 			\
+			parse_op_name_comment.c	\
+			print_expected_exit.c	\
+			print_token_type.c		\
+			switch_parse_1.c		\
+			switch_parse_2.c
 
 HEAD =		asm.h
 

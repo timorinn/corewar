@@ -6,7 +6,7 @@
 /*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/12 15:32:55 by nsheev            #+#    #+#             */
-/*   Updated: 2020/01/25 19:50:25 by nsheev           ###   ########.fr       */
+/*   Updated: 2020/01/31 17:36:26 by nsheev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,21 @@ int			is_delim(char c)
 		c == DIRECT_CHAR ||
 		c == '\0' ||
 		c == LABEL_CHAR)
+		return (1);
+	return (0);
+}
+
+int			is_delop(char c)
+{
+	if (
+		c == ' ' ||
+		c == '\t' ||
+		c == '\n' ||
+		c == SEPARATOR_CHAR ||
+		c == DIRECT_CHAR ||
+		c == '\0' ||
+		c == LABEL_CHAR ||
+		c == '-')
 		return (1);
 	return (0);
 }
@@ -124,25 +139,25 @@ int			is_op(t_all *gen)
 	char	*s;
 
 	s = &gen->file[gen->i];
-	return ((!ft_strcmp(s, ft_strstr(s, "live")) && is_delim(s[4]) && s[4] !=
-	LABEL_CHAR) || (!ft_strcmp(s, ft_strstr(s, "ld")) && is_delim(s[2]) && s[2]
-	!= LABEL_CHAR) || (!ft_strcmp(s, ft_strstr(s, "st")) && is_delim(s[2]) &&
+	return ((!ft_strcmp(s, ft_strstr(s, "live")) && is_delop(s[4]) && s[4] !=
+	LABEL_CHAR) || (!ft_strcmp(s, ft_strstr(s, "ld")) && is_delop(s[2]) && s[2]
+	!= LABEL_CHAR) || (!ft_strcmp(s, ft_strstr(s, "st")) && is_delop(s[2]) &&
 	s[2] != LABEL_CHAR) || (!ft_strcmp(s, ft_strstr(s, "add")) &&
-	is_delim(s[3]) && s[3] != LABEL_CHAR) || (!ft_strcmp(s,
-	ft_strstr(s, "sub")) && is_delim(s[3]) && s[3] != LABEL_CHAR) ||
-	(!ft_strcmp(s, ft_strstr(s, "and")) && is_delim(s[3]) && s[3] !=
-	LABEL_CHAR) || (!ft_strcmp(s, ft_strstr(s, "or")) && is_delim(s[2]) && s[2]
-	!= LABEL_CHAR) || (!ft_strcmp(s, ft_strstr(s, "xor")) && is_delim(s[3]) &&
+	is_delop(s[3]) && s[3] != LABEL_CHAR) || (!ft_strcmp(s,
+	ft_strstr(s, "sub")) && is_delop(s[3]) && s[3] != LABEL_CHAR) ||
+	(!ft_strcmp(s, ft_strstr(s, "and")) && is_delop(s[3]) && s[3] !=
+	LABEL_CHAR) || (!ft_strcmp(s, ft_strstr(s, "or")) && is_delop(s[2]) && s[2]
+	!= LABEL_CHAR) || (!ft_strcmp(s, ft_strstr(s, "xor")) && is_delop(s[3]) &&
 	s[3] != LABEL_CHAR) || (!ft_strcmp(s, ft_strstr(s, "zjmp")) &&
-	is_delim(s[4]) && s[4] != LABEL_CHAR) || (!ft_strcmp(s,
-	ft_strstr(s, "ldi")) && is_delim(s[3]) && s[3] != LABEL_CHAR) ||
-	(!ft_strcmp(s, ft_strstr(s, "sti")) && is_delim(s[3]) && s[3] !=
-	LABEL_CHAR) || (!ft_strcmp(s, ft_strstr(s, "fork")) && is_delim(s[4]) &&
+	is_delop(s[4]) && s[4] != LABEL_CHAR) || (!ft_strcmp(s,
+	ft_strstr(s, "ldi")) && is_delop(s[3]) && s[3] != LABEL_CHAR) ||
+	(!ft_strcmp(s, ft_strstr(s, "sti")) && is_delop(s[3]) && s[3] !=
+	LABEL_CHAR) || (!ft_strcmp(s, ft_strstr(s, "fork")) && is_delop(s[4]) &&
 	s[4] != LABEL_CHAR) || (!ft_strcmp(s, ft_strstr(s, "lld")) &&
-	is_delim(s[3]) && s[3] != LABEL_CHAR) || (!ft_strcmp(s,
-	ft_strstr(s, "lldi")) && is_delim(s[4]) && s[4] != LABEL_CHAR) ||
-	(!ft_strcmp(s, ft_strstr(s, "lfork")) && is_delim(s[5]) && s[5] !=
-	LABEL_CHAR) || (!ft_strcmp(s, ft_strstr(s, "aff")) && is_delim(s[3]) &&
+	is_delop(s[3]) && s[3] != LABEL_CHAR) || (!ft_strcmp(s,
+	ft_strstr(s, "lldi")) && is_delop(s[4]) && s[4] != LABEL_CHAR) ||
+	(!ft_strcmp(s, ft_strstr(s, "lfork")) && is_delop(s[5]) && s[5] !=
+	LABEL_CHAR) || (!ft_strcmp(s, ft_strstr(s, "aff")) && is_delop(s[3]) &&
 	s[3] != LABEL_CHAR));
 }
 

@@ -1,34 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   is_equal_token_type.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/14 14:46:43 by nsheev            #+#    #+#             */
-/*   Updated: 2019/09/14 15:22:49 by nsheev           ###   ########.fr       */
+/*   Created: 2020/01/31 18:57:30 by nsheev            #+#    #+#             */
+/*   Updated: 2020/01/31 18:57:47 by nsheev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "asm.h"
 
-void	ft_putnbr_fd(int n, int fd)
+int		is_equal_token_type(t_token *token, int i, ...)
 {
-	if (n == -2147483648)
+	int		a;
+	va_list	ap;
+
+	if (!token)
+		return (0);
+	va_start(ap, i);
+	while (i)
 	{
-		ft_putchar_fd('-', fd);
-		ft_putchar_fd('2', fd);
-		ft_putnbr_fd(147483648, fd);
+		a = va_arg(ap, int);
+		if (token->type == a)
+		{
+			va_end(ap);
+			return (1);
+		}
+		i--;
 	}
-	else if (n < 0)
-	{
-		ft_putchar_fd('-', fd);
-		ft_putnbr_fd(-n, fd);
-	}
-	else
-	{
-		if (n >= 10)
-			ft_putnbr_fd(n / 10, fd);
-		ft_putchar_fd(n % 10 + 48, fd);
-	}
+	va_end(ap);
+	return (0);
 }

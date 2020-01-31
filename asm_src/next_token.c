@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memalloc.c                                      :+:      :+:    :+:   */
+/*   next_token.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/06 19:58:47 by nsheev            #+#    #+#             */
-/*   Updated: 2019/09/09 14:38:13 by nsheev           ###   ########.fr       */
+/*   Created: 2020/01/31 18:45:37 by nsheev            #+#    #+#             */
+/*   Updated: 2020/01/31 18:45:57 by nsheev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "asm.h"
 
-void	*ft_memalloc(size_t size)
+t_token	*next_token(t_token *token, int i)
 {
-	void	*s;
-	size_t	i;
-
-	if (!(s = (void *)malloc(size)))
-		return (NULL);
-	i = 0;
-	while (i < size)
+	while (i)
 	{
-		((unsigned char *)s)[i] = '\0';
-		i++;
+		token = token->next;
+		i--;
 	}
-	return (s);
+	return (token);
 }
