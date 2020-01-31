@@ -6,7 +6,7 @@
 /*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/12 14:29:01 by nsheev            #+#    #+#             */
-/*   Updated: 2020/01/25 19:52:45 by nsheev           ###   ########.fr       */
+/*   Updated: 2020/01/31 18:28:31 by nsheev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ static int		get_file_name(t_all *gen, char *s)
 	while (s[i] != '.' && i > -1)
 		i--;
 	if (i == -1)
-		gen->file_name = ft_strjoin(s, ".col");
+		gen->file_name = ft_strjoin(s, ".cor");
 	else
 	{
 		tmp = ft_strsub(s, 0, i);
-		gen->file_name = ft_strjoin(tmp, ".col");
+		gen->file_name = ft_strjoin(tmp, ".cor");
 		free(tmp);
 	}
 	return (0);
