@@ -19,15 +19,13 @@ git clone <repository url>
 make
 ```
 
-### Running the game
-
-To translate pseudo-ASM .s files into .cor bytecode files:
+### Translating pseudo-ASM .s files into .cor bytecode files
 
 ```
-./asm <champion.cor>
+./asm <champion.s>
 ```
 
-To run the game:
+### Running the game:
 
 ```
 ./corewar [-dump N] [-log] [-a] [-n N] <champion1.cor> [-n N] <...> [-v]
@@ -46,7 +44,7 @@ And ofc, you can write your own champions! (If you figure out how :D)
 
 ### Where to get reference?
 
-Original ./corewar and ./asm executables (which are specified in 42's project files) is in the ./vm_champs/ directory. You can see usages, just run them without arguments.
+Original ./corewar and ./asm executables (which are specified in 42's project files) is in the ./vm_champs/ directory. You can see usage instructions, just run them without arguments. It's pretty simillar to that was mentioned above.
 
 ## Authors
 
