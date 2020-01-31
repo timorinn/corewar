@@ -29,7 +29,7 @@ int		vm_op_live(uint8_t map[MEM_SIZE][4], t_cycle *cycle)
 	if (-dir.data > 0 && -dir.data <= MAX_PLAYERS)
 	{
 		cycle->lives_in_current_period[-dir.data]++;
-		cycle->last_live[-dir.data] = cycle->cycle_num - 1;
+		cycle->last_live[-dir.data] = cycle->cycle_num - 2;
 		cycle->winner_num = -dir.data;
 	}
 	map[cur->position][2] -= 1;
