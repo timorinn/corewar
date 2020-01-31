@@ -6,7 +6,7 @@
 #    By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/11 19:17:02 by swedde            #+#    #+#              #
-#    Updated: 2020/01/31 19:59:10 by nsheev           ###   ########.fr        #
+#    Updated: 2020/01/31 20:58:27 by nsheev           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,12 @@ SRC =		set_def_gen.c			\
 			switch_parse_1.c		\
 			switch_parse_2.c		\
 			recording_1.c			\
-			recording_2.c			
+			recording_2.c			\
+			reading_1.c				\
+			reading_2.c				\
+			reading_3.c				\
+			reading_4.c				\
+			reading_5.c				
 
 HEAD =		asm.h
 

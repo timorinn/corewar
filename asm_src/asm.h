@@ -6,7 +6,7 @@
 /*   By: nsheev <nsheev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 17:41:33 by swedde            #+#    #+#             */
-/*   Updated: 2020/01/31 19:58:35 by nsheev           ###   ########.fr       */
+/*   Updated: 2020/01/31 20:56:48 by nsheev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,5 +137,33 @@ int					op_regdirind_regdir_reg(t_all *gen, t_token *token,
 					char op_c, int dir_size);
 int					op_reg(t_all *gen, t_token *token, char op_c);
 void				get_op_code(t_all *gen, t_token *token);
+int					is_delim(char c);
+int					is_delop(char c);
+int					is_char_labl(char c, char *pattern);
+t_point				get_point(t_all *gen);
+int					increment_point(t_all *gen);
+void				find_name_comment(t_all *gen, int type, char *command);
+int					is_label(t_all *gen);
+int					find_label(t_all *gen);
+int					is_op(t_all *gen);
+char				*get_op_helper(char *s);
+char				*get_op(char *s);
+void				find_op(t_all *gen);
+int					num_len(unsigned long num);
+int					is_reg_arg(char *s);
+void				find_reg_arg(t_all *gen);
+int					is_dir_arg(char *s);
+void				find_dir_arg(t_all *gen);
+int					is_dir_labl_arg(char *s);
+void				find_dir_labl_arg(t_all *gen);
+int					is_ind_arg(char *s);
+void				find_ind_arg(t_all *gen);
+int					is_ind_labl_arg(char *s);
+void				find_ind_labl_arg(t_all *gen);
+void				find_nl_or_separ(t_all *gen);
+void				reading_error(t_all *gen);
+void				reading_helper_2(t_all *gen);
+void				reading_helper(t_all *gen);
+int					reading(t_all *gen);
 
 #endif
