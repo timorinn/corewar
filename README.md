@@ -22,7 +22,7 @@ make
 ### Translating pseudo-ASM .s files into .cor bytecode files
 
 ```
-./asm <champion.s>
+./asm <champ_name.s>
 ```
 
 ### Running the game:
@@ -38,13 +38,13 @@ make
 
 ### Where to get champions?
 
-./vm_champs/*.s - has to be translated with ./asm
+./champs/*.s (has to be translated with ./asm)
 
 And ofc, you can write your own champions! (If you figure out how :D)
 
 ### Where to get reference?
 
-Original ./corewar and ./asm executables (which are specified in 42's project files) is in the ./vm_champs/ directory. You can see usage instructions, just run them without arguments. It's pretty simillar to that was mentioned above.
+Original ./corewar and ./asm executables (which are specified in 42's project files) is in the ./reference_binaries/ directory. You can see usage instructions, just run them without arguments. It's pretty simillar to that was mentioned above.
 
 ## Authors
 

@@ -49,12 +49,12 @@ inline static void	visu_main_cycle(uint8_t map[MEM_SIZE][4], t_cycle *cycle,
 		while (y < 64 && ++y)
 			vm_print_line(map, y - 1);
 		refresh();
-        if (vm_check_cursor(map, cur, cycle))
-        {
-            vm_print_winner_v(player, cycle);
-            visu_pause();
-            return ;
-        }
+		if (vm_check_cursor(map, cur, cycle))
+		{
+			vm_print_winner_v(player, cycle);
+			visu_pause();
+			return ;
+		}
 		c = getch();
 		if (c == ' ' || cycle->cycle_num == cycle->dump)
 			c = visu_pause();
