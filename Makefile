@@ -15,9 +15,12 @@
 NAME =		corewar
 
 VM_BINARY =		corewar
-VM_PATH =		./vm_src
-ASM_PATH =		./asm_src
+VM_PATH =		./src/vm_src
+ASM_PATH =		./src/asm_src
 ASM_BINARY =	asm
+
+LIBFT_PATH = ./libft/
+FT_PRINTF_PATH = ./ft_printf/
 
 all:		$(NAME) $(ASM_BINARY)
 
@@ -30,10 +33,14 @@ $(ASM_BINARY): FORCE
 clean:
 			make clean -C $(VM_PATH)
 			make clean -C $(ASM_PATH)
+			make clean -C $(LIBFT_PATH)
+			make clean -C $(FT_PRINTF_PATH)
 
 fclean:
 			make fclean -C $(VM_PATH)
 			make fclean -C $(ASM_PATH)
+			make fclean -C $(LIBFT_PATH)
+			make fclean -C $(FT_PRINTF_PATH)
 
 re:			fclean all
 

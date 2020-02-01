@@ -29,16 +29,15 @@ rm -rf res2
 rm -rf difference
 
 i=0
-./corewar -dump $dump ultima.cor > res1
-./vm_champs/corewar -d $dump ultima.cor > res2
+./corewar -dump $dump champs/kamelkaze.cor > res1
+./reference_binaries/corewar -d $dump champs/kamelkaze.cor > res2
 diff res1 res2 > difference
 i=$(ls -l difference | cut -d " " -f8 | bc)
 while [ "$i" -eq 0 ]
 do
 	dump=$(($dump + 1))
-	# echo "dump eby4uu' = " $dump
-	./corewar -dump $dump ultima.cor > res1
-	./vm_champs/corewar -d $dump ultima.cor > res2
+	./corewar -dump $dump champs/kamelkaze.cor > res1
+	./reference_binaries/corewar -d $dump champs/kamelkaze.cor > res2
 	diff res1 res2 > difference
 	i=$(ls -l difference | cut -d " " -f8 | bc)
 	if [ $dump == $limit ]
