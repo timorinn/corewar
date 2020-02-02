@@ -12,7 +12,7 @@
 
 #include "../includes/vm.h"
 
-inline static void	check_name_player(const char *name)
+static void	check_name_player(const char *name)
 {
 	uint32_t	len;
 
@@ -25,7 +25,7 @@ inline static void	check_name_player(const char *name)
 	exit(vm_error(1, name));
 }
 
-inline static void	valid_argv(int argc, char **argv, int *i, int8_t *players)
+static void	valid_argv(int argc, char **argv, int *i, int8_t *players)
 {
 	int		player_num;
 

@@ -12,7 +12,7 @@
 
 #include "../includes/vm.h"
 
-inline static void		vm_check_ovewrflow_dump(char *argv, int dump)
+static void		vm_check_ovewrflow_dump(char *argv, int dump)
 {
 	int		argv_len;
 	int		nbr_len;
@@ -36,7 +36,7 @@ inline static void		vm_check_ovewrflow_dump(char *argv, int dump)
 		exit(vm_error(6, 0));
 }
 
-inline static void		vm_init_dump(int argc, char **argv, t_flags *flags)
+static void		vm_init_dump(int argc, char **argv, t_flags *flags)
 {
 	if (argc > 2 && (!ft_strcmp(argv[1], "-dump")))
 	{
@@ -47,7 +47,7 @@ inline static void		vm_init_dump(int argc, char **argv, t_flags *flags)
 		flags->dump = -1;
 }
 
-inline static bool		get_log_flag(int ac, char **av, t_flags flags)
+static bool		get_log_flag(int ac, char **av, t_flags flags)
 {
 	int8_t offset;
 
@@ -56,7 +56,7 @@ inline static bool		get_log_flag(int ac, char **av, t_flags flags)
 			true : false);
 }
 
-inline static bool		get_aff_flag(int ac, char **av, t_flags flags)
+static bool		get_aff_flag(int ac, char **av, t_flags flags)
 {
 	uint8_t offset;
 

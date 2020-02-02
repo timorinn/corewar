@@ -12,7 +12,7 @@
 
 #include "../includes/vm.h"
 
-static inline void	vm_print_log_ldi(t_args *args, int32_t addr,
+static void	vm_print_log_ldi(t_args *args, int32_t addr,
 		t_cycle *cycle)
 {
 	int32_t offset;
@@ -24,7 +24,7 @@ static inline void	vm_print_log_ldi(t_args *args, int32_t addr,
 			args->nums_unfolded[0], args->nums_unfolded[1], offset, addr);
 }
 
-inline static void	init_args(uint8_t map[MEM_SIZE][4],
+static void	init_args(uint8_t map[MEM_SIZE][4],
 		t_cursor *cur, t_args *args)
 {
 	ft_bzero(args, sizeof(t_args));

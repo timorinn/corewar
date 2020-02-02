@@ -12,7 +12,7 @@
 
 #include "../includes/vm.h"
 
-static inline int	vm_unfold_indirect(uint8_t map[MEM_SIZE][4],
+static int	vm_unfold_indirect(uint8_t map[MEM_SIZE][4],
 		uint16_t addr, uint8_t dir_size)
 {
 	t_dir		dir;

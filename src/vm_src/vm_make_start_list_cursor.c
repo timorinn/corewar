@@ -12,7 +12,7 @@
 
 #include "../includes/vm.h"
 
-inline static void		init_cursor(t_cursor *cursor, t_player *player,
+static void		init_cursor(t_cursor *cursor, t_player *player,
 							uint8_t map[MEM_SIZE][4], int16_t position)
 {
 	cursor->play_num = player->num;
@@ -28,7 +28,7 @@ inline static void		init_cursor(t_cursor *cursor, t_player *player,
 	cursor->next = NULL;
 }
 
-inline static t_cursor	*create_cursor(uint8_t map[MEM_SIZE][4],
+static t_cursor	*create_cursor(uint8_t map[MEM_SIZE][4],
 		t_player *player, int16_t position, t_cursor *start)
 {
 	t_cursor	*cursor;

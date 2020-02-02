@@ -12,7 +12,7 @@
 
 #include "../includes/vm_init_player.h"
 
-inline static int8_t	check_magic(const char *start)
+static int8_t	check_magic(const char *start)
 {
 	uint32_t	magic;
 	t_magic		true_magic;
@@ -28,7 +28,7 @@ inline static int8_t	check_magic(const char *start)
 		return (false);
 }
 
-inline static void		init_new_player(int fd, t_player *player)
+static void		init_new_player(int fd, t_player *player)
 {
 	char	buf[COMMENT_LENGTH + 1];
 

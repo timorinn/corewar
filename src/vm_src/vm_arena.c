@@ -12,7 +12,7 @@
 
 #include "../includes/vm.h"
 
-inline static void		add_player(uint8_t map[MEM_SIZE][4], t_player *player,
+static void		add_player(uint8_t map[MEM_SIZE][4], t_player *player,
 		int16_t start)
 {
 	int32_t			size;
@@ -33,14 +33,14 @@ inline static void		add_player(uint8_t map[MEM_SIZE][4], t_player *player,
 	}
 }
 
-inline static t_player	*find_player(int num, t_player *player)
+static t_player	*find_player(int num, t_player *player)
 {
 	while (player->num != num)
 		player = player->next;
 	return (player);
 }
 
-inline static void		init_map(uint8_t map[MEM_SIZE][4], t_player *player)
+static void		init_map(uint8_t map[MEM_SIZE][4], t_player *player)
 {
 	int16_t	i;
 	int16_t	len;

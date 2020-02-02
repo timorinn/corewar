@@ -12,14 +12,14 @@
 
 #include "../includes/vm.h"
 
-inline static void	vm_print_winner(t_player *player, int winner_num)
+static void	vm_print_winner(t_player *player, int winner_num)
 {
 	while (player->next && player->num != winner_num)
 		player = player->next;
 	ft_printf("Contestant %d, \"%s\", has won !\n", player->num, player->name);
 }
 
-inline static void	print_map_single(uint8_t map[MEM_SIZE][4])
+static void	print_map_single(uint8_t map[MEM_SIZE][4])
 {
 	int		i;
 

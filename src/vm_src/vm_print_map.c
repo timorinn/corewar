@@ -12,7 +12,7 @@
 
 #include "../includes/vm_print_map.h"
 
-inline static char	visu_pause(void)
+static char	visu_pause(void)
 {
 	char c;
 
@@ -34,7 +34,7 @@ inline static char	visu_pause(void)
 	}
 }
 
-inline static void	visu_main_cycle(uint8_t map[MEM_SIZE][4], t_cycle *cycle,
+static void	visu_main_cycle(uint8_t map[MEM_SIZE][4], t_cycle *cycle,
 		t_player *player, t_cursor **cur)
 {
 	int		y;

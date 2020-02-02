@@ -12,7 +12,7 @@
 
 #include "../includes/vm.h"
 
-inline static void	handle_indirect(uint8_t map[MEM_SIZE][4], t_args *args,
+static void	handle_indirect(uint8_t map[MEM_SIZE][4], t_args *args,
 		t_cursor *cur)
 {
 	int32_t		addr;

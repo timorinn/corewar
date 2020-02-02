@@ -34,7 +34,7 @@ inline int	vm_print_line(uint8_t map[MEM_SIZE][4], int i)
 	return (1);
 }
 
-inline int	print_players(t_player *player, t_cycle *cycle, int y)
+int	print_players(t_player *player, t_cycle *cycle, int y)
 {
 	while (player)
 	{
