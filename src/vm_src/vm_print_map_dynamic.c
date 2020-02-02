@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vm_print_map_dynamic.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kpsylock <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 21:11:26 by kpsylock          #+#    #+#             */
-/*   Updated: 2020/01/26 21:11:27 by kpsylock         ###   ########.fr       */
+/*   Updated: 2020/02/02 13:13:46 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ inline int	vm_print_backside(t_cycle *cycle, t_player *player)
 	y = 11;
 	attron(A_BOLD);
 	color_set(11, NULL);
-	mvprintw(7, 199, "Cycle : %d", ++cycle->cycle_num);
+	mvprintw(7, 199, "Cycle : %d", cycle->cycle_num++);
 	mvprintw(9, 199, "Processes : %-5d", cycle->cur_len);
 	y = print_players(player, cycle, y);
 	color_set(11, NULL);

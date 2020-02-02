@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vm_print_map_static.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kpsylock <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 21:11:17 by kpsylock          #+#    #+#             */
-/*   Updated: 2020/01/26 21:11:19 by kpsylock         ###   ########.fr       */
+/*   Updated: 2020/02/02 13:15:14 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int		vm_print_winner_v(t_player *player, t_cycle *cycle)
 	attron(A_BOLD);
 	color_set(11, NULL);
 	mvprintw(9, 199, "Processes : %-5d", cycle->cur_len);
+	mvprintw(7, 199, "Cycle : %d", cycle->cycle_num);
 	mvprintw(cycle->winner_y + 12 + 2, 199, "The winner is : ");
 	mvprintw(cycle->winner_y + 12 + 4, 199, "Press Q to finish");
 	color_set(player->num, NULL);

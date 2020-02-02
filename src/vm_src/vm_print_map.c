@@ -6,7 +6,7 @@
 /*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 11:17:28 by bford             #+#    #+#             */
-/*   Updated: 2020/01/29 17:10:16 by bford            ###   ########.fr       */
+/*   Updated: 2020/02/02 13:20:46 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ inline static char	visu_pause(void)
 	c = 0;
 	color_set(11, NULL);
 	attron(A_BOLD);
-	mvprintw(3, 199, "**  PAUSE  **");
+	mvprintw(2, 199, "** PAUSED ** ");
 	while (true)
 	{
 		if (c == 'q' || c == ' ')
 		{
-			mvprintw(3, 199, "** RUNNING **");
+			mvprintw(2, 199, "** RUNNING **  ");
 			color_set(10, NULL);
 			attroff(A_BOLD);
 			return (c);
